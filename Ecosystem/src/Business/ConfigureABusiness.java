@@ -7,6 +7,7 @@ package Business;
 import Business.Employee.Employee;
 import Business.Enterprise.Enterprise;
 import Business.Enterprise.HospitalEnterprise;
+import Business.Network.Network;
 import Business.Organization.DoctorOrganization;
 import Business.Organization.FrontDeskEmployeeOrganization;
 import Business.Role.DoctorRole;
@@ -37,9 +38,12 @@ public class ConfigureABusiness {
 //
 //        ad.getEmployeeDirectory().getEmployeeList().add(employee);
 //        ad.getUserAccountDirectory().getUserAccountList().add(userAccount);
-        
+        Network nw=new Network("Boston");
         Enterprise e=new HospitalEnterprise();
-        business.getEnterpriseDirectory().getEnterpriseList().add(e);
+        business.getNetworkList().add(nw);
+        nw.getEnterpriseDirectory().getEnterpriseList().add(e);
+        
+        
         DoctorOrganization doctor = new DoctorOrganization();
         e.getOrganizationDirectory().getOrganizationList().add(doctor);
         //business.getOrganizationDirectory().getOrganizationList().add(doctor);

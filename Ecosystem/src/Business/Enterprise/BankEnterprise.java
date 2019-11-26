@@ -5,6 +5,9 @@
  */
 package Business.Enterprise;
 
+import Business.Role.Role;
+import java.util.ArrayList;
+
 /**
  *
  * @author AED_DEVOPS
@@ -13,6 +16,11 @@ public class BankEnterprise extends Enterprise{
 
     public BankEnterprise(String name) {
         super(name);
+    }
+
+    @Override
+    public ArrayList<Role> getSupportedRole() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

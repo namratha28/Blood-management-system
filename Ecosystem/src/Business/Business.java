@@ -4,9 +4,9 @@
  */
 package Business;
 
-import Business.Enterprise.Enterprise;
 import Business.Enterprise.EnterpriseDirectory;
-import Business.Organization.OrganizationDirectory;
+import Business.Network.Network;
+import java.util.ArrayList;
 
 /**
  *
@@ -15,8 +15,8 @@ import Business.Organization.OrganizationDirectory;
 public class Business {
 
     private static volatile Business business;
-
-    private EnterpriseDirectory enterpriseDirectory;
+    private ArrayList<Network> networkList;
+ 
 
     public static Business getInstance() {
         if (business == null) {
@@ -30,10 +30,13 @@ public class Business {
     }
 
     private Business() {
-        enterpriseDirectory = new EnterpriseDirectory();
+        networkList = new ArrayList<>();
     }
 
-    public EnterpriseDirectory getEnterpriseDirectory() {
-        return enterpriseDirectory;
+    public ArrayList<Network> getNetworkList() {
+        return networkList;
     }
+
+
+ 
 }

@@ -5,19 +5,24 @@
  */
 package Business.Entity;
 
-
 import Business.Request.RequestQueue;
+import Business.Role.Role;
+import java.util.ArrayList;
+
 /**
  *
  * @author Huangdong Wen <wen.hu@husky.neu.edu>
  */
 public abstract class Entity {
+
     protected int id;
     protected String name;
 
     protected String address;
     protected int zipcode;
     protected RequestQueue rq;
+
+    public abstract ArrayList<Role> getSupportedRole();
 
     public RequestQueue getRq() {
         return rq;
@@ -26,7 +31,6 @@ public abstract class Entity {
     public void setRq(RequestQueue rq) {
         this.rq = rq;
     }
-
 
     public int getId() {
         return id;
@@ -44,7 +48,6 @@ public abstract class Entity {
         this.name = name;
     }
 
-
     public String getAddress() {
         return address;
     }
@@ -60,5 +63,5 @@ public abstract class Entity {
     public void setZipcode(int zipcode) {
         this.zipcode = zipcode;
     }
-    
+
 }

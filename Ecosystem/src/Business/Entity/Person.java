@@ -5,6 +5,8 @@
  */
 package Business.Entity;
 
+import Business.Role.Role;
+import java.util.ArrayList;
 import java.util.List;
 /**
  *
@@ -18,5 +20,10 @@ public class Person extends Entity{
     boolean donors;
     List<Integer> donationHistory;
     List<Integer> treatmentHistory;
+
+    @Override
+    public ArrayList<Role> getSupportedRole() {
+        return null;
+    }
     
 }

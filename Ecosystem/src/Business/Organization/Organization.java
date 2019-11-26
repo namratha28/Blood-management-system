@@ -23,16 +23,6 @@ public abstract class Organization extends Entity{
     private UserAccountDirectory userAccountDirectory;
     private int organizationID;
     private static int counter;
-//    private Map<Employee,List<TimeSlot>> map;
-//
-//    public Map<Employee, List<TimeSlot>> getMap() {
-//        return map;
-//    }
-//
-//    public void setMap(Map<Employee, List<TimeSlot>> map) {
-//        this.map = map;
-//    }
-    
     
     public enum Type{
         Admin("Admin Organization") {
@@ -109,13 +99,13 @@ public abstract class Organization extends Entity{
 
     public Organization(String name) {
         this.name = name;
-        employeeDirectory = new EmployeeDirectory();
-        userAccountDirectory = new UserAccountDirectory();
-        organizationID = counter;
+        this.employeeDirectory = new EmployeeDirectory();
+        this.userAccountDirectory = new UserAccountDirectory();
+        this.organizationID = counter;
         ++counter;
     }
 
-    public abstract ArrayList<Role> getSupportedRole();
+ 
     
     public UserAccountDirectory getUserAccountDirectory() {
         return userAccountDirectory;

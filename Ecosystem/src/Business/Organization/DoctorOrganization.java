@@ -21,7 +21,6 @@ import java.util.Map;
  */
 public class DoctorOrganization extends Organization {
 
-    //Map<Employee,String> doc_spe=new HashMap();
     public DoctorOrganization() {
         super(Type.Doctor.getValue());
     }

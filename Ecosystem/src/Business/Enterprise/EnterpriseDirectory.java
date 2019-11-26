@@ -5,6 +5,7 @@
  */
 package Business.Enterprise;
 
+import Business.Role.Role;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,11 +28,16 @@ public class EnterpriseDirectory {
         return enterpriseDirectory;
     }
     
-    public Enterprise createEnterprise(String name){
-        Enterprise enterprise = new Enterprise(name);
-        enterprise.setName(name);
-        enterpriseDirectory.add(enterprise);
-        return enterprise;
-    }
+//    public Enterprise createEnterprise(String name){
+//        Enterprise enterprise = new Enterprise(name) {
+//            @Override
+//            public ArrayList<Role> getSupportedRole() {
+//                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//            }
+//        };
+//        enterprise.setName(name);
+//        enterpriseDirectory.add(enterprise);
+//        return enterprise;
+//    }
     
 }

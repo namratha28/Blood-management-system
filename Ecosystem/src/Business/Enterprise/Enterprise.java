@@ -13,13 +13,29 @@ import Business.Organization.OrganizationDirectory;
  *
  * @author @author AED_DEVOPS
  */
-public class Enterprise extends Entity {
+public abstract class Enterprise extends Entity {
 
-    protected int ranking;
+    private int ranking;
     private String name;
 
     private int enterpriseID;
     private static int counter;
+    private OrganizationDirectory organizationDirectory;
+
+    public Enterprise(String name) {
+        organizationDirectory = new OrganizationDirectory();
+        this.name = name;
+        enterpriseID = counter;
+        ++counter;
+    }
+
+    public int getRanking() {
+        return ranking;
+    }
+
+    public void setRanking(int ranking) {
+        this.ranking = ranking;
+    }
 
     public OrganizationDirectory getOrganizationDirectory() {
         return organizationDirectory;
@@ -54,15 +70,6 @@ public class Enterprise extends Entity {
         public String toString() {
             return value;
         }
-    }
-
-    private OrganizationDirectory organizationDirectory;
-
-    public Enterprise(String name) {
-        organizationDirectory = new OrganizationDirectory();
-        this.name = name;
-        enterpriseID = counter;
-        ++counter;
     }
 
 }

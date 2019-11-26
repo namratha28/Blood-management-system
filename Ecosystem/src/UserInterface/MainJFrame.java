@@ -7,9 +7,9 @@ package UserInterface;
 import Business.Business;
 import Business.ConfigureABusiness;
 import Business.Enterprise.Enterprise;
+import Business.Network.Network;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
-import UserInterface.doctor.DoctorJPanel;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -129,17 +129,19 @@ public class MainJFrame extends javax.swing.JFrame {
         System.out.println(passw);
         boolean flag = false;
         UserAccount account = null;
-        for (Enterprise e : business.getEnterpriseDirectory().getEnterpriseList()) {
-            for (Organization o : e.getOrganizationDirectory().getOrganizationList()) {
-                account = o.getUserAccountDirectory().authenticateUser(user, passw);
-               // System.out.println(account);
-                if (account != null) {
-                    CardLayout l = (CardLayout) container.getLayout();
-                    JPanel sc = account.getRole().createWorkArea(container, account, o, e, business);
-                    container.add("SuccessScreen", sc);
-                    l.next(container);
-                    flag = true;
-                    break;
+        for (Network nw : business.getNetworkList()) {
+            for (Enterprise e : nw.getEnterpriseDirectory().getEnterpriseList()) {
+                for (Organization o : e.getOrganizationDirectory().getOrganizationList()) {
+                    account = o.getUserAccountDirectory().authenticateUser(user, passw);
+                    // System.out.println(account);
+                    if (account != null) {
+                        CardLayout l = (CardLayout) container.getLayout();
+                        JPanel sc = account.getRole().createWorkArea(container, account, o, e, business);
+                        container.add("SuccessScreen", sc);
+                        l.next(container);
+                        flag = true;
+                        break;
+                    }
                 }
             }
         }
