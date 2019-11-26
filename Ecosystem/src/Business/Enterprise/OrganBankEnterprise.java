@@ -10,5 +10,9 @@ package Business.Enterprise;
  * @author Huangdong Wen <wen.hu@husky.neu.edu>
  */
 public class OrganBankEnterprise extends Enterprise{
+
+    public OrganBankEnterprise(String name) {
+        super(name);
+    }
     
 }

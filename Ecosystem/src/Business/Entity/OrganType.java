@@ -3,16 +3,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Business.Enterprise;
+package Business.Entity;
 
 /**
  *
  * @author Huangdong Wen <wen.hu@husky.neu.edu>
  */
-public class LogisticsEnterprise extends Enterprise{
-
-    public LogisticsEnterprise(String name) {
-        super(name);
-    }
-    
+public enum OrganType {
+    LIVER,
+    EYE,
+    KIDNEYS,
+    HEART,
+    PANCREAS,
+    INTESTINES,
+    LUNGS,
+    BONES,
+    SKIN,
+    CORNEAS
 }

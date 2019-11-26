@@ -4,21 +4,22 @@
  */
 package Business;
 
+import Business.Enterprise.Enterprise;
+import Business.Enterprise.EnterpriseDirectory;
 import Business.Organization.OrganizationDirectory;
-
-
 
 /**
  *
  * @author Administrator
  */
 public class Business {
-    
+
     private static volatile Business business;
-    private OrganizationDirectory organizationDirectory;
-    
-    public static Business getInstance(){
-        if (business == null){
+
+    private EnterpriseDirectory enterpriseDirectory;
+
+    public static Business getInstance() {
+        if (business == null) {
             synchronized (Business.class) {
                 if (business == null) {
                     business = new Business();
@@ -29,10 +30,10 @@ public class Business {
     }
 
     private Business() {
-        organizationDirectory = new OrganizationDirectory();
+        enterpriseDirectory = new EnterpriseDirectory();
     }
 
-    public OrganizationDirectory getOrganizationDirectory() {
-        return organizationDirectory;
+    public EnterpriseDirectory getEnterpriseDirectory() {
+        return enterpriseDirectory;
     }
 }

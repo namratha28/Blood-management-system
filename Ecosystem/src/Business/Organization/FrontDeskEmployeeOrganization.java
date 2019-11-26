@@ -5,23 +5,25 @@
  */
 package Business.Organization;
 
+import Business.Role.DoctorRole;
 import Business.Role.Role;
 import java.util.ArrayList;
-
 
 /**
  *
  * @author Huangdong Wen <wen.hu@husky.neu.edu>
  */
-public class InsuranceCompEmployeeOrganization extends Organization{
+public class FrontDeskEmployeeOrganization extends Organization{
 
-    public InsuranceCompEmployeeOrganization() {
-        super(Type.Insurance.getValue());
+    public FrontDeskEmployeeOrganization() {
+        super(Type.FrontDesk.getValue());
     }
 
     @Override
-   public ArrayList<Role> getSupportedRole() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public ArrayList<Role> getSupportedRole() {
+        ArrayList<Role> roles = new ArrayList<>();
+        roles.add(new DoctorRole());
+        return roles;
     }
     
 }

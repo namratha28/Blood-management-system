@@ -5,16 +5,28 @@
  */
 package Business.Entity;
 
+
+import Business.Request.RequestQueue;
 /**
  *
- * @author Huangdong Wen
+ * @author Huangdong Wen <wen.hu@husky.neu.edu>
  */
 public abstract class Entity {
     protected int id;
     protected String name;
-    protected int ranking;
+
     protected String address;
     protected int zipcode;
+    protected RequestQueue rq;
+
+    public RequestQueue getRq() {
+        return rq;
+    }
+
+    public void setRq(RequestQueue rq) {
+        this.rq = rq;
+    }
+
 
     public int getId() {
         return id;
@@ -32,13 +44,6 @@ public abstract class Entity {
         this.name = name;
     }
 
-    public int getRanking() {
-        return ranking;
-    }
-
-    public void setRanking(int ranking) {
-        this.ranking = ranking;
-    }
 
     public String getAddress() {
         return address;

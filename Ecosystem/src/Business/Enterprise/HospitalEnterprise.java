@@ -7,8 +7,12 @@ package Business.Enterprise;
 
 /**
  *
- * @author Huangdong Wen
+ * @author AED_DEVOPS
  */
 public class HospitalEnterprise extends Enterprise{
+
+    public HospitalEnterprise() {
+        super(EnterpriseType.Hospital.getValue());
+    }
     
 }

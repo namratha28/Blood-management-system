@@ -4,10 +4,9 @@
  * and open the template in the editor.
  */
 package Business.Entity;
-
 /**
  *
- * @author roxanne
+ * @author Huangdong Wen <wen.hu@husky.neu.edu>
  */
 public enum BloodType {
     A,

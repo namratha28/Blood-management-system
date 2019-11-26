@@ -10,20 +10,28 @@ import java.util.List;
 
 /**
  *
- * @author roxanne
+ * @author AED_DEVOPS
  */
 public class EnterpriseDirectory {
     private List<Enterprise> enterpriseDirectory;
+    
     public EnterpriseDirectory() {
         enterpriseDirectory=new ArrayList<>();
     }
-    public boolean add(Enterprise e){
-        return enterpriseDirectory.add(e);
+    
+//    public boolean add(Enterprise e){
+//        return enterpriseDirectory.add(e);
+//    }
+
+    public List<Enterprise> getEnterpriseList() {
+        return enterpriseDirectory;
     }
+    
     public Enterprise createEnterprise(String name){
-        Enterprise enterprise = new Enterprise();
+        Enterprise enterprise = new Enterprise(name);
         enterprise.setName(name);
         enterpriseDirectory.add(enterprise);
         return enterprise;
     }
+    
 }

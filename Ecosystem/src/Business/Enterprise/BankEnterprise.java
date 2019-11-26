@@ -7,8 +7,12 @@ package Business.Enterprise;
 
 /**
  *
- * @author roxanne
+ * @author AED_DEVOPS
  */
 public class BankEnterprise extends Enterprise{
+
+    public BankEnterprise(String name) {
+        super(name);
+    }
     
 }

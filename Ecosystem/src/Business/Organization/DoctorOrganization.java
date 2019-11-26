@@ -5,23 +5,32 @@
  */
 package Business.Organization;
 
-import Business.Organization.Organization.Type;
-import java.util.ArrayList;
+import Business.Employee.Employee;
 
+import Business.Organization.Organization.Type;
+import Business.Role.DoctorRole;
+import Business.Role.Role;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  *
  * @author Huangdong Wen <wen.hu@husky.neu.edu>
  */
-public class DoctorOrganization extends Organization{
+public class DoctorOrganization extends Organization {
 
+    //Map<Employee,String> doc_spe=new HashMap();
     public DoctorOrganization() {
         super(Type.Doctor.getValue());
     }
 
     @Override
-    public ArrayList<String> getSupportedRole() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public ArrayList<Role> getSupportedRole() {
+        ArrayList<Role> roles = new ArrayList<>();
+        roles.add(new DoctorRole());
+        return roles;
     }
-    
+
 }

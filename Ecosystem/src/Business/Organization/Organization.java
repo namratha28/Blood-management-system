@@ -6,8 +6,11 @@ package Business.Organization;
 
 import Business.Employee.EmployeeDirectory;
 import Business.Entity.Entity;
+import Business.Role.Role;
 import Business.UserAccount.UserAccountDirectory;
 import java.util.ArrayList;
+
+
 
 /**
  *
@@ -20,6 +23,16 @@ public abstract class Organization extends Entity{
     private UserAccountDirectory userAccountDirectory;
     private int organizationID;
     private static int counter;
+//    private Map<Employee,List<TimeSlot>> map;
+//
+//    public Map<Employee, List<TimeSlot>> getMap() {
+//        return map;
+//    }
+//
+//    public void setMap(Map<Employee, List<TimeSlot>> map) {
+//        this.map = map;
+//    }
+    
     
     public enum Type{
         Admin("Admin Organization") {
@@ -35,7 +48,12 @@ public abstract class Organization extends Entity{
             public Organization createOrganization() {
                 return new LabOrganization();
             }
-        }, Gov("Gov Organization"){
+        }, FrontDesk("Front Desk Organization"){
+            public Organization createOrganization() {
+                return new FrontDeskEmployeeOrganization();
+            }
+        },
+        Gov("Gov Organization"){
             public Organization createOrganization() {
                 return new GovEmployeeOrganization();
             }
@@ -97,7 +115,7 @@ public abstract class Organization extends Entity{
         ++counter;
     }
 
-    public abstract ArrayList<String> getSupportedRole();
+    public abstract ArrayList<Role> getSupportedRole();
     
     public UserAccountDirectory getUserAccountDirectory() {
         return userAccountDirectory;

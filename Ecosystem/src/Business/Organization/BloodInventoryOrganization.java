@@ -5,6 +5,7 @@
  */
 package Business.Organization;
 
+import Business.Role.Role;
 import java.util.ArrayList;
 
 /**
@@ -18,7 +19,7 @@ public class BloodInventoryOrganization extends Organization{
     }
 
     @Override
-    public ArrayList<String> getSupportedRole() {
+    public ArrayList<Role> getSupportedRole() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

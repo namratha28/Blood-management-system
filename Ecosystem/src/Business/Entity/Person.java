@@ -6,10 +6,9 @@
 package Business.Entity;
 
 import java.util.List;
-
 /**
  *
- * @author roxanne
+ * @author Huangdong Wen <wen.hu@husky.neu.edu>
  */
 public class Person extends Entity{
     int age;

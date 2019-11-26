@@ -8,12 +8,29 @@ package Business.Enterprise;
 import Business.Entity.Entity;
 import Business.Organization.OrganizationDirectory;
 
+
 /**
  *
- * @author Huangdong Wen
+ * @author @author AED_DEVOPS
  */
-public class Enterprise extends Entity{
+public class Enterprise extends Entity {
+
+    protected int ranking;
+    private String name;
+
+    private int enterpriseID;
+    private static int counter;
+
+    public OrganizationDirectory getOrganizationDirectory() {
+        return organizationDirectory;
+    }
+
+    public void setOrganizationDirectory(OrganizationDirectory organizationDirectory) {
+        this.organizationDirectory = organizationDirectory;
+    }
+
     public enum EnterpriseType {
+
         Insurance("Insurance"),
         Bank("Bank"),
         OrganBank("OrganBank"),
@@ -40,8 +57,12 @@ public class Enterprise extends Entity{
     }
 
     private OrganizationDirectory organizationDirectory;
-    public Enterprise() {
-        organizationDirectory=new OrganizationDirectory();
+
+    public Enterprise(String name) {
+        organizationDirectory = new OrganizationDirectory();
+        this.name = name;
+        enterpriseID = counter;
+        ++counter;
     }
 
 }
