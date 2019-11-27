@@ -5,6 +5,7 @@
  */
 package Business.Organization;
 
+import Business.Role.AdminRole;
 import Business.Role.Role;
 import java.util.ArrayList;
 
@@ -12,7 +13,7 @@ import java.util.ArrayList;
  *
  * @author roxanne
  */
-public class AdminOrganization extends Organization{
+public class AdminOrganization extends Organization {
 
     public AdminOrganization() {
         super(Type.Admin.getValue());
@@ -20,9 +21,11 @@ public class AdminOrganization extends Organization{
     }
 
     @Override
-  public ArrayList<Role> getSupportedRole() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public ArrayList<Role> getSupportedRole() {
+
+        ArrayList<Role> roles = new ArrayList<>();
+        roles.add(new AdminRole());
+        return roles;
     }
-  
-    
+
 }

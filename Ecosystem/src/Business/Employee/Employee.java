@@ -6,16 +6,20 @@ package Business.Employee;
 
 import Business.Entity.Person;
 import Business.Entity.TimeSlot;
+import Business.Event.Event;
+import Business.Event.Message;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
 
 /**
- * 
+ *
  *
  * @author AED_DEVOPS
  */
-public class Employee extends Person{
-    
+public class Employee extends Person implements Observer {
+
     private String name;
     private int id;
     private static int count = 1;
@@ -52,7 +56,6 @@ public class Employee extends Person{
         this.availability.remove(a);
     }
 
-
     public int getId() {
         return id;
     }
@@ -61,7 +64,6 @@ public class Employee extends Person{
         this.name = name;
     }
 
-    
     public String getName() {
         return name;
     }
@@ -70,6 +72,13 @@ public class Employee extends Person{
     public String toString() {
         return name;
     }
-    
-    
+
+    @Override
+    public void update(Observable o, Object o1) {
+        Event e = (Event) o;
+        Message m = (Message) o1;
+        System.out.println(getName() +"get the event:" + e.getEventName() + "-" + m.getContent());
+
+    }
+
 }

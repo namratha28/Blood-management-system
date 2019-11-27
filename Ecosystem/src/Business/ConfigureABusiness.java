@@ -8,8 +8,10 @@ import Business.Employee.Employee;
 import Business.Enterprise.Enterprise;
 import Business.Enterprise.HospitalEnterprise;
 import Business.Network.Network;
+import Business.Organization.AdminOrganization;
 import Business.Organization.DoctorOrganization;
 import Business.Organization.FrontDeskEmployeeOrganization;
+import Business.Role.AdminRole;
 import Business.Role.DoctorRole;
 import Business.Role.FrontDeskRole;
 import Business.Role.Role;
@@ -40,13 +42,30 @@ public class ConfigureABusiness {
 //        ad.getUserAccountDirectory().getUserAccountList().add(userAccount);
         Network nw=new Network("Boston");
         Enterprise e=new HospitalEnterprise();
+        
         business.getNetworkList().add(nw);
         nw.getEnterpriseDirectory().getEnterpriseList().add(e);
         
+        AdminOrganization adminO = new AdminOrganization();
+        e.getOrganizationDirectory().getOrganizationList().add(adminO);
+       
+        Employee admin = new Employee();
+        admin.setName("Roxanne");          
+        admin.setDesc("ADMIN");
+
+        UserAccount userAccount_admin = new UserAccount();
+        Role role_admin=new AdminRole();
+        userAccount_admin.setUsername("admin");
+        userAccount_admin.setPassword("admin");
+        userAccount_admin.setRole(role_admin);
+        userAccount_admin.setEmployee(admin);
+
+        adminO.getEmployeeDirectory().getEmployeeList().add(admin);
+        adminO.getUserAccountDirectory().getUserAccountList().add(userAccount_admin);
         
         DoctorOrganization doctor = new DoctorOrganization();
         e.getOrganizationDirectory().getOrganizationList().add(doctor);
-        //business.getOrganizationDirectory().getOrganizationList().add(doctor);
+        
         Employee doc = new Employee();
         doc.setName("Jackie");          
         doc.setDesc("ALLERGY & IMMUNOLOGY");
