@@ -12,7 +12,7 @@ import java.util.Date;
  *
  * @author Huangdong Wen <wen.hu@husky.neu.edu>
  */
-public abstract class Request {
+public  class Request {
 
     private UserAccount sender;
     private UserAccount receiver;

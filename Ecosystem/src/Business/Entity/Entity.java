@@ -20,20 +20,12 @@ public abstract class Entity {
 
     protected String address;
     protected int zipcode;
-    protected RequestQueue rq;
+
 
     public abstract ArrayList<Role> getSupportedRole();
 
     public Entity() {
-        rq = new RequestQueue();
-    }
-
-    public RequestQueue getRq() {
-        return rq;
-    }
-
-    public void setRq(RequestQueue rq) {
-        this.rq = rq;
+    
     }
 
     public int getId() {

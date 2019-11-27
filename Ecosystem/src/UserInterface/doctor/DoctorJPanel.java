@@ -9,6 +9,7 @@ import Business.Business;
 import Business.Enterprise.Enterprise;
 import Business.Entity.TimeSlot;
 import Business.Organization.DoctorOrganization;
+import Business.Request.Request;
 import Business.UserAccount.UserAccount;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -63,6 +64,8 @@ public class DoctorJPanel extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        rqTable = new javax.swing.JTable();
 
         setBackground(java.awt.Color.white);
         setPreferredSize(new java.awt.Dimension(800, 500));
@@ -113,6 +116,16 @@ public class DoctorJPanel extends javax.swing.JPanel {
             }
         });
 
+        rqTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "patient", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(rqTable);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -126,7 +139,7 @@ public class DoctorJPanel extends javax.swing.JPanel {
                         .addGap(9, 9, 9)
                         .addComponent(jLabel2))
                     .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 182, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 115, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel6)
@@ -143,12 +156,14 @@ public class DoctorJPanel extends javax.swing.JPanel {
                                 .addComponent(txtTo, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(40, 40, 40)
                                 .addComponent(jButton2)
-                                .addGap(0, 37, Short.MAX_VALUE)))
+                                .addGap(0, 0, Short.MAX_VALUE)))
                         .addGap(67, 67, 67))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 570, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 560, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel5)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 570, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
@@ -156,7 +171,7 @@ public class DoctorJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jLabel5))
@@ -172,13 +187,19 @@ public class DoctorJPanel extends javax.swing.JPanel {
                         .addGap(152, 152, 152)
                         .addComponent(jButton1)
                         .addGap(37, 37, 37)
-                        .addComponent(jLabel3)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel4))
+                        .addComponent(jLabel3))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(27, 27, 27)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(247, Short.MAX_VALUE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(116, 116, 116)
+                        .addComponent(jLabel4)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(38, 38, 38))))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -208,6 +229,7 @@ public class DoctorJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_txtToActionPerformed
     private void initialize() {
         jLabel1.setText("hello");
+        populateRqTable();
         //jLabel2.setText(account.getRole() + "  " + account.getPerson() + " !!!");
     }
 
@@ -223,6 +245,8 @@ public class DoctorJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable rqTable;
     private javax.swing.JTextField txtFrom;
     private javax.swing.JTextField txtTo;
     // End of variables declaration//GEN-END:variables
@@ -238,5 +262,16 @@ public class DoctorJPanel extends javax.swing.JPanel {
             model.addRow(row);
          }
         
+    }
+
+    private void populateRqTable() {
+         DefaultTableModel model =(DefaultTableModel)rqTable.getModel();
+        model.setRowCount(0);
+         for(Request rq:userAccount.getRq().getWorkRequestList()){
+            Object[] row = new Object[2];
+            row[0] = rq.getSender();
+            //row[1] = ts.getTo();
+            model.addRow(row);
+         }
     }
 }

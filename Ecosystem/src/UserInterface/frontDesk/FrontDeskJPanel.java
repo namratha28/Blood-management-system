@@ -8,10 +8,13 @@ package UserInterface.frontDesk;
 import Business.Business;
 import Business.Employee.Employee;
 import Business.Enterprise.Enterprise;
+import Business.Entity.TimeSlot;
 import Business.Organization.DoctorOrganization;
 import Business.Organization.FrontDeskEmployeeOrganization;
 import Business.Organization.Organization;
+import Business.Request.Request;
 import Business.UserAccount.UserAccount;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -29,6 +32,7 @@ public class FrontDeskJPanel extends javax.swing.JPanel {
     private UserAccount userAccount;
     private FrontDeskEmployeeOrganization organization;
     private Enterprise enterprise;
+    private UserAccount a;
 
     public FrontDeskJPanel(JPanel userProcessContainer, UserAccount account, FrontDeskEmployeeOrganization organization, Enterprise enterprise, Business business) {
         initComponents();
@@ -58,10 +62,10 @@ public class FrontDeskJPanel extends javax.swing.JPanel {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        txtPatient = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jButton3 = new javax.swing.JButton();
+        txtBirth = new javax.swing.JTextField();
+        makeAptmBtn = new javax.swing.JButton();
         jComboBox1 = new javax.swing.JComboBox();
 
         speTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -146,16 +150,16 @@ public class FrontDeskJPanel extends javax.swing.JPanel {
 
         jLabel4.setText("Birthday");
 
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        txtBirth.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                txtBirthActionPerformed(evt);
             }
         });
 
-        jButton3.setText("make an appointment");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        makeAptmBtn.setText("make an appointment");
+        makeAptmBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                makeAptmBtnActionPerformed(evt);
             }
         });
 
@@ -183,13 +187,13 @@ public class FrontDeskJPanel extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addGap(4, 4, 4)
-                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtPatient, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel4)
                                 .addGap(18, 18, 18)
-                                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtBirth, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jButton3))
+                                .addComponent(makeAptmBtn))
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 689, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(32, 32, 32)
@@ -215,33 +219,47 @@ public class FrontDeskJPanel extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtPatient, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3)
+                    .addComponent(txtBirth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(makeAptmBtn)
                     .addComponent(jButton1))
                 .addGap(101, 101, 101))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        int selectedRow = speTable.getSelectedRow();
+        //Employee e;
+        if (selectedRow >= 0) {
+            a = (UserAccount) speTable.getValueAt(selectedRow, 0);
+            populateAvailTable();
+        } else {
+            JOptionPane.showMessageDialog(null, "Please select any row");
+        }
+
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void txtBirthActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBirthActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    }//GEN-LAST:event_txtBirthActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    private void makeAptmBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_makeAptmBtnActionPerformed
+        Request r=new Request();
+        String name=txtPatient.getText();
+        UserAccount user=new UserAccount();
+        user.setUsername(name);
+        r.setSender(user); 
+        r.setReceiver(a);
+        a.getRq().getWorkRequestList().add(r);     
+    }//GEN-LAST:event_makeAptmBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable availTable;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -249,9 +267,10 @@ public class FrontDeskJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JButton makeAptmBtn;
     private javax.swing.JTable speTable;
+    private javax.swing.JTextField txtBirth;
+    private javax.swing.JTextField txtPatient;
     // End of variables declaration//GEN-END:variables
 
     private void populateSpe() {
@@ -260,13 +279,27 @@ public class FrontDeskJPanel extends javax.swing.JPanel {
         model.setRowCount(0);
         for (Organization o : enterprise.getOrganizationDirectory().getOrganizationList()) {
             if (o instanceof DoctorOrganization) {
-                for (Employee e : o.getEmployeeDirectory().getEmployeeList()) {
+                for (UserAccount a : o.getUserAccountDirectory().getUserAccountList()) {
                     Object[] row = new Object[2];
-                    row[0] = e.getName();
-                    row[1] = e.getDesc();
+                    row[0] = a;
+                    row[1] = a.getEmployee().getDesc();
                     model.addRow(row);
                 }
             }
+        }
+
+    }
+
+    private void populateAvailTable() {
+        DefaultTableModel model = (DefaultTableModel) availTable.getModel();
+
+        model.setRowCount(0);
+
+        for (TimeSlot ts : a.getEmployee().getAvailability()) {
+            Object[] row = new Object[2];
+            row[0] = ts.getFrom();
+            row[1] = ts.getTo();
+            model.addRow(row);
         }
 
     }

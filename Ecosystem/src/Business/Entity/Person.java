@@ -14,7 +14,7 @@ import java.util.List;
  *
  * @author Huangdong Wen <wen.hu@husky.neu.edu>
  */
-public class Person extends Entity {
+public class Person  {
 
     private int age;
     private boolean isDisabled;
@@ -25,7 +25,7 @@ public class Person extends Entity {
     List<Integer> treatmentHistory;
 
     public Person() {
-         super();
+       
     }
 
     public Person(int age, boolean isDisabled, int contributionScore, BloodType type, boolean donors, List<Integer> donationHistory, List<Integer> treatmentHistory) {
@@ -94,9 +94,5 @@ public class Person extends Entity {
         this.treatmentHistory = treatmentHistory;
     }
 
-    @Override
-    public ArrayList<Role> getSupportedRole() {
-        return null;
-    }
 
 }

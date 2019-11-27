@@ -20,6 +20,15 @@ public abstract class Organization extends Entity {
     private UserAccountDirectory userAccountDirectory;
     private int organizationID;
     private static int counter;
+    protected RequestQueue rq;
+
+    public RequestQueue getRq() {
+        return rq;
+    }
+
+    public void setRq(RequestQueue rq) {
+        this.rq = rq;
+    }
 
     public enum Type {
 

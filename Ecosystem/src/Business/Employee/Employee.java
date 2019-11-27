@@ -4,11 +4,11 @@
  */
 package Business.Employee;
 
-import Business.Entity.Person;
+import Business.Entity.Entity;
 import Business.Entity.TimeSlot;
 import Business.Event.Event;
 import Business.Event.Message;
-import Business.Request.RequestQueue;
+import Business.Role.Role;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
@@ -19,21 +19,13 @@ import java.util.Observer;
  *
  * @author AED_DEVOPS
  */
-public class Employee extends Person implements Observer {
+public class Employee extends Entity implements Observer {
 
     private String name;
     private int id;
     private static int count = 1;
     private List<TimeSlot> availability;
     private String desc;
-
-    public String getDesc() {
-        return desc;
-    }
-
-    public void setDesc(String desc) {
-        this.desc = desc;
-    }
 
     public Employee() {
         super();
@@ -70,6 +62,14 @@ public class Employee extends Person implements Observer {
         return name;
     }
 
+    public String getDesc() {
+        return desc;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
+
     @Override
     public String toString() {
         return name;
@@ -81,6 +81,11 @@ public class Employee extends Person implements Observer {
         Message m = (Message) o1;
         System.out.println(getName() + "get the event:" + e.getEventName() + "-" + m.getContent());
 
+    }
+
+    @Override
+    public ArrayList<Role> getSupportedRole() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }
