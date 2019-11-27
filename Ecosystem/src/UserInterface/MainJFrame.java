@@ -6,6 +6,7 @@ package UserInterface;
 
 import Business.Business;
 import Business.ConfigureABusiness;
+import Business.DB4O.DB4OUtil;
 import Business.Enterprise.Enterprise;
 import Business.Network.Network;
 import Business.Organization.Organization;
@@ -24,10 +25,12 @@ public class MainJFrame extends javax.swing.JFrame {
      * Creates new form MainJFrame
      */
     private Business business;
+    private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
 
     public MainJFrame() {
         initComponents();
-        business = ConfigureABusiness.configure();
+        //business = ConfigureABusiness.configure();
+        business = dB4OUtil.retrieveSystem();
     }
 
     /**
@@ -168,7 +171,7 @@ public class MainJFrame extends javax.swing.JFrame {
         container.add("blank", blankJP);
         CardLayout crdLyt = (CardLayout) container.getLayout();
         crdLyt.next(container);
-
+ dB4OUtil.storeSystem(business);
     }// GEN-LAST:event_logoutJButtonActionPerformed
 
     /**
