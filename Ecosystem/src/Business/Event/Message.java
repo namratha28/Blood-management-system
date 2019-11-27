@@ -10,22 +10,20 @@ package Business.Event;
  * @author Huangdong Wen <wen.hu@husky.neu.edu>
  */
 public class Message {
-    private String name;
-    private String content;
 
-    public String getName() {
-        return name;
-    }
+    private final String name;
+    private final String content;
 
-    public void setName(String userName) {
-        this.name = userName;
+    public Message(String name, String content) {
+        this.name = name;
+        this.content = content;
     }
 
     public String getContent() {
         return content;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public String getName() {
+        return name;
     }
 }

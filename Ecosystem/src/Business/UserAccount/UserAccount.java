@@ -28,7 +28,7 @@ public class UserAccount {
     public UserAccount() {
         this.rq = new RequestQueue();
         this.info = new Person();
-        this.employee = new Employee();
+//        this.employee = new Employee();
     }
 
     public UserAccount(Employee employee, Person info, RequestQueue rq) {

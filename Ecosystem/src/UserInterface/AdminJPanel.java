@@ -235,9 +235,8 @@ public class AdminJPanel extends javax.swing.JPanel {
                 event.addObserver(e);
             }
         //}
-        Message m=new Message();
-        m.setContent("Patient need AB type blood");
-        m.setName("blood request");
+        Message m=new Message("blood request","Patient need AB type blood");
+
         event.produce(event, m);
     }//GEN-LAST:event_jButton2ActionPerformed
 
