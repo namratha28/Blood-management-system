@@ -17,7 +17,6 @@ public class AdminOrganization extends Organization {
 
     public AdminOrganization() {
         super(Type.Admin.getValue());
-        //System.out.println(Type.Admin.getValue());
     }
 
     @Override

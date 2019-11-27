@@ -8,6 +8,7 @@ import Business.Entity.Person;
 import Business.Entity.TimeSlot;
 import Business.Event.Event;
 import Business.Event.Message;
+import Business.Request.RequestQueue;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
@@ -35,6 +36,7 @@ public class Employee extends Person implements Observer {
     }
 
     public Employee() {
+        super();
         id = count;
         count++;
         this.availability = new ArrayList<TimeSlot>();
@@ -77,7 +79,7 @@ public class Employee extends Person implements Observer {
     public void update(Observable o, Object o1) {
         Event e = (Event) o;
         Message m = (Message) o1;
-        System.out.println(getName() +"get the event:" + e.getEventName() + "-" + m.getContent());
+        System.out.println(getName() + "get the event:" + e.getEventName() + "-" + m.getContent());
 
     }
 

@@ -23,6 +23,7 @@ public abstract class Enterprise extends Entity {
     private OrganizationDirectory organizationDirectory;
 
     public Enterprise(String name) {
+        super();
         organizationDirectory = new OrganizationDirectory();
         this.name = name;
         enterpriseID = counter;

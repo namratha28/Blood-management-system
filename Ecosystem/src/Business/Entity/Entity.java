@@ -24,6 +24,10 @@ public abstract class Entity {
 
     public abstract ArrayList<Role> getSupportedRole();
 
+    public Entity() {
+        rq = new RequestQueue();
+    }
+
     public RequestQueue getRq() {
         return rq;
     }
