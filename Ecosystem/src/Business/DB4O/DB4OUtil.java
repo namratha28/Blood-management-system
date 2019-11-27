@@ -18,13 +18,18 @@ import com.db4o.ta.TransparentPersistenceSupport;
  * @author Huangdong Wen <wen.hu@husky.neu.edu>
  */
 public class DB4OUtil {
-        private static final String FILENAME = "Eco.db4o";
+
+    private static final String FILENAME = "Eco.db4o";
     ; // path to the data store
-    private static DB4OUtil dB4OUtil;
+    private static volatile DB4OUtil dB4OUtil;
 
     public synchronized static DB4OUtil getInstance() {
         if (dB4OUtil == null) {
-            dB4OUtil = new DB4OUtil();
+            synchronized (Business.class) {
+                if (dB4OUtil == null) {
+                    dB4OUtil = new DB4OUtil();
+                }
+            }
         }
         return dB4OUtil;
     }
