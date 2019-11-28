@@ -6,7 +6,6 @@
 package UserInterface.frontDesk;
 
 import Business.Business;
-import Business.Employee.Employee;
 import Business.Enterprise.Enterprise;
 import Business.Entity.TimeSlot;
 import Business.Organization.DoctorOrganization;
@@ -14,6 +13,8 @@ import Business.Organization.FrontDeskEmployeeOrganization;
 import Business.Organization.Organization;
 import Business.Request.Request;
 import Business.UserAccount.UserAccount;
+import UserInterface.account.CreateJPanel;
+import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -163,12 +164,17 @@ public class FrontDeskJPanel extends javax.swing.JPanel {
         jLabel6.setText("Appointment");
 
         createBtn.setBackground(new java.awt.Color(219, 140, 194));
-        createBtn.setForeground(new java.awt.Color(255, 255, 255));
+        createBtn.setForeground(new java.awt.Color(0, 0, 0));
         createBtn.setText("Search");
 
-        createBtn1.setBackground(new java.awt.Color(219, 140, 175));
-        createBtn1.setForeground(new java.awt.Color(0, 0, 0));
+        createBtn1.setBackground(new java.awt.Color(217, 83, 79));
+        createBtn1.setForeground(new java.awt.Color(255, 255, 255));
         createBtn1.setText("Create");
+        createBtn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                createBtn1ActionPerformed(evt);
+            }
+        });
 
         createBtn2.setBackground(new java.awt.Color(219, 140, 194));
         createBtn2.setForeground(new java.awt.Color(255, 255, 255));
@@ -303,6 +309,13 @@ public class FrontDeskJPanel extends javax.swing.JPanel {
         a.getRq().getWorkRequestList().add(r);     
     }//GEN-LAST:event_makeAptmBtnActionPerformed
 
+    private void createBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBtn1ActionPerformed
+        CreateJPanel panel=new CreateJPanel(userProcessContainer, enterprise);
+        userProcessContainer.add("CreateAccountJPanel",panel);
+        CardLayout layout=(CardLayout)userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_createBtn1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable availTable;
@@ -338,7 +351,7 @@ public class FrontDeskJPanel extends javax.swing.JPanel {
                 for (UserAccount a : o.getUserAccountDirectory().getUserAccountList()) {
                     Object[] row = new Object[2];
                     row[0] = a;
-                    row[1] = a.getEmployee().getDesc();
+                    row[1] = a.getEmployee().getSpecialities();
                     model.addRow(row);
                 }
             }

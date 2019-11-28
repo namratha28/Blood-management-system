@@ -5,17 +5,18 @@
  */
 package Business.Entity;
 
-import Business.Request.RequestQueue;
-import Business.Role.Role;
-import java.util.ArrayList;
+import Business.Employee.Employee;
+import java.util.Date;
 import java.util.List;
 
 /**
  *
  * @author Huangdong Wen <wen.hu@husky.neu.edu>
  */
-public class Person  {
+public class Person {
 
+    private String name;
+    private Date birthday;
     private int age;
     private boolean isDisabled;
     private int contributionScore;
@@ -24,8 +25,28 @@ public class Person  {
     List<Integer> donationHistory;
     List<Integer> treatmentHistory;
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
+    }
+
     public Person() {
-       
+    }
+
+    public Person(String name, Date b) {
+        this.name = name;
+        this.birthday = b;
     }
 
     public Person(int age, boolean isDisabled, int contributionScore, BloodType type, boolean donors, List<Integer> donationHistory, List<Integer> treatmentHistory) {
@@ -93,6 +114,5 @@ public class Person  {
     public void setTreatmentHistory(List<Integer> treatmentHistory) {
         this.treatmentHistory = treatmentHistory;
     }
-
 
 }

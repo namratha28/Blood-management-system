@@ -18,23 +18,45 @@ import java.util.List;
  */
 public class UserAccount {
 
+    private static int count = 1;
     private String username;
     private String password;
+    private int id;
+
     private Employee employee;
     private Role role;
-    private Person info;
+    private Person person;
+
     protected RequestQueue rq;
 
     public UserAccount() {
+        id = count;
+        count++;
         this.rq = new RequestQueue();
-        this.info = new Person();
+        this.person = new Person();
 //        this.employee = new Employee();
     }
 
-    public UserAccount(Employee employee, Person info, RequestQueue rq) {
+    public Person getPerson() {
+        return person;
+    }
+
+    public void setPerson(Person person) {
+        this.person = person;
+    }
+
+    public UserAccount(Employee employee, Person person, RequestQueue rq) {
         this.employee = employee;
-        this.info = info;
+        this.person = person;
         this.rq = new RequestQueue();
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public RequestQueue getRq() {
@@ -43,14 +65,6 @@ public class UserAccount {
 
     public void setRq(RequestQueue rq) {
         this.rq = rq;
-    }
-
-    public Person getInfo() {
-        return info;
-    }
-
-    public void setInfo(Person info) {
-        this.info = info;
     }
 
     public String getUsername() {

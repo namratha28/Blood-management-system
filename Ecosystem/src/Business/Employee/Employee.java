@@ -21,14 +21,14 @@ import java.util.Observer;
  */
 public class Employee extends Entity implements Observer {
 
-    private String name;
-    private int id;
     private static int count = 1;
     private List<TimeSlot> availability;
-    private String desc;
 
-    public Employee() {
+    public Employee(String spe, String name) {
         super();
+        this.name = name;
+
+        this.specialities = spe;
         id = count;
         count++;
         this.availability = new ArrayList<TimeSlot>();
@@ -54,32 +54,16 @@ public class Employee extends Entity implements Observer {
         return id;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getDesc() {
-        return desc;
-    }
-
-    public void setDesc(String desc) {
-        this.desc = desc;
-    }
-
     @Override
     public String toString() {
-        return name;
+        return "Employee{" + "id=" + id + ", availability=" + availability + ", Specialities=" + specialities + '}';
     }
 
     @Override
     public void update(Observable o, Object o1) {
         Event e = (Event) o;
         Message m = (Message) o1;
-        System.out.println(getName() + "get the event:" + e.getEventName() + "-" + m.getContent());
+        System.out.println(this.getId() + "get the event:" + e.getEventName() + "-" + m.getContent());
 
     }
 

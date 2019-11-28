@@ -16,16 +16,32 @@ import java.util.ArrayList;
 public abstract class Entity {
 
     protected int id;
+    protected String specialities;
     protected String name;
 
-    protected String address;
-    protected int zipcode;
+    public String getName() {
+        return name;
+    }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    protected String address;
+
+    public String getSpecialities() {
+        return specialities;
+    }
+
+    public void setSpecialities(String specialities) {
+        this.specialities = specialities;
+    }
+    protected int zipcode;
 
     public abstract ArrayList<Role> getSupportedRole();
 
     public Entity() {
-    
+        
     }
 
     public int getId() {
@@ -34,14 +50,6 @@ public abstract class Entity {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getAddress() {
