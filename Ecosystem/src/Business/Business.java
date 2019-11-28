@@ -4,7 +4,6 @@
  */
 package Business;
 
-import Business.Enterprise.EnterpriseDirectory;
 import Business.Network.Network;
 import java.util.ArrayList;
 

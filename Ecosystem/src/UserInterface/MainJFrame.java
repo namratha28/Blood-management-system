@@ -30,7 +30,7 @@ public class MainJFrame extends javax.swing.JFrame {
     public MainJFrame() {
         initComponents();
         business = ConfigureABusiness.configure();
-       // business = dB4OUtil.retrieveSystem();
+        // business = dB4OUtil.retrieveSystem();
     }
 
     /**
@@ -177,7 +177,7 @@ public class MainJFrame extends javax.swing.JFrame {
         container.add("blank", blankJP);
         CardLayout crdLyt = (CardLayout) container.getLayout();
         crdLyt.next(container);
- dB4OUtil.storeSystem(business);
+        dB4OUtil.storeSystem(business);
     }// GEN-LAST:event_logoutJButtonActionPerformed
 
     /**

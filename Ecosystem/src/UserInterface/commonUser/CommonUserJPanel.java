@@ -3,18 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package UserInterface.patient;
+package UserInterface.commonUser;
 
 /**
  *
  * @author Huangdong Wen <wen.hu@husky.neu.edu>
  */
-public class PatientJPanel extends javax.swing.JPanel {
+public class CommonUserJPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form PatientJPanel
      */
-    public PatientJPanel() {
+    public CommonUserJPanel() {
         initComponents();
     }
 

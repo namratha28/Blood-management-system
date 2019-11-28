@@ -32,7 +32,7 @@ public abstract class Organization extends Entity {
 
     public enum Type {
 
-        Admin("Admin Organization") {
+                Admin("Admin Organization") {
                     //@Override
                     public Organization createOrganization() {
                         return new AdminOrganization();
@@ -49,8 +49,7 @@ public abstract class Organization extends Entity {
                     public Organization createOrganization() {
                         return new FrontDeskEmployeeOrganization();
                     }
-                },
-        Gov("Gov Organization") {
+                }, Gov("Gov Organization") {
                     public Organization createOrganization() {
                         return new GovEmployeeOrganization();
                     }
@@ -90,6 +89,12 @@ public abstract class Organization extends Entity {
                     public Organization createOrganization() {
                         return new BloodCollectionStationOrganization();
                     }
+                }, Common("Common User") {
+                    @Override
+                    public Organization createOrganization() {
+                        return new CommonUserOrganization();
+                    }
+
                 };
         private String value;
 

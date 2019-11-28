@@ -10,6 +10,7 @@ import Business.Enterprise.HospitalEnterprise;
 import Business.Entity.TimeSlot;
 import Business.Network.Network;
 import Business.Organization.AdminOrganization;
+import Business.Organization.CommonUserOrganization;
 import Business.Organization.DoctorOrganization;
 import Business.Organization.FrontDeskEmployeeOrganization;
 import Business.Role.AdminRole;
@@ -49,11 +50,13 @@ public class ConfigureABusiness {
 
         business.getNetworkList().add(nw);
         nw.getEnterpriseDirectory().getEnterpriseList().add(e);
-
+        CommonUserOrganization common = new CommonUserOrganization();
+        e.getOrganizationDirectory().getOrganizationList().add(common);
+        
         AdminOrganization adminO = new AdminOrganization();
         e.getOrganizationDirectory().getOrganizationList().add(adminO);
 
-        Employee admin = new Employee("admin","Roxanne");
+        Employee admin = new Employee("admin", "Roxanne");
         admin.setSpecialities("ADMIN");
 
         UserAccount userAccount_admin = new UserAccount();
@@ -69,8 +72,8 @@ public class ConfigureABusiness {
         DoctorOrganization doctor = new DoctorOrganization();
         e.getOrganizationDirectory().getOrganizationList().add(doctor);
 
-        Employee doc = new Employee("ALLERGY & IMMUNOLOGY","Jackie");
-       // doc.setSpecialities("ALLERGY & IMMUNOLOGY");
+        Employee doc = new Employee("ALLERGY & IMMUNOLOGY", "Jackie");
+        // doc.setSpecialities("ALLERGY & IMMUNOLOGY");
         String from = "12/11/19 08:00:00";
         String to = "12/11/19 09:00:00";
         SimpleDateFormat format = new SimpleDateFormat("MM/dd/yy HH:mm:ss");
@@ -97,7 +100,7 @@ public class ConfigureABusiness {
 
         FrontDeskEmployeeOrganization fd = new FrontDeskEmployeeOrganization();
         e.getOrganizationDirectory().getOrganizationList().add(fd);
-        Employee fde = new Employee("fd","Katie");
+        Employee fde = new Employee("fd", "Katie");
         UserAccount userAccount_fde = new UserAccount();
         Role role_fde = new FrontDeskRole();
         userAccount_fde.setUsername("fd");

@@ -22,11 +22,9 @@ public class UserAccount {
     private String username;
     private String password;
     private int id;
-
     private Employee employee;
     private Role role;
     private Person person;
-
     protected RequestQueue rq;
 
     public UserAccount() {

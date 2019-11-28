@@ -13,6 +13,9 @@ import Business.Event.Message;
 import Business.Organization.AdminOrganization;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
+import UserInterface.account.CreateEmployeeJPanel;
+import UserInterface.account.CreateJPanel;
+import java.awt.CardLayout;
 import javax.swing.JPanel;
 
 /**
@@ -55,7 +58,7 @@ public class AdminJPanel extends javax.swing.JPanel {
         jTable1 = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
-        btnViewDetails = new javax.swing.JButton();
+        createBtn = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
@@ -96,10 +99,10 @@ public class AdminJPanel extends javax.swing.JPanel {
         ));
         jScrollPane2.setViewportView(jTable2);
 
-        btnViewDetails.setText("Create");
-        btnViewDetails.addActionListener(new java.awt.event.ActionListener() {
+        createBtn.setText("Create");
+        createBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnViewDetailsActionPerformed(evt);
+                createBtnActionPerformed(evt);
             }
         });
 
@@ -139,7 +142,7 @@ public class AdminJPanel extends javax.swing.JPanel {
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 594, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 91, Short.MAX_VALUE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(btnViewDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(createBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGap(10, 10, 10))))
@@ -153,7 +156,7 @@ public class AdminJPanel extends javax.swing.JPanel {
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnViewDetails)
+                        .addComponent(createBtn)
                         .addGap(18, 18, 18)
                         .addComponent(btnUpdate)
                         .addGap(18, 18, 18)
@@ -177,24 +180,12 @@ public class AdminJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField4ActionPerformed
 
-    private void btnViewDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewDetailsActionPerformed
-//        int selectedRow = tblVitalSigns.getSelectedRow();
-//        if (selectedRow >= 0) {
-//            VitalSigns vs = (VitalSigns) tblVitalSigns.getValueAt(selectedRow, 0);
-//            bdpTextField.setText(String.valueOf(vs.getBloodPressure()));
-//            temperatureTextField.setText(String.valueOf(vs.getTemperature()));
-//            pulseTextField.setText(String.valueOf(vs.getPulse()));
-//            dateTextField.setText(String.valueOf(vs.getDate()));
-//
-//            temperatureTextField.setEnabled(false);
-//            pulseTextField.setEnabled(false);
-//            dateTextField.setEnabled(false);
-//            bdpTextField.setEnabled(false);
-//
-//        } else {
-//            JOptionPane.showMessageDialog(null, "Please select any row");
-//        }
-    }//GEN-LAST:event_btnViewDetailsActionPerformed
+    private void createBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBtnActionPerformed
+        CreateEmployeeJPanel panel = new CreateEmployeeJPanel(userProcessContainer, enterprise);
+        userProcessContainer.add("CreateEmployeeeJPanel", panel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_createBtnActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
 //        int selectedRow = tblVitalSigns.getSelectedRow();
@@ -237,14 +228,14 @@ public class AdminJPanel extends javax.swing.JPanel {
         //}
         Message m = new Message("blood request", "Patient need AB type blood");
 
-        event.produce( m);
+        event.produce(m);
     }//GEN-LAST:event_jButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnUpdate;
-    private javax.swing.JButton btnViewDetails;
+    private javax.swing.JButton createBtn;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
