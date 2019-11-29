@@ -9,7 +9,9 @@ import Business.Enterprise.Enterprise;
 import Business.Organization.CommonUserOrganization;
 import Business.UserAccount.AbstractFactory.AccountFactory;
 import Business.UserAccount.AbstractFactory.UserAccountFactory;
+import UserInterface.frontDesk.FrontDeskJPanel;
 import java.awt.CardLayout;
+import java.awt.Component;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -171,6 +173,14 @@ public class CreateJPanel extends javax.swing.JPanel {
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         userProcessContainer.remove(this);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        Component[] comps = this.userProcessContainer.getComponents();
+        for (Component comp : comps) {
+            if (comp instanceof FrontDeskJPanel) {
+                FrontDeskJPanel m = (FrontDeskJPanel) comp;
+                m.populateCommonUser();
+            }
+
+        }
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_btnBackActionPerformed
 
