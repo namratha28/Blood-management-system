@@ -7,6 +7,7 @@ package Business;
 import Business.Employee.Employee;
 import Business.Enterprise.Enterprise;
 import Business.Enterprise.HospitalEnterprise;
+import Business.Entity.Person;
 import Business.Entity.TimeSlot;
 import Business.Network.Network;
 import Business.Organization.AdminOrganization;
@@ -27,7 +28,7 @@ import java.util.Date;
  * @author AED_DEVOPS
  */
 public class ConfigureABusiness {
-
+    
     public static Business configure() {
         // Three roles: LabAssistant, Doctor, Admin
 
@@ -47,7 +48,7 @@ public class ConfigureABusiness {
 //        ad.getUserAccountDirectory().getUserAccountList().add(userAccount);
         Network nw = new Network("Boston");
         Enterprise e = new HospitalEnterprise();
-
+        
         business.getNetworkList().add(nw);
         nw.getEnterpriseDirectory().getEnterpriseList().add(e);
         CommonUserOrganization common = new CommonUserOrganization();
@@ -55,24 +56,25 @@ public class ConfigureABusiness {
         
         AdminOrganization adminO = new AdminOrganization();
         e.getOrganizationDirectory().getOrganizationList().add(adminO);
-
+        
         Employee admin = new Employee("admin", "Roxanne");
         admin.setSpecialities("ADMIN");
-
+        
         UserAccount userAccount_admin = new UserAccount();
         Role role_admin = new AdminRole();
         userAccount_admin.setUsername("admin");
         userAccount_admin.setPassword("admin");
         userAccount_admin.setRole(role_admin);
         userAccount_admin.setEmployee(admin);
-
+        
         adminO.getEmployeeDirectory().getEmployeeList().add(admin);
         adminO.getUserAccountDirectory().getUserAccountList().add(userAccount_admin);
-
+        
         DoctorOrganization doctor = new DoctorOrganization();
         e.getOrganizationDirectory().getOrganizationList().add(doctor);
-
-        Employee doc = new Employee("ALLERGY & IMMUNOLOGY", "Jackie");
+        Person p_doc = new Person();
+        p_doc.setName("Jackie");
+        Employee doc = new Employee("Allergology", "Jackie");
         // doc.setSpecialities("ALLERGY & IMMUNOLOGY");
         String from = "12/11/19 08:00:00";
         String to = "12/11/19 09:00:00";
@@ -87,17 +89,17 @@ public class ConfigureABusiness {
         }
         TimeSlot ts = new TimeSlot(d1, d2);
         doc.addAvailability(ts);
-
+        
         UserAccount userAccount_doc = new UserAccount();
         Role role_doc = new DoctorRole();
         userAccount_doc.setUsername("doctor");
         userAccount_doc.setPassword("doctor");
         userAccount_doc.setRole(role_doc);
         userAccount_doc.setEmployee(doc);
-
+        userAccount_doc.setPerson(p_doc);
         doctor.getEmployeeDirectory().getEmployeeList().add(doc);
         doctor.getUserAccountDirectory().getUserAccountList().add(userAccount_doc);
-
+        
         FrontDeskEmployeeOrganization fd = new FrontDeskEmployeeOrganization();
         e.getOrganizationDirectory().getOrganizationList().add(fd);
         Employee fde = new Employee("fd", "Katie");
@@ -107,7 +109,7 @@ public class ConfigureABusiness {
         userAccount_fde.setPassword("fd");
         userAccount_fde.setRole(role_fde);
         userAccount_fde.setEmployee(fde);
-
+        
         fd.getEmployeeDirectory().getEmployeeList().add(fde);
         fd.getUserAccountDirectory().getUserAccountList().add(userAccount_fde);
 
@@ -126,5 +128,5 @@ public class ConfigureABusiness {
 //        lab.getUserAccountDirectory().getUserAccountList().add(userAccount_lab);
         return business;
     }
-
+    
 }

@@ -5,7 +5,7 @@
  */
 package Business.Enterprise;
 
-import Business.Entity.Entity;
+import Business.Organization.Organization;
 import Business.Organization.OrganizationDirectory;
 
 
@@ -13,7 +13,7 @@ import Business.Organization.OrganizationDirectory;
  *
  * @author @author AED_DEVOPS
  */
-public abstract class Enterprise extends Entity {
+public abstract class Enterprise  {
 
     private int ranking;
     private String name;
@@ -23,7 +23,6 @@ public abstract class Enterprise extends Entity {
     private OrganizationDirectory organizationDirectory;
 
     public Enterprise(String name) {
-        super();
         organizationDirectory = new OrganizationDirectory();
         this.name = name;
         enterpriseID = counter;

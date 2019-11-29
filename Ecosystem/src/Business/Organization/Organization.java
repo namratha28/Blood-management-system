@@ -13,9 +13,9 @@ import Business.UserAccount.UserAccountDirectory;
  *
  * @author AED_DEVOPS
  */
-public abstract class Organization extends Entity {
+public abstract class Organization {
 
-    private String name;
+    protected String name;
     private EmployeeDirectory employeeDirectory;
     private UserAccountDirectory userAccountDirectory;
     private int organizationID;
@@ -32,7 +32,7 @@ public abstract class Organization extends Entity {
 
     public enum Type {
 
-                Admin("Admin Organization") {
+        Admin("Admin Organization") {
                     //@Override
                     public Organization createOrganization() {
                         return new AdminOrganization();

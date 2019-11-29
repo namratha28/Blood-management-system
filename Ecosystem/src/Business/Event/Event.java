@@ -30,7 +30,7 @@ public class Event extends Observable {
 
     
     public void produce( Message m){
-        System.out.println(m.getName()+":"+this.getEventName()+"submit an event");
+        System.out.println(m.getEventName()+":"+this.getEventName()+"submit an event");
         setChanged();
         notifyObservers(m);
 

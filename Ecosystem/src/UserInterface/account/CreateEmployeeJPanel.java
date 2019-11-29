@@ -38,7 +38,7 @@ public class CreateEmployeeJPanel extends javax.swing.JPanel {
     private Enterprise e;
     private JPanel userProcessContainer;
 
-        //ROLE_STRATEGY_MAP.put(roleKey.NURSE,new NurseRole());
+    //ROLE_STRATEGY_MAP.put(roleKey.NURSE,new NurseRole());
 //
 //    private interface roleKey {
 //
@@ -236,7 +236,7 @@ public class CreateEmployeeJPanel extends javax.swing.JPanel {
         String selected = roleCombo.getSelectedItem().toString();
         AccountFactory f = null;
         String spe = null;
-        if (selected == Organization.Type.Doctor.getValue()) {
+        if (selected.equals(Organization.Type.Doctor.getValue())) {
             spe = speComboBox.getSelectedItem().toString();
             // f = new DoctorFactory(spe, e, username, pw, name, b);
         } else {
@@ -260,7 +260,7 @@ public class CreateEmployeeJPanel extends javax.swing.JPanel {
 
     private void roleComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roleComboActionPerformed
         String selected = roleCombo.getSelectedItem().toString();
-        if (selected == Organization.Type.Doctor.getValue()) {
+        if (selected.equals(Organization.Type.Doctor.getValue())) {
             speComboBox.setEnabled(true);
             // speTxt.setEnabled(false);
         } else {

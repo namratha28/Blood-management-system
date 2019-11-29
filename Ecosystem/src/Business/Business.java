@@ -4,6 +4,7 @@
  */
 package Business;
 
+import Business.Enterprise.Enterprise;
 import Business.Network.Network;
 import java.util.ArrayList;
 
@@ -11,7 +12,7 @@ import java.util.ArrayList;
  *
  * @author Administrator
  */
-public class Business {
+public class Business extends Enterprise{
 
     private static volatile Business business;
     private ArrayList<Network> networkList;
@@ -29,6 +30,7 @@ public class Business {
     }
 
     private Business() {
+        super(null);
         networkList = new ArrayList<>();
     }
 
@@ -36,6 +38,7 @@ public class Business {
         return networkList;
     }
 
+ 
 
  
 }

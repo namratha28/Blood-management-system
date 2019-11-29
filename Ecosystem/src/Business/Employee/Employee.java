@@ -27,7 +27,6 @@ public class Employee extends Entity implements Observer {
     public Employee(String spe, String name) {
         super();
         this.name = name;
-
         this.specialities = spe;
         id = count;
         count++;

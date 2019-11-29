@@ -5,17 +5,24 @@
  */
 package Business.Event;
 
+import java.util.Date;
+
 /**
  *
  * @author Huangdong Wen <wen.hu@husky.neu.edu>
  */
 public class Message {
 
-    private final String name;
+    private String eventName;
+    private String eventType;
+
+    private Date eventDate;
+
     private final String content;
 
-    public Message(String name, String content) {
-        this.name = name;
+    public Message(String eventName, String eventType, String content) {
+        this.eventName = eventName;
+        this.eventType = eventType;
         this.content = content;
     }
 
@@ -23,7 +30,28 @@ public class Message {
         return content;
     }
 
-    public String getName() {
-        return name;
+    public String getEventName() {
+        return eventName;
     }
+
+    public void setEventName(String eventName) {
+        this.eventName = eventName;
+    }
+
+    public String getEventType() {
+        return eventType;
+    }
+
+    public void setEventType(String eventType) {
+        this.eventType = eventType;
+    }
+
+    public Date getEventDate() {
+        return eventDate;
+    }
+
+    public void setEventDate(Date eventDate) {
+        this.eventDate = eventDate;
+    }
+
 }
