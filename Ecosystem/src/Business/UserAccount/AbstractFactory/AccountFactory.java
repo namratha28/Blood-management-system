@@ -18,25 +18,32 @@ import java.util.Date;
  * @author Huangdong Wen <wen.hu@husky.neu.edu>
  */
 public abstract class AccountFactory {
-    protected  String spe;
-    protected  Enterprise e;
-    protected  Person p;
-    protected  String username;
-    protected  String pw;
-    protected  String name;
-    
-    AccountFactory(String spe, Enterprise e, String username, String pw, String name, Date b){
+
+    protected String spe;
+    protected Enterprise e;
+    protected Person p;
+    protected String username;
+    protected String pw;
+    protected String name;
+    protected String org;
+
+    AccountFactory(String spe, Enterprise e, String org, String username, String pw, String name, Date b) {
         this.spe = spe;
         this.e = e;
+        this.org = org;
         p = new Person(name, b);
         this.username = username;
         this.pw = pw;
         this.name = name;
     }
-    
+
     public abstract Employee getEmployee();
+
     public abstract Role getRole();
+
     public abstract Organization getOrganization();
+
     public abstract boolean addEmployee();
+
     public abstract UserAccount addAccount();
 }

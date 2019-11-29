@@ -7,10 +7,10 @@ package Business.Role;
 
 import Business.Business;
 import Business.Enterprise.Enterprise;
-import Business.Organization.DoctorOrganization;
+import Business.Organization.CommonUserOrganization;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
-import UserInterface.doctor.DoctorJPanel;
+import UserInterface.commonUser.CommonUserJPanel;
 import javax.swing.JPanel;
 
 /**
@@ -20,7 +20,7 @@ import javax.swing.JPanel;
 public class CommonUserRole extends Role{
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, Business business) {
-        return new DoctorJPanel(userProcessContainer, account, (DoctorOrganization) organization,
+        return new CommonUserJPanel(userProcessContainer, account, (CommonUserOrganization) organization,
                 enterprise, business);
     }
 }

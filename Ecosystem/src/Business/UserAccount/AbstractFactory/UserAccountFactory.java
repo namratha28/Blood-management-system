@@ -7,10 +7,9 @@ package Business.UserAccount.AbstractFactory;
 
 import Business.Employee.Employee;
 import Business.Enterprise.Enterprise;
-import Business.Entity.Person;
-import Business.Organization.DoctorOrganization;
+
 import Business.Organization.Organization;
-import Business.Role.DoctorRole;
+
 import Business.Role.Role;
 import Business.UserAccount.UserAccount;
 import java.util.Date;
@@ -19,35 +18,35 @@ import java.util.Date;
  *
  * @author Huangdong Wen <wen.hu@husky.neu.edu>
  */
-public class DoctorFactory extends AccountFactory {
+public class UserAccountFactory extends AccountFactory {
 
-  
-
-    public DoctorFactory(String spe, Enterprise e, String username, String pw, String name, Date b) {
-        super(spe,e,username,pw,name,b);
-
+    public UserAccountFactory(String spe, Enterprise e, String org, String username, String pw, String name, Date b) {
+        super(spe, e, org, username, pw, name, b);
     }
 
     @Override
     public Employee getEmployee() {
+        if (org.equals("Common User")) {
+            return null;
+        }
         return new Employee(spe, name);
-    }
-
-    @Override
-    public Role getRole() {
-        return new DoctorRole();
     }
 
     @Override
     public Organization getOrganization() {
         Organization res = null;
         for (Organization o : e.getOrganizationDirectory().getOrganizationList()) {
-            if (o instanceof DoctorOrganization) {
+            if (o.getName().equals(org)) {
                 res = o;
                 break;
             }
         }
         return res;
+    }
+
+    @Override
+    public Role getRole() {
+        return this.getOrganization().getSupportedRole().get(0);
     }
 
     @Override
@@ -60,7 +59,6 @@ public class DoctorFactory extends AccountFactory {
     public UserAccount addAccount() {
         return this.getOrganization().getUserAccountDirectory().createUserAccount(username, pw, this.getEmployee(),
                 p, this.getRole());
-
     }
 
 }

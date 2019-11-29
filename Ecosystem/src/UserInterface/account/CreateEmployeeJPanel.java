@@ -6,10 +6,12 @@
 package UserInterface.account;
 
 import Business.Enterprise.Enterprise;
-import Business.Entity.AccountMap;
+
 import Business.Entity.Specialities;
+import Business.Organization.CommonUserOrganization;
 import Business.Organization.Organization;
 import Business.UserAccount.AbstractFactory.AccountFactory;
+import Business.UserAccount.AbstractFactory.UserAccountFactory;
 import java.awt.CardLayout;
 import java.lang.reflect.Field;
 import java.text.ParseException;
@@ -240,7 +242,7 @@ public class CreateEmployeeJPanel extends javax.swing.JPanel {
         } else {
             spe = selected;
         }
-        f = AccountMap.getFactoryByRole(selected, spe, e, username, pw, name, b);
+        f = new UserAccountFactory(spe, e, selected, username, pw, name, b);
         //f=ROLE_STRATEGY_MAP.get(selected);
         if (f != null) {
             f.addEmployee();

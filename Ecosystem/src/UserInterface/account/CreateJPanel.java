@@ -5,22 +5,14 @@
  */
 package UserInterface.account;
 
-import Business.Employee.Employee;
 import Business.Enterprise.Enterprise;
-import Business.Entity.Specialities;
-import Business.Role.DoctorRole;
-import Business.Role.CommonUserRole;
-import Business.Role.Role;
+import Business.Organization.CommonUserOrganization;
 import Business.UserAccount.AbstractFactory.AccountFactory;
-import Business.UserAccount.AbstractFactory.CommonUserFactory;
-import Business.UserAccount.AbstractFactory.DoctorFactory;
+import Business.UserAccount.AbstractFactory.UserAccountFactory;
 import java.awt.CardLayout;
-import java.lang.reflect.Field;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -163,15 +155,15 @@ public class CreateJPanel extends javax.swing.JPanel {
         String birthday = birthdayTxt.getText();
         SimpleDateFormat format = new SimpleDateFormat("MM/dd/yy HH:mm:ss");
         Date b = null;
-        
+
         try {
             b = format.parse(birthday);
         } catch (ParseException ex) {
             ex.printStackTrace();
         }
-        String spe=null;
-        
-        AccountFactory f = new CommonUserFactory(spe, e, username, pw, name, b);
+        String spe = null;
+
+        AccountFactory f = new UserAccountFactory(spe, e, "Common User", username, pw, name, b);
         f.addAccount();
 
         JOptionPane.showMessageDialog(null, "Create Account Successfully");

@@ -29,8 +29,8 @@ public class MainJFrame extends javax.swing.JFrame {
 
     public MainJFrame() {
         initComponents();
-        business = ConfigureABusiness.configure();
-        // business = dB4OUtil.retrieveSystem();
+        //business = ConfigureABusiness.configure();
+         business = dB4OUtil.retrieveSystem();
     }
 
     /**

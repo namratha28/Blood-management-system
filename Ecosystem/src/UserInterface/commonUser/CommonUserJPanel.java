@@ -5,6 +5,12 @@
  */
 package UserInterface.commonUser;
 
+import Business.Business;
+import Business.Enterprise.Enterprise;
+import Business.Organization.CommonUserOrganization;
+import Business.UserAccount.UserAccount;
+import javax.swing.JPanel;
+
 /**
  *
  * @author Huangdong Wen <wen.hu@husky.neu.edu>
@@ -14,7 +20,9 @@ public class CommonUserJPanel extends javax.swing.JPanel {
     /**
      * Creates new form PatientJPanel
      */
-    public CommonUserJPanel() {
+
+
+    public CommonUserJPanel(JPanel userProcessContainer, UserAccount account, CommonUserOrganization commonUserOrganization, Enterprise enterprise, Business business) {
         initComponents();
     }
 
@@ -27,19 +35,30 @@ public class CommonUserJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+
+        jLabel1.setText("welcome");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 800, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(188, 188, 188)
+                .addComponent(jLabel1)
+                .addContainerGap(547, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 500, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(239, 239, 239)
+                .addComponent(jLabel1)
+                .addContainerGap(243, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

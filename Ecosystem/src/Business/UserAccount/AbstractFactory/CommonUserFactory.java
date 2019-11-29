@@ -21,8 +21,8 @@ import java.util.Date;
  */
 public class CommonUserFactory extends AccountFactory {
 
-    public CommonUserFactory(String spe, Enterprise e, String username, String pw, String name, Date b) {
-        super(spe, e, username, pw, name, b);
+    public CommonUserFactory(String spe, Enterprise e, String org, String username, String pw, String name, Date b) {
+        super(spe, e, org, username, pw, name, b);
     }
 
     @Override
@@ -39,7 +39,7 @@ public class CommonUserFactory extends AccountFactory {
     public Organization getOrganization() {
         Organization res = null;
         for (Organization o : e.getOrganizationDirectory().getOrganizationList()) {
-            if (o instanceof CommonUserOrganization) {
+            if (o.getName().equals(org)) {
                 res = o;
                 break;
             }
