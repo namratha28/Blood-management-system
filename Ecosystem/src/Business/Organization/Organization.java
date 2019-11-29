@@ -7,7 +7,9 @@ package Business.Organization;
 import Business.Employee.EmployeeDirectory;
 import Business.Entity.Entity;
 import Business.Request.RequestQueue;
+import Business.Role.Role;
 import Business.UserAccount.UserAccountDirectory;
+import java.util.ArrayList;
 
 /**
  *
@@ -141,7 +143,7 @@ public abstract class Organization {
     public void setName(String name) {
         this.name = name;
     }
-
+   public abstract ArrayList<Role> getSupportedRole();
     @Override
     public String toString() {
         return name;

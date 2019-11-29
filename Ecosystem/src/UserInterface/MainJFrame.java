@@ -5,7 +5,6 @@
 package UserInterface;
 
 import Business.Business;
-import Business.ConfigureABusiness;
 import Business.DB4O.DB4OUtil;
 import Business.Enterprise.Enterprise;
 import Business.Network.Network;

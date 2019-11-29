@@ -7,13 +7,14 @@ package Business.Enterprise;
 
 import Business.Organization.Organization;
 import Business.Organization.OrganizationDirectory;
-
+import Business.Role.Role;
+import java.util.ArrayList;
 
 /**
  *
  * @author @author AED_DEVOPS
  */
-public abstract class Enterprise  {
+public abstract class Enterprise {
 
     private int ranking;
     private String name;
@@ -44,6 +45,8 @@ public abstract class Enterprise  {
     public void setOrganizationDirectory(OrganizationDirectory organizationDirectory) {
         this.organizationDirectory = organizationDirectory;
     }
+
+    public abstract ArrayList<Role> getSupportedRole();
 
     public enum EnterpriseType {
 

@@ -6,6 +6,7 @@ package Business;
 
 import Business.Enterprise.Enterprise;
 import Business.Network.Network;
+import Business.Role.Role;
 import java.util.ArrayList;
 
 /**
@@ -36,6 +37,11 @@ public class Business extends Enterprise{
 
     public ArrayList<Network> getNetworkList() {
         return networkList;
+    }
+
+    @Override
+    public ArrayList<Role> getSupportedRole() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
  
