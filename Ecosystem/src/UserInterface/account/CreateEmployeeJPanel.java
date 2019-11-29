@@ -225,7 +225,7 @@ public class CreateEmployeeJPanel extends javax.swing.JPanel {
         pw = pwTxt.getText();
         name = nameTxt.getText();
         birthday = birthdayTxt.getText();
-        SimpleDateFormat format = new SimpleDateFormat("MM/dd/yy HH:mm:ss");
+        SimpleDateFormat format = new SimpleDateFormat("MM/dd/yy");
         Date b = null;
         try {
             b = format.parse(birthday);

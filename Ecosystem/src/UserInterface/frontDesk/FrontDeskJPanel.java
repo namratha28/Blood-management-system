@@ -8,6 +8,7 @@ package UserInterface.frontDesk;
 import Business.Business;
 import Business.Enterprise.Enterprise;
 import Business.Entity.TimeSlot;
+import Business.Organization.CommonUserOrganization;
 import Business.Organization.DoctorOrganization;
 import Business.Organization.FrontDeskEmployeeOrganization;
 import Business.Organization.Organization;
@@ -15,6 +16,9 @@ import Business.Request.Request;
 import Business.UserAccount.UserAccount;
 import UserInterface.account.CreateJPanel;
 import java.awt.CardLayout;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -43,6 +47,7 @@ public class FrontDeskJPanel extends javax.swing.JPanel {
         this.enterprise = enterprise;
         this.organization = organization;
         populateSpe();
+        populateCommonUser();
     }
 
     /**
@@ -71,9 +76,9 @@ public class FrontDeskJPanel extends javax.swing.JPanel {
         jTextField1 = new javax.swing.JTextField();
         jButton3 = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        commonUserTable = new javax.swing.JTable();
         jLabel6 = new javax.swing.JLabel();
-        createBtn = new javax.swing.JButton();
+        searchBtn = new javax.swing.JButton();
         createBtn1 = new javax.swing.JButton();
         createBtn2 = new javax.swing.JButton();
 
@@ -127,6 +132,7 @@ public class FrontDeskJPanel extends javax.swing.JPanel {
             }
         });
 
+        jLabel3.setFont(new java.awt.Font("Verdana", 0, 15)); // NOI18N
         jLabel3.setText("Patient Name");
 
         jLabel4.setText("Birthday");
@@ -148,27 +154,31 @@ public class FrontDeskJPanel extends javax.swing.JPanel {
 
         jLabel5.setText("Doctor Name");
 
+        jButton3.setBackground(new java.awt.Color(219, 140, 194));
         jButton3.setText("Search");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        commonUserTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "name", "birthday"
             }
         ));
-        jScrollPane3.setViewportView(jTable1);
+        jScrollPane3.setViewportView(commonUserTable);
 
-        jLabel6.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Verdana", 0, 24)); // NOI18N
         jLabel6.setText("Appointment");
 
-        createBtn.setBackground(new java.awt.Color(219, 140, 194));
-        createBtn.setForeground(new java.awt.Color(0, 0, 0));
-        createBtn.setText("Search");
+        searchBtn.setBackground(new java.awt.Color(219, 140, 194));
+        searchBtn.setText("Search");
+        searchBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchBtnActionPerformed(evt);
+            }
+        });
 
-        createBtn1.setBackground(new java.awt.Color(217, 83, 79));
-        createBtn1.setForeground(new java.awt.Color(255, 255, 255));
+        createBtn1.setBackground(new java.awt.Color(219, 140, 194));
         createBtn1.setText("Create");
         createBtn1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -177,7 +187,6 @@ public class FrontDeskJPanel extends javax.swing.JPanel {
         });
 
         createBtn2.setBackground(new java.awt.Color(219, 140, 194));
-        createBtn2.setForeground(new java.awt.Color(255, 255, 255));
         createBtn2.setText("Confirm");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -204,36 +213,34 @@ public class FrontDeskJPanel extends javax.swing.JPanel {
                             .addComponent(jLabel5)
                             .addComponent(jLabel1)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGap(2, 2, 2)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGap(2, 2, 2)
+                                        .addComponent(createBtn1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGap(82, 82, 82)
+                                        .addComponent(searchBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel3)
                                             .addComponent(jLabel4))
-                                        .addGap(37, 37, 37))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(createBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(17, 17, 17)))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(61, 61, 61)
-                                        .addComponent(createBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(txtPatient, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtBirth, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(39, 39, 39)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txtPatient, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txtBirth, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(createBtn2, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(154, 154, 154)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jScrollPane3)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel2)
-                                        .addGap(0, 0, Short.MAX_VALUE)))))))
+                                        .addGap(0, 0, Short.MAX_VALUE))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(createBtn2, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(145, 145, 145))
         );
         layout.setVerticalGroup(
@@ -250,23 +257,22 @@ public class FrontDeskJPanel extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
-                            .addComponent(txtBirth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28)
+                            .addComponent(txtBirth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(34, 34, 34)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(createBtn2)
-                            .addComponent(createBtn)
-                            .addComponent(createBtn1))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(searchBtn)
+                            .addComponent(createBtn1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(createBtn2))
+                .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton3)
                     .addComponent(jLabel2))
@@ -300,26 +306,57 @@ public class FrontDeskJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_txtBirthActionPerformed
 
     private void makeAptmBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_makeAptmBtnActionPerformed
-        Request r=new Request();
-        String name=txtPatient.getText();
-        UserAccount user=new UserAccount();
+        Request r = new Request();
+        String name = txtPatient.getText();
+        UserAccount user = new UserAccount();
         user.setUsername(name);
-        r.setSender(user); 
+        r.setSender(user);
         r.setReceiver(a);
-        a.getRq().getWorkRequestList().add(r);     
+        a.getRq().getWorkRequestList().add(r);
     }//GEN-LAST:event_makeAptmBtnActionPerformed
 
     private void createBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBtn1ActionPerformed
-        CreateJPanel panel=new CreateJPanel(userProcessContainer, enterprise);
-        userProcessContainer.add("CreateAccountJPanel",panel);
-        CardLayout layout=(CardLayout)userProcessContainer.getLayout();
+        CreateJPanel panel = new CreateJPanel(userProcessContainer, enterprise);
+        userProcessContainer.add("CreateAccountJPanel", panel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_createBtn1ActionPerformed
+
+    private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
+        String birthday = txtBirth.getText();
+        String name = txtPatient.getText();
+        SimpleDateFormat format = new SimpleDateFormat("MM/dd/yy");
+        Date b = null;
+        if (!birthday.equals("")) {
+            try {
+                b = format.parse(birthday);
+            } catch (ParseException ex) {
+                ex.printStackTrace();
+            }
+        }
+
+        DefaultTableModel model = (DefaultTableModel) commonUserTable.getModel();
+
+        model.setRowCount(0);
+        for (Organization o : enterprise.getOrganizationDirectory().getOrganizationList()) {
+            if (o instanceof CommonUserOrganization) {
+                for (UserAccount a : o.getUserAccountDirectory().getUserAccountList()) {
+                    if ((name.equals("") || a.getPerson().getName().equals(name))
+                            && (b == null || a.getPerson().getBirthday().toString().equals(b.toString()))) {
+                        Object[] row = new Object[2];
+                        row[0] = a.getPerson();
+                        row[1] = a.getPerson().getBirthday();
+                        model.addRow(row);
+                    }
+                }
+            }
+        }
+    }//GEN-LAST:event_searchBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable availTable;
-    private javax.swing.JButton createBtn;
+    private javax.swing.JTable commonUserTable;
     private javax.swing.JButton createBtn1;
     private javax.swing.JButton createBtn2;
     private javax.swing.JButton jButton1;
@@ -334,9 +371,9 @@ public class FrontDeskJPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JButton makeAptmBtn;
+    private javax.swing.JButton searchBtn;
     private javax.swing.JTable speTable;
     private javax.swing.JTextField txtBirth;
     private javax.swing.JTextField txtPatient;
@@ -371,5 +408,21 @@ public class FrontDeskJPanel extends javax.swing.JPanel {
             model.addRow(row);
         }
 
+    }
+
+    private void populateCommonUser() {
+        DefaultTableModel model = (DefaultTableModel) commonUserTable.getModel();
+
+        model.setRowCount(0);
+        for (Organization o : enterprise.getOrganizationDirectory().getOrganizationList()) {
+            if (o instanceof CommonUserOrganization) {
+                for (UserAccount a : o.getUserAccountDirectory().getUserAccountList()) {
+                    Object[] row = new Object[2];
+                    row[0] = a.getPerson();
+                    row[1] = a.getPerson().getBirthday();
+                    model.addRow(row);
+                }
+            }
+        }
     }
 }

@@ -75,6 +75,11 @@ public class Person {
         this.isDisabled = isDisabled;
     }
 
+    @Override
+    public String toString() {
+        return  name ;
+    }
+
     public int getContributionScore() {
         return contributionScore;
     }

@@ -153,7 +153,7 @@ public class CreateJPanel extends javax.swing.JPanel {
         String pw = pwTxt.getText();
         String name = nameTxt.getText();
         String birthday = birthdayTxt.getText();
-        SimpleDateFormat format = new SimpleDateFormat("MM/dd/yy HH:mm:ss");
+        SimpleDateFormat format = new SimpleDateFormat("MM/dd/yy");
         Date b = null;
 
         try {
@@ -161,11 +161,10 @@ public class CreateJPanel extends javax.swing.JPanel {
         } catch (ParseException ex) {
             ex.printStackTrace();
         }
+        
         String spe = null;
-
         AccountFactory f = new UserAccountFactory(spe, e, "Common User", username, pw, name, b);
         f.addAccount();
-
         JOptionPane.showMessageDialog(null, "Create Account Successfully");
     }//GEN-LAST:event_createBtnActionPerformed
 
