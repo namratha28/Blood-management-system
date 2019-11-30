@@ -5,6 +5,7 @@
 package UserInterface;
 
 import Business.Business;
+import Business.ConfigureABusiness;
 import Business.DB4O.DB4OUtil;
 import Business.Enterprise.Enterprise;
 import Business.Network.Network;
@@ -29,7 +30,7 @@ public class MainJFrame extends javax.swing.JFrame {
     public MainJFrame() {
         initComponents();
         //business = ConfigureABusiness.configure();
-         business = dB4OUtil.retrieveSystem();
+        business = dB4OUtil.retrieveSystem();
     }
 
     /**
@@ -141,7 +142,7 @@ public class MainJFrame extends javax.swing.JFrame {
             for (Enterprise e : nw.getEnterpriseDirectory().getEnterpriseList()) {
                 for (Organization o : e.getOrganizationDirectory().getOrganizationList()) {
                     account = o.getUserAccountDirectory().authenticateUser(user, passw);
-                    // System.out.println(account);
+                    System.out.println(account);
                     if (account != null) {
                         CardLayout l = (CardLayout) container.getLayout();
                         JPanel sc = account.getRole().createWorkArea(container, account, o, e, business);

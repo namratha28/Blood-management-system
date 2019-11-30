@@ -9,6 +9,7 @@ import Business.Entity.Entity;
 import Business.Request.RequestQueue;
 import Business.Role.Role;
 import Business.UserAccount.UserAccountDirectory;
+import Bussiness.WorkQueue.WorkQueue;
 import java.util.ArrayList;
 
 /**
@@ -23,6 +24,7 @@ public abstract class Organization {
     private int organizationID;
     private static int counter;
     protected RequestQueue rq;
+    private WorkQueue workQueue;
 
     public RequestQueue getRq() {
         return rq;
@@ -139,6 +141,15 @@ public abstract class Organization {
     public String getName() {
         return name;
     }
+    
+    public WorkQueue getWorkQueue() {
+        return workQueue;
+    }
+
+    public void setWorkQueue(WorkQueue workQueue) {
+        this.workQueue = workQueue;
+    }
+    
 
     public void setName(String name) {
         this.name = name;

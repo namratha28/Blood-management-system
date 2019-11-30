@@ -19,6 +19,10 @@ public class Network {
         this.name=name;
         enterpriseDirectory = new EnterpriseDirectory();
     }
+
+    public Network() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 
     public EnterpriseDirectory getEnterpriseDirectory() {
