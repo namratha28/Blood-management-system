@@ -14,9 +14,12 @@ import Business.Organization.AdminOrganization;
 import Business.Organization.CommonUserOrganization;
 import Business.Organization.DoctorOrganization;
 import Business.Organization.FrontDeskEmployeeOrganization;
+import Business.Organization.NurseOrganization;
+import Business.Organization.Organization;
 import Business.Role.AdminRole;
 import Business.Role.DoctorRole;
 import Business.Role.FrontDeskRole;
+import Business.Role.NurseRole;
 import Business.Role.Role;
 import Business.UserAccount.UserAccount;
 import java.text.ParseException;
@@ -112,7 +115,26 @@ public class ConfigureABusiness {
         
         fd.getEmployeeDirectory().getEmployeeList().add(fde);
         fd.getUserAccountDirectory().getUserAccountList().add(userAccount_fde);
+        
+        
+        
+        
+        NurseOrganization nurse = new NurseOrganization();
+        e.getOrganizationDirectory().getOrganizationList().add(nurse);
+        Employee nurseEmp = new Employee("fdn", "Katiee");
+        UserAccount userAccount_fdn = new UserAccount();
+        Role role_fdn = new NurseRole();
+        userAccount_fdn.setUsername("fdn");
+        userAccount_fdn.setPassword("fdn");
+        userAccount_fdn.setRole(role_fdn);
+        userAccount_fdn.setEmployee(nurseEmp);
+        
+        nurse.getEmployeeDirectory().getEmployeeList().add(nurseEmp);
+        nurse.getUserAccountDirectory().getUserAccountList().add(userAccount_fdn);
 
+        for(Organization o:e.getOrganizationDirectory().getOrganizationList()){
+           System.out.println(o);
+        }
 //        LabOrganization lab = new LabOrganization();
 //        business.getOrganizationDirectory().getOrganizationList().add(lab);
 //        Employee employee_lab = new Employee();
