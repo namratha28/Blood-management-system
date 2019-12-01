@@ -19,7 +19,7 @@ import com.db4o.ta.TransparentPersistenceSupport;
  */
 public class DB4OUtil {
 
-    private static final String FILENAME = "Eco.db4o";
+    private static final String FILENAME = "Ecoo.db4o";
     ; // path to the data store
     private static volatile DB4OUtil dB4OUtil;
 
