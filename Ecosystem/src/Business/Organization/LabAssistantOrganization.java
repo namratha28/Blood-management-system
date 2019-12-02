@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class LabAssistantOrganization extends Organization{
 
     public LabAssistantOrganization() {
-        super(Type.LabAssistant.getValue());
+        super(Type.Lab.getValue());
     }
 
     @Override

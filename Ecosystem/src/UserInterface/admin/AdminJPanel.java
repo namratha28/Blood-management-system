@@ -5,7 +5,7 @@
  */
 package UserInterface.admin;
 
-import Business.Business;
+import Business.EcoSystem;
 import Business.Employee.Employee;
 import Business.Enterprise.Enterprise;
 import Business.Event.Event;
@@ -31,9 +31,9 @@ public class AdminJPanel extends javax.swing.JPanel {
     UserAccount account;
     AdminOrganization organization;
     Enterprise enterprise;
-    Business business;
+    EcoSystem business;
 
-    public AdminJPanel(JPanel userProcessContainer, UserAccount account, AdminOrganization organization, Enterprise enterprise, Business business) {
+    public AdminJPanel(JPanel userProcessContainer, UserAccount account, AdminOrganization organization, Enterprise enterprise, EcoSystem business) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.account = account;

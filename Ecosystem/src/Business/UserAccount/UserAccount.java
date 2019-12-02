@@ -9,6 +9,7 @@ import Business.Entity.BloodType;
 import Business.Entity.Person;
 import Business.Request.RequestQueue;
 import Business.Role.Role;
+import Bussiness.WorkQueue.WorkQueue;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,53 +19,18 @@ import java.util.List;
  */
 public class UserAccount {
 
-    private static int count = 1;
-    private String username;
+   private String username;
     private String password;
-    private int id;
     private Employee employee;
     private Role role;
-    private Person person;
-    protected RequestQueue rq;
+    private WorkQueue workQueue;
 
     public UserAccount() {
-        id = count;
-        count++;
-        this.rq = new RequestQueue();
-        this.person = new Person();
-//        this.employee = new Employee();
+        workQueue = new WorkQueue();
     }
-
-    public Person getPerson() {
-        return person;
-    }
-
-    public void setPerson(Person person) {
-        this.person = person;
-    }
-
-    public UserAccount(Employee employee, Person person, RequestQueue rq) {
-        this.employee = employee;
-        this.person = person;
-        this.rq = new RequestQueue();
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public RequestQueue getRq() {
-        return rq;
-    }
-
-    public void setRq(RequestQueue rq) {
-        this.rq = rq;
-    }
-
+    
+    
+    
     public String getUsername() {
         return username;
     }
@@ -97,9 +63,15 @@ public class UserAccount {
         return employee;
     }
 
+    public WorkQueue getWorkQueue() {
+        return workQueue;
+    }
+
+    
+    
     @Override
     public String toString() {
-        return this.getPerson().toString();
+        return username;
     }
 
 }

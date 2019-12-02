@@ -5,7 +5,7 @@
  */
 package Business.Role;
 
-import Business.Business;
+import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
@@ -16,11 +16,47 @@ import javax.swing.JPanel;
  * @author Huangdong Wen <wen.hu@husky.neu.edu>
  */
 public abstract class Role {
+    
+     public enum RoleType {
+       
+         Admin("AdminRole"),
+         BloodBank("BloodBank"),
+         DonorRole("DonorRole"),
+        BloodBankAdmin("BloodBankAdmin"),
+        InsuranceAdmin("InsuranceAdmin"),
+        LogisticsAdmin("LogisticsAdmin"),
+        MarketAdmin("MarketAdmin"),
+        HospitalAdmin("HospitalAdmin"),
+        GovermentAdmin("GovAdmin"),
+        PharmacyAdmin("PharmacyAdmin"),
+        Nurse("NurseRole"),
+        Doctor("DoctorRole"),
+        FrontDesk("FrontDeskRole"),
+        Lab("LabRole"),
+        Common("CommonUserRole")
+        ;
+
+        private String value;
+
+        private RoleType(String value) {
+            this.value = value;
+        }
+
+        public String getValue() {
+            return value;
+        }
+
+        @Override
+        public String toString() {
+            return value;
+        }
+    }
+     
     public abstract JPanel createWorkArea(JPanel userProcessContainer,
             UserAccount account,
             Organization organization,
             Enterprise enterprise,
-            Business business);
+            EcoSystem business);
 
     @Override
     public String toString() {

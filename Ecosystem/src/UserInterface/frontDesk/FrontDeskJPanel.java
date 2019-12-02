@@ -5,7 +5,7 @@
  */
 package UserInterface.frontDesk;
 
-import Business.Business;
+import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Entity.TimeSlot;
 import Business.Organization.CommonUserOrganization;
@@ -33,13 +33,13 @@ public class FrontDeskJPanel extends javax.swing.JPanel {
      * Creates new form frontDeskJPanel
      */
     private JPanel userProcessContainer;
-    private Business business;
+    private EcoSystem business;
     private UserAccount userAccount;
     private FrontDeskEmployeeOrganization organization;
     private Enterprise enterprise;
     private UserAccount a;
 
-    public FrontDeskJPanel(JPanel userProcessContainer, UserAccount account, FrontDeskEmployeeOrganization organization, Enterprise enterprise, Business business) {
+    public FrontDeskJPanel(JPanel userProcessContainer, UserAccount account, FrontDeskEmployeeOrganization organization, Enterprise enterprise, EcoSystem business) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.userAccount = account;

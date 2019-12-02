@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class BankEnterprise extends Enterprise{
 
     public BankEnterprise(String name) {
-        super(name);
+        super(name,EnterpriseType.Insurance);
     }
 
     @Override

@@ -33,14 +33,21 @@ public class UserAccountDirectory {
         return null;
     }
     
-    public UserAccount createUserAccount(String username, String password,Employee e, Person p, Role role){
+    public UserAccount createUserAccount(String username, String password, Employee employee, Role role){
         UserAccount userAccount = new UserAccount();
         userAccount.setUsername(username);
         userAccount.setPassword(password);
-        userAccount.setEmployee(e);
-        userAccount.setPerson(p);
+        userAccount.setEmployee(employee);
         userAccount.setRole(role);
         userAccountList.add(userAccount);
         return userAccount;
+    }
+    
+    public boolean checkIfUsernameIsUnique(String username){
+        for (UserAccount ua : userAccountList){
+            if (ua.getUsername().equals(username))
+                return false;
+        }
+        return true;
     }
 }

@@ -22,12 +22,25 @@ import java.util.Observer;
 public class Employee extends Entity implements Observer {
 
     private static int count = 1;
+    private String name;
+    private int id;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
     private List<TimeSlot> availability;
 
-    public Employee(String spe, String name) {
+    public Employee() {
         super();
-        this.name = name;
-        this.specialities = spe;
+        
         id = count;
         count++;
         this.availability = new ArrayList<TimeSlot>();

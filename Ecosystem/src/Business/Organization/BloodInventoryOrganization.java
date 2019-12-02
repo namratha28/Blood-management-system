@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class BloodInventoryOrganization extends Organization{
 
     public BloodInventoryOrganization() {
-        super(Type.BloodInventory.getValue());
+        super(Type.BloodBankAdmin.getValue());
     }
 
     @Override

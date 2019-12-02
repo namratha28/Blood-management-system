@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class LogisticsEmployeeOrganization extends Organization{
 
     public LogisticsEmployeeOrganization() {
-        super(Type.Logistics.getValue());
+        super(Type.LogisticsAdmin.getValue());
     }
 
     @Override

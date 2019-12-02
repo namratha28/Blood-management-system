@@ -5,8 +5,8 @@
  */
 package Business.DB4O;
 
-import Business.Business;
-import Business.ConfigureABusiness;
+import Business.EcoSystem;
+import Business.ConfigureASystem;
 import com.db4o.Db4oEmbedded;
 import com.db4o.ObjectContainer;
 import com.db4o.ObjectSet;
@@ -19,13 +19,13 @@ import com.db4o.ta.TransparentPersistenceSupport;
  */
 public class DB4OUtil {
 
-    private static final String FILENAME = "Ecoo.db4o";
+    private static final String FILENAME = "Eco.db4o";
     ; // path to the data store
     private static volatile DB4OUtil dB4OUtil;
 
     public synchronized static DB4OUtil getInstance() {
         if (dB4OUtil == null) {
-            synchronized (Business.class) {
+            synchronized (EcoSystem.class) {
                 if (dB4OUtil == null) {
                     dB4OUtil = new DB4OUtil();
                 }
@@ -51,7 +51,7 @@ public class DB4OUtil {
             config.common().updateDepth(Integer.MAX_VALUE);
 
             //Register your top most Class here
-            config.common().objectClass(Business.class).cascadeOnUpdate(true); // Change to the object you want to save
+            config.common().objectClass(EcoSystem.class).cascadeOnUpdate(true); // Change to the object you want to save
 
             ObjectContainer db = Db4oEmbedded.openFile(config, FILENAME);
             return db;
@@ -61,19 +61,19 @@ public class DB4OUtil {
         return null;
     }
 
-    public synchronized void storeSystem(Business business) {
+    public synchronized void storeSystem(EcoSystem business) {
         ObjectContainer conn = createConnection();
         conn.store(business);
         conn.commit();
         conn.close();
     }
 
-    public Business retrieveSystem() {
+    public EcoSystem retrieveSystem() {
         ObjectContainer conn = createConnection();
-        ObjectSet<Business> systems = conn.query(Business.class); // Change to the object you want to save
-        Business business;
+        ObjectSet<EcoSystem> systems = conn.query(EcoSystem.class); // Change to the object you want to save
+        EcoSystem business;
         if (systems.size() == 0) {
-            business = ConfigureABusiness.configure();  // If there's no System in the record, create a new one
+            business = ConfigureASystem.configure();  // If there's no System in the record, create a new one
         } else {
             business = systems.get(systems.size() - 1);
         }

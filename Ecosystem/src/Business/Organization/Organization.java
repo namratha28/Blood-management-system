@@ -18,88 +18,32 @@ import java.util.ArrayList;
  */
 public abstract class Organization {
 
-    protected String name;
+    private String name;
+    private WorkQueue workQueue;
     private EmployeeDirectory employeeDirectory;
     private UserAccountDirectory userAccountDirectory;
     private int organizationID;
     private static int counter;
-    protected RequestQueue rq;
-    private WorkQueue workQueue;
-
-    public RequestQueue getRq() {
-        return rq;
-    }
-
-    public void setRq(RequestQueue rq) {
-        this.rq = rq;
-    }
 
     public enum Type {
-
-        Admin("Admin Organization") {
-                    //@Override
-                    public Organization createOrganization() {
-                        return new AdminOrganization();
-                    }
-                }, Doctor("Doctor Organization") {
-                    public Organization createOrganization() {
-                        return new DoctorOrganization();
-                    }
-                }, Lab("Lab Organization") {
-                    public Organization createOrganization() {
-                        return new LabOrganization();
-                    }
-                }, FrontDesk("Front Desk Organization") {
-                    public Organization createOrganization() {
-                        return new FrontDeskEmployeeOrganization();
-                    }
-                }, Gov("Gov Organization") {
-                    public Organization createOrganization() {
-                        return new GovEmployeeOrganization();
-                    }
-                }, Logistics("Logistics Organization") {
-                    public Organization createOrganization() {
-                        return new LogisticsEmployeeOrganization();
-                    }
-                }, Medicine("Medicine Organization") {
-                    public Organization createOrganization() {
-                        return new MedicineInventoryOrganization();
-                    }
-                }, Insurance("Insurance Organization") {
-                    public Organization createOrganization() {
-                        return new InsuranceCompEmployeeOrganization();
-                    }
-                }, Nurse("Nurse Organization") {
-                    public Organization createOrganization() {
-                        return new NurseOrganization();
-                    }
-                }, BloodInventory("BloodInventory Organization") {
-                    public Organization createOrganization() {
-                        return new BloodInventoryOrganization();
-                    }
-                }, OrganInventory("OrganInventory Organization") {
-                    public Organization createOrganization() {
-                        return new OrganInventoryOrganization();
-                    }
-                }, Bank("Bank Organization") {
-                    public Organization createOrganization() {
-                        return new BankEmployeeOrganization();
-                    }
-                }, LabAssistant("LabAssistant Organization") {
-                    public Organization createOrganization() {
-                        return new LabAssistantOrganization();
-                    }
-                }, Station("Station Organization") {
-                    public Organization createOrganization() {
-                        return new BloodCollectionStationOrganization();
-                    }
-                }, Common("Common User") {
-                    @Override
-                    public Organization createOrganization() {
-                        return new CommonUserOrganization();
-                    }
-
-                };
+        Admin("AdminOrganization"),
+        BloodBankAdmin("BloodBankAdmin"),
+        BloodBank("BloodBank"),
+        InsuranceAdmin("Insurance"),
+        LogisticsAdmin("Logistics"),
+        MarketAdmin("Market"),
+        HospitalAdmin("Hospital"),
+        GovermentAdmin("Gov"),
+        PharmacyAdmin("Pharmacy"),
+        Nurse("Nurse"),
+        Doctor("Doctor"),
+        FrontDesk("FrontDeskOrganization"),
+        Lab("LabOrganization"),
+        Donor("Donor"),
+        Common("CommonUser")
+        ;
+        
+        
         private String value;
 
         private Type(String value) {
@@ -109,22 +53,18 @@ public abstract class Organization {
         public String getValue() {
             return value;
         }
-
-        public Organization createOrganization(Type t) {
-            return t.createOrganization();
-        }
-
-        public abstract Organization createOrganization();
     }
 
     public Organization(String name) {
-        super();
         this.name = name;
-        this.employeeDirectory = new EmployeeDirectory();
-        this.userAccountDirectory = new UserAccountDirectory();
-        this.organizationID = counter;
+        workQueue = new WorkQueue();
+        employeeDirectory = new EmployeeDirectory();
+        userAccountDirectory = new UserAccountDirectory();
+        organizationID = counter;
         ++counter;
     }
+
+    public abstract ArrayList<Role> getSupportedRole();
 
     public UserAccountDirectory getUserAccountDirectory() {
         return userAccountDirectory;
@@ -141,20 +81,19 @@ public abstract class Organization {
     public String getName() {
         return name;
     }
-    
+
     public WorkQueue getWorkQueue() {
         return workQueue;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public void setWorkQueue(WorkQueue workQueue) {
         this.workQueue = workQueue;
     }
-    
 
-    public void setName(String name) {
-        this.name = name;
-    }
-   public abstract ArrayList<Role> getSupportedRole();
     @Override
     public String toString() {
         return name;
