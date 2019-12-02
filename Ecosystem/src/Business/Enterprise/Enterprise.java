@@ -14,48 +14,23 @@ import java.util.ArrayList;
  *
  * @author @author AED_DEVOPS
  */
-public abstract class Enterprise {
+public abstract class Enterprise extends Organization {
 
-    private int ranking;
-    private String name;
-
-    private int enterpriseID;
-    private static int counter;
+    private EnterpriseType enterpriseType;
     private OrganizationDirectory organizationDirectory;
 
-    public Enterprise(String name) {
+    public Enterprise(String name, EnterpriseType type) {
+        super(name);
+        this.enterpriseType = type;
         organizationDirectory = new OrganizationDirectory();
-        this.name = name;
-        enterpriseID = counter;
-        ++counter;
     }
-
-    public int getRanking() {
-        return ranking;
-    }
-
-    public void setRanking(int ranking) {
-        this.ranking = ranking;
-    }
-
-    public OrganizationDirectory getOrganizationDirectory() {
-        return organizationDirectory;
-    }
-
-    public void setOrganizationDirectory(OrganizationDirectory organizationDirectory) {
-        this.organizationDirectory = organizationDirectory;
-    }
-
-    public abstract ArrayList<Role> getSupportedRole();
 
     public enum EnterpriseType {
-
-        Insurance("Insurance"),
-        Bank("Bank"),
-        OrganBank("OrganBank"),
-        Logistics("Logistics"),
-        Hospital("Hospital"),
         BloodBank("BloodBank"),
+        Insurance("Insurance"),
+        Logistics("Logistics"),
+        Market("Market"),
+        Hospital("Hospital"),
         Goverment("Goverment"),
         Pharmacy("Pharmacy");
 
@@ -73,6 +48,14 @@ public abstract class Enterprise {
         public String toString() {
             return value;
         }
+    }
+
+    public EnterpriseType getEnterpriseType() {
+        return enterpriseType;
+    }
+
+    public OrganizationDirectory getOrganizationDirectory() {
+        return organizationDirectory;
     }
 
 }

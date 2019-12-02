@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class GovEmployeeOrganization extends Organization{
 
     public GovEmployeeOrganization() {
-        super(Type.Gov.getValue());
+        super(Type.GovermentAdmin.getValue());
     }
 
     @Override

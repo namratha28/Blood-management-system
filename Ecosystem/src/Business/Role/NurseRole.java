@@ -5,7 +5,7 @@
  */
 package Business.Role;
 
-import Business.Business;
+import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Organization.DoctorOrganization;
 import Business.Organization.NurseOrganization;
@@ -21,7 +21,7 @@ import javax.swing.JPanel;
  */
 public class NurseRole extends Role  {
      @Override
-    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, Business business) {
+    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business) {
         return new NurseJPanel(userProcessContainer, account, (NurseOrganization) organization,
                 enterprise,business);
     }

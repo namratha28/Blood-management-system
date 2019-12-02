@@ -5,7 +5,7 @@
  */
 package UserInterface.commonUser;
 
-import Business.Business;
+import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Organization.CommonUserOrganization;
 import Business.UserAccount.UserAccount;
@@ -22,7 +22,7 @@ public class CommonUserJPanel extends javax.swing.JPanel {
      */
 
 
-    public CommonUserJPanel(JPanel userProcessContainer, UserAccount account, CommonUserOrganization commonUserOrganization, Enterprise enterprise, Business business) {
+    public CommonUserJPanel(JPanel userProcessContainer, UserAccount account, CommonUserOrganization commonUserOrganization, Enterprise enterprise, EcoSystem business) {
         initComponents();
     }
 

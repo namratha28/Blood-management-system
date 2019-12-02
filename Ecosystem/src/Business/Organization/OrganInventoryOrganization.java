@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class OrganInventoryOrganization extends Organization{
 
     public OrganInventoryOrganization() {
-        super(Type.OrganInventory.getValue());
+        super(Type.Lab.getValue());
     }
 
     @Override

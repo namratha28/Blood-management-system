@@ -16,7 +16,7 @@ import java.util.ArrayList;
 public class InsuranceCompEmployeeOrganization extends Organization{
 
     public InsuranceCompEmployeeOrganization() {
-        super(Type.Insurance.getValue());
+        super(Type.InsuranceAdmin.getValue());
     }
 
     @Override

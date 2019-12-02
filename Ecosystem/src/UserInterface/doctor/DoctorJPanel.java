@@ -5,12 +5,13 @@
  */
 package UserInterface.doctor;
 
-import Business.Business;
+import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Entity.TimeSlot;
 import Business.Organization.DoctorOrganization;
 import Business.Request.Request;
 import Business.UserAccount.UserAccount;
+import Bussiness.WorkQueue.WorkRequest;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -27,12 +28,12 @@ public class DoctorJPanel extends javax.swing.JPanel {
      * Creates new form DoctorJPanel
      */
     private JPanel userProcessContainer;
-    private Business business;
+    private EcoSystem business;
     private UserAccount userAccount;
     private DoctorOrganization doctorOrganization;
     private Enterprise enterprise;
 
-    public DoctorJPanel(JPanel userProcessContainer, UserAccount account, DoctorOrganization organization, Enterprise enterprise, Business business) {
+    public DoctorJPanel(JPanel userProcessContainer, UserAccount account, DoctorOrganization organization, Enterprise enterprise, EcoSystem business) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.userAccount = account;
@@ -267,7 +268,7 @@ public class DoctorJPanel extends javax.swing.JPanel {
     private void populateRqTable() {
          DefaultTableModel model =(DefaultTableModel)rqTable.getModel();
         model.setRowCount(0);
-         for(Request rq:userAccount.getRq().getWorkRequestList()){
+         for(WorkRequest rq:userAccount.getWorkQueue().getWorkRequestList()){
             Object[] row = new Object[2];
             row[0] = rq.getSender();
             //row[1] = ts.getTo();

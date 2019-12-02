@@ -14,30 +14,39 @@ import java.util.List;
  * @author AED_DEVOPS
  */
 public class EnterpriseDirectory {
-    private List<Enterprise> enterpriseDirectory;
-    
-    public EnterpriseDirectory() {
-        enterpriseDirectory=new ArrayList<>();
-    }
-    
-//    public boolean add(Enterprise e){
-//        return enterpriseDirectory.add(e);
-//    }
+    private ArrayList<Enterprise> enterpriseList;
 
-    public List<Enterprise> getEnterpriseList() {
-        return enterpriseDirectory;
+    public EnterpriseDirectory() {
+        enterpriseList = new ArrayList<>();
     }
-    
-//    public Enterprise createEnterprise(String name){
-//        Enterprise enterprise = new Enterprise(name) {
-//            @Override
-//            public ArrayList<Role> getSupportedRole() {
-//                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-//            }
-//        };
-//        enterprise.setName(name);
-//        enterpriseDirectory.add(enterprise);
-//        return enterprise;
-//    }
-    
+
+    public ArrayList<Enterprise> getEnterpriseList() {
+        return enterpriseList;
+    }
+
+    public Enterprise createAndAddEnterprise(String name, Enterprise.EnterpriseType type) {
+        Enterprise enterprise = null;
+        if (type == Enterprise.EnterpriseType.BloodBank) {
+            enterprise = new BloodBankEnterprise(name);
+            enterpriseList.add(enterprise);
+        } else if (type == Enterprise.EnterpriseType.Insurance) {
+            enterprise = new InsuranceEnterprise(name);
+            enterpriseList.add(enterprise);
+
+        } else if (type == Enterprise.EnterpriseType.Goverment) {
+            enterprise = new GovermentEnterprise(name);
+            enterpriseList.add(enterprise);
+        } else if (type == Enterprise.EnterpriseType.Logistics) {
+            enterprise = new LogisticsEnterprise(name);
+            enterpriseList.add(enterprise);
+        } else if (type == Enterprise.EnterpriseType.Pharmacy) {
+            enterprise = new PharmacyEnterprise(name);
+            enterpriseList.add(enterprise);
+        }  else if (type == Enterprise.EnterpriseType.Hospital) {
+            enterprise = new HospitalEnterprise(name);
+            enterpriseList.add(enterprise);
+        } 
+
+        return enterprise;
+    }
 }

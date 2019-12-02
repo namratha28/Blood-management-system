@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class OrganBankEnterprise extends Enterprise{
 
     public OrganBankEnterprise(String name) {
-        super(name);
+        super(name,EnterpriseType.BloodBank);
     }
 
     @Override

@@ -15,13 +15,9 @@ public class Network {
     private String name;
     private EnterpriseDirectory enterpriseDirectory;
 
-    public Network(String name) {
-        this.name=name;
-        enterpriseDirectory = new EnterpriseDirectory();
-    }
-
     public Network() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       
+        enterpriseDirectory = new EnterpriseDirectory();
     }
     
 
