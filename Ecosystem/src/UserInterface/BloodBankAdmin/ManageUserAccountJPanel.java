@@ -4,7 +4,7 @@
  */
 package UserInterface.BloodBankAdmin;
 
-import userinterface.BloodBankAdmin.*;
+
 import Business.Employee.Employee;
 import Business.Enterprise.Enterprise;
 import Business.Organization.Organization;

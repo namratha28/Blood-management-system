@@ -14,6 +14,7 @@ import Business.Organization.FrontDeskEmployeeOrganization;
 import Business.Organization.Organization;
 import Business.Request.Request;
 import Business.UserAccount.UserAccount;
+import Bussiness.WorkQueue.WorkQueue;
 import UserInterface.account.CreateJPanel;
 import java.awt.CardLayout;
 import java.text.ParseException;
@@ -313,13 +314,15 @@ public class FrontDeskJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_txtBirthActionPerformed
 
     private void makeAptmBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_makeAptmBtnActionPerformed
-        Request r = new Request();
+        WorkQueue r = new WorkQueue();
+        
         String name = txtPatient.getText();
         UserAccount user = new UserAccount();
         user.setUsername(name);
-        r.setSender(user);
-        r.setReceiver(a);
-        a.getRq().getWorkRequestList().add(r);
+//        r.setSender(user);
+//        r.setReceiver(a);
+      //  a.getWorkQueue().getWorkRequestList().add(r);
+       // a.getRq().getWorkRequestList().add(r);
     }//GEN-LAST:event_makeAptmBtnActionPerformed
 
     private void createBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBtn1ActionPerformed

@@ -19,18 +19,38 @@ import java.util.List;
  */
 public class UserAccount {
 
-   private String username;
+    private static int count = 1;
+    private String username;
     private String password;
     private Employee employee;
     private Role role;
     private WorkQueue workQueue;
+    private Person person;
+    private int id;
 
     public UserAccount() {
+        id = count;
+        count++;
         workQueue = new WorkQueue();
+        this.person = new Person();
     }
-    
-    
-    
+
+    public Person getPerson() {
+        return person;
+    }
+
+    public void setPerson(Person person) {
+        this.person = person;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String getUsername() {
         return username;
     }
@@ -67,8 +87,6 @@ public class UserAccount {
         return workQueue;
     }
 
-    
-    
     @Override
     public String toString() {
         return username;
