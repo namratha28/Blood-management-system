@@ -22,10 +22,10 @@ import javax.swing.JPanel;
  *
  * @author Huangdong Wen <wen.hu@husky.neu.edu>
  */
-public class AdminJPanel extends javax.swing.JPanel {
+public class HospitalAdminJPanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form AdminJPanel
+     * Creates new form HospitalAdminJPanel
      */
     JPanel userProcessContainer;
     UserAccount account;
@@ -33,7 +33,7 @@ public class AdminJPanel extends javax.swing.JPanel {
     Enterprise enterprise;
     EcoSystem business;
 
-    public AdminJPanel(JPanel userProcessContainer, UserAccount account, AdminOrganization organization, Enterprise enterprise, EcoSystem business) {
+    public HospitalAdminJPanel(JPanel userProcessContainer, UserAccount account, AdminOrganization organization, Enterprise enterprise, EcoSystem business) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.account = account;

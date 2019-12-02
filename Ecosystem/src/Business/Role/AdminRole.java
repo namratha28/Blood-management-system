@@ -10,7 +10,7 @@ import Business.Enterprise.Enterprise;
 import Business.Organization.AdminOrganization;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
-import UserInterface.admin.AdminJPanel;
+import UserInterface.admin.HospitalAdminJPanel;
 import javax.swing.JPanel;
 
 /**
@@ -21,7 +21,7 @@ public class AdminRole extends Role{
 
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business) {
-        return new AdminJPanel(userProcessContainer, account, (AdminOrganization) organization,
+        return new HospitalAdminJPanel(userProcessContainer, account, (AdminOrganization) organization,
                 enterprise, business);
     }
     

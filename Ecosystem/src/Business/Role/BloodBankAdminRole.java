@@ -12,7 +12,7 @@ import Business.Organization.BloodCollectionStationOrganization;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import UserInterface.BloodBank.BloodBankJPanel;
-import UserInterface.admin.AdminJPanel;
+import UserInterface.admin.HospitalAdminJPanel;
 import javax.swing.JPanel;
 import UserInterface.BloodBankAdmin.BloodBankAdminWorkAreaJPanel;
 
