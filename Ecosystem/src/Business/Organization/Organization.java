@@ -32,13 +32,13 @@ public abstract class Organization {
         InsuranceAdmin("Insurance"),
         LogisticsAdmin("Logistics"),
         MarketAdmin("Market"),
-        HospitalAdmin("Hospital"),
+        HospitalAdmin("Hospital Admin"),
         GovermentAdmin("Gov"),
         PharmacyAdmin("Pharmacy"),
         Nurse("Nurse"),
         Doctor("Doctor"),
-        FrontDesk("FrontDeskOrganization"),
-        Lab("LabOrganization"),
+        FrontDesk("FrontDesk"),
+        Lab("Lab"),
         Donor("Donor"),
         Common("CommonUser")
         ;

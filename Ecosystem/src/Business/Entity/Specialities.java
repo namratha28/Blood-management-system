@@ -40,13 +40,4 @@ public enum Specialities {
     Urology,
     Venereology;
 
-    public static String[] names() {
-
-        LinkedList<String> list = new LinkedList<String>();
-        for (Specialities s : Specialities.values()) {
-            list.add(s.name());
-        }
-
-        return list.toArray(new String[list.size()]);
-    }
 }

@@ -23,6 +23,7 @@ public class Employee extends Entity implements Observer {
 
     private static int count = 1;
     private List<TimeSlot> availability;
+    
     public Employee(String name) {
         super();
         this.name = name;
@@ -30,6 +31,7 @@ public class Employee extends Entity implements Observer {
         count++;
         this.availability = new ArrayList<TimeSlot>();
     }
+    
     public Employee(String spe, String name) {
         super();
         this.name = name;

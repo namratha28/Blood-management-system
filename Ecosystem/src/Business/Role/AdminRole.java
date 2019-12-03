@@ -10,7 +10,8 @@ import Business.Enterprise.Enterprise;
 import Business.Organization.AdminOrganization;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
-import UserInterface.admin.HospitalAdminJPanel;
+import UserInterface.hospitalAdmin.HospitalAdminJPanel;
+
 import javax.swing.JPanel;
 
 /**

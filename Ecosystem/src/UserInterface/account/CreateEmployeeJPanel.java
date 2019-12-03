@@ -11,8 +11,13 @@ import Business.Entity.Specialities;
 import Business.Organization.CommonUserOrganization;
 import Business.Organization.Organization;
 import Business.UserAccount.AbstractFactory.AccountFactory;
-import Business.UserAccount.AbstractFactory.UserAccountFactory;
+import Business.UserAccount.AbstractFactory.CommonUserAccountFactory;
+import Business.UserAccount.AbstractFactory.EmployeeAccountFactory;
+
+import UserInterface.hospitalAdmin.HospitalAdminJPanel;
+
 import java.awt.CardLayout;
+import java.awt.Component;
 import java.lang.reflect.Field;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -55,20 +60,24 @@ public class CreateEmployeeJPanel extends javax.swing.JPanel {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.e = e;
-        List<String> role_str = new ArrayList<>();
 
+        populateRoleCombo();
+        populateSpeComboBox();
+    }
+
+    private void populateRoleCombo() {
+        roleCombo.removeAllItems();
         for (Organization o : e.getOrganizationDirectory().getOrganizationList()) {
-            role_str.add(o.getName());
-
+            roleCombo.addItem(o);
         }
+    }
 
-        roleCombo.setModel(new javax.swing.DefaultComboBoxModel(role_str.toArray()));
-
-        Field[] fields_spe = Specialities.class.getFields();
-        String[] arr_spe = Specialities.names();
-        speComboBox.setModel(new javax.swing.DefaultComboBoxModel(arr_spe));
+    private void populateSpeComboBox() {
+        speComboBox.removeAllItems();
+        for (Specialities s : Specialities.values()) {
+            speComboBox.addItem(s);
+        }
         speComboBox.setEnabled(false);
-        //speTxt.setEnabled(true);
 
     }
 
@@ -148,32 +157,33 @@ public class CreateEmployeeJPanel extends javax.swing.JPanel {
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(339, 339, 339)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(0, 2, Short.MAX_VALUE)
-                                        .addComponent(jLabel7)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(roleCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(19, 19, 19)
-                                        .addComponent(jLabel6)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(speComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(createBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 341, Short.MAX_VALUE)
+                                .addComponent(jLabel7)
+                                .addGap(18, 18, 18)
+                                .addComponent(roleCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(19, 19, 19)
+                                .addComponent(jLabel6)
+                                .addGap(18, 18, 18)
+                                .addComponent(speComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel2))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(usernameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 527, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(pwTxt, javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(nameTxt, javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(birthdayTxt, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 527, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jLabel4)
+                                            .addComponent(jLabel3)
+                                            .addComponent(jLabel5)
+                                            .addComponent(jLabel2))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(usernameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 527, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addComponent(pwTxt, javax.swing.GroupLayout.Alignment.TRAILING)
+                                                .addComponent(nameTxt, javax.swing.GroupLayout.Alignment.TRAILING)
+                                                .addComponent(birthdayTxt, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 527, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(createBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(152, 152, 152))))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(127, 127, 127)
                         .addComponent(btnBack)
@@ -211,9 +221,9 @@ public class CreateEmployeeJPanel extends javax.swing.JPanel {
                     .addComponent(jLabel7)
                     .addComponent(speComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
-                .addGap(170, 170, 170)
+                .addGap(114, 114, 114)
                 .addComponent(createBtn)
-                .addContainerGap(250, Short.MAX_VALUE))
+                .addContainerGap(306, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {birthdayTxt, jLabel2, jLabel3, jLabel4, jLabel5, jLabel6, jLabel7, nameTxt, pwTxt, roleCombo, speComboBox, usernameTxt});
@@ -233,39 +243,46 @@ public class CreateEmployeeJPanel extends javax.swing.JPanel {
             ex.printStackTrace();
         }
 
-        String selected = roleCombo.getSelectedItem().toString();
+        Organization selected = (Organization) roleCombo.getSelectedItem();
         AccountFactory f = null;
         String spe = null;
-        if (selected.equals(Organization.Type.Doctor.getValue())) {
+        if (selected.getName().equals(Organization.Type.Doctor.getValue())) {
             spe = speComboBox.getSelectedItem().toString();
-            // f = new DoctorFactory(spe, e, username, pw, name, b);
         } else {
-            spe = selected;
+            spe = selected.getName();
         }
-        f = new UserAccountFactory(spe, e, selected, username, pw, name, b);
-        //f=ROLE_STRATEGY_MAP.get(selected);
+        f = new EmployeeAccountFactory(spe, e, selected, username, pw, name, b);
         if (f != null) {
             f.addEmployee();
             f.addAccount();
         }
-        //Role role = ROLE_STRATEGY_MAP.get(selected);
         JOptionPane.showMessageDialog(null, "Create Account Successfully");
     }//GEN-LAST:event_createBtnActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         userProcessContainer.remove(this);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+
+        Component[] comps = this.userProcessContainer.getComponents();
+        for (Component comp : comps) {
+            if (comp instanceof HospitalAdminJPanel) {
+                HospitalAdminJPanel m = (HospitalAdminJPanel) comp;
+                m.populateEmployeejTable();
+            }
+
+        }
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void roleComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roleComboActionPerformed
-        String selected = roleCombo.getSelectedItem().toString();
-        if (selected.equals(Organization.Type.Doctor.getValue())) {
-            speComboBox.setEnabled(true);
-            // speTxt.setEnabled(false);
-        } else {
-            speComboBox.setEnabled(false);
-            // speTxt.setEnabled(true);
+        Organization selected = (Organization) roleCombo.getSelectedItem();
+
+        if (selected != null) {
+            if (selected.getName().equals(Organization.Type.Doctor.getValue())) {
+                speComboBox.setEnabled(true);
+            } else {
+                speComboBox.setEnabled(false);
+            }
         }
     }//GEN-LAST:event_roleComboActionPerformed
 

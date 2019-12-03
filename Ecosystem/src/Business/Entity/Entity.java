@@ -18,6 +18,19 @@ public abstract class Entity {
     protected int id;
     protected String specialities;
     protected String name;
+    protected int ranking;
+
+    public Entity() {
+        this.ranking = 0;
+    }
+
+    public int getRanking() {
+        return ranking;
+    }
+
+    public void setRanking(int ranking) {
+        this.ranking = ranking;
+    }
 
     public String getName() {
         return name;
@@ -40,9 +53,6 @@ public abstract class Entity {
 
     public abstract ArrayList<Role> getSupportedRole();
 
-    public Entity() {
-        
-    }
 
     public int getId() {
         return id;
