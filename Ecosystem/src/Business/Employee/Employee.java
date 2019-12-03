@@ -4,7 +4,6 @@
  */
 package Business.Employee;
 
-import Business.Entity.Entity;
 import Business.Entity.TimeSlot;
 import Business.Event.Event;
 import Business.Event.Message;
@@ -19,26 +18,55 @@ import java.util.Observer;
  *
  * @author AED_DEVOPS
  */
-public class Employee extends Entity implements Observer {
+public class Employee implements Observer {
 
     private static int count = 1;
     private List<TimeSlot> availability;
-    
+    protected int id;
+    protected String specialities;
+    protected String name;
+    protected int ranking;
+
     public Employee(String name) {
-        super();
-        this.name = name;
-        id = count;
-        count++;
         this.availability = new ArrayList<TimeSlot>();
+        this.name = name;
+        this.ranking = 0;
+        this.id = count;
+        count++;
+
     }
-    
+
     public Employee(String spe, String name) {
-        super();
+        this.availability = new ArrayList<TimeSlot>();
         this.name = name;
         this.specialities = spe;
+        this.ranking = 0;
         id = count;
         count++;
-        this.availability = new ArrayList<TimeSlot>();
+    }
+
+    public String getSpecialities() {
+        return specialities;
+    }
+
+    public void setSpecialities(String specialities) {
+        this.specialities = specialities;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getRanking() {
+        return ranking;
+    }
+
+    public void setRanking(int ranking) {
+        this.ranking = ranking;
     }
 
     public List<TimeSlot> getAvailability() {
@@ -72,11 +100,6 @@ public class Employee extends Entity implements Observer {
         Message m = (Message) o1;
         System.out.println(this.getId() + "get the event:" + e.getEventName() + "-" + m.getContent());
 
-    }
-
-    @Override
-    public ArrayList<Role> getSupportedRole() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }
