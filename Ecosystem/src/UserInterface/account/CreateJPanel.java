@@ -7,8 +7,9 @@ package UserInterface.account;
 
 import Business.Enterprise.Enterprise;
 import Business.Organization.CommonUserOrganization;
+import Business.Organization.Organization;
 import Business.UserAccount.AbstractFactory.AccountFactory;
-import Business.UserAccount.AbstractFactory.UserAccountFactory;
+import Business.UserAccount.AbstractFactory.CommonUserAccountFactory;
 
 import UserInterface.frontDesk.FrontDeskJPanel;
 import java.awt.CardLayout;
@@ -164,9 +165,15 @@ public class CreateJPanel extends javax.swing.JPanel {
         } catch (ParseException ex) {
             ex.printStackTrace();
         }
-        
-        String spe = null;
-        AccountFactory f = new UserAccountFactory(spe, e, "Common User", username, pw, name, b);
+        Organization org = null;
+        for (Organization o : e.getOrganizationDirectory().getOrganizationList()) {
+            if (o.getName().equals(Organization.Type.Common.getValue())) {
+                org = o;
+                break;
+            }
+        }
+
+        AccountFactory f = new CommonUserAccountFactory(e, org, username, pw, name, b);
         f.addAccount();
         JOptionPane.showMessageDialog(null, "Create Account Successfully");
     }//GEN-LAST:event_createBtnActionPerformed

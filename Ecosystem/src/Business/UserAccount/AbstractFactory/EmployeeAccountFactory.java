@@ -18,30 +18,27 @@ import java.util.Date;
  *
  * @author Huangdong Wen <wen.hu@husky.neu.edu>
  */
-public class UserAccountFactory extends AccountFactory {
+public class EmployeeAccountFactory extends AccountFactory {
 
-    public UserAccountFactory(String spe, Enterprise e, String org, String username, String pw, String name, Date b) {
+    public EmployeeAccountFactory(String spe, Enterprise e, Organization org, String username, String pw, String name, Date b) {
         super(spe, e, org, username, pw, name, b);
     }
 
     @Override
     public Employee getEmployee() {
-        if (org.equals("Common User")) {
-            return null;
-        }
         return new Employee(spe, name);
     }
 
     @Override
     public Organization getOrganization() {
-        Organization res = null;
-        for (Organization o : e.getOrganizationDirectory().getOrganizationList()) {
-            if (o.getName().equals(org)) {
-                res = o;
-                break;
-            }
-        }
-        return res;
+//        Organization res = null;
+//        for (Organization o : e.getOrganizationDirectory().getOrganizationList()) {
+//            if (o==org) {
+//                res = o;
+//                break;
+//            }
+//        }
+        return org;
     }
 
     @Override
