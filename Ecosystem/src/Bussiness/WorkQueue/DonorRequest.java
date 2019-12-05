@@ -15,9 +15,96 @@ import java.util.Date;
 public class DonorRequest extends WorkRequest{
     private UserAccount sender;
     private UserAccount receiver;
+    private UserAccount bloodBank;
+
+    public UserAccount getBloodBank() {
+        return bloodBank;
+    }
+
+    public void setBloodBank(UserAccount bloodBank) {
+        this.bloodBank = bloodBank;
+    }
     private String status;
     private Date requestDate;
     private Date resolveDate;
+     private UserAccount Medicinesender;
+    private UserAccount Medicinereceiver;
+    private String Medicinestatus;
+    private Date requestMedicineDate;
+    private String medicine;
+    private int quantity;
+    private UserAccount labTechnician;
+
+    public UserAccount getLabTechnician() {
+        return labTechnician;
+    }
+
+  
+    public UserAccount getMedicinesender() {
+        return Medicinesender;
+    }
+
+    public void setMedicinesender(UserAccount Medicinesender) {
+        this.Medicinesender = Medicinesender;
+    }
+
+    public UserAccount getMedicinereceiver() {
+        return Medicinereceiver;
+    }
+
+    public void setMedicinereceiver(UserAccount Medicinereceiver) {
+        this.Medicinereceiver = Medicinereceiver;
+    }
+
+    public String getMedicinestatus() {
+        return Medicinestatus;
+    }
+
+    public void setMedicinestatus(String Medicinestatus) {
+        this.Medicinestatus = Medicinestatus;
+    }
+
+    public Date getRequestMedicineDate() {
+        return requestMedicineDate;
+    }
+
+    public void setRequestMedicineDate(Date requestMedicineDate) {
+        this.requestMedicineDate = requestMedicineDate;
+    }
+
+    public String getMedicine() {
+        return medicine;
+    }
+
+    public void setMedicine(String medicine) {
+        this.medicine = medicine;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public Date getRecievedDate() {
+        return recievedDate;
+    }
+
+    public void setRecievedDate(Date recievedDate) {
+        this.recievedDate = recievedDate;
+    }
+    private int price;
+    private Date recievedDate;
     
     private String testResult;
 
@@ -245,6 +332,13 @@ public class DonorRequest extends WorkRequest{
     public void setTemperature(float temperature) {
         this.temperature = temperature;
     }
-    
+        @Override
+    public String toString() {
+        return sender.getUsername();
+    }
+
+    public void setLabTechnician(UserAccount labTechnician) {
+        this.labTechnician = labTechnician; //To change body of generated methods, choose Tools | Templates.
+    }
    
 }

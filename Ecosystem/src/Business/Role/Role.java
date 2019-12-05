@@ -29,6 +29,7 @@ public abstract class Role {
         HospitalAdmin("HospitalAdmin"),
         GovermentAdmin("GovAdmin"),
         PharmacyAdmin("PharmacyAdmin"),
+        Pharmacy("Pharmacy"),
         Nurse("NurseRole"),
         Doctor("DoctorRole"),
         FrontDesk("FrontDeskRole"),

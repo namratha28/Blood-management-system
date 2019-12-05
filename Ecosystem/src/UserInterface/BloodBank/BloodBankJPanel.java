@@ -11,7 +11,21 @@ import Business.Organization.BloodCollectionStationOrganization;
 import Business.Organization.NurseOrganization;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
+import Bussiness.WorkQueue.DonorRequest;
+import Bussiness.WorkQueue.WorkRequest;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.util.ArrayList;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.CategoryPlot;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.renderer.category.BarRenderer;
+import org.jfree.chart.renderer.category.StandardBarPainter;
+import org.jfree.data.category.DefaultCategoryDataset;
 
 /**
  *
@@ -39,8 +53,78 @@ public class BloodBankJPanel extends javax.swing.JPanel {
         this.enterprise = enterprise;
         this.business=business;
         System.out.print("bloodBank");
+        populateTable();
+        viewTable();
         }
+    
+    public void viewTable(){
+        DefaultCategoryDataset dcd = new DefaultCategoryDataset();
+        ArrayList<WorkRequest> list = bloodCollectionStationOrganization.getWorkQueue().getWorkRequestList();
+     
+        for (WorkRequest workRequest : bloodCollectionStationOrganization.getWorkQueue().getWorkRequestList()) {
+            if (workRequest instanceof DonorRequest) {
+                if (workRequest.getStatus() != null && workRequest.getStatus().equals("Completed")) {
+                    int count = 1;
+                    String Blood = "AB";
+                    dcd.addValue(count,"BLood Group", Blood);
+                       System.out.println(Blood);
+                       
+                    //System.out.println(Blood+" "+count);
+                }
 
+            }
+        }
+        barGraph(dcd,"Number of DOnors","Blood Group","Donors");
+        
+    }
+    
+    private void barGraph(DefaultCategoryDataset dataset,String tHeader,String bHeader,String lHeader){
+
+        JFreeChart chart = ChartFactory.createBarChart3D(
+        tHeader, // Title
+        bHeader, // x-axis Label
+        lHeader, // y-axis Label
+        dataset, // Dataset
+        PlotOrientation.VERTICAL, // Plot Orientation
+        true, // Show Legend
+        true, // Use tooltips
+        false // Configure chart to generate URLs?
+     );
+        jPanel1.removeAll();
+        jPanel1.setLayout(new java.awt.BorderLayout());
+        ChartPanel CP = new ChartPanel(chart);
+        jPanel1.add(CP,BorderLayout.CENTER);
+        jPanel1.validate();
+    }
+    public void populateTable() {
+        DefaultTableModel model = (DefaultTableModel) workRequestJTable.getModel();
+
+        model.setRowCount(0);
+        
+        for (WorkRequest labrequest : userAccount.getWorkQueue().getWorkRequestList()) {
+            //System.out.println(labrequest);
+            Object[] row = new Object[5];
+            // row[0] = request.getDate();
+            //row[0] = request;
+          if(labrequest.getStatus().equalsIgnoreCase("completed")){
+              DonorRequest req= new DonorRequest();
+                row[0] = labrequest;
+                row[2] = labrequest.getDate();
+                //row[1] = labrequest.getSender()==null? null : labrequest.getSender().getUsername();
+                //row[2] = docrequest.getSender().getEmployee().getName();
+                row[1] = labrequest.getReceiver() == null ? null : labrequest.getReceiver().getEmployee().getName();
+                row[2]=req.getBlood();
+                row[3]=req.getDate();
+                row[4] = labrequest.getStatus();
+
+                System.out.println(row[1]);
+
+                model.addRow(row); 
+            
+           }
+            
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -51,42 +135,87 @@ public class BloodBankJPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        workRequestJTable = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        setBackground(new java.awt.Color(51, 51, 51));
+
+        workRequestJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Donor", "Receiver", "Date", "Status"
+                "Donor", "Receiver", "Blood Type", "Date", "Status"
             }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(workRequestJTable);
+
+        jLabel1.setText("Blood Bank Organisation");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 302, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 166, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(97, 97, 97)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 526, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(114, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(299, 299, 299)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(104, 104, 104)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 526, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(202, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(62, 62, 62)
+                .addGap(38, 38, 38)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(274, Short.MAX_VALUE))
+                .addGap(62, 62, 62)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(105, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable workRequestJTable;
     // End of variables declaration//GEN-END:variables
 }

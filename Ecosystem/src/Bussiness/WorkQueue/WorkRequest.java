@@ -25,6 +25,15 @@ public abstract class WorkRequest {
     private int quantity;
     private String appointmentDate;
     private String comments;
+    private String medicine;
+
+    public String getMedicine() {
+        return medicine;
+    }
+
+    public void setMedicine(String medicine) {
+        this.medicine = medicine;
+    }
 
     public String getMessage() {
         return message;
@@ -127,10 +136,7 @@ public abstract class WorkRequest {
         this.resolveDate = resolveDate;
     }
 
-    @Override
-    public String toString() {
-        return sender.getUsername();
-    }
+   
 
     
 }

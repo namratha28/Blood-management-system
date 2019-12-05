@@ -23,6 +23,12 @@ public class Employee extends Entity implements Observer {
 
     private static int count = 1;
     private List<TimeSlot> availability;
+    
+    public Employee() {
+        id = count;
+        count++;
+    }
+    
     public Employee(String name) {
         super();
         this.name = name;
