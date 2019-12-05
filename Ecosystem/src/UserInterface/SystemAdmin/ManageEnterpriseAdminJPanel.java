@@ -234,7 +234,9 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         } else if (enterprise.getEnterpriseType() == Enterprise.EnterpriseType.Hospital) {
             account = enterprise.getUserAccountDirectory().createUserAccount(username, password, employee, new HospitalAdminRole());
         } 
-
+        else if(enterprise.getEnterpriseType() == Enterprise.EnterpriseType.Pharmacy){
+           account = enterprise.getUserAccountDirectory().createUserAccount(username, password, employee, new PharmacyAdminRole());
+        }
         populateTable();
         }
     

@@ -12,9 +12,9 @@ import java.util.ArrayList;
  *
  * @author Huangdong Wen <wen.hu@husky.neu.edu>
  */
-public class MedicineInventoryOrganization extends Organization{
+public class PharmacyAdmin extends Organization{
 
-    public MedicineInventoryOrganization() {
+    public PharmacyAdmin() {
         super(Type.PharmacyAdmin.getValue());
     }
 

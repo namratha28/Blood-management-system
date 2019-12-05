@@ -5,10 +5,22 @@
  */
 package Business.Role;
 
+import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
+import Business.Organization.Organization;
+import Business.UserAccount.UserAccount;
+import UserInterface.BloodBankAdmin.BloodBankAdminWorkAreaJPanel;
+import UserInterface.PharmacyAdmin.PharmacyAdminWorkAreaJPanel;
+import javax.swing.JPanel;
+
 /**
  *
  * @author namratha
  */
-public class PharmacyAdminRole {
-    
+public class PharmacyAdminRole extends Role{
+    @Override
+    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business) {
+        return new PharmacyAdminWorkAreaJPanel(userProcessContainer,
+                enterprise);
+    }
 }

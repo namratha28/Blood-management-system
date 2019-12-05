@@ -22,10 +22,18 @@ public class Employee implements Observer {
 
     private static int count = 1;
     private List<TimeSlot> availability;
+
+    
+    public Employee() {
+        id = count;
+        count++;
+    }
+    
     protected int id;
     protected String specialities;
     protected String name;
     protected int ranking;
+
 
     public Employee(String name) {
         this.availability = new ArrayList<TimeSlot>();

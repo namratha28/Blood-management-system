@@ -43,6 +43,9 @@ public class OrganizationDirectory {
         else if (type.getValue().equals(Organization.Type.BloodBank.getValue())) {
             organization = new BloodCollectionStationOrganization();
             organizationList.add(organization);
+        }else if(type.getValue().equals(Organization.Type.Pharmacy.getValue())){
+            organization = new MedicalOrganisation();
+            organizationList.add(organization);
         }
         
         else if (type.getValue().equals(Organization.Type.LogisticsAdmin.getValue())) {
@@ -55,7 +58,7 @@ public class OrganizationDirectory {
             organization = new GovEmployeeOrganization();
             organizationList.add(organization);
         } else if (type.getValue().equals(Organization.Type.PharmacyAdmin.getValue())) {
-            organization = new MedicineInventoryOrganization();
+            organization = new PharmacyAdmin();
             organizationList.add(organization);
         } else if (type.getValue().equals(Organization.Type.Nurse.getValue())) {
             organization = new NurseOrganization();
