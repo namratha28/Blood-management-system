@@ -8,6 +8,7 @@ package Business.Enterprise;
 import Business.Organization.Organization;
 import Business.Organization.OrganizationDirectory;
 import Business.Role.Role;
+import Bussiness.WorkQueue.WorkQueue;
 import java.util.ArrayList;
 
 /**
@@ -18,6 +19,7 @@ public abstract class Enterprise extends Organization {
 
     private EnterpriseType enterpriseType;
     private OrganizationDirectory organizationDirectory;
+
 
     public Enterprise(String name, EnterpriseType type) {
         super(name);

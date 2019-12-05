@@ -7,6 +7,7 @@ package UserInterface.frontDesk;
 
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
+import Business.Entity.HospitalStatus;
 import Business.Entity.Specialities;
 import Business.Entity.TimeSlot;
 import Business.Organization.CommonUserOrganization;
@@ -15,7 +16,9 @@ import Business.Organization.FrontDeskEmployeeOrganization;
 import Business.Organization.Organization;
 import Business.Request.Request;
 import Business.UserAccount.UserAccount;
+import Bussiness.WorkQueue.DoctorRequest;
 import Bussiness.WorkQueue.WorkQueue;
+import Bussiness.WorkQueue.WorkRequest;
 import UserInterface.account.CreateJPanel;
 import java.awt.CardLayout;
 import java.text.ParseException;
@@ -39,7 +42,9 @@ public class FrontDeskJPanel extends javax.swing.JPanel {
     private UserAccount userAccount;
     private FrontDeskEmployeeOrganization organization;
     private Enterprise enterprise;
-    private UserAccount a;
+    private UserAccount patient;
+    private UserAccount doctor;
+    private TimeSlot ts;
 
     public FrontDeskJPanel(JPanel userProcessContainer, UserAccount account, FrontDeskEmployeeOrganization organization, Enterprise enterprise, EcoSystem business) {
         initComponents();
@@ -51,7 +56,6 @@ public class FrontDeskJPanel extends javax.swing.JPanel {
         populateSpe();
         populateCommonUser();
         populateSpeComboBox();
-        
     }
 
     private void populateSpeComboBox() {
@@ -71,13 +75,15 @@ public class FrontDeskJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane4 = new javax.swing.JScrollPane();
+        commonUserTable1 = new javax.swing.JTable();
         jScrollPane1 = new javax.swing.JScrollPane();
         speTable = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
         availTable = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        chkAvailBtn = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         txtPatient = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
@@ -86,13 +92,35 @@ public class FrontDeskJPanel extends javax.swing.JPanel {
         speComboBox = new javax.swing.JComboBox();
         jLabel5 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
-        jButton3 = new javax.swing.JButton();
+        searchDocBtn = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         commonUserTable = new javax.swing.JTable();
         jLabel6 = new javax.swing.JLabel();
         searchBtn = new javax.swing.JButton();
         createBtn1 = new javax.swing.JButton();
-        createBtn2 = new javax.swing.JButton();
+        selectBtn = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        apptTable = new javax.swing.JTable();
+
+        commonUserTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "name", "birthday", "Contribution Score", "Last Visit"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.Object.class, java.lang.Integer.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane4.setViewportView(commonUserTable1);
 
         setBackground(new java.awt.Color(255, 255, 255));
         setMaximumSize(new java.awt.Dimension(1280, 800));
@@ -139,10 +167,10 @@ public class FrontDeskJPanel extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("Verdana", 0, 15)); // NOI18N
         jLabel2.setText("Available Time");
 
-        jButton1.setText("Select");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        chkAvailBtn.setText("Check Availability");
+        chkAvailBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                chkAvailBtnActionPerformed(evt);
             }
         });
 
@@ -170,17 +198,30 @@ public class FrontDeskJPanel extends javax.swing.JPanel {
         jLabel5.setFont(new java.awt.Font("Verdana", 0, 15)); // NOI18N
         jLabel5.setText("Doctor Name");
 
-        jButton3.setBackground(new java.awt.Color(219, 140, 194));
-        jButton3.setText("Search");
+        searchDocBtn.setBackground(new java.awt.Color(219, 140, 194));
+        searchDocBtn.setText("Search");
+        searchDocBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchDocBtnActionPerformed(evt);
+            }
+        });
 
         commonUserTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "name", "birthday"
+                "name", "birthday", "Contribution Score", "Last Visit"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.Object.class, java.lang.Integer.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
         jScrollPane3.setViewportView(commonUserTable);
 
         jLabel6.setFont(new java.awt.Font("Verdana", 0, 24)); // NOI18N
@@ -202,135 +243,186 @@ public class FrontDeskJPanel extends javax.swing.JPanel {
             }
         });
 
-        createBtn2.setBackground(new java.awt.Color(219, 140, 194));
-        createBtn2.setText("Select");
+        selectBtn.setBackground(new java.awt.Color(219, 140, 194));
+        selectBtn.setText("Select");
+        selectBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                selectBtnActionPerformed(evt);
+            }
+        });
+
+        jLabel7.setText("Doctor Information");
+
+        jLabel8.setText("Patient Information");
+
+        apptTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "patient", "birthday", "doctor", "time"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.String.class, java.lang.Object.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane5.setViewportView(apptTable);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(504, 504, 504)
-                .addComponent(jLabel6)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(143, 143, 143)
+                .addGap(77, 77, 77)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel1)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(2, 2, 2)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(createBtn1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGap(82, 82, 82)
-                                        .addComponent(searchBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel3)
-                                            .addComponent(jLabel4))
-                                        .addGap(39, 39, 39)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(699, 699, 699)
+                        .addComponent(jLabel6)
+                        .addGap(769, 769, 769))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 1067, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(makeAptmBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(0, 0, Short.MAX_VALUE)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jLabel7)
+                                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 497, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGap(49, 49, 49)
+                                            .addComponent(chkAvailBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(87, 87, 87)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jLabel2)
+                                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 579, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(jLabel5)
+                                            .addGap(39, 39, 39)
                                             .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(80, 80, 80)
+                                            .addComponent(jLabel1)
+                                            .addGap(18, 18, 18)
                                             .addComponent(speComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txtPatient, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txtBirth, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(154, 154, 154)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(createBtn2, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel2))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 413, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(93, 93, 93)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 485, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(makeAptmBtn))
-                        .addGap(145, 145, 145))))
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(searchDocBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(369, 369, 369)))))
+                            .addGap(261, 261, 261))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(0, 0, Short.MAX_VALUE)
+                                    .addComponent(selectBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(6, 6, 6)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel8)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(jLabel3)
+                                            .addGap(39, 39, 39)
+                                            .addComponent(txtPatient, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(85, 85, 85)
+                                            .addComponent(jLabel4)
+                                            .addGap(39, 39, 39)
+                                            .addComponent(txtBirth, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(103, 103, 103)
+                                            .addComponent(searchBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(createBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(jScrollPane3))
+                            .addGap(263, 263, 263)))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
+                .addGap(76, 76, 76)
                 .addComponent(jLabel6)
-                .addGap(39, 39, 39)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(txtPatient, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(txtBirth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(34, 34, 34)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(searchBtn)
-                            .addComponent(createBtn1))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(speComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(26, 26, 26))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(createBtn2)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(43, 43, 43)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3)
-                    .addComponent(jLabel2))
-                .addGap(17, 17, 17)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel3)
+                    .addComponent(txtPatient, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4)
+                    .addComponent(txtBirth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(searchBtn)
+                    .addComponent(createBtn1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel8)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(searchDocBtn)
+                    .addComponent(selectBtn)
+                    .addComponent(speComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
                 .addGap(35, 35, 35)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(makeAptmBtn))
-                .addGap(50, 50, 50))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(chkAvailBtn)
+                        .addGap(161, 161, 161))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(52, 52, 52)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(makeAptmBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(118, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void chkAvailBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkAvailBtnActionPerformed
         int selectedRow = speTable.getSelectedRow();
         //Employee e;
         if (selectedRow >= 0) {
-            a = (UserAccount) speTable.getValueAt(selectedRow, 0);
+            doctor = (UserAccount) speTable.getValueAt(selectedRow, 0);
             populateAvailTable();
         } else {
             JOptionPane.showMessageDialog(null, "Please select any row");
         }
 
 
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_chkAvailBtnActionPerformed
 
     private void txtBirthActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBirthActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtBirthActionPerformed
 
     private void makeAptmBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_makeAptmBtnActionPerformed
-        WorkQueue r = new WorkQueue();
+        DoctorRequest wr = new DoctorRequest();
+        wr.setSender(userAccount);
+        wr.setPatient(patient);
+        wr.setReceiver(doctor);
+        int selectedRow = availTable.getSelectedRow();
+        if (selectedRow >= 0) {
+            ts = (TimeSlot) availTable.getValueAt(selectedRow, 0);
+            wr.setAppointmentDate(ts.getFrom());
+            doctor.getEmployee().getAvailability().remove(ts);
+            populateApptTable();
+            populateAvailTable();
+        } else {
+            JOptionPane.showMessageDialog(null, "Please select any row");
+        }
 
-        String name = txtPatient.getText();
-        UserAccount user = new UserAccount();
-        user.setUsername(name);
-//        r.setSender(user);
-//        r.setReceiver(a);
-        //  a.getWorkQueue().getWorkRequestList().add(r);
-        // a.getRq().getWorkRequestList().add(r);
+        wr.setRequestDate(new Date());
+        wr.setStatus(HospitalStatus.WAITING_FOR_APPOINTMENT.getValue());
+        doctor.getWorkQueue().getWorkRequestList().add(wr);
+        patient.getWorkQueue().getWorkRequestList().add(wr);
     }//GEN-LAST:event_makeAptmBtnActionPerformed
 
     private void createBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBtn1ActionPerformed
@@ -371,26 +463,47 @@ public class FrontDeskJPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_searchBtnActionPerformed
 
+    private void selectBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectBtnActionPerformed
+        int selectedRow = commonUserTable.getSelectedRow();
+        //Employee e;
+        if (selectedRow >= 0) {
+            patient = (UserAccount) commonUserTable.getValueAt(selectedRow, 0);
+            populateApptTable();
+        } else {
+            JOptionPane.showMessageDialog(null, "Please select any row");
+        }
+    }//GEN-LAST:event_selectBtnActionPerformed
+
+    private void searchDocBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchDocBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_searchDocBtnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable apptTable;
     private javax.swing.JTable availTable;
+    private javax.swing.JButton chkAvailBtn;
     private javax.swing.JTable commonUserTable;
+    private javax.swing.JTable commonUserTable1;
     private javax.swing.JButton createBtn1;
-    private javax.swing.JButton createBtn2;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JButton makeAptmBtn;
     private javax.swing.JButton searchBtn;
+    private javax.swing.JButton searchDocBtn;
+    private javax.swing.JButton selectBtn;
     private javax.swing.JComboBox speComboBox;
     private javax.swing.JTable speTable;
     private javax.swing.JTextField txtBirth;
@@ -419,9 +532,9 @@ public class FrontDeskJPanel extends javax.swing.JPanel {
 
         model.setRowCount(0);
 
-        for (TimeSlot ts : a.getEmployee().getAvailability()) {
+        for (TimeSlot ts : doctor.getEmployee().getAvailability()) {
             Object[] row = new Object[2];
-            row[0] = ts.getFrom();
+            row[0] = ts;
             row[1] = ts.getTo();
             model.addRow(row);
         }
@@ -436,11 +549,25 @@ public class FrontDeskJPanel extends javax.swing.JPanel {
             if (o instanceof CommonUserOrganization) {
                 for (UserAccount a : o.getUserAccountDirectory().getUserAccountList()) {
                     Object[] row = new Object[2];
-                    row[0] = a.getPerson();
+                    row[0] = a;
                     row[1] = a.getPerson().getBirthday();
                     model.addRow(row);
                 }
             }
         }
     }
+
+    private void populateApptTable() {
+        DefaultTableModel model = (DefaultTableModel) apptTable.getModel();
+
+        model.setRowCount(0);
+
+        Object[] row = new Object[4];
+        row[0] = patient;
+        row[1] = patient.getPerson().getBirthday();
+        row[2] = doctor;
+        row[3] = ts;
+        model.addRow(row);
+    }
+
 }

@@ -13,8 +13,11 @@ import java.util.Date;
  * @author namratha
  */
 public abstract class WorkRequest {
+
     private UserAccount sender;
     private UserAccount receiver;
+    private UserAccount patient;
+
     private String status;
     private Date requestDate;
     private Date resolveDate;
@@ -23,7 +26,7 @@ public abstract class WorkRequest {
     private String complaintMessage;
     private String freeMed;
     private int quantity;
-    private String appointmentDate;
+    private Date appointmentDate;
     private String comments;
     private String medicine;
 
@@ -33,6 +36,14 @@ public abstract class WorkRequest {
 
     public void setMedicine(String medicine) {
         this.medicine = medicine;
+    }
+
+    public UserAccount getPatient() {
+        return patient;
+    }
+
+    public void setPatient(UserAccount patient) {
+        this.patient = patient;
     }
 
     public String getMessage() {
@@ -59,11 +70,11 @@ public abstract class WorkRequest {
         this.quantity = quantity;
     }
 
-    public String getAppointmentDate() {
+    public Date getAppointmentDate() {
         return appointmentDate;
     }
 
-    public void setAppointmentDate(String appointmentDate) {
+    public void setAppointmentDate(Date appointmentDate) {
         this.appointmentDate = appointmentDate;
     }
 
@@ -138,5 +149,4 @@ public abstract class WorkRequest {
 
    
 
-    
 }

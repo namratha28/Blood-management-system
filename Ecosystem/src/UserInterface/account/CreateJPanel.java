@@ -36,6 +36,7 @@ public class CreateJPanel extends javax.swing.JPanel {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.e = e;
+        birthdayTxt.setText("11/22/80");
     }
 
     /**
@@ -157,6 +158,7 @@ public class CreateJPanel extends javax.swing.JPanel {
         String pw = pwTxt.getText();
         String name = nameTxt.getText();
         String birthday = birthdayTxt.getText();
+
         SimpleDateFormat format = new SimpleDateFormat("MM/dd/yy");
         Date b = null;
 

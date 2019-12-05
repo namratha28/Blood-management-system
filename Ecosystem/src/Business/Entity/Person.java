@@ -5,7 +5,8 @@
  */
 package Business.Entity;
 
-import Business.Employee.Employee;
+import Bussiness.WorkQueue.WorkRequest;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -22,8 +23,35 @@ public class Person {
     private int contributionScore;
     private BloodType type;
     private boolean donors;
-    List<Integer> donationHistory;
-    List<Integer> treatmentHistory;
+    private int pulse;
+    private int temperature;
+    private int bloodPress;
+    List<WorkRequest> donationHistory;
+    List<WorkRequest> treatmentHistory;
+
+    public int getPulse() {
+        return pulse;
+    }
+
+    public void setPulse(int pulse) {
+        this.pulse = pulse;
+    }
+
+    public int getTemperature() {
+        return temperature;
+    }
+
+    public void setTemperature(int temperature) {
+        this.temperature = temperature;
+    }
+
+    public int getBloodPress() {
+        return bloodPress;
+    }
+
+    public void setBloodPress(int bloodPress) {
+        this.bloodPress = bloodPress;
+    }
 
     public String getName() {
         return name;
@@ -47,9 +75,11 @@ public class Person {
     public Person(String name, Date b) {
         this.name = name;
         this.birthday = b;
+        this.type = BloodType.UNKNOWN;
+        this.treatmentHistory = new ArrayList<WorkRequest>();
     }
 
-    public Person(int age, boolean isDisabled, int contributionScore, BloodType type, boolean donors, List<Integer> donationHistory, List<Integer> treatmentHistory) {
+    public Person(int age, boolean isDisabled, int contributionScore, BloodType type, boolean donors, List<WorkRequest> donationHistory, List<WorkRequest> treatmentHistory) {
         this.age = age;
         this.isDisabled = isDisabled;
         this.contributionScore = contributionScore;
@@ -77,7 +107,7 @@ public class Person {
 
     @Override
     public String toString() {
-        return  name ;
+        return name;
     }
 
     public int getContributionScore() {
@@ -104,19 +134,19 @@ public class Person {
         this.donors = donors;
     }
 
-    public List<Integer> getDonationHistory() {
+    public List<WorkRequest> getDonationHistory() {
         return donationHistory;
     }
 
-    public void setDonationHistory(List<Integer> donationHistory) {
+    public void setDonationHistory(List<WorkRequest> donationHistory) {
         this.donationHistory = donationHistory;
     }
 
-    public List<Integer> getTreatmentHistory() {
+    public List<WorkRequest> getTreatmentHistory() {
         return treatmentHistory;
     }
 
-    public void setTreatmentHistory(List<Integer> treatmentHistory) {
+    public void setTreatmentHistory(List<WorkRequest> treatmentHistory) {
         this.treatmentHistory = treatmentHistory;
     }
 

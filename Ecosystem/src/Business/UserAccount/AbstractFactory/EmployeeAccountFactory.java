@@ -31,13 +31,6 @@ public class EmployeeAccountFactory extends AccountFactory {
 
     @Override
     public Organization getOrganization() {
-//        Organization res = null;
-//        for (Organization o : e.getOrganizationDirectory().getOrganizationList()) {
-//            if (o==org) {
-//                res = o;
-//                break;
-//            }
-//        }
         return org;
     }
 

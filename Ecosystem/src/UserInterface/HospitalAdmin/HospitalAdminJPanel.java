@@ -3,16 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package UserInterface.hospitalAdmin;
+package UserInterface.HospitalAdmin;
 
 import Business.EcoSystem;
 import Business.Employee.Employee;
 import Business.Enterprise.Enterprise;
-import Business.Event.Event;
+import Business.Event.HospitalEvent;
 import Business.Event.Message;
 import Business.Organization.AdminOrganization;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
+import Bussiness.WorkQueue.HospitalInnerRequest;
+import Bussiness.WorkQueue.WorkRequest;
 import UserInterface.account.CreateEmployeeJPanel;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
@@ -45,6 +47,7 @@ public class HospitalAdminJPanel extends javax.swing.JPanel {
         populateCombo();
         populateOrgTable();
         populateEmployeejTable();
+        populateWrTable();
     }
 
     /**
@@ -62,9 +65,9 @@ public class HospitalAdminJPanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         employeejTable = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        wrTable = new javax.swing.JTable();
         createBtn = new javax.swing.JButton();
-        btnDelete = new javax.swing.JButton();
+        delEmpBtn = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -74,8 +77,8 @@ public class HospitalAdminJPanel extends javax.swing.JPanel {
         OrgTypejComboBox = new javax.swing.JComboBox();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        submitBtn = new javax.swing.JButton();
+        delOrgBtn = new javax.swing.JButton();
 
         jTextField4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -97,20 +100,23 @@ public class HospitalAdminJPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "name", "desciption", "ranking"
+                "name", "Role", "ranking"
             }
         ));
         jScrollPane1.setViewportView(employeejTable);
+        if (employeejTable.getColumnModel().getColumnCount() > 0) {
+            employeejTable.getColumnModel().getColumn(0).setMinWidth(220);
+        }
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        wrTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "from", "to", "event", "Title 4"
+                "from", "to", "event", "Status"
             }
         ));
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane2.setViewportView(wrTable);
 
         createBtn.setText("Create");
         createBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -119,10 +125,10 @@ public class HospitalAdminJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnDelete.setText("Delete");
-        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+        delEmpBtn.setText("Delete");
+        delEmpBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDeleteActionPerformed(evt);
+                delEmpBtnActionPerformed(evt);
             }
         });
 
@@ -163,17 +169,17 @@ public class HospitalAdminJPanel extends javax.swing.JPanel {
 
         jLabel3.setText("Organization Type");
 
-        jButton1.setText("Submit");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        submitBtn.setText("Submit");
+        submitBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                submitBtnActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Delete");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        delOrgBtn.setText("Delete");
+        delOrgBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                delOrgBtnActionPerformed(evt);
             }
         });
 
@@ -196,7 +202,7 @@ public class HospitalAdminJPanel extends javax.swing.JPanel {
                                 .addGap(57, 57, 57)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(createBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(delEmpBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(jLabel1)
                             .addComponent(jLabel5)))
@@ -209,9 +215,9 @@ public class HospitalAdminJPanel extends javax.swing.JPanel {
                                 .addGap(52, 52, 52)
                                 .addComponent(OrgTypejComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(delOrgBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                .addComponent(submitBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(482, Short.MAX_VALUE)
                 .addComponent(jLabel2)
@@ -224,19 +230,20 @@ public class HospitalAdminJPanel extends javax.swing.JPanel {
                 .addComponent(jLabel2)
                 .addGap(30, 30, 30)
                 .addComponent(jLabel1)
-                .addGap(16, 16, 16)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(5, 5, 5)
+                        .addGap(21, 21, 21)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
                             .addComponent(OrgTypejComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton1)
-                            .addComponent(jButton3)))
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25)
+                            .addComponent(delOrgBtn)
+                            .addComponent(submitBtn)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
                 .addComponent(jLabel5)
                 .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -246,7 +253,7 @@ public class HospitalAdminJPanel extends javax.swing.JPanel {
                         .addGap(17, 17, 17)
                         .addComponent(btnUpdate)
                         .addGap(18, 18, 18)
-                        .addComponent(btnDelete)
+                        .addComponent(delEmpBtn)
                         .addGap(24, 24, 24)))
                 .addGap(29, 29, 29)
                 .addComponent(jLabel6)
@@ -258,7 +265,7 @@ public class HospitalAdminJPanel extends javax.swing.JPanel {
                 .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton2)
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addContainerGap(117, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -268,61 +275,52 @@ public class HospitalAdminJPanel extends javax.swing.JPanel {
 
     private void createBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBtnActionPerformed
         CreateEmployeeJPanel panel = new CreateEmployeeJPanel(userProcessContainer, enterprise);
-        userProcessContainer.add("CreateEmployeeeJPanel", panel);
+        userProcessContainer.add("CreateEmployeeJPanel", panel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_createBtnActionPerformed
 
-    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-//        int selectedRow = tblVitalSigns.getSelectedRow();
-//        if (selectedRow >= 0) {
-//            VitalSigns vs = (VitalSigns) tblVitalSigns.getValueAt(selectedRow, 0);
-//            vsh.deleteVitals(vs);
-//            list.remove(vs);
-//            JOptionPane.showMessageDialog(null, "vital sign deleted");
-//            populateTable(list);
-//
-//        } else {
-//            JOptionPane.showMessageDialog(null, "Please select a row");
-//        }
-//        initialTextFields();
-    }//GEN-LAST:event_btnDeleteActionPerformed
+    private void delEmpBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delEmpBtnActionPerformed
+        int selectedRow = employeejTable.getSelectedRow();
+        if (selectedRow >= 0) {
+            Employee vs = (Employee) employeejTable.getValueAt(selectedRow, 0);
+            for (Organization org : enterprise.getOrganizationDirectory().getOrganizationList()) {
+                for (Employee e : org.getEmployeeDirectory().getEmployeeList()) {
+                    if (e == vs) {
+                        org.getEmployeeDirectory().getEmployeeList().remove(e);
+                        break;
+                    }
+                }
+            }
+            JOptionPane.showMessageDialog(null, "Employee information is deleted");
+            populateEmployeejTable();
 
-    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-//        setFieldEnable(true);
-//        btnConfirm.setEnabled(true);
-//
-//        int selectedRow = tblVitalSigns.getSelectedRow();
-//        if (selectedRow >= 0) {
-//            VitalSigns vs = (VitalSigns) tblVitalSigns.getValueAt(selectedRow, 0);
-//            bdpTextField.setText(String.valueOf(vs.getBloodPressure()));
-//            temperatureTextField.setText(String.valueOf(vs.getTemperature()));
-//            pulseTextField.setText(String.valueOf(vs.getPulse()));
-//            dateTextField.setText(String.valueOf(vs.getDate()));
-//        } else {
-//            JOptionPane.showMessageDialog(null, "Please select any row");
-//        }
-    }//GEN-LAST:event_btnUpdateActionPerformed
+        } else {
+            JOptionPane.showMessageDialog(null, "Please select a row");
+        }
+
+    }//GEN-LAST:event_delEmpBtnActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-
-        Event event = new Event("emergency");
+        HospitalEvent event = new HospitalEvent("Notice");
         for (Organization org : enterprise.getOrganizationDirectory().getOrganizationList()) {
             for (Employee e : org.getEmployeeDirectory().getEmployeeList()) {
                 event.addObserver(e);
             }
         }
-        Message m = new Message("blood request", "urgent", "Patient need AB type blood");
-        event.produce(m);
+        HospitalInnerRequest r = new HospitalInnerRequest();
+        r.setSender(account);
+        r.setMessage("Tomorrow training");
+        event.produce(r);
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void submitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitBtnActionPerformed
         Organization.Type selected = (Organization.Type) OrgTypejComboBox.getSelectedItem();
         Organization org = enterprise.getOrganizationDirectory().createOrganization(selected);
         populateOrgTable();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_submitBtnActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void delOrgBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delOrgBtnActionPerformed
         int selectedRow = orgTable.getSelectedRow();
         if (selectedRow < 0) {
             JOptionPane.showMessageDialog(null, "Please select the row to delete the organzation", "Warning", JOptionPane.WARNING_MESSAGE);
@@ -332,18 +330,31 @@ public class HospitalAdminJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "You have successfully deleted the organization");
             populateOrgTable();
         }
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_delOrgBtnActionPerformed
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        int selectedRow = employeejTable.getSelectedRow();
+        if (selectedRow >= 0) {
+            Employee e = (Employee) employeejTable.getValueAt(selectedRow, 0);
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Please select any row");
+        }
+        CreateEmployeeJPanel panel = new CreateEmployeeJPanel(userProcessContainer, enterprise);
+        userProcessContainer.add("CreateEmployeeJPanel", panel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_btnUpdateActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox OrgTypejComboBox;
-    private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JButton createBtn;
+    private javax.swing.JButton delEmpBtn;
+    private javax.swing.JButton delOrgBtn;
     private javax.swing.JTable employeejTable;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -353,16 +364,19 @@ public class HospitalAdminJPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable jTable2;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTable orgTable;
+    private javax.swing.JButton submitBtn;
+    private javax.swing.JTable wrTable;
     // End of variables declaration//GEN-END:variables
 
     private void populateCombo() {
         OrgTypejComboBox.removeAllItems();
 
         for (Organization.Type type : Organization.Type.values()) {
-            OrgTypejComboBox.addItem(type);
+            if (type == Organization.Type.Common || type == Organization.Type.Doctor || type == Organization.Type.FrontDesk || type == Organization.Type.Nurse || type == Organization.Type.Admin) {
+                OrgTypejComboBox.addItem(type);
+            }
         }
     }
 
@@ -387,11 +401,27 @@ public class HospitalAdminJPanel extends javax.swing.JPanel {
         for (Organization org : enterprise.getOrganizationDirectory().getOrganizationList()) {
             for (Employee e : org.getEmployeeDirectory().getEmployeeList()) {
                 Object[] row = new Object[4];
-                row[0] = e.getName();
+                row[0] = e;
                 row[1] = e.getSpecialities();
                 row[2] = e.getRanking();
                 model.addRow(row);
             }
+
+        }
+    }
+
+    private void populateWrTable() {
+
+        DefaultTableModel model = (DefaultTableModel) wrTable.getModel();
+        model.setRowCount(0);
+
+        for (WorkRequest r : enterprise.getWorkQueue().getWorkRequestList()) {
+            Object[] row = new Object[4];
+            row[0] = r.getSender();
+            row[1] = r.getReceiver();
+            row[2] = r.getMessage();
+            row[3] = r.getStatus();
+            model.addRow(row);
 
         }
     }
