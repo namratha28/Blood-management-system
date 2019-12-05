@@ -5,9 +5,8 @@
 package Business.Employee;
 
 import Business.Entity.TimeSlot;
-import Business.Event.Event;
-import Business.Event.Message;
-import Business.Role.Role;
+import Business.Event.HospitalEvent;
+import Bussiness.WorkQueue.WorkRequest;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
@@ -96,10 +95,9 @@ public class Employee implements Observer {
 
     @Override
     public void update(Observable o, Object o1) {
-        Event e = (Event) o;
-        Message m = (Message) o1;
-        System.out.println(this.getId() + "get the event:" + e.getEventName() + "-" + m.getContent());
-
+        HospitalEvent e = (HospitalEvent) o;
+        WorkRequest m = (WorkRequest) o1;
+        System.out.println(this.getName() + "get the event:" + e.getEventName() + "-" + m.getMessage());
     }
 
 }

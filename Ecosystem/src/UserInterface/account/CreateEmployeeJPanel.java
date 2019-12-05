@@ -8,13 +8,13 @@ package UserInterface.account;
 import Business.Enterprise.Enterprise;
 
 import Business.Entity.Specialities;
-import Business.Organization.CommonUserOrganization;
+
 import Business.Organization.Organization;
 import Business.UserAccount.AbstractFactory.AccountFactory;
-import Business.UserAccount.AbstractFactory.CommonUserAccountFactory;
+
 import Business.UserAccount.AbstractFactory.EmployeeAccountFactory;
 
-import UserInterface.hospitalAdmin.HospitalAdminJPanel;
+import UserInterface.HospitalAdmin.HospitalAdminJPanel;
 
 import java.awt.CardLayout;
 import java.awt.Component;
@@ -60,7 +60,7 @@ public class CreateEmployeeJPanel extends javax.swing.JPanel {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.e = e;
-
+        birthdayTxt.setText("11/22/80");
         populateRoleCombo();
         populateSpeComboBox();
     }
@@ -234,6 +234,7 @@ public class CreateEmployeeJPanel extends javax.swing.JPanel {
         username = usernameTxt.getText();
         pw = pwTxt.getText();
         name = nameTxt.getText();
+
         birthday = birthdayTxt.getText();
         SimpleDateFormat format = new SimpleDateFormat("MM/dd/yy");
         Date b = null;

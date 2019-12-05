@@ -5,18 +5,19 @@
  */
 package Business.Event;
 
+import Bussiness.WorkQueue.HospitalInnerRequest;
 import java.util.Observable;
 
 /**
  *
  * @author Huangdong Wen <wen.hu@husky.neu.edu>
  */
-public class Event extends Observable {
+public class HospitalEvent extends Observable {
 
     private String eventName;
 
 
-    public Event(String eventName) {
+    public HospitalEvent(String eventName) {
         this.eventName = eventName;
     }
 
@@ -29,10 +30,10 @@ public class Event extends Observable {
     }
 
     
-    public void produce( Message m){
-        System.out.println(m.getEventName()+":"+this.getEventName()+"submit an event");
+    public void produce( HospitalInnerRequest r){
+        System.out.println(r.getSender()+" submit an event:"+r.getMessage());
         setChanged();
-        notifyObservers(m);
+        notifyObservers(r);
 
     }
 

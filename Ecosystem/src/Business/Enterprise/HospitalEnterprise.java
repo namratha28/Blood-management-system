@@ -6,21 +6,23 @@
 package Business.Enterprise;
 
 import Business.Role.Role;
+import Bussiness.WorkQueue.WorkQueue;
 import java.util.ArrayList;
 
 /**
  *
  * @author AED_DEVOPS
  */
-public class HospitalEnterprise extends Enterprise{
+public class HospitalEnterprise extends Enterprise {
+
 
     public HospitalEnterprise(String name) {
-        super(name,EnterpriseType.Hospital);
+        super(name, EnterpriseType.Hospital);
     }
 
     @Override
     public ArrayList<Role> getSupportedRole() {
         return null;
     }
-    
+
 }
