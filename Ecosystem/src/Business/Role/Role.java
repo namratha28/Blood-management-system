@@ -34,7 +34,9 @@ public abstract class Role {
         Doctor("DoctorRole"),
         FrontDesk("FrontDeskRole"),
         Lab("LabRole"),
-        Common("CommonUserRole")
+        Common("CommonUserRole"),
+        Events("EventAdminRole")
+        
         ;
 
         private String value;

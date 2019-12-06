@@ -146,6 +146,11 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         add(networkJComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 150, 190, -1));
 
         usernameJTextField.setFont(new java.awt.Font("Chalkboard SE", 0, 12)); // NOI18N
+        usernameJTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                usernameJTextFieldActionPerformed(evt);
+            }
+        });
         add(usernameJTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 230, 190, -1));
 
         enterpriseJComboBox.setFont(new java.awt.Font("Chalkboard SE", 0, 12)); // NOI18N
@@ -277,6 +282,10 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_backJButtonActionPerformed
+
+    private void usernameJTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameJTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_usernameJTextFieldActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backJButton;

@@ -42,7 +42,8 @@ public abstract class Organization {
         Lab("Lab"),
         Donor("Donor"),
         Common("CommonUser"),
-        HospitalLab("HospitalLab"),;
+        HospitalLab("HospitalLab"),
+        Events("Events");
 
         private String value;
 

@@ -36,4 +36,8 @@ public class Event extends Observable {
         notifyObservers(r);
     }
 
+    public void produce(Message m) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }
