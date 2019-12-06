@@ -78,7 +78,8 @@ public class FrontDeskJPanel extends javax.swing.JPanel {
     private void populateRqTable() {
         DefaultTableModel model = (DefaultTableModel) rqTable.getModel();
         model.setRowCount(0);
-        for (WorkRequest rq : curr.getWorkQueue().getWorkRequestList()) {
+
+        for (WorkRequest rq : organization.getWorkQueue().getWorkRequestList()) {
             Object[] row = new Object[4];
             row[0] = rq;
             row[1] = rq.getAppointmentDate();
@@ -86,6 +87,7 @@ public class FrontDeskJPanel extends javax.swing.JPanel {
             row[3] = rq.getStatus();
             model.addRow(row);
         }
+
     }
 
     private void populateWrTable() {
@@ -359,27 +361,15 @@ public class FrontDeskJPanel extends javax.swing.JPanel {
 
             }
         } else {
-            next = (UserAccount) staffcombo.getSelectedItem();
-            System.out.println(next.toString());
-            if (next.getRole() instanceof LabRole) {
-                for (Organization org : e.getOrganizationDirectory().getOrganizationList()) {
-                    if ((org instanceof LabOrganization)) {
-                        dr = new DonorRequest();
-                        dr.setSender(curr);
-                        dr.setRequestDate(new Date());
-                        dr.setReceiver(wr.getPatient());
-                        org.getWorkQueue().getWorkRequestList().remove(dr);
-                        org.getWorkQueue().getWorkRequestList().add(dr);
-                    }
-                }
-            } else {
-                if (lastStatus != null) {
-                    e.getWorkQueue().getWorkRequestList().remove(wrinner);
-                }
-                wrinner.setReceiver(next);
-                next.getWorkQueue().getWorkRequestList().remove(wrinner);
-                next.getWorkQueue().getWorkRequestList().add(wrinner);
+            if (lastStatus != null) {
+                e.getWorkQueue().getWorkRequestList().remove(wrinner);
             }
+
+            next = (UserAccount) staffcombo.getSelectedItem();
+            wrinner.setReceiver(next);
+            next.getWorkQueue().getWorkRequestList().remove(wrinner);
+            next.getWorkQueue().getWorkRequestList().add(wrinner);
+
         }
         wr.setResolveDate(new Date());
         wr.setStatus(status.getValue());
@@ -389,8 +379,12 @@ public class FrontDeskJPanel extends javax.swing.JPanel {
             wr.getPatient().getPerson().getTreatmentHistory().remove(wr);
             wr.getPatient().getPerson().getTreatmentHistory().add(wr);
         }
-        curr.getWorkQueue().getWorkRequestList().remove(wr);
 
+        for (Organization organization : e.getOrganizationDirectory().getOrganizationList()) {
+            if (organization instanceof FrontDeskEmployeeOrganization) {
+                organization.getWorkQueue().getWorkRequestList().remove(wr);
+            }
+        }
 
     }//GEN-LAST:event_jButton1ActionPerformed
 

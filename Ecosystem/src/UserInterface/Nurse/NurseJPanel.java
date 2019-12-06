@@ -292,7 +292,7 @@ public class NurseJPanel extends javax.swing.JPanel {
         WorkRequest wr = null;
         if (selectedRow >= 0) {
             wr = (WorkRequest) rqTable.getValueAt(selectedRow, 0);
-            NurseWQJPanel panel = new NurseWQJPanel(wr, userProcessContainer, enterprise, userAccount);
+            NurseWQJPanel panel = new NurseWQJPanel(wr, userProcessContainer, business, enterprise, userAccount);
             userProcessContainer.add("DoctorWQJPanel", panel);
             CardLayout layout = (CardLayout) userProcessContainer.getLayout();
             layout.next(userProcessContainer);

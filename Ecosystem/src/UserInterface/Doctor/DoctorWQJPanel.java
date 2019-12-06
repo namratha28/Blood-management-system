@@ -13,6 +13,7 @@ import Business.Entity.HospitalStatus;
 import Business.Network.Network;
 import Business.Organization.BloodCollectionStationOrganization;
 import Business.Organization.CommonUserOrganization;
+import Business.Organization.FrontDeskEmployeeOrganization;
 import Business.Organization.LabOrganization;
 import Business.Organization.Organization;
 import Business.Role.HospitalLabRole;
@@ -378,13 +379,18 @@ public class DoctorWQJPanel extends javax.swing.JPanel {
                 lastStatus = HospitalStatus.URGENT;
             }
         } else if (status == HospitalStatus.WAITING_FOR_BLOOD) {
-            next = (UserAccount) staffcombo.getSelectedItem();
+
             if (lastStatus != null) {
                 e.getWorkQueue().getWorkRequestList().remove(wrinner);
             }
-            wrinner.setReceiver(next);
-            next.getWorkQueue().getWorkRequestList().remove(wrinner);
-            next.getWorkQueue().getWorkRequestList().add(wrinner);
+
+            for (Organization organization : e.getOrganizationDirectory().getOrganizationList()) {
+                if (organization instanceof FrontDeskEmployeeOrganization) {
+                    organization = organization;
+                    organization.getWorkQueue().getWorkRequestList().remove(wrinner);
+                    organization.getWorkQueue().getWorkRequestList().add(wrinner);
+                }
+            }
 
             DonorRequest dr = new DonorRequest();
             dr.setReceiver(wr.getPatient());
@@ -399,7 +405,6 @@ public class DoctorWQJPanel extends javax.swing.JPanel {
                             if (organization instanceof BloodCollectionStationOrganization) {
                                 org = organization;
                                 if (org != null) {
-
                                     org.getWorkQueue().getWorkRequestList().add(dr);
                                 }
                             }
@@ -409,12 +414,10 @@ public class DoctorWQJPanel extends javax.swing.JPanel {
             }
 
         } else {
-            next = (UserAccount) staffcombo.getSelectedItem();
-            System.out.println(next.toString());
-
             if (lastStatus != null) {
                 e.getWorkQueue().getWorkRequestList().remove(wrinner);
             }
+            next = (UserAccount) staffcombo.getSelectedItem();
             wrinner.setReceiver(next);
             next.getWorkQueue().getWorkRequestList().remove(wrinner);
             next.getWorkQueue().getWorkRequestList().add(wrinner);
