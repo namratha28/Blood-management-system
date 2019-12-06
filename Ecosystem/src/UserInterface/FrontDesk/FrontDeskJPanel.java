@@ -41,6 +41,7 @@ public class FrontDeskJPanel extends javax.swing.JPanel {
     HospitalInnerRequest wrinner;
     DonorRequest dr;
     int selectedRow = -1;
+    HospitalStatus lastStatus;
 
     /**
      * Creates new form FrontJPanel
@@ -325,6 +326,7 @@ public class FrontDeskJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Please select any row");
             return;
         }
+
         HospitalStatus status = (HospitalStatus) statuscombo.getSelectedItem();
         if (wrinner == null) {
             wrinner = new HospitalInnerRequest();
@@ -349,8 +351,13 @@ public class FrontDeskJPanel extends javax.swing.JPanel {
         if (status == HospitalStatus.CLOSE) {
 
         } else if (status == HospitalStatus.URGENT) {
-            e.getWorkQueue().getWorkRequestList().remove(wrinner);
-            e.getWorkQueue().getWorkRequestList().add(wrinner);
+            if (lastStatus == null) {
+                e.getWorkQueue().getWorkRequestList().remove(wrinner);
+                e.getWorkQueue().getWorkRequestList().add(wrinner);
+                lastStatus = HospitalStatus.URGENT;
+            } else {
+
+            }
         } else {
             next = (UserAccount) staffcombo.getSelectedItem();
             System.out.println(next.toString());
@@ -366,7 +373,9 @@ public class FrontDeskJPanel extends javax.swing.JPanel {
                     }
                 }
             } else {
-
+                if (lastStatus != null) {
+                    e.getWorkQueue().getWorkRequestList().remove(wrinner);
+                }
                 wrinner.setReceiver(next);
                 next.getWorkQueue().getWorkRequestList().remove(wrinner);
                 next.getWorkQueue().getWorkRequestList().add(wrinner);
@@ -381,6 +390,7 @@ public class FrontDeskJPanel extends javax.swing.JPanel {
             wr.getPatient().getPerson().getTreatmentHistory().add(wr);
         }
         curr.getWorkQueue().getWorkRequestList().remove(wr);
+
 
     }//GEN-LAST:event_jButton1ActionPerformed
 

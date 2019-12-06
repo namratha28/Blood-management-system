@@ -41,6 +41,7 @@ public class DoctorWQJPanel extends javax.swing.JPanel {
     private UserAccount curr;
     HospitalInnerRequest wrinner;
     DonorRequest dr;
+    HospitalStatus lastStatus;
 
     public DoctorWQJPanel(WorkRequest wr, JPanel userProcessContainer, Enterprise e, UserAccount userAccount) {
         initComponents();
@@ -299,6 +300,7 @@ public class DoctorWQJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnBackActionPerformed
 //11/11/19 08:00:00
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
         HospitalStatus status = (HospitalStatus) statuscombo.getSelectedItem();
         if (wrinner == null) {
             wrinner = new HospitalInnerRequest();
@@ -323,8 +325,13 @@ public class DoctorWQJPanel extends javax.swing.JPanel {
         if (status == HospitalStatus.CLOSE) {
 
         } else if (status == HospitalStatus.URGENT) {
-            e.getWorkQueue().getWorkRequestList().remove(wrinner);
-            e.getWorkQueue().getWorkRequestList().add(wrinner);
+            if (lastStatus == null) {
+                e.getWorkQueue().getWorkRequestList().remove(wrinner);
+                e.getWorkQueue().getWorkRequestList().add(wrinner);
+                lastStatus = HospitalStatus.URGENT;
+            } else {
+
+            }
         } else {
             next = (UserAccount) staffcombo.getSelectedItem();
             System.out.println(next.toString());
@@ -340,7 +347,9 @@ public class DoctorWQJPanel extends javax.swing.JPanel {
                     }
                 }
             } else {
-
+                if (lastStatus != null) {
+                    e.getWorkQueue().getWorkRequestList().remove(wrinner);
+                }
                 wrinner.setReceiver(next);
                 next.getWorkQueue().getWorkRequestList().remove(wrinner);
                 next.getWorkQueue().getWorkRequestList().add(wrinner);
