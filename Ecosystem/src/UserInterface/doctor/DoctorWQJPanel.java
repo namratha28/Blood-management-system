@@ -9,6 +9,7 @@ import Business.Employee.Employee;
 import Business.Enterprise.Enterprise;
 import Business.Entity.HospitalStatus;
 import Business.Event.HospitalEvent;
+import Business.Organization.CommonUserOrganization;
 import Business.Organization.NurseOrganization;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
@@ -49,11 +50,11 @@ public class DoctorWQJPanel extends javax.swing.JPanel {
     }
 
     private void populateNurse() {
-        nursecombo.removeAllItems();
+        staffcombo.removeAllItems();
         for (Organization org : e.getOrganizationDirectory().getOrganizationList()) {
-            if (org instanceof NurseOrganization) {
+            if (!(org instanceof CommonUserOrganization)) {
                 for (UserAccount acc : org.getUserAccountDirectory().getUserAccountList()) {
-                    nursecombo.addItem(acc);
+                    staffcombo.addItem(acc);
                 }
             }
         }
@@ -95,7 +96,7 @@ public class DoctorWQJPanel extends javax.swing.JPanel {
         jLabel10 = new javax.swing.JLabel();
         btnBack = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        nursecombo = new javax.swing.JComboBox();
+        staffcombo = new javax.swing.JComboBox();
         jScrollPane1 = new javax.swing.JScrollPane();
         historyTable = new javax.swing.JTable();
         jLabel7 = new javax.swing.JLabel();
@@ -136,9 +137,9 @@ public class DoctorWQJPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel3.setText("Nurse");
+        jLabel3.setText("staff");
 
-        nursecombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        staffcombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         historyTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -189,7 +190,7 @@ public class DoctorWQJPanel extends javax.swing.JPanel {
                                             .addComponent(jLabel12))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(nursecombo, 0, 182, Short.MAX_VALUE)
+                                            .addComponent(staffcombo, 0, 182, Short.MAX_VALUE)
                                             .addComponent(dueTxt))))))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -251,7 +252,7 @@ public class DoctorWQJPanel extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(nursecombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(staffcombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel3)))))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -310,17 +311,17 @@ public class DoctorWQJPanel extends javax.swing.JPanel {
         wrinner.setStatus(status.getValue());
         if (status == HospitalStatus.CLOSE) {
 
-        } else if (status == HospitalStatus.URGENT) {
-            HospitalEvent event = new HospitalEvent(HospitalStatus.URGENT.getValue());
-            for (Organization org : e.getOrganizationDirectory().getOrganizationList()) {
-                for (Employee e : org.getEmployeeDirectory().getEmployeeList()) {
-                    event.addObserver(e);
-                }
-            }
-            event.produce(wrinner);
+        } else if (status == HospitalStatus.URGENT || status == HospitalStatus.WAITING_FOR_BLOOD) {
+//            HospitalEvent event = new HospitalEvent(HospitalStatus.URGENT.getValue());
+//            for (Organization org : e.getOrganizationDirectory().getOrganizationList()) {
+//                for (Employee e : org.getEmployeeDirectory().getEmployeeList()) {
+//                    event.addObserver(e);
+//                }
+//            }
+//            event.produce(wrinner);
             e.getWorkQueue().getWorkRequestList().add(wrinner);
         } else {
-            next = (UserAccount) nursecombo.getSelectedItem();
+            next = (UserAccount) staffcombo.getSelectedItem();
             wrinner.setReceiver(next);
             next.getWorkQueue().getWorkRequestList().add(wrinner);
         }
@@ -358,8 +359,8 @@ public class DoctorWQJPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField massageTxt;
     private javax.swing.JTextField nameTxt;
-    private javax.swing.JComboBox nursecombo;
     private javax.swing.JTextField pulseTxt;
+    private javax.swing.JComboBox staffcombo;
     private javax.swing.JComboBox statuscombo;
     private javax.swing.JTextField tempTxt;
     private javax.swing.JTextField typeTxt;

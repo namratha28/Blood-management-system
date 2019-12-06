@@ -7,23 +7,11 @@ package UserInterface.frontDesk;
 
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
-import Business.Entity.HospitalStatus;
-import Business.Entity.Specialities;
-import Business.Entity.TimeSlot;
-import Business.Organization.CommonUserOrganization;
-import Business.Organization.DoctorOrganization;
 import Business.Organization.FrontDeskEmployeeOrganization;
-import Business.Organization.Organization;
-import Business.Request.Request;
 import Business.UserAccount.UserAccount;
-import Bussiness.WorkQueue.DoctorRequest;
-import Bussiness.WorkQueue.WorkQueue;
 import Bussiness.WorkQueue.WorkRequest;
-import UserInterface.account.CreateJPanel;
+import UserInterface.account.CreateEmployeeJPanel;
 import java.awt.CardLayout;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -35,7 +23,7 @@ import javax.swing.table.DefaultTableModel;
 public class FrontDeskJPanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form frontDeskJPanel
+     * Creates new form FrontDeskJPanel
      */
     private JPanel userProcessContainer;
     private EcoSystem business;
@@ -44,7 +32,6 @@ public class FrontDeskJPanel extends javax.swing.JPanel {
     private Enterprise enterprise;
     private UserAccount patient;
     private UserAccount doctor;
-    private TimeSlot ts;
 
     public FrontDeskJPanel(JPanel userProcessContainer, UserAccount account, FrontDeskEmployeeOrganization organization, Enterprise enterprise, EcoSystem business) {
         initComponents();
@@ -53,17 +40,20 @@ public class FrontDeskJPanel extends javax.swing.JPanel {
         this.business = business;
         this.enterprise = enterprise;
         this.organization = organization;
-        populateSpe();
-        populateCommonUser();
-        populateSpeComboBox();
+        populateWrTable();
     }
 
-    private void populateSpeComboBox() {
-        speComboBox.removeAllItems();
-        for (Specialities s : Specialities.values()) {
-            speComboBox.addItem(s);
+    private void populateWrTable() {
+        DefaultTableModel model = (DefaultTableModel) wrTable.getModel();
+        model.setRowCount(0);
+        for (WorkRequest rq : enterprise.getWorkQueue().getWorkRequestList()) {
+            Object[] row = new Object[4];
+            row[0] = rq;
+            row[1] = rq.getAppointmentDate();
+            row[2] = rq.getMessage();
+            row[3] = rq.getStatus();
+            model.addRow(row);
         }
-
     }
 
     /**
@@ -75,175 +65,33 @@ public class FrontDeskJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane4 = new javax.swing.JScrollPane();
-        commonUserTable1 = new javax.swing.JTable();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        speTable = new javax.swing.JTable();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        availTable = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        chkAvailBtn = new javax.swing.JButton();
+        cancelBtn = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        txtPatient = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        txtBirth = new javax.swing.JTextField();
-        makeAptmBtn = new javax.swing.JButton();
-        speComboBox = new javax.swing.JComboBox();
-        jLabel5 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        searchDocBtn = new javax.swing.JButton();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        commonUserTable = new javax.swing.JTable();
-        jLabel6 = new javax.swing.JLabel();
-        searchBtn = new javax.swing.JButton();
-        createBtn1 = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        wrTable = new javax.swing.JTable();
         selectBtn = new javax.swing.JButton();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jScrollPane5 = new javax.swing.JScrollPane();
-        apptTable = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        appBtn = new javax.swing.JButton();
 
-        commonUserTable1.setModel(new javax.swing.table.DefaultTableModel(
+        cancelBtn.setText("Cancel");
+        cancelBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelBtnActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setText("Work Queue");
+
+        wrTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "name", "birthday", "Contribution Score", "Last Visit"
+                "from", "due", "event", "Status"
             }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.Integer.class, java.lang.String.class
-            };
+        ));
+        jScrollPane2.setViewportView(wrTable);
 
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
-        jScrollPane4.setViewportView(commonUserTable1);
-
-        setBackground(new java.awt.Color(255, 255, 255));
-        setMaximumSize(new java.awt.Dimension(1280, 800));
-
-        speTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "name", "specialties"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
-        jScrollPane1.setViewportView(speTable);
-
-        availTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "From", "To"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
-        jScrollPane2.setViewportView(availTable);
-
-        jLabel1.setFont(new java.awt.Font("Verdana", 0, 15)); // NOI18N
-        jLabel1.setText("Specialities");
-
-        jLabel2.setFont(new java.awt.Font("Verdana", 0, 15)); // NOI18N
-        jLabel2.setText("Available Time");
-
-        chkAvailBtn.setText("Check Availability");
-        chkAvailBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                chkAvailBtnActionPerformed(evt);
-            }
-        });
-
-        jLabel3.setFont(new java.awt.Font("Verdana", 0, 15)); // NOI18N
-        jLabel3.setText("Patient Name");
-
-        jLabel4.setFont(new java.awt.Font("Verdana", 0, 15)); // NOI18N
-        jLabel4.setText("Birthday");
-
-        txtBirth.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtBirthActionPerformed(evt);
-            }
-        });
-
-        makeAptmBtn.setText("make an appointment");
-        makeAptmBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                makeAptmBtnActionPerformed(evt);
-            }
-        });
-
-        speComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jLabel5.setFont(new java.awt.Font("Verdana", 0, 15)); // NOI18N
-        jLabel5.setText("Doctor Name");
-
-        searchDocBtn.setBackground(new java.awt.Color(219, 140, 194));
-        searchDocBtn.setText("Search");
-        searchDocBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchDocBtnActionPerformed(evt);
-            }
-        });
-
-        commonUserTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "name", "birthday", "Contribution Score", "Last Visit"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.Integer.class, java.lang.String.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
-        jScrollPane3.setViewportView(commonUserTable);
-
-        jLabel6.setFont(new java.awt.Font("Verdana", 0, 24)); // NOI18N
-        jLabel6.setText("Appointment");
-
-        searchBtn.setBackground(new java.awt.Color(219, 140, 194));
-        searchBtn.setText("Search");
-        searchBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchBtnActionPerformed(evt);
-            }
-        });
-
-        createBtn1.setBackground(new java.awt.Color(219, 140, 194));
-        createBtn1.setText("Create");
-        createBtn1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                createBtn1ActionPerformed(evt);
-            }
-        });
-
-        selectBtn.setBackground(new java.awt.Color(219, 140, 194));
         selectBtn.setText("Select");
         selectBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -251,323 +99,89 @@ public class FrontDeskJPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel7.setText("Doctor Information");
+        jLabel1.setText("Front Desk Dash Board");
 
-        jLabel8.setText("Patient Information");
-
-        apptTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "patient", "birthday", "doctor", "time"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.String.class, java.lang.Object.class, java.lang.String.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
+        appBtn.setText("Appointment");
+        appBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                appBtnActionPerformed(evt);
             }
         });
-        jScrollPane5.setViewportView(apptTable);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(77, 77, 77)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(699, 699, 699)
-                        .addComponent(jLabel6)
-                        .addGap(769, 769, 769))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 1067, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(makeAptmBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(0, 0, Short.MAX_VALUE)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(jLabel7)
-                                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 497, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGap(49, 49, 49)
-                                            .addComponent(chkAvailBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(87, 87, 87)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(jLabel2)
-                                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 579, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(jLabel5)
-                                            .addGap(39, 39, 39)
-                                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(80, 80, 80)
-                                            .addComponent(jLabel1)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(speComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(searchDocBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(369, 369, 369)))))
-                            .addGap(261, 261, 261))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(0, 0, Short.MAX_VALUE)
-                                    .addComponent(selectBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(6, 6, 6)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel8)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(jLabel3)
-                                            .addGap(39, 39, 39)
-                                            .addComponent(txtPatient, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(85, 85, 85)
-                                            .addComponent(jLabel4)
-                                            .addGap(39, 39, 39)
-                                            .addComponent(txtBirth, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(103, 103, 103)
-                                            .addComponent(searchBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(createBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addComponent(jScrollPane3))
-                            .addGap(263, 263, 263)))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 575, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3))
+                        .addGap(43, 43, 43)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(selectBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cancelBtn)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(451, 451, 451)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 203, Short.MAX_VALUE)
+                        .addComponent(appBtn)))
+                .addGap(220, 220, 220))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(76, 76, 76)
-                .addComponent(jLabel6)
-                .addGap(43, 43, 43)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(txtPatient, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4)
-                    .addComponent(txtBirth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(searchBtn)
-                    .addComponent(createBtn1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel8)
+                .addGap(66, 66, 66)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(appBtn)
+                    .addComponent(jLabel1))
+                .addGap(57, 57, 57)
+                .addComponent(jLabel3)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(searchDocBtn)
-                    .addComponent(selectBtn)
-                    .addComponent(speComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
-                .addGap(35, 35, 35)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(chkAvailBtn)
-                        .addGap(161, 161, 161))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel2))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(52, 52, 52)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(makeAptmBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(118, Short.MAX_VALUE))
+                        .addComponent(selectBtn)
+                        .addGap(29, 29, 29)
+                        .addComponent(cancelBtn))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(143, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void chkAvailBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkAvailBtnActionPerformed
-        int selectedRow = speTable.getSelectedRow();
-        //Employee e;
+    private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
+        int selectedRow = wrTable.getSelectedRow();
+        WorkRequest wr = null;
         if (selectedRow >= 0) {
-            doctor = (UserAccount) speTable.getValueAt(selectedRow, 0);
-            populateAvailTable();
+            wr = (WorkRequest) wrTable.getValueAt(selectedRow, 0);
+            userAccount.getWorkQueue().getWorkRequestList().remove(wr);
+            populateWrTable();
         } else {
             JOptionPane.showMessageDialog(null, "Please select any row");
         }
-
-
-    }//GEN-LAST:event_chkAvailBtnActionPerformed
-
-    private void txtBirthActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBirthActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtBirthActionPerformed
-
-    private void makeAptmBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_makeAptmBtnActionPerformed
-        DoctorRequest wr = new DoctorRequest();
-        wr.setSender(userAccount);
-        wr.setPatient(patient);
-        wr.setReceiver(doctor);
-        int selectedRow = availTable.getSelectedRow();
-        if (selectedRow >= 0) {
-            ts = (TimeSlot) availTable.getValueAt(selectedRow, 0);
-            wr.setAppointmentDate(ts.getFrom());
-            doctor.getEmployee().getAvailability().remove(ts);
-            populateApptTable();
-            populateAvailTable();
-        } else {
-            JOptionPane.showMessageDialog(null, "Please select any row");
-        }
-
-        wr.setRequestDate(new Date());
-        wr.setStatus(HospitalStatus.WAITING_FOR_APPOINTMENT.getValue());
-        doctor.getWorkQueue().getWorkRequestList().add(wr);
-        patient.getWorkQueue().getWorkRequestList().add(wr);
-    }//GEN-LAST:event_makeAptmBtnActionPerformed
-
-    private void createBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBtn1ActionPerformed
-        CreateJPanel panel = new CreateJPanel(userProcessContainer, enterprise);
-        userProcessContainer.add("CreateAccountJPanel", panel);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
-    }//GEN-LAST:event_createBtn1ActionPerformed
-
-    private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
-        String birthday = txtBirth.getText();
-        String name = txtPatient.getText();
-        SimpleDateFormat format = new SimpleDateFormat("MM/dd/yy");
-        Date b = null;
-        if (!birthday.equals("")) {
-            try {
-                b = format.parse(birthday);
-            } catch (ParseException ex) {
-                ex.printStackTrace();
-            }
-        }
-
-        DefaultTableModel model = (DefaultTableModel) commonUserTable.getModel();
-
-        model.setRowCount(0);
-        for (Organization o : enterprise.getOrganizationDirectory().getOrganizationList()) {
-            if (o instanceof CommonUserOrganization) {
-                for (UserAccount a : o.getUserAccountDirectory().getUserAccountList()) {
-                    if ((name.equals("") || a.getPerson().getName().equals(name))
-                            && (b == null || a.getPerson().getBirthday().toString().equals(b.toString()))) {
-                        Object[] row = new Object[2];
-                        row[0] = a.getPerson();
-                        row[1] = a.getPerson().getBirthday();
-                        model.addRow(row);
-                    }
-                }
-            }
-        }
-    }//GEN-LAST:event_searchBtnActionPerformed
+    }//GEN-LAST:event_cancelBtnActionPerformed
 
     private void selectBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectBtnActionPerformed
-        int selectedRow = commonUserTable.getSelectedRow();
-        //Employee e;
-        if (selectedRow >= 0) {
-            patient = (UserAccount) commonUserTable.getValueAt(selectedRow, 0);
-            populateApptTable();
-        } else {
-            JOptionPane.showMessageDialog(null, "Please select any row");
-        }
+
     }//GEN-LAST:event_selectBtnActionPerformed
 
-    private void searchDocBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchDocBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_searchDocBtnActionPerformed
+    private void appBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_appBtnActionPerformed
+        FrontDeskApptJPanel panel = new FrontDeskApptJPanel(userProcessContainer, userAccount, organization,
+                enterprise, business);
+        userProcessContainer.add("CreateEmployeeJPanel", panel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_appBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable apptTable;
-    private javax.swing.JTable availTable;
-    private javax.swing.JButton chkAvailBtn;
-    private javax.swing.JTable commonUserTable;
-    private javax.swing.JTable commonUserTable1;
-    private javax.swing.JButton createBtn1;
+    private javax.swing.JButton appBtn;
+    private javax.swing.JButton cancelBtn;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JButton makeAptmBtn;
-    private javax.swing.JButton searchBtn;
-    private javax.swing.JButton searchDocBtn;
     private javax.swing.JButton selectBtn;
-    private javax.swing.JComboBox speComboBox;
-    private javax.swing.JTable speTable;
-    private javax.swing.JTextField txtBirth;
-    private javax.swing.JTextField txtPatient;
+    private javax.swing.JTable wrTable;
     // End of variables declaration//GEN-END:variables
-
-    private void populateSpe() {
-        DefaultTableModel model = (DefaultTableModel) speTable.getModel();
-
-        model.setRowCount(0);
-        for (Organization o : enterprise.getOrganizationDirectory().getOrganizationList()) {
-            if (o instanceof DoctorOrganization) {
-                for (UserAccount a : o.getUserAccountDirectory().getUserAccountList()) {
-                    Object[] row = new Object[2];
-                    row[0] = a;
-                    row[1] = a.getEmployee().getSpecialities();
-                    model.addRow(row);
-                }
-            }
-        }
-
-    }
-
-    private void populateAvailTable() {
-        DefaultTableModel model = (DefaultTableModel) availTable.getModel();
-
-        model.setRowCount(0);
-
-        for (TimeSlot ts : doctor.getEmployee().getAvailability()) {
-            Object[] row = new Object[2];
-            row[0] = ts;
-            row[1] = ts.getTo();
-            model.addRow(row);
-        }
-
-    }
-
-    public void populateCommonUser() {
-        DefaultTableModel model = (DefaultTableModel) commonUserTable.getModel();
-
-        model.setRowCount(0);
-        for (Organization o : enterprise.getOrganizationDirectory().getOrganizationList()) {
-            if (o instanceof CommonUserOrganization) {
-                for (UserAccount a : o.getUserAccountDirectory().getUserAccountList()) {
-                    Object[] row = new Object[2];
-                    row[0] = a;
-                    row[1] = a.getPerson().getBirthday();
-                    model.addRow(row);
-                }
-            }
-        }
-    }
-
-    private void populateApptTable() {
-        DefaultTableModel model = (DefaultTableModel) apptTable.getModel();
-
-        model.setRowCount(0);
-
-        Object[] row = new Object[4];
-        row[0] = patient;
-        row[1] = patient.getPerson().getBirthday();
-        row[2] = doctor;
-        row[3] = ts;
-        model.addRow(row);
-    }
-
 }

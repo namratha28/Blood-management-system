@@ -9,12 +9,14 @@ import Business.EcoSystem;
 import Business.Employee.Employee;
 import Business.Enterprise.Enterprise;
 import Business.Event.HospitalEvent;
-import Business.Event.Message;
+
 import Business.Organization.AdminOrganization;
 import Business.Organization.Organization;
+
 import Business.UserAccount.UserAccount;
 import Bussiness.WorkQueue.HospitalInnerRequest;
 import Bussiness.WorkQueue.WorkRequest;
+
 import UserInterface.account.CreateEmployeeJPanel;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
@@ -302,16 +304,17 @@ public class HospitalAdminJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_delEmpBtnActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        HospitalEvent event = new HospitalEvent("Notice");
-        for (Organization org : enterprise.getOrganizationDirectory().getOrganizationList()) {
-            for (Employee e : org.getEmployeeDirectory().getEmployeeList()) {
-                event.addObserver(e);
-            }
-        }
-        HospitalInnerRequest r = new HospitalInnerRequest();
-        r.setSender(account);
-        r.setMessage("Tomorrow training");
-        event.produce(r);
+//        HospitalEvent event = new HospitalEvent("Notice");
+//        for (Organization org : enterprise.getOrganizationDirectory().getOrganizationList()) {
+//            for (Employee e : org.getEmployeeDirectory().getEmployeeList()) {
+//                event.addObserver(e);
+//            }
+//        }
+//
+//        WorkRequest r = new HospitalInnerRequest();
+//        r.setSender(account);
+//        r.setMessage("Tomorrow training");
+//        event.produce(r);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void submitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitBtnActionPerformed
@@ -374,7 +377,7 @@ public class HospitalAdminJPanel extends javax.swing.JPanel {
         OrgTypejComboBox.removeAllItems();
 
         for (Organization.Type type : Organization.Type.values()) {
-            if (type == Organization.Type.Common || type == Organization.Type.Doctor || type == Organization.Type.FrontDesk || type == Organization.Type.Nurse || type == Organization.Type.Admin) {
+            if (type == Organization.Type.Common || type == Organization.Type.Doctor || type == Organization.Type.FrontDesk || type == Organization.Type.Nurse || type == Organization.Type.Admin || type == Organization.Type.Lab) {
                 OrgTypejComboBox.addItem(type);
             }
         }

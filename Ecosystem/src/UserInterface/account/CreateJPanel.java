@@ -11,7 +11,7 @@ import Business.Organization.Organization;
 import Business.UserAccount.AbstractFactory.AccountFactory;
 import Business.UserAccount.AbstractFactory.CommonUserAccountFactory;
 
-import UserInterface.frontDesk.FrontDeskJPanel;
+import UserInterface.frontDesk.FrontDeskApptJPanel;
 import java.awt.CardLayout;
 import java.awt.Component;
 import java.text.ParseException;
@@ -185,8 +185,8 @@ public class CreateJPanel extends javax.swing.JPanel {
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         Component[] comps = this.userProcessContainer.getComponents();
         for (Component comp : comps) {
-            if (comp instanceof FrontDeskJPanel) {
-                FrontDeskJPanel m = (FrontDeskJPanel) comp;
+            if (comp instanceof FrontDeskApptJPanel) {
+                FrontDeskApptJPanel m = (FrontDeskApptJPanel) comp;
                 m.populateCommonUser();
             }
 

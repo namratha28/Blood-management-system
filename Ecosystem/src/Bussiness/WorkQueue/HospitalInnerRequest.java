@@ -13,14 +13,6 @@ import Business.UserAccount.UserAccount;
  */
 public class HospitalInnerRequest extends WorkRequest{
     
-    private UserAccount patient;
 
-    public UserAccount getPatient() {
-        return patient;
-    }
-
-    public void setPatient(UserAccount patient) {
-        this.patient = patient;
-    }
     
 }

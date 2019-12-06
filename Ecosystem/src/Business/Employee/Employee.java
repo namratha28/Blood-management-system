@@ -5,34 +5,29 @@
 package Business.Employee;
 
 import Business.Entity.TimeSlot;
-import Business.Event.HospitalEvent;
-import Bussiness.WorkQueue.WorkRequest;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Observable;
-import java.util.Observer;
 
 /**
  *
  *
  * @author AED_DEVOPS
  */
-public class Employee implements Observer {
+public class Employee {
 
     private static int count = 1;
     private List<TimeSlot> availability;
 
-    
     public Employee() {
         id = count;
         count++;
     }
-    
+
     protected int id;
     protected String specialities;
     protected String name;
     protected int ranking;
-
+    protected String notice;
 
     public Employee(String name) {
         this.availability = new ArrayList<TimeSlot>();
@@ -40,7 +35,14 @@ public class Employee implements Observer {
         this.ranking = 0;
         this.id = count;
         count++;
+    }
 
+    public String getNotice() {
+        return notice;
+    }
+
+    public void setNotice(String notice) {
+        this.notice = notice;
     }
 
     public Employee(String spe, String name) {
@@ -50,6 +52,7 @@ public class Employee implements Observer {
         this.ranking = 0;
         id = count;
         count++;
+        this.notice = "";
     }
 
     public String getSpecialities() {
@@ -101,11 +104,11 @@ public class Employee implements Observer {
         return "Employee{" + "id=" + id + ", availability=" + availability + ", Specialities=" + specialities + '}';
     }
 
-    @Override
-    public void update(Observable o, Object o1) {
-        HospitalEvent e = (HospitalEvent) o;
-        WorkRequest m = (WorkRequest) o1;
-        System.out.println(this.getName() + "get the event:" + e.getEventName() + "-" + m.getMessage());
-    }
+//    @Override
+//    public void update(Observable o, Object o1) {
+//        HospitalInnerRequest workR = (HospitalInnerRequest) o1;
+//        notice=workR.getMessage();
+//        System.out.println(this.getName() + " get the event:" + workR.getMessage());
+//    }
 
 }

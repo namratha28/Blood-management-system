@@ -52,7 +52,7 @@
                                       </Group>
                                       <EmptySpace max="32767" attributes="0"/>
                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="nursecombo" pref="182" max="32767" attributes="0"/>
+                                          <Component id="staffcombo" pref="182" max="32767" attributes="0"/>
                                           <Component id="dueTxt" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
@@ -136,7 +136,7 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="nursecombo" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="staffcombo" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -257,10 +257,10 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Nurse"/>
+        <Property name="text" type="java.lang.String" value="staff"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JComboBox" name="nursecombo">
+    <Component class="javax.swing.JComboBox" name="staffcombo">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="4">

@@ -147,6 +147,9 @@ public abstract class WorkRequest {
         this.resolveDate = resolveDate;
     }
 
-   
+    @Override
+    public String toString() {
+        return  sender.toString();
+    }
 
 }
