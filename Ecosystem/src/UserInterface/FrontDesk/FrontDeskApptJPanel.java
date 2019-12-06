@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package UserInterface.frontDesk;
+package UserInterface.FrontDesk;
 
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
@@ -19,7 +19,7 @@ import Business.UserAccount.UserAccount;
 import Bussiness.WorkQueue.DoctorRequest;
 import Bussiness.WorkQueue.WorkQueue;
 import Bussiness.WorkQueue.WorkRequest;
-import UserInterface.account.CreateJPanel;
+import UserInterface.Account.CreateJPanel;
 import java.awt.CardLayout;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

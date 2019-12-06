@@ -13,6 +13,7 @@ import Business.Organization.LabOrganization;
 import Business.Organization.Organization;
 import Business.Role.LabRole;
 import Business.UserAccount.UserAccount;
+import Bussiness.WorkQueue.DonorRequest;
 import Bussiness.WorkQueue.HospitalInnerRequest;
 import Bussiness.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
@@ -34,6 +35,7 @@ public class NurseWQJPanel extends javax.swing.JPanel {
     private Enterprise e;
     private UserAccount next;
     private UserAccount curr;
+    DonorRequest dr;
 
     public NurseWQJPanel(WorkRequest wr, JPanel userProcessContainer, Enterprise e, UserAccount curr) {
         initComponents();
@@ -273,14 +275,15 @@ public class NurseWQJPanel extends javax.swing.JPanel {
                             .addComponent(saveBtn)
                             .addComponent(updateBtn))
                         .addGap(44, 44, 44)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(statuscombo)
-                    .addComponent(jLabel12)
-                    .addComponent(dueTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(staffcombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel3)))
+                        .addComponent(jLabel3))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(statuscombo)
+                        .addComponent(jLabel12)
+                        .addComponent(dueTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -306,7 +309,7 @@ public class NurseWQJPanel extends javax.swing.JPanel {
         if (wrinner == null) {
             wrinner = new HospitalInnerRequest();
         }
-        wrinner.setSender(wr.getReceiver());
+        wrinner.setSender(curr);
         wrinner.setMessage(massageTxt.getText());
         wrinner.setPatient(wr.getPatient());
         wrinner.setRequestDate(new Date());
@@ -336,16 +339,21 @@ public class NurseWQJPanel extends javax.swing.JPanel {
             e.getWorkQueue().getWorkRequestList().add(wrinner);
         } else {
             next = (UserAccount) staffcombo.getSelectedItem();
-
-            wrinner.setReceiver(next);
-
+            System.out.println(next.toString());
             if (next.getRole() instanceof LabRole) {
                 for (Organization org : e.getOrganizationDirectory().getOrganizationList()) {
                     if ((org instanceof LabOrganization)) {
-                        org.getWorkQueue().getWorkRequestList().add(wrinner);
+                        dr = new DonorRequest();
+                        dr.setSender(curr);
+                        dr.setRequestDate(new Date());
+                        dr.setReceiver(wr.getPatient());
+                        org.getWorkQueue().getWorkRequestList().remove(dr);
+                        org.getWorkQueue().getWorkRequestList().add(dr);
                     }
                 }
             } else {
+
+                wrinner.setReceiver(next);
                 next.getWorkQueue().getWorkRequestList().remove(wrinner);
                 next.getWorkQueue().getWorkRequestList().add(wrinner);
             }

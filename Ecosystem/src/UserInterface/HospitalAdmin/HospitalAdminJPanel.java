@@ -17,7 +17,7 @@ import Business.UserAccount.UserAccount;
 import Bussiness.WorkQueue.HospitalInnerRequest;
 import Bussiness.WorkQueue.WorkRequest;
 
-import UserInterface.account.CreateEmployeeJPanel;
+import UserInterface.Account.CreateEmployeeJPanel;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;

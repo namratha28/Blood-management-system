@@ -10,8 +10,8 @@ import Business.Enterprise.Enterprise;
 import Business.Organization.FrontDeskEmployeeOrganization;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
-import UserInterface.frontDesk.FrontDeskApptJPanel;
-import UserInterface.frontDesk.FrontDeskJPanel;
+import UserInterface.FrontDesk.FrontDeskApptJPanel;
+import UserInterface.FrontDesk.FrontDeskJPanel;
 import javax.swing.JPanel;
 
 /**

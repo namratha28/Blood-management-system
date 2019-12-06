@@ -11,7 +11,7 @@ import Business.Entity.TimeSlot;
 import Business.Organization.DoctorOrganization;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
-import UserInterface.doctor.DoctorJPanel;
+import UserInterface.Doctor.DoctorJPanel;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JPanel;

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package UserInterface.doctor;
+package UserInterface.Doctor;
 
 import Business.Employee.Employee;
 import Business.Enterprise.Enterprise;
@@ -15,6 +15,7 @@ import Business.Organization.NurseOrganization;
 import Business.Organization.Organization;
 import Business.Role.LabRole;
 import Business.UserAccount.UserAccount;
+import Bussiness.WorkQueue.DonorRequest;
 import Bussiness.WorkQueue.HospitalInnerRequest;
 import Bussiness.WorkQueue.WorkRequest;
 
@@ -39,6 +40,7 @@ public class DoctorWQJPanel extends javax.swing.JPanel {
     private UserAccount next;
     private UserAccount curr;
     HospitalInnerRequest wrinner;
+    DonorRequest dr;
 
     public DoctorWQJPanel(WorkRequest wr, JPanel userProcessContainer, Enterprise e, UserAccount userAccount) {
         initComponents();
@@ -300,7 +302,7 @@ public class DoctorWQJPanel extends javax.swing.JPanel {
         if (wrinner == null) {
             wrinner = new HospitalInnerRequest();
         }
-        wrinner.setSender(wr.getReceiver());
+        wrinner.setSender(curr);
         wrinner.setMessage(massageTxt.getText());
         wrinner.setPatient(wr.getPatient());
         wrinner.setRequestDate(new Date());
@@ -320,24 +322,25 @@ public class DoctorWQJPanel extends javax.swing.JPanel {
         if (status == HospitalStatus.CLOSE) {
 
         } else if (status == HospitalStatus.URGENT || status == HospitalStatus.WAITING_FOR_BLOOD) {
-//            HospitalEvent event = new HospitalEvent(HospitalStatus.URGENT.getValue());
-//            for (Organization org : e.getOrganizationDirectory().getOrganizationList()) {
-//                for (Employee e : org.getEmployeeDirectory().getEmployeeList()) {
-//                    event.addObserver(e);
-//                }
-//            }
-//            event.produce(wrinner);
+
             e.getWorkQueue().getWorkRequestList().add(wrinner);
         } else {
             next = (UserAccount) staffcombo.getSelectedItem();
-            wrinner.setReceiver(next);
+            System.out.println(next.toString());
             if (next.getRole() instanceof LabRole) {
                 for (Organization org : e.getOrganizationDirectory().getOrganizationList()) {
                     if ((org instanceof LabOrganization)) {
-                        org.getWorkQueue().getWorkRequestList().add(wrinner);
+                        dr = new DonorRequest();
+                        dr.setSender(curr);
+                        dr.setRequestDate(new Date());
+                        dr.setReceiver(wr.getPatient());
+                        org.getWorkQueue().getWorkRequestList().remove(dr);
+                        org.getWorkQueue().getWorkRequestList().add(dr);
                     }
                 }
             } else {
+
+                wrinner.setReceiver(next);
                 next.getWorkQueue().getWorkRequestList().remove(wrinner);
                 next.getWorkQueue().getWorkRequestList().add(wrinner);
             }
