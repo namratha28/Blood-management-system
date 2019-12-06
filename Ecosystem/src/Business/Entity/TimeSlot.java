@@ -40,7 +40,8 @@ public class TimeSlot {
 
     @Override
     public String toString() {
-
-        return name;
+        return this.from.toString();
     }
+
+   
 }

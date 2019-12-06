@@ -15,9 +15,41 @@ import java.util.Date;
 public class DonorRequest extends WorkRequest{
     private UserAccount sender;
     private UserAccount receiver;
+    private String bloodBank;
     private String status;
     private Date requestDate;
     private Date resolveDate;
+    private UserAccount labTechnician;
+    
+    public String getBloodBank() {
+        return bloodBank;
+    }
+
+    public void setBloodBank(String bloodBank) {
+        this.bloodBank = bloodBank;
+    }
+
+    public UserAccount getLabTechnician() {
+        return labTechnician;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public Date getRecievedDate() {
+        return recievedDate;
+    }
+
+    public void setRecievedDate(Date recievedDate) {
+        this.recievedDate = recievedDate;
+    }
+    private int price;
+    private Date recievedDate;
     
     private String testResult;
 
@@ -245,6 +277,13 @@ public class DonorRequest extends WorkRequest{
     public void setTemperature(float temperature) {
         this.temperature = temperature;
     }
-    
+        @Override
+    public String toString() {
+        return sender.getUsername();
+    }
+
+    public void setLabTechnician(UserAccount labTechnician) {
+        this.labTechnician = labTechnician; //To change body of generated methods, choose Tools | Templates.
+    }
    
 }

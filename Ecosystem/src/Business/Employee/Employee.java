@@ -4,39 +4,79 @@
  */
 package Business.Employee;
 
-import Business.Entity.Entity;
 import Business.Entity.TimeSlot;
-import Business.Event.Event;
-import Business.Event.Message;
-import Business.Role.Role;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Observable;
-import java.util.Observer;
 
 /**
  *
  *
  * @author AED_DEVOPS
  */
-public class Employee extends Entity implements Observer {
+public class Employee {
 
     private static int count = 1;
     private List<TimeSlot> availability;
-    public Employee(String name) {
-        super();
-        this.name = name;
+
+    public Employee() {
         id = count;
         count++;
-        this.availability = new ArrayList<TimeSlot>();
     }
+
+    protected int id;
+    protected String specialities;
+    protected String name;
+    protected int ranking;
+    protected String notice;
+
+    public Employee(String name) {
+        this.availability = new ArrayList<TimeSlot>();
+        this.name = name;
+        this.ranking = 0;
+        this.id = count;
+        count++;
+    }
+
+    public String getNotice() {
+        return notice;
+    }
+
+    public void setNotice(String notice) {
+        this.notice = notice;
+    }
+
     public Employee(String spe, String name) {
-        super();
+        this.availability = new ArrayList<TimeSlot>();
         this.name = name;
         this.specialities = spe;
+        this.ranking = 0;
         id = count;
         count++;
-        this.availability = new ArrayList<TimeSlot>();
+        this.notice = "";
+    }
+
+    public String getSpecialities() {
+        return specialities;
+    }
+
+    public void setSpecialities(String specialities) {
+        this.specialities = specialities;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getRanking() {
+        return ranking;
+    }
+
+    public void setRanking(int ranking) {
+        this.ranking = ranking;
     }
 
     public List<TimeSlot> getAvailability() {
@@ -61,20 +101,14 @@ public class Employee extends Entity implements Observer {
 
     @Override
     public String toString() {
-        return "Employee{" + "id=" + id + ", availability=" + availability + ", Specialities=" + specialities + '}';
+        return name;
     }
 
-    @Override
-    public void update(Observable o, Object o1) {
-        Event e = (Event) o;
-        Message m = (Message) o1;
-        System.out.println(this.getId() + "get the event:" + e.getEventName() + "-" + m.getContent());
-
-    }
-
-    @Override
-    public ArrayList<Role> getSupportedRole() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+//    @Override
+//    public void update(Observable o, Object o1) {
+//        HospitalInnerRequest workR = (HospitalInnerRequest) o1;
+//        notice=workR.getMessage();
+//        System.out.println(this.getName() + " get the event:" + workR.getMessage());
+//    }
 
 }

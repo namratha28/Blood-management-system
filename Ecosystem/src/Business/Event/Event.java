@@ -5,6 +5,9 @@
  */
 package Business.Event;
 
+import Business.Request.Request;
+import Bussiness.WorkQueue.HospitalInnerRequest;
+import Bussiness.WorkQueue.WorkRequest;
 import java.util.Observable;
 
 /**
@@ -14,7 +17,6 @@ import java.util.Observable;
 public class Event extends Observable {
 
     private String eventName;
-
 
     public Event(String eventName) {
         this.eventName = eventName;
@@ -28,12 +30,10 @@ public class Event extends Observable {
         this.eventName = eventName;
     }
 
-    
-    public void produce( Message m){
-        System.out.println(m.getEventName()+":"+this.getEventName()+"submit an event");
+    public void produce( WorkRequest r){
+        System.out.println(r.getSender()+" submit an event:"+r.getMessage());
         setChanged();
-        notifyObservers(m);
-
+        notifyObservers(r);
     }
 
 }

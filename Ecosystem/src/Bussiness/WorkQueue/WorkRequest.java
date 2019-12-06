@@ -6,6 +6,8 @@
 package Bussiness.WorkQueue;
 
 import Business.UserAccount.UserAccount;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 /**
@@ -13,8 +15,11 @@ import java.util.Date;
  * @author namratha
  */
 public abstract class WorkRequest {
+
     private UserAccount sender;
     private UserAccount receiver;
+    private UserAccount patient;
+
     private String status;
     private Date requestDate;
     private Date resolveDate;
@@ -23,8 +28,25 @@ public abstract class WorkRequest {
     private String complaintMessage;
     private String freeMed;
     private int quantity;
-    private String appointmentDate;
+    private Date appointmentDate;
     private String comments;
+    private String medicine;
+
+    public String getMedicine() {
+        return medicine;
+    }
+
+    public void setMedicine(String medicine) {
+        this.medicine = medicine;
+    }
+
+    public UserAccount getPatient() {
+        return patient;
+    }
+
+    public void setPatient(UserAccount patient) {
+        this.patient = patient;
+    }
 
     public String getMessage() {
         return message;
@@ -50,11 +72,11 @@ public abstract class WorkRequest {
         this.quantity = quantity;
     }
 
-    public String getAppointmentDate() {
+    public Date getAppointmentDate() {
         return appointmentDate;
     }
 
-    public void setAppointmentDate(String appointmentDate) {
+    public void setAppointmentDate(Date appointmentDate) {
         this.appointmentDate = appointmentDate;
     }
 
@@ -65,7 +87,7 @@ public abstract class WorkRequest {
     public void setComments(String comments) {
         this.comments = comments;
     }
-    private Date date = new Date();
+    private LocalDate date;
 
     public String getComplaintMessage() {
         return complaintMessage;
@@ -75,11 +97,15 @@ public abstract class WorkRequest {
         this.complaintMessage = complaintMessage;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
+        LocalDate date = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        date.format(formatter);
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
+        
         this.date = date;
     }
 
@@ -129,8 +155,7 @@ public abstract class WorkRequest {
 
     @Override
     public String toString() {
-        return sender.getUsername();
+        return  sender.toString();
     }
 
-    
 }

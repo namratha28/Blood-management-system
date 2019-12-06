@@ -5,7 +5,6 @@
 package Business.Organization;
 
 import Business.Employee.EmployeeDirectory;
-import Business.Entity.Entity;
 import Business.Request.RequestQueue;
 import Business.Role.Role;
 import Business.UserAccount.UserAccountDirectory;
@@ -32,13 +31,14 @@ public abstract class Organization {
         InsuranceAdmin("Insurance"),
         LogisticsAdmin("Logistics"),
         MarketAdmin("Market"),
-        HospitalAdmin("Hospital"),
+        HospitalAdmin("Hospital Admin"),
         GovermentAdmin("Gov"),
-        PharmacyAdmin("Pharmacy"),
+        PharmacyAdmin("PharmacyAdmin"),
+        Pharmacy("Pharmacy"),
         Nurse("Nurse"),
         Doctor("Doctor"),
-        FrontDesk("FrontDeskOrganization"),
-        Lab("LabOrganization"),
+        FrontDesk("FrontDesk"),
+        Lab("Lab"),
         Donor("Donor"),
         Common("CommonUser"), 
         Events("Events"),

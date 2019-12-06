@@ -21,7 +21,7 @@ public class EnterpriseDirectory {
     }
 
     public ArrayList<Enterprise> getEnterpriseList() {
-        return enterpriseList;
+         return enterpriseList;
     }
 
     public Enterprise createAndAddEnterprise(String name, Enterprise.EnterpriseType type) {

@@ -8,13 +8,10 @@ package Business.Role;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Organization.AdminOrganization;
-import Business.Organization.DoctorOrganization;
-import Business.Organization.FrontDeskEmployeeOrganization;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
-import UserInterface.admin.HospitalAdminJPanel;
-import UserInterface.doctor.DoctorJPanel;
-import UserInterface.frontDesk.FrontDeskJPanel;
+import UserInterface.HospitalAdmin.HospitalAdminJPanel;
+
 import javax.swing.JPanel;
 
 /**

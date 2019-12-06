@@ -25,9 +25,9 @@ public abstract class AccountFactory {
     protected String username;
     protected String pw;
     protected String name;
-    protected String org;
+    protected Organization org;
 
-    AccountFactory(String spe, Enterprise e, String org, String username, String pw, String name, Date b) {
+    AccountFactory(String spe, Enterprise e, Organization org, String username, String pw, String name, Date b) {
         this.spe = spe;
         this.e = e;
         this.org = org;

@@ -8,7 +8,7 @@ import Business.EcoSystem;
 import Business.Employee.Employee;
 import Business.Enterprise.Enterprise;
 import Business.Network.Network;
-import Business.Role.AdminRole;
+
 import Business.Role.BloodBankAdminRole;
 
 import Business.Role.HospitalAdminRole;
@@ -239,7 +239,9 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         } else if (enterprise.getEnterpriseType() == Enterprise.EnterpriseType.Hospital) {
             account = enterprise.getUserAccountDirectory().createUserAccount(username, password, employee, new HospitalAdminRole());
         } 
-
+        else if(enterprise.getEnterpriseType() == Enterprise.EnterpriseType.Pharmacy){
+           account = enterprise.getUserAccountDirectory().createUserAccount(username, password, employee, new PharmacyAdminRole());
+        }
         populateTable();
         }
     

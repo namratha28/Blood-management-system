@@ -9,16 +9,22 @@ import Business.EcoSystem;
 import Business.Enterprise.BloodBankEnterprise;
 import Business.Enterprise.Enterprise;
 import Business.Enterprise.HospitalEnterprise;
+import Business.Enterprise.PharmacyEnterprise;
 import Business.Network.Network;
+import Business.Organization.BloodCollectionStationOrganization;
 import Business.Organization.DoctorOrganization;
 import Business.Organization.DonorOrganisation;
 import Business.Organization.LabOrganization;
+import Business.Organization.MedicalOrganisation;
 import Business.Organization.NurseOrganization;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import Bussiness.WorkQueue.DonorRequest;
+import Bussiness.WorkQueue.MedicineRequest;
+import Bussiness.WorkQueue.WorkRequest;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -45,7 +51,99 @@ public class DonorJPanel extends javax.swing.JPanel {
         this.donorOrganisation = (DonorOrganisation) organization;
         this.enterprise = enterprise;
         this.business=business;
+        
+        populateTable();
+        populateNetworkComboBox();
+        populateBloodBankComboBox();
+        populateGroupComboBox();
         }
+     public void populateGroupComboBox()
+      {
+         bloodGroupDropDown.removeAllItems();
+         bloodGroupDropDown.addItem("A+");
+         bloodGroupDropDown.addItem("A-");
+         bloodGroupDropDown.addItem("B+");
+         bloodGroupDropDown.addItem("B-");
+         bloodGroupDropDown.addItem("O+");
+         bloodGroupDropDown.addItem("O-");
+         bloodGroupDropDown.addItem("AB+");
+         bloodGroupDropDown.addItem("AB-");
+                                 
+     }
+     public void populateBloodBankComboBox()
+{
+         bloodBankBtn.removeAllItems();
+         Organization org = null;
+                for (Network network : business.getNetworkList()) {
+                    for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
+                        if (enterprise instanceof BloodBankEnterprise) {
+                            for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
+                                if (organization instanceof BloodCollectionStationOrganization) {
+                                    for(UserAccount useraccount : organization.getUserAccountDirectory().getUserAccountList())
+                                    bloodBankBtn.addItem(useraccount.toString());
+                                    
+                                }
+                            }
+                        }
+
+                    }
+                }
+     }
+     public void populateNetworkComboBox() {
+         PharmacyJComboBox.removeAllItems();
+         Organization org = null;
+                for (Network network : business.getNetworkList()) {
+                    for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
+                        if (enterprise instanceof PharmacyEnterprise) {
+                            for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
+                                if (organization instanceof MedicalOrganisation) {
+                                    for(UserAccount useraccount : organization.getUserAccountDirectory().getUserAccountList())
+                                    PharmacyJComboBox.addItem(useraccount.toString());
+                                    
+                                }
+                            }
+                        }
+
+                    }
+                }
+     }
+    public void populateTable() {
+        DefaultTableModel model = (DefaultTableModel) MedicineListTable.getModel();
+
+        model.setRowCount(0);
+         MedicineRequest medicineRequest=new MedicineRequest();
+        
+        for (WorkRequest request : donorOrganisation.getWorkQueue().getWorkRequestList()) {
+            if (request.getClass() != null) {
+                String x = request.getClass().toString();
+                //Business.WorkQueue.CarrierWorkRequest
+                //String x = request.getReceiver().getRole().toString();
+                
+                //Business.WorkQueue.CarrierWorkRequest
+                //String x = request.getReceiver().getRole().toString();
+                if (x.contains("MedicineRequest")&& request.getSender().getUsername()==userAccount.getUsername()){
+                    MedicineRequest medicineWorkRequest = (MedicineRequest) request;
+                    Object[] row = new Object[5];
+                    if(medicineWorkRequest.getMedicine()==null){
+                        continue;
+                    }
+                    else{
+                        row[1] = medicineWorkRequest.getMedicine();
+                        row[2] = medicineWorkRequest.getQuantity();
+                        medicineWorkRequest.setSender(userAccount);
+                        row[0] =medicineWorkRequest;
+                        row[3]=medicineWorkRequest.getStatus();
+                        row[4]=medicineWorkRequest.getReceiver();
+                        model.addRow(row);
+                    }
+                    
+                }
+            }
+        }
+        
+
+    }
+
     
 
     /**
@@ -57,27 +155,25 @@ public class DonorJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        nameTxtField = new javax.swing.JTextField();
+        ageTxtField = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        ageTxtField = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
         phNoTxtField = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        AddressTxt = new javax.swing.JTextField();
+        NameTxtField = new javax.swing.JTextField();
         donateBtn = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
-        BloodGroupTxtField = new javax.swing.JTextField();
-
-        nameTxtField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nameTxtFieldActionPerformed(evt);
-            }
-        });
-
-        jLabel1.setText("Name");
-
-        jLabel2.setText("Age");
+        AddressTxtField = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        MedicineListTable = new javax.swing.JTable();
+        chckAvailBtn = new javax.swing.JButton();
+        PharmacyJComboBox = new javax.swing.JComboBox<>();
+        requestMedicineBtn = new javax.swing.JButton();
+        bloodBankBtn = new javax.swing.JComboBox<>();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        bloodGroupDropDown = new javax.swing.JComboBox<>();
 
         ageTxtField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -85,7 +181,9 @@ public class DonorJPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel3.setText("Phone Number");
+        jLabel1.setText("Name");
+
+        jLabel2.setText("Age");
 
         phNoTxtField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -93,11 +191,13 @@ public class DonorJPanel extends javax.swing.JPanel {
             }
         });
 
+        jLabel3.setText("Phone Number");
+
         jLabel4.setText("Address");
 
-        AddressTxt.addActionListener(new java.awt.event.ActionListener() {
+        NameTxtField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AddressTxtActionPerformed(evt);
+                NameTxtFieldActionPerformed(evt);
             }
         });
 
@@ -110,80 +210,156 @@ public class DonorJPanel extends javax.swing.JPanel {
 
         jLabel5.setText("Blood Group");
 
-        BloodGroupTxtField.addActionListener(new java.awt.event.ActionListener() {
+        AddressTxtField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BloodGroupTxtFieldActionPerformed(evt);
+                AddressTxtFieldActionPerformed(evt);
             }
         });
+
+        MedicineListTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Sender", "Medicine", "Quantity", "Status", "Pharmacy"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(MedicineListTable);
+
+        chckAvailBtn.setText("Check Availability");
+        chckAvailBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chckAvailBtnActionPerformed(evt);
+            }
+        });
+
+        PharmacyJComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        PharmacyJComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PharmacyJComboBoxActionPerformed(evt);
+            }
+        });
+
+        requestMedicineBtn.setText("Request");
+        requestMedicineBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                requestMedicineBtnActionPerformed(evt);
+            }
+        });
+
+        bloodBankBtn.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jLabel6.setText("Select Blood Bank ");
+
+        jLabel7.setText("Donor Potal");
+
+        bloodGroupDropDown.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(65, 65, 65)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2))
-                        .addGap(83, 83, 83)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(nameTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(ageTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(695, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(AddressTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(NameTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(311, 311, 311)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(jLabel3)
+                                        .addComponent(jLabel5)
+                                        .addComponent(jLabel4))
+                                    .addGap(38, 38, 38))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addGap(202, 202, 202)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                .addComponent(jLabel1)
+                                                .addComponent(jLabel2))
+                                            .addGap(49, 49, 49))
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(jLabel6)
+                                            .addGap(29, 29, 29)))))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(bloodBankBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(phNoTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(BloodGroupTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(131, 131, 131)
-                .addComponent(donateBtn)
-                .addGap(0, 0, Short.MAX_VALUE))
+                                    .addComponent(ageTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(AddressTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(bloodGroupDropDown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(213, 213, 213)
+                        .addComponent(PharmacyJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(chckAvailBtn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(requestMedicineBtn))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(383, 383, 383)
+                        .addComponent(donateBtn))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(209, 209, 209)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 428, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(331, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(429, 429, 429))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(43, 43, 43)
+                .addContainerGap()
+                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(1, 1, 1)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(nameTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(NameTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(ageTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(phNoTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ageTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addGap(17, 17, 17)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(phNoTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(BloodGroupTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(bloodGroupDropDown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(19, 19, 19)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(AddressTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(AddressTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(bloodBankBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6))
                 .addGap(18, 18, 18)
                 .addComponent(donateBtn)
-                .addContainerGap(454, Short.MAX_VALUE))
+                .addGap(34, 34, 34)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(PharmacyJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(chckAvailBtn)
+                    .addComponent(requestMedicineBtn))
+                .addContainerGap(173, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void nameTxtFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameTxtFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nameTxtFieldActionPerformed
 
     private void ageTxtFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ageTxtFieldActionPerformed
         // TODO add your handling code here:
@@ -193,41 +369,37 @@ public class DonorJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_phNoTxtFieldActionPerformed
 
-    private void AddressTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddressTxtActionPerformed
+    private void NameTxtFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NameTxtFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_AddressTxtActionPerformed
+    }//GEN-LAST:event_NameTxtFieldActionPerformed
 
-    private void BloodGroupTxtFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BloodGroupTxtFieldActionPerformed
+    private void AddressTxtFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddressTxtFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_BloodGroupTxtFieldActionPerformed
+    }//GEN-LAST:event_AddressTxtFieldActionPerformed
 
     private void donateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_donateBtnActionPerformed
         // TODO add your handling code here:
         
-        if ((!nameTxtField.getText().equals("")) && (!phNoTxtField.getText().equals(""))
-                && (!AddressTxt.getText().equals("")) && (!BloodGroupTxtField.getText().equals(""))
-                && (!ageTxtField.getText().equals(""))) {
+        if ((!ageTxtField.getText().equals("")) && (!phNoTxtField.getText().equals(""))
+                && (!NameTxtField.getText().equals("")) && (!AddressTxtField.getText().equals(""))
+                && (!phNoTxtField.getText().equals(""))) {
 
             boolean isError = false;
             try {
                 
-                System.out.println("size" + enterprise.getOrganizationDirectory().getOrganizationList().size());
+                
                 DonorRequest donorrequest = new DonorRequest();
-                donorrequest.setName(nameTxtField.getText());
-     
+                donorrequest.setName(NameTxtField.getText());
                 donorrequest.setAge(Integer.parseInt(ageTxtField.getText()));
-              
-                donorrequest.setAddressLine(AddressTxt.getText());
-                donorrequest.setBlood(BloodGroupTxtField.getText());
-                
+                donorrequest.setAddressLine(AddressTxtField.getText());
+                donorrequest.setBlood((bloodGroupDropDown.getSelectedItem().toString()));
                 donorrequest.setPhoneNo(Integer.parseInt(phNoTxtField.getText()));
-              
-                
                 donorrequest.setSender(userAccount);
-
+                donorrequest.setBloodBank(bloodBankBtn.getSelectedItem().toString());
                 donorrequest.setStatus("Sent");
+                
                 System.out.println(donorrequest.getStatus());
-                System.out.println(donorrequest.getPhoneNo());
+                //System.out.println(donorrequest.getPhoneNo());
                 Organization org = null;
                 for (Network network : business.getNetworkList()) {
                     for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
@@ -235,6 +407,10 @@ public class DonorJPanel extends javax.swing.JPanel {
                             for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
                                 if (organization instanceof LabOrganization) {
                                     org = organization;
+                                     org.getWorkQueue().getWorkRequestList().add(donorrequest);
+                                    System.out.println("lab org1"+org);
+                                    System.out.println(org.getWorkQueue().getWorkRequestList());
+                                    System.out.println(org.getName());
                                     break;
                                 }
                             }
@@ -242,14 +418,56 @@ public class DonorJPanel extends javax.swing.JPanel {
 
                     }
                 }
+                
 
                 if (org != null) {
-                    System.out.println("userinterface.Farmer.RequestDoctorTreatmentWorkAreaJPanel.requestTestJButtonActionPerformed()");
-                    org.getWorkQueue().getWorkRequestList().add(donorrequest);
+                    //System.out.println("userinterface.Farmer.RequestDoctorTreatmentWorkAreaJPanel.requestTestJButtonActionPerformed()");
+                   
                     userAccount.getWorkQueue().getWorkRequestList().add(donorrequest);
 
-                    JOptionPane.showMessageDialog(null, "You have successfully submitted your treatment request !", "Information", JOptionPane.INFORMATION_MESSAGE);
+                    //JOptionPane.showMessageDialog(null, "You have successfully submitted your treatment request !", "Information", JOptionPane.INFORMATION_MESSAGE);
                 }
+               
+        //MedicineRequest MedicineRequest = (MedicineRequest) MedicineListTable.getValueAt(selectedRow, 0);
+        String userAccountSelected = bloodBankBtn.getSelectedItem().toString();
+        UserAccount UserAccountSel= null;
+        Organization org1 = null;
+        
+          
+                for (Network network : business.getNetworkList()) {
+                    for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
+                        if (enterprise instanceof BloodBankEnterprise) {
+                            for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
+                                if (organization instanceof BloodCollectionStationOrganization) {
+                                    for(UserAccount useraccount : organization.getUserAccountDirectory().getUserAccountList()){
+                                        System.out.println(useraccount.getUsername()+" "+userAccountSelected);
+                                            if(useraccount.getUsername().equals(userAccountSelected)){
+                                                 org1 = organization;
+                                                 UserAccountSel=useraccount;
+                                                   System.out.println("donate org"+org1+" "+UserAccountSel);
+                                                 break;
+                                            
+                                            }
+                                                 
+                                    }
+                                       
+                                }
+                            }
+                        
+
+                    }
+                }
+                }
+                if (org1 != null) {
+                    //System.out.println("userinterface.Farmer.RequestDoctorTreatmentWorkAreaJPanel.requestTestJButtonActionPerformed()");
+                    org1.getWorkQueue().getWorkRequestList().add(donorrequest);
+                    UserAccountSel.getWorkQueue().getWorkRequestList().add(donorrequest);
+
+                    JOptionPane.showMessageDialog(null, "You have successfully your request !", "Information", JOptionPane.INFORMATION_MESSAGE);
+                }
+
+        
+        
             }
             
             catch (Exception e3){
@@ -262,18 +480,148 @@ public class DonorJPanel extends javax.swing.JPanel {
 
     }//GEN-LAST:event_donateBtnActionPerformed
 
+    private void requestMedicineBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_requestMedicineBtnActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = MedicineListTable.getSelectedRow();
+        MedicineRequest MedicineRequest = (MedicineRequest) MedicineListTable.getValueAt(selectedRow, 0);
+        String userAccountSelected = PharmacyJComboBox.getSelectedItem().toString();
+        UserAccount UserAccountSel= null;
+        Organization org = null;
+         if(MedicineRequest.getStatus().equals("Requested")) {
+            JOptionPane.showMessageDialog(null, "Already Requested ", "Information", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        if (selectedRow >= 0 &&  MedicineRequest.getStatus().equalsIgnoreCase("Available") ) {
+          
+                for (Network network : business.getNetworkList()) {
+                    for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
+                        if (enterprise instanceof PharmacyEnterprise) {
+                            for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
+                                if (organization instanceof MedicalOrganisation) {
+                                    for(UserAccount useraccount : organization.getUserAccountDirectory().getUserAccountList()){
+                                        System.out.println(useraccount.getUsername()+" "+userAccountSelected);
+                                            if(useraccount.getUsername().equals(userAccountSelected)){
+                                                 org = organization;
+                                                 UserAccountSel=useraccount;
+                                                   System.out.println(org+" "+UserAccountSel);
+                                                 break;
+                                            
+                                            }
+                                                 
+                                    }
+                                       
+                                }
+                            }
+                        }
+
+                    }
+                }
+              
+                if (org != null) {
+                    //System.out.println("userinterface.Farmer.RequestDoctorTreatmentWorkAreaJPanel.requestTestJButtonActionPerformed()");
+                    org.getWorkQueue().getWorkRequestList().add(MedicineRequest);
+                    UserAccountSel.getWorkQueue().getWorkRequestList().add(MedicineRequest);
+                     MedicineRequest.setStatus("Requested");
+                     MedicineRequest.setReceiver(UserAccountSel);
+                     populateTable();
+                    JOptionPane.showMessageDialog(null, "You have successfully submitted your Medicine request ", "Information", JOptionPane.INFORMATION_MESSAGE);
+                }
+
+        
+        }
+      
+    }//GEN-LAST:event_requestMedicineBtnActionPerformed
+
+    private void PharmacyJComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PharmacyJComboBoxActionPerformed
+        // TODO add your handling code here:
+        
+        
+    }//GEN-LAST:event_PharmacyJComboBoxActionPerformed
+
+    private void chckAvailBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chckAvailBtnActionPerformed
+        // TODO add your handling code here:
+         int selectedRow = MedicineListTable.getSelectedRow();
+        MedicineRequest medicineRequest = (MedicineRequest) MedicineListTable.getValueAt(selectedRow, 0);
+        String userAccountSelected = PharmacyJComboBox.getSelectedItem().toString();
+        UserAccount UserAccountSel= null;
+        Organization org = null;
+        if (selectedRow >= 0) {
+          
+                for (Network network : business.getNetworkList()) {
+                    for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
+                        if (enterprise instanceof PharmacyEnterprise) {
+                            for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
+                                if (organization instanceof MedicalOrganisation) {
+                                    for(UserAccount useraccount : organization.getUserAccountDirectory().getUserAccountList()){
+                                        System.out.println(useraccount.getUsername()+" "+userAccountSelected);
+                                            if(useraccount.getUsername().equals(userAccountSelected)){
+                                                 org = organization;
+                                                 UserAccountSel=useraccount;
+                                                  
+                                                   
+                                                 break;
+                                            
+                                            }
+                                                 
+                                    }
+                                       
+                                }
+                            }
+                        }
+
+                    }
+                }
+               Boolean avail=false;
+              
+               for(WorkRequest req:  UserAccountSel.getWorkQueue().getWorkRequestList()){
+                   MedicineRequest req1=(MedicineRequest) req;
+                   System.out.println(req1.getAvailMedicine());
+                   System.out.println(medicineRequest.getMedicine());
+                 if(req1.getAvailMedicine()!=null){
+                     if(req1.getAvailMedicine().equalsIgnoreCase(medicineRequest.getMedicine())){
+                         System.out.println("avilable");
+                         avail=true;
+                  }
+                 
+                 }
+                  
+               }
+                if (avail == true) {
+                    //System.out.println("userinterface.Farmer.RequestDoctorTreatmentWorkAreaJPanel.requestTestJButtonActionPerformed()");
+                    medicineRequest.setStatus("available");
+                    JOptionPane.showMessageDialog(null, "Avialable", "Information", JOptionPane.INFORMATION_MESSAGE);
+                    populateTable();
+                }
+                if(avail == false){
+                    medicineRequest.setStatus("Not available");
+                    JOptionPane.showMessageDialog(null, "Not Avialable", "Information", JOptionPane.INFORMATION_MESSAGE);
+                    populateTable();
+                }
+
+        
+        }
+    }//GEN-LAST:event_chckAvailBtnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField AddressTxt;
-    private javax.swing.JTextField BloodGroupTxtField;
+    private javax.swing.JTextField AddressTxtField;
+    private javax.swing.JTable MedicineListTable;
+    private javax.swing.JTextField NameTxtField;
+    private javax.swing.JComboBox<String> PharmacyJComboBox;
     private javax.swing.JTextField ageTxtField;
+    private javax.swing.JComboBox<String> bloodBankBtn;
+    private javax.swing.JComboBox<String> bloodGroupDropDown;
+    private javax.swing.JButton chckAvailBtn;
     private javax.swing.JButton donateBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JTextField nameTxtField;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField phNoTxtField;
+    private javax.swing.JButton requestMedicineBtn;
     // End of variables declaration//GEN-END:variables
 }

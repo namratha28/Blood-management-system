@@ -10,7 +10,7 @@ import Business.Enterprise.Enterprise;
 import Business.Organization.CommonUserOrganization;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
-import UserInterface.commonUser.CommonUserJPanel;
+import UserInterface.CommonUser.CommonUserJPanel;
 import javax.swing.JPanel;
 
 /**

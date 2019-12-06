@@ -12,7 +12,7 @@ import Business.Organization.NurseOrganization;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import UserInterface.Nurse.NurseJPanel;
-import UserInterface.doctor.DoctorJPanel;
+import UserInterface.Doctor.DoctorJPanel;
 import javax.swing.JPanel;
 
 /**

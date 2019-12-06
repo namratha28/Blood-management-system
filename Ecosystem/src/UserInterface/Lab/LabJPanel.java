@@ -13,7 +13,10 @@ import Business.Organization.LabOrganization;
 import Business.Organization.NurseOrganization;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
+import Bussiness.WorkQueue.DonorRequest;
 import Bussiness.WorkQueue.WorkRequest;
+import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -52,17 +55,19 @@ public class LabJPanel extends javax.swing.JPanel {
 
         model.setRowCount(0);
 
-        for (WorkRequest labrequest : labOrganization.getWorkQueue().getWorkRequestList()) {
-            Object[] row = new Object[5];
-            // row[0] = request.getDate();
-            //row[0] = request;
-            //row[0] = labrequest;
-            row[2] = labrequest.getDate();
-            row[0] = labrequest.getSender()==null? null : labrequest.getSender().getEmployee().getName();
-            //row[2] = docrequest.getSender().getEmployee().getName();
-            row[1] = labrequest.getReceiver() == null ? null : labrequest.getReceiver().getEmployee().getName();
-            row[3] = labrequest.getStatus();
-            
+        for (WorkRequest labrequest :  labOrganization.getWorkQueue().getWorkRequestList()) {
+            System.out.println("lab panel"+labOrganization.getWorkQueue().getWorkRequestList());
+            DonorRequest request=(DonorRequest) labrequest;//**
+            Object[] row = new Object[10];
+         
+            row[0] = labrequest;
+            row[1]= request.getName();
+            row[2]=request.getBlood();
+            row[4] = labrequest.getDate();
+           
+            row[3] = request.getLabTechnician() == null ? null : request.getLabTechnician().getEmployee().getName();
+            row[5] = labrequest.getStatus();
+            row[6]= request.getBloodBank();
             System.out.println(row[1]);
 
             model.addRow(row);
@@ -86,18 +91,33 @@ public class LabJPanel extends javax.swing.JPanel {
 
         workRequestJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Sender", "Reciever", "Date", "Status"
+                "Sender", "Name", "Blood Group", "Reciever", "Date", "Status", "Blood Bank"
             }
         ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, true, false
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
@@ -106,35 +126,117 @@ public class LabJPanel extends javax.swing.JPanel {
         jScrollPane1.setViewportView(workRequestJTable);
 
         assignBtn.setText("Assign to me");
+        assignBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                assignBtnActionPerformed(evt);
+            }
+        });
 
         processBtn.setText("Process");
+        processBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                processBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(164, 164, 164)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(91, 91, 91)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 678, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(158, 158, 158)
                         .addComponent(assignBtn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(processBtn))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(309, Short.MAX_VALUE))
+                        .addGap(197, 197, 197)
+                        .addComponent(processBtn)))
+                .addContainerGap(105, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(59, 59, 59)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(69, 69, 69)
+                .addGap(63, 63, 63)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(43, 43, 43)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(assignBtn)
-                    .addComponent(processBtn))
-                .addContainerGap(208, Short.MAX_VALUE))
+                    .addComponent(processBtn)
+                    .addComponent(assignBtn))
+                .addContainerGap(183, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void assignBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignBtnActionPerformed
+        // TODO add your handling code here:
+        
+        int selectedRow = workRequestJTable.getSelectedRow();
+        DonorRequest labRequest =(DonorRequest)  workRequestJTable.getValueAt(selectedRow, 0);
+        if (selectedRow < 0) {
+            return;
+        }
+        
+        if(labRequest.getStatus().equalsIgnoreCase("completed")){
+            JOptionPane.showMessageDialog(null, "Blood donation completed");
+            return;
+        }
+        
+         if(labRequest.getStatus().equalsIgnoreCase("pending")){
+            JOptionPane.showMessageDialog(null, "Blood donation in process");
+            return;
+        }
+         
+         if(labRequest.getStatus().equalsIgnoreCase("processing")){
+            JOptionPane.showMessageDialog(null, "Blood donation in process");
+            return;
+        }
+
+        labRequest.setLabTechnician(userAccount);
+        //labRequest.s("");
+        labRequest.setStatus("Pending");
+        populateTable();
+    }//GEN-LAST:event_assignBtnActionPerformed
+
+    private void processBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_processBtnActionPerformed
+        // TODO add your handling code here:
+        
+        int selectedRow = workRequestJTable.getSelectedRow();
+        DonorRequest labRequest = (DonorRequest) workRequestJTable.getValueAt(selectedRow, 0);
+        
+        if (selectedRow >= 0) {
+
+            if (selectedRow < 0) {
+                return;
+            }
+            if(labRequest.getStatus().equalsIgnoreCase("completed")){
+            JOptionPane.showMessageDialog(null, "Blood donation completed");
+            return;
+        }
+        
+         if(labRequest.getStatus().equalsIgnoreCase("pending")&& labRequest.getLabTechnician().getUsername()!=userAccount.getUsername()){
+            JOptionPane.showMessageDialog(null, "Blood donation in process");
+            return;
+        }
+         
+         if(labRequest.getStatus().equalsIgnoreCase("processing")&& labRequest.getLabTechnician()!=userAccount){
+            JOptionPane.showMessageDialog(null, "Blood donation in process");
+            return;
+        }
+            
+           
+            labRequest.setStatus("Processing");
+            populateTable();
+            testResultsJPanel testResultContainer = new testResultsJPanel(userProcessContainer, userAccount, labRequest, enterprise, business);
+            userProcessContainer.add("processWorkRequestJPanel", testResultContainer);
+            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+            layout.next(userProcessContainer);
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Please Select any row");
+        }
+         
+    }//GEN-LAST:event_processBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
