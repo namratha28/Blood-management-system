@@ -13,9 +13,10 @@ import Business.Event.Message;
 import Business.Organization.AdminOrganization;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
-import UserInterface.account.CreateEmployeeJPanel;
-import UserInterface.account.CreateJPanel;
+import UserInterface.Account.CreateEmployeeJPanel;
+import UserInterface.Account.CreateJPanel;
 import java.awt.CardLayout;
+import java.util.Observer;
 import javax.swing.JPanel;
 
 /**
@@ -224,7 +225,7 @@ public class HospitalAdminJPanel extends javax.swing.JPanel {
         Event event = new Event("emergency");
         //for(Organization o:enterprise.getOrganizationDirectory().getOrganizationList()){
         for (Employee e : organization.getEmployeeDirectory().getEmployeeList()) {
-            event.addObserver(e);
+            event.addObserver((Observer) e);
         }
         //}
         Message m = new Message("blood request","urgent", "Patient need AB type blood");
