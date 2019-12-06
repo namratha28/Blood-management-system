@@ -5,6 +5,7 @@
  */
 package Business.Organization;
 
+import Business.Role.HospitalLabRole;
 import Business.Role.Role;
 import java.util.ArrayList;
 
@@ -12,15 +13,17 @@ import java.util.ArrayList;
  *
  * @author Huangdong Wen <wen.hu@husky.neu.edu>
  */
-public class LabAssistantOrganization extends Organization{
+public class HospitalLabOrganization extends Organization{
 
-    public LabAssistantOrganization() {
-        super(Type.Lab.getValue());
+    public HospitalLabOrganization() {
+        super(Type.HospitalLab.getValue());
     }
 
     @Override
   public ArrayList<Role> getSupportedRole() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+      ArrayList<Role> roles = new ArrayList<>();
+        roles.add(new HospitalLabRole());
+        return roles;  
     }
     
 }

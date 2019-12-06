@@ -5,14 +5,13 @@
  */
 package UserInterface.Doctor;
 
-import Business.Employee.Employee;
 import Business.Enterprise.Enterprise;
+import Business.Entity.BloodType;
 import Business.Entity.HospitalStatus;
-import Business.Event.HospitalEvent;
 import Business.Organization.CommonUserOrganization;
 import Business.Organization.LabOrganization;
-import Business.Organization.NurseOrganization;
 import Business.Organization.Organization;
+import Business.Role.HospitalLabRole;
 import Business.Role.LabRole;
 import Business.UserAccount.UserAccount;
 import Bussiness.WorkQueue.DonorRequest;
@@ -21,6 +20,7 @@ import Bussiness.WorkQueue.WorkRequest;
 
 import java.awt.CardLayout;
 import java.awt.Component;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -35,7 +35,6 @@ public class DoctorWQJPanel extends javax.swing.JPanel {
 
     private JPanel userProcessContainer;
     private WorkRequest wr;
-
     private Enterprise e;
     private UserAccount next;
     private UserAccount curr;
@@ -52,18 +51,49 @@ public class DoctorWQJPanel extends javax.swing.JPanel {
         populatePatientInfo();
         populateSpeComboBox();
         populateStaff();
-
+        populateBloodTypeComboBox();
+        setInfoFieldEnable(false);
+        setFieldEnable(false);
         dueTxt.setText("11/22/80 00:00:00");
+    }
+
+    private void setInfoFieldEnable(boolean b) {
+        ageTxt.setEnabled(b);
+        nameTxt.setEnabled(b);
+    }
+
+    private void populatePatientInfo() {
+        nameTxt.setText(wr.getPatient().getPerson().getName());
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String strDate = dateFormat.format(curr.getPerson().getBirthday());
+        ageTxt.setText(String.valueOf(strDate));
+        bloodPTxt.setText(String.valueOf(wr.getPatient().getPerson().getBloodPress()));
+        tempTxt.setText(String.valueOf(wr.getPatient().getPerson().getTemperature()));
+        pulseTxt.setText(String.valueOf(wr.getPatient().getPerson().getPulse()));
+        populateTreatementHistory();
+    }
+
+    private void setFieldEnable(boolean b) {
+        tempTxt.setEnabled(b);
+        bloodPTxt.setEnabled(b);
+        pulseTxt.setEnabled(b);
+    }
+
+    private void populateBloodTypeComboBox() {
+        btCombo.removeAllItems();
+        if (curr.getRole() instanceof HospitalLabRole) {
+            for (BloodType s : BloodType.values()) {
+                btCombo.addItem(s);
+            }
+            return;
+        }
+        btCombo.addItem(wr.getPatient().getPerson().getType());
     }
 
     private void populateStaff() {
         staffcombo.removeAllItems();
         for (Organization org : e.getOrganizationDirectory().getOrganizationList()) {
             if (!(org instanceof CommonUserOrganization)) {
-//                if(org instanceof LabOrganization){
-//                    staffcombo.addItem(org);
-//                }
-
                 for (UserAccount acc : org.getUserAccountDirectory().getUserAccountList()) {
                     staffcombo.addItem(acc);
                 }
@@ -94,7 +124,6 @@ public class DoctorWQJPanel extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         ageTxt = new javax.swing.JTextField();
         bloodPTxt = new javax.swing.JTextField();
-        typeTxt = new javax.swing.JTextField();
         pulseTxt = new javax.swing.JTextField();
         tempTxt = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
@@ -113,6 +142,7 @@ public class DoctorWQJPanel extends javax.swing.JPanel {
         jLabel7 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         dueTxt = new javax.swing.JTextField();
+        btCombo = new javax.swing.JComboBox();
 
         jLabel4.setText("Blood Type");
 
@@ -166,6 +196,13 @@ public class DoctorWQJPanel extends javax.swing.JPanel {
 
         jLabel12.setText("Due");
 
+        btCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        btCombo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btComboActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -179,11 +216,6 @@ public class DoctorWQJPanel extends javax.swing.JPanel {
                         .addComponent(jLabel1))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(594, 594, 594)
-                                .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(ageTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel6)
@@ -202,27 +234,35 @@ public class DoctorWQJPanel extends javax.swing.JPanel {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addComponent(staffcombo, 0, 182, Short.MAX_VALUE)
-                                            .addComponent(dueTxt))))))
+                                            .addComponent(dueTxt)))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(594, 594, 594)
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(ageTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(massageTxt, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 925, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel9)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(132, 132, 132)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(bloodPTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel9)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(nameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(241, 241, 241)
-                                        .addComponent(jLabel4)
-                                        .addGap(71, 71, 71)
-                                        .addComponent(typeTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(pulseTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(tempTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                        .addComponent(jLabel2)
+                                        .addGap(132, 132, 132)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(bloodPTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(nameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(241, 241, 241)
+                                                .addComponent(jLabel4))
+                                            .addComponent(pulseTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(tempTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(253, 253, 253)))))
                 .addContainerGap(166, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -237,9 +277,9 @@ public class DoctorWQJPanel extends javax.swing.JPanel {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel2)
                         .addComponent(nameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(typeTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -300,6 +340,7 @@ public class DoctorWQJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnBackActionPerformed
 //11/11/19 08:00:00
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        wr.getPatient().getPerson().setType((BloodType) btCombo.getSelectedItem());
 
         HospitalStatus status = (HospitalStatus) statuscombo.getSelectedItem();
         if (wrinner == null) {
@@ -329,31 +370,31 @@ public class DoctorWQJPanel extends javax.swing.JPanel {
                 e.getWorkQueue().getWorkRequestList().remove(wrinner);
                 e.getWorkQueue().getWorkRequestList().add(wrinner);
                 lastStatus = HospitalStatus.URGENT;
-            } else {
-
-            }
-        } else {
+            } 
+        }else if(status == HospitalStatus.WAITING_FOR_BLOOD){
             next = (UserAccount) staffcombo.getSelectedItem();
             System.out.println(next.toString());
-            if (next.getRole() instanceof LabRole) {
-                for (Organization org : e.getOrganizationDirectory().getOrganizationList()) {
-                    if ((org instanceof LabOrganization)) {
-                        dr = new DonorRequest();
-                        dr.setSender(curr);
-                        dr.setRequestDate(new Date());
-                        dr.setReceiver(wr.getPatient());
-                        org.getWorkQueue().getWorkRequestList().remove(dr);
-                        org.getWorkQueue().getWorkRequestList().add(dr);
-                    }
-                }
-            } else {
-                if (lastStatus != null) {
-                    e.getWorkQueue().getWorkRequestList().remove(wrinner);
-                }
-                wrinner.setReceiver(next);
-                next.getWorkQueue().getWorkRequestList().remove(wrinner);
-                next.getWorkQueue().getWorkRequestList().add(wrinner);
+
+            if (lastStatus != null) {
+                e.getWorkQueue().getWorkRequestList().remove(wrinner);
             }
+            wrinner.setReceiver(next);
+            next.getWorkQueue().getWorkRequestList().remove(wrinner);
+            next.getWorkQueue().getWorkRequestList().add(wrinner);
+            
+            
+        } 
+        else {
+            next = (UserAccount) staffcombo.getSelectedItem();
+            System.out.println(next.toString());
+
+            if (lastStatus != null) {
+                e.getWorkQueue().getWorkRequestList().remove(wrinner);
+            }
+            wrinner.setReceiver(next);
+            next.getWorkQueue().getWorkRequestList().remove(wrinner);
+            next.getWorkQueue().getWorkRequestList().add(wrinner);
+
         }
         wr.setResolveDate(new Date());
         wr.setStatus(status.getValue());
@@ -367,10 +408,15 @@ public class DoctorWQJPanel extends javax.swing.JPanel {
         populateTreatementHistory();
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void btComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btComboActionPerformed
+        //   wr.getPatient().getPerson().setType((BloodType) btCombo.getSelectedItem());
+    }//GEN-LAST:event_btComboActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField ageTxt;
     private javax.swing.JTextField bloodPTxt;
+    private javax.swing.JComboBox btCombo;
     private javax.swing.JButton btnBack;
     private javax.swing.JTextField dueTxt;
     private javax.swing.JTable historyTable;
@@ -394,19 +440,7 @@ public class DoctorWQJPanel extends javax.swing.JPanel {
     private javax.swing.JComboBox staffcombo;
     private javax.swing.JComboBox statuscombo;
     private javax.swing.JTextField tempTxt;
-    private javax.swing.JTextField typeTxt;
     // End of variables declaration//GEN-END:variables
-
-    private void populatePatientInfo() {
-        nameTxt.setText(wr.getPatient().getPerson().getName());
-        ageTxt.setText(String.valueOf(wr.getPatient().getPerson().getAge()));
-        bloodPTxt.setText(String.valueOf(wr.getPatient().getPerson().getBloodPress()));
-        tempTxt.setText(String.valueOf(wr.getPatient().getPerson().getTemperature()));
-        typeTxt.setText(wr.getPatient().getPerson().getType().getValue());
-        pulseTxt.setText(String.valueOf(wr.getPatient().getPerson().getPulse()));
-        populateTreatementHistory();
-
-    }
 
     private void populateTreatementHistory() {
         DefaultTableModel model = (DefaultTableModel) historyTable.getModel();

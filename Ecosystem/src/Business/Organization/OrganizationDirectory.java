@@ -75,6 +75,9 @@ public class OrganizationDirectory {
         } else if (type.getValue().equals(Organization.Type.Common.getValue())) {
             organization = new CommonUserOrganization();
             organizationList.add(organization);
+        }else if (type.getValue().equals(Organization.Type.HospitalLab.getValue())) {
+            organization = new HospitalLabOrganization();
+            organizationList.add(organization);
         }
 
         return organization;

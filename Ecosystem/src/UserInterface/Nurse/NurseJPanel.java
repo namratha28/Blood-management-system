@@ -308,7 +308,7 @@ public class NurseJPanel extends javax.swing.JPanel {
         if (selectedRow >= 0) {
             wr = (WorkRequest) rqTable.getValueAt(selectedRow, 0);
             userAccount.getWorkQueue().getWorkRequestList().remove(wr);
-            populateWrTable();
+            populateRqTable();
         } else {
             JOptionPane.showMessageDialog(null, "Please select any row");
         }

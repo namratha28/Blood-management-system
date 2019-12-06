@@ -11,11 +11,14 @@ package Business.Entity;
  */
 public enum BloodType {
 
-    A("A"),
-    B("B"),
-    AB("AB"),
-    O("O"),
-    X("X"),
+    AP("A+"),
+    AN("A-"),
+    BP("B+"),
+    BN("B-"),
+    ABP("AB+"),
+    ABN("AB-"),
+    OP("O+"),
+    ON("O-"),
     UNKNOWN("UNKNOWN");
     private String value;
 

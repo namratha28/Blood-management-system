@@ -68,7 +68,6 @@ public class HospitalAdminJPanel extends javax.swing.JPanel {
         wrTable = new javax.swing.JTable();
         createBtn = new javax.swing.JButton();
         delEmpBtn = new javax.swing.JButton();
-        btnUpdate = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -86,7 +85,7 @@ public class HospitalAdminJPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "name", "Role", "ranking"
+                "name", "Role"
             }
         ));
         jScrollPane1.setViewportView(employeejTable);
@@ -118,13 +117,6 @@ public class HospitalAdminJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnUpdate.setText("Update");
-        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUpdateActionPerformed(evt);
-            }
-        });
-
         jLabel5.setText("Employee Infomation");
 
         jLabel6.setText("Work Request");
@@ -150,6 +142,11 @@ public class HospitalAdminJPanel extends javax.swing.JPanel {
         jScrollPane3.setViewportView(orgTable);
 
         OrgTypejComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        OrgTypejComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                OrgTypejComboBoxActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Hospital DashBoard");
 
@@ -183,34 +180,28 @@ public class HospitalAdminJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(107, 107, 107)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 709, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(57, 57, 57)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(createBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(delEmpBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel5))
-                        .addGap(8, 8, 8))
+                    .addComponent(jLabel6)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 709, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel5)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 476, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(71, 71, 71)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(layout.createSequentialGroup()
+                                .addGap(71, 71, 71)
                                 .addComponent(jLabel3)
                                 .addGap(52, 52, 52)
                                 .addComponent(OrgTypejComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(delOrgBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(179, 179, 179)
+                                .addComponent(submitBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(submitBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jButton1)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 871, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(createBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(delOrgBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(delEmpBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 871, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(482, Short.MAX_VALUE)
                 .addComponent(jLabel2)
@@ -243,11 +234,9 @@ public class HospitalAdminJPanel extends javax.swing.JPanel {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(createBtn)
-                        .addGap(17, 17, 17)
-                        .addComponent(btnUpdate)
                         .addGap(18, 18, 18)
                         .addComponent(delEmpBtn)
-                        .addGap(24, 24, 24)))
+                        .addGap(69, 69, 69)))
                 .addGap(29, 29, 29)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -308,20 +297,6 @@ public class HospitalAdminJPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_delOrgBtnActionPerformed
 
-    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-        int selectedRow = employeejTable.getSelectedRow();
-        if (selectedRow >= 0) {
-            Employee e = (Employee) employeejTable.getValueAt(selectedRow, 0);
-
-        } else {
-            JOptionPane.showMessageDialog(null, "Please select any row");
-        }
-        CreateEmployeeJPanel panel = new CreateEmployeeJPanel(userProcessContainer, enterprise);
-        userProcessContainer.add("CreateEmployeeJPanel", panel);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
-    }//GEN-LAST:event_btnUpdateActionPerformed
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         int selectedRow = wrTable.getSelectedRow();
         if (selectedRow < 0) {
@@ -335,10 +310,13 @@ public class HospitalAdminJPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void OrgTypejComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OrgTypejComboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_OrgTypejComboBoxActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox OrgTypejComboBox;
-    private javax.swing.JButton btnUpdate;
     private javax.swing.JButton createBtn;
     private javax.swing.JButton delEmpBtn;
     private javax.swing.JButton delOrgBtn;
@@ -359,9 +337,8 @@ public class HospitalAdminJPanel extends javax.swing.JPanel {
 
     private void populateCombo() {
         OrgTypejComboBox.removeAllItems();
-
         for (Organization.Type type : Organization.Type.values()) {
-            if (type == Organization.Type.Common || type == Organization.Type.Doctor || type == Organization.Type.FrontDesk || type == Organization.Type.Nurse || type == Organization.Type.Admin || type == Organization.Type.Lab) {
+            if (type == Organization.Type.Common || type == Organization.Type.Doctor || type == Organization.Type.FrontDesk || type == Organization.Type.Nurse || type == Organization.Type.Admin || type == Organization.Type.HospitalLab) {
                 OrgTypejComboBox.addItem(type);
             }
         }

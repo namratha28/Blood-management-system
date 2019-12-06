@@ -6,6 +6,7 @@
 package UserInterface.Nurse;
 
 import Business.Enterprise.Enterprise;
+import Business.Entity.BloodType;
 import Business.Entity.HospitalStatus;
 import Business.Entity.Person;
 import Business.Organization.CommonUserOrganization;
@@ -47,9 +48,11 @@ public class NurseWQJPanel extends javax.swing.JPanel {
         populatePatientInfo();
         populateSpeComboBox();
         populateNurse();
+//        populateBloodTypeComboBox();
         dueTxt.setText("11/22/80 00:00:00");
         saveBtn.setEnabled(false);
         setFieldEnable(false);
+        setInfoFieldEnable(false);
     }
 
     private void populateNurse() {
@@ -180,7 +183,7 @@ public class NurseWQJPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(149, 149, 149)
+                .addGap(158, 158, 158)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -232,7 +235,7 @@ public class NurseWQJPanel extends javax.swing.JPanel {
                         .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(297, 297, 297)
                         .addComponent(jLabel1)))
-                .addGap(247, 428, Short.MAX_VALUE))
+                .addGap(247, 419, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -306,7 +309,7 @@ public class NurseWQJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       
+
         HospitalStatus status = (HospitalStatus) statuscombo.getSelectedItem();
         if (wrinner == null) {
             wrinner = new HospitalInnerRequest();
@@ -393,6 +396,11 @@ public class NurseWQJPanel extends javax.swing.JPanel {
         pulseTxt.setEnabled(b);
     }
 
+    private void setInfoFieldEnable(boolean b) {
+        ageTxt.setEnabled(b);
+        nameTxt.setEnabled(b);
+        typeTxt.setEnabled(b);
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField ageTxt;
     private javax.swing.JTextField bloodPTxt;
@@ -426,13 +434,13 @@ public class NurseWQJPanel extends javax.swing.JPanel {
 
     private void populatePatientInfo() {
         nameTxt.setText(wr.getPatient().getPerson().getName());
-        ageTxt.setText(String.valueOf(wr.getPatient().getPerson().getAge()));
+        ageTxt.setText(String.valueOf(wr.getPatient().getPerson().getBirthday()));
         bloodPTxt.setText(String.valueOf(wr.getPatient().getPerson().getBloodPress()));
         tempTxt.setText(String.valueOf(wr.getPatient().getPerson().getTemperature()));
-        typeTxt.setText(wr.getPatient().getPerson().getType().getValue());
+        typeTxt.setText(String.valueOf(wr.getPatient().getPerson().getType()));
+        System.out.println(wr.getPatient().getPerson().getType());
         pulseTxt.setText(String.valueOf(wr.getPatient().getPerson().getPulse()));
         populateTreatementHistory();
-
     }
 
     private void populateTreatementHistory() {

@@ -17,7 +17,7 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <EmptySpace min="-2" pref="149" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="158" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
                       <Component id="jButton1" alignment="1" min="-2" pref="150" max="-2" attributes="0"/>
@@ -81,7 +81,7 @@
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace min="247" pref="428" max="32767" attributes="0"/>
+              <EmptySpace min="247" pref="419" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>

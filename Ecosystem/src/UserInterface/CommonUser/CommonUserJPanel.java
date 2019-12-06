@@ -10,6 +10,10 @@ import Business.Enterprise.Enterprise;
 import Business.Organization.CommonUserOrganization;
 import Business.UserAccount.UserAccount;
 import Bussiness.WorkQueue.WorkRequest;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalAccessor;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -35,6 +39,21 @@ public class CommonUserJPanel extends javax.swing.JPanel {
         this.business = business;
         this.enterprise = enterprise;
         populateTreatementHistory();
+        populatePatientInfo();
+        setFieldEnable(false);
+        setInfoFieldEnable(false);
+    }
+
+    private void setFieldEnable(boolean b) {
+        tempTxt.setEnabled(b);
+        bloodPTxt.setEnabled(b);
+        pulseTxt.setEnabled(b);
+    }
+
+    private void setInfoFieldEnable(boolean b) {
+        ageTxt.setEnabled(b);
+        nameTxt.setEnabled(b);
+        typeTxt.setEnabled(b);
     }
 
     /**
@@ -130,7 +149,7 @@ public class CommonUserJPanel extends javax.swing.JPanel {
 
         jLabel2.setText("Name");
 
-        jLabel5.setText("Age");
+        jLabel5.setText("Birthday");
 
         cancelBtn1.setText("Cancel");
         cancelBtn1.addActionListener(new java.awt.event.ActionListener() {
@@ -188,7 +207,7 @@ public class CommonUserJPanel extends javax.swing.JPanel {
                                     .addComponent(nameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(bloodPTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(pulseTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(139, 139, 139)
+                        .addGap(170, 170, 170)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jLabel8)
@@ -200,10 +219,10 @@ public class CommonUserJPanel extends javax.swing.JPanel {
                                 .addComponent(typeTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jLabel5)
-                                .addGap(122, 122, 122)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(ageTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addComponent(jScrollPane1))
-                .addGap(0, 103, Short.MAX_VALUE))
+                .addGap(0, 72, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -235,9 +254,9 @@ public class CommonUserJPanel extends javax.swing.JPanel {
                             .addComponent(tempTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addComponent(ageTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(ageTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5))
                         .addGap(8, 8, 8)))
                 .addGap(21, 21, 21)
                 .addComponent(jLabel11)
@@ -267,6 +286,17 @@ public class CommonUserJPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_cancelBtnActionPerformed
 
+    private void populatePatientInfo() {
+        nameTxt.setText(userAccount.getPerson().getName());
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String strDate = dateFormat.format(userAccount.getPerson().getBirthday());
+        ageTxt.setText(String.valueOf(strDate));
+        bloodPTxt.setText(String.valueOf(userAccount.getPerson().getBloodPress()));
+        tempTxt.setText(String.valueOf(userAccount.getPerson().getTemperature()));
+        typeTxt.setText(String.valueOf(userAccount.getPerson().getType()));
+        pulseTxt.setText(String.valueOf(userAccount.getPerson().getPulse()));
+
+    }
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -282,7 +312,7 @@ public class CommonUserJPanel extends javax.swing.JPanel {
             model.addRow(row);
         }
     }
-    
+
     private void cancelBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtn1ActionPerformed
         int selectedRow = rqTable.getSelectedRow();
         WorkRequest wr = null;
