@@ -37,8 +37,9 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
 
         for (Type type : Organization.Type.values()) {
             if (type.getValue().equals(Type.BloodBank.getValue())
-                    || type.getValue().equals(Type.Lab.getValue())||
-                    type.getValue().equals(Type.Donor.getValue())) {
+                    || type.getValue().equals(Type.Lab.getValue())
+                    || type.getValue().equals(Type.Donor.getValue())
+                    || type.getValue().equals(Type.Events.getValue())){
                 organizationJComboBox.addItem(type);
             }
         }
@@ -126,6 +127,11 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
 
         organizationJComboBox.setFont(new java.awt.Font("Chalkboard SE", 0, 12)); // NOI18N
         organizationJComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        organizationJComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                organizationJComboBoxActionPerformed(evt);
+            }
+        });
         add(organizationJComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 210, 160, -1));
 
         jLabel1.setFont(new java.awt.Font("Chalkboard SE", 0, 12)); // NOI18N
@@ -162,6 +168,10 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_backJButtonActionPerformed
+
+    private void organizationJComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_organizationJComboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_organizationJComboBoxActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addJButton;

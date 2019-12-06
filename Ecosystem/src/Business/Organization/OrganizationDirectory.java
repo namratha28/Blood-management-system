@@ -75,7 +75,11 @@ public class OrganizationDirectory {
         } else if (type.getValue().equals(Organization.Type.Common.getValue())) {
             organization = new CommonUserOrganization();
             organizationList.add(organization);
+        } else if (type.getValue().equals(Organization.Type.Events.getValue())) {
+            organization = new EventsOrganization();
+            organizationList.add(organization);
         }
+        
 
         return organization;
     }

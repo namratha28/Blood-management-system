@@ -40,7 +40,8 @@ public abstract class Organization {
         FrontDesk("FrontDesk"),
         Lab("Lab"),
         Donor("Donor"),
-        Common("CommonUser")
+        Common("CommonUser"), 
+        Events("Events"),
         ;
         
         
