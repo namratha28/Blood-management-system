@@ -246,15 +246,13 @@ public class MainJFrame extends javax.swing.JFrame {
                         ss.percentTxt.setText(Integer.toString(i) +"%");
                         if (i == 100) {
                             ss.setVisible(false);
-                            new MainJFrame().setVisible(true);
-                        }
-                    }
-                }
-                catch(Exception e){
-                    
-                    
-                }
-                
+                            new MainJFrame().setVisible(true);                       }
+                    }       }
+             catch(Exception e){
+                  
+                   
+               }
+             
             }
         });
     }
