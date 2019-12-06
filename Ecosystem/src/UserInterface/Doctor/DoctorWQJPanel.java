@@ -5,9 +5,13 @@
  */
 package UserInterface.Doctor;
 
+import Business.EcoSystem;
+import Business.Enterprise.BloodBankEnterprise;
 import Business.Enterprise.Enterprise;
 import Business.Entity.BloodType;
 import Business.Entity.HospitalStatus;
+import Business.Network.Network;
+import Business.Organization.BloodCollectionStationOrganization;
 import Business.Organization.CommonUserOrganization;
 import Business.Organization.LabOrganization;
 import Business.Organization.Organization;
@@ -38,12 +42,14 @@ public class DoctorWQJPanel extends javax.swing.JPanel {
     private Enterprise e;
     private UserAccount next;
     private UserAccount curr;
+    private EcoSystem business;
     HospitalInnerRequest wrinner;
     DonorRequest dr;
     HospitalStatus lastStatus;
 
-    public DoctorWQJPanel(WorkRequest wr, JPanel userProcessContainer, Enterprise e, UserAccount userAccount) {
+    public DoctorWQJPanel(WorkRequest wr, JPanel userProcessContainer, EcoSystem business, Enterprise e, UserAccount userAccount) {
         initComponents();
+        this.business = business;
         this.userProcessContainer = userProcessContainer;
         this.wr = wr;
         this.e = e;
@@ -370,21 +376,39 @@ public class DoctorWQJPanel extends javax.swing.JPanel {
                 e.getWorkQueue().getWorkRequestList().remove(wrinner);
                 e.getWorkQueue().getWorkRequestList().add(wrinner);
                 lastStatus = HospitalStatus.URGENT;
-            } 
-        }else if(status == HospitalStatus.WAITING_FOR_BLOOD){
+            }
+        } else if (status == HospitalStatus.WAITING_FOR_BLOOD) {
             next = (UserAccount) staffcombo.getSelectedItem();
-            System.out.println(next.toString());
-
             if (lastStatus != null) {
                 e.getWorkQueue().getWorkRequestList().remove(wrinner);
             }
             wrinner.setReceiver(next);
             next.getWorkQueue().getWorkRequestList().remove(wrinner);
             next.getWorkQueue().getWorkRequestList().add(wrinner);
-            
-            
-        } 
-        else {
+
+            DonorRequest dr = new DonorRequest();
+            dr.setReceiver(wr.getPatient());
+            dr.setBlood(wr.getPatient().getPerson().getType().getValue());
+            dr.setRequestDate(new Date());
+
+            Organization org = null;
+            for (Network network : business.getNetworkList()) {
+                for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
+                    if (enterprise instanceof BloodBankEnterprise) {
+                        for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
+                            if (organization instanceof BloodCollectionStationOrganization) {
+                                org = organization;
+                                if (org != null) {
+
+                                    org.getWorkQueue().getWorkRequestList().add(dr);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+        } else {
             next = (UserAccount) staffcombo.getSelectedItem();
             System.out.println(next.toString());
 

@@ -141,7 +141,7 @@ public class HospitalLabJPanel extends javax.swing.JPanel {
         WorkRequest wr = null;
         if (selectedRow >= 0) {
             wr = (WorkRequest) rqTable.getValueAt(selectedRow, 0);
-            DoctorWQJPanel panel = new DoctorWQJPanel(wr, userProcessContainer, enterprise, userAccount);
+            DoctorWQJPanel panel = new DoctorWQJPanel(wr, userProcessContainer,business, enterprise, userAccount);
             userProcessContainer.add("DoctorWQJPanel", panel);
             CardLayout layout = (CardLayout) userProcessContainer.getLayout();
             layout.next(userProcessContainer);
