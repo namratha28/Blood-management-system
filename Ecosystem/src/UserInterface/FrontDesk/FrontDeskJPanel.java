@@ -55,6 +55,7 @@ public class FrontDeskJPanel extends javax.swing.JPanel {
         populateWrTable();
         populateStaff();
         populateSpeComboBox();
+        populateRqTable();
         dueTxt.setText("11/22/80 00:00:00");
     }
 
@@ -70,6 +71,19 @@ public class FrontDeskJPanel extends javax.swing.JPanel {
                     staffcombo.addItem(acc);
                 }
             }
+        }
+    }
+
+    private void populateRqTable() {
+        DefaultTableModel model = (DefaultTableModel) rqTable.getModel();
+        model.setRowCount(0);
+        for (WorkRequest rq : curr.getWorkQueue().getWorkRequestList()) {
+            Object[] row = new Object[4];
+            row[0] = rq;
+            row[1] = rq.getAppointmentDate();
+            row[2] = rq.getMessage();
+            row[3] = rq.getStatus();
+            model.addRow(row);
         }
     }
 
@@ -118,6 +132,9 @@ public class FrontDeskJPanel extends javax.swing.JPanel {
         jButton1 = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
         statuscombo = new javax.swing.JComboBox();
+        jLabel5 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        rqTable = new javax.swing.JTable();
 
         selectBtn.setText("Select");
         selectBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -142,7 +159,7 @@ public class FrontDeskJPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel3.setText("Work Queue");
+        jLabel3.setText("Emergency");
 
         wrTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -173,6 +190,18 @@ public class FrontDeskJPanel extends javax.swing.JPanel {
 
         statuscombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
+        jLabel5.setText("Work Queue");
+
+        rqTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "from", "due", "event", "Status"
+            }
+        ));
+        jScrollPane3.setViewportView(rqTable);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -180,26 +209,26 @@ public class FrontDeskJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(207, 207, 207)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(203, 203, 203)
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(appBtn))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 573, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(410, 410, 410)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 195, Short.MAX_VALUE)
+                        .addComponent(appBtn))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 575, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(37, 37, 37)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(selectBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(cancelBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 71, Short.MAX_VALUE))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 575, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 575, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(37, 37, 37)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(selectBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(cancelBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 71, Short.MAX_VALUE)))
+                            .addComponent(jLabel5))))
                 .addGap(261, 261, 261))
             .addGroup(layout.createSequentialGroup()
-                .addGap(194, 194, 194)
+                .addGap(184, 184, 184)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9)
@@ -225,16 +254,22 @@ public class FrontDeskJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(appBtn)
                     .addComponent(jLabel1))
-                .addGap(19, 19, 19)
+                .addGap(3, 3, 3)
                 .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(42, 42, 42))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(selectBtn)
-                        .addGap(18, 18, 18)
-                        .addComponent(cancelBtn))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(cancelBtn)
+                        .addGap(123, 123, 123)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(staffcombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -250,15 +285,15 @@ public class FrontDeskJPanel extends javax.swing.JPanel {
                 .addComponent(massageTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton1)
-                .addGap(30, 30, 30))
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void selectBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectBtnActionPerformed
-        selectedRow = wrTable.getSelectedRow();
+        selectedRow = rqTable.getSelectedRow();
         //WorkRequest wr = null;
         if (selectedRow >= 0) {
-            wr = (WorkRequest) wrTable.getValueAt(selectedRow, 0);
+            wr = (WorkRequest) rqTable.getValueAt(selectedRow, 0);
 
         } else {
             JOptionPane.showMessageDialog(null, "Please select any row");
@@ -274,12 +309,12 @@ public class FrontDeskJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_appBtnActionPerformed
 
     private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
-        selectedRow = wrTable.getSelectedRow();
+        selectedRow = rqTable.getSelectedRow();
 
         if (selectedRow >= 0) {
-            wr = (WorkRequest) wrTable.getValueAt(selectedRow, 0);
+            wr = (WorkRequest) rqTable.getValueAt(selectedRow, 0);
             curr.getWorkQueue().getWorkRequestList().remove(wr);
-            populateWrTable();
+            populateRqTable();
         } else {
             JOptionPane.showMessageDialog(null, "Please select any row");
         }
@@ -313,7 +348,8 @@ public class FrontDeskJPanel extends javax.swing.JPanel {
         wrinner.setStatus(status.getValue());
         if (status == HospitalStatus.CLOSE) {
 
-        } else if (status == HospitalStatus.URGENT || status == HospitalStatus.WAITING_FOR_BLOOD) {
+        } else if (status == HospitalStatus.URGENT) {
+            e.getWorkQueue().getWorkRequestList().remove(wrinner);
             e.getWorkQueue().getWorkRequestList().add(wrinner);
         } else {
             next = (UserAccount) staffcombo.getSelectedItem();
@@ -359,9 +395,12 @@ public class FrontDeskJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTextField massageTxt;
+    private javax.swing.JTable rqTable;
     private javax.swing.JButton selectBtn;
     private javax.swing.JComboBox staffcombo;
     private javax.swing.JComboBox statuscombo;

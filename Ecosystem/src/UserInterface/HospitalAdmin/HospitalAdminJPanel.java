@@ -11,6 +11,7 @@ import Business.Enterprise.Enterprise;
 import Business.Event.HospitalEvent;
 
 import Business.Organization.AdminOrganization;
+import Business.Organization.CommonUserOrganization;
 import Business.Organization.Organization;
 
 import Business.UserAccount.UserAccount;
@@ -61,9 +62,6 @@ public class HospitalAdminJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTextField4 = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         employeejTable = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -81,21 +79,7 @@ public class HospitalAdminJPanel extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         submitBtn = new javax.swing.JButton();
         delOrgBtn = new javax.swing.JButton();
-
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
-            }
-        });
-
-        jLabel4.setText("Emergency BroadCast");
-
-        jButton2.setText("send");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
+        jButton1 = new javax.swing.JButton();
 
         employeejTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -185,6 +169,13 @@ public class HospitalAdminJPanel extends javax.swing.JPanel {
             }
         });
 
+        jButton1.setText("delete");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -192,12 +183,8 @@ public class HospitalAdminJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(107, 107, 107)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 871, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 871, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4)
                             .addComponent(jLabel6)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 709, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -207,7 +194,8 @@ public class HospitalAdminJPanel extends javax.swing.JPanel {
                                     .addComponent(delEmpBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(jLabel1)
-                            .addComponent(jLabel5)))
+                            .addComponent(jLabel5))
+                        .addGap(8, 8, 8))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 476, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(71, 71, 71)
@@ -219,7 +207,10 @@ public class HospitalAdminJPanel extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(delOrgBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(submitBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                .addComponent(submitBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jButton1)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 871, javax.swing.GroupLayout.PREFERRED_SIZE))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(482, Short.MAX_VALUE)
                 .addComponent(jLabel2)
@@ -261,19 +252,11 @@ public class HospitalAdminJPanel extends javax.swing.JPanel {
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel4)
-                .addGap(18, 18, 18)
-                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton2)
-                .addContainerGap(117, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton1)
+                .addContainerGap(260, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
 
     private void createBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBtnActionPerformed
         CreateEmployeeJPanel panel = new CreateEmployeeJPanel(userProcessContainer, enterprise);
@@ -285,12 +268,16 @@ public class HospitalAdminJPanel extends javax.swing.JPanel {
     private void delEmpBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delEmpBtnActionPerformed
         int selectedRow = employeejTable.getSelectedRow();
         if (selectedRow >= 0) {
-            Employee vs = (Employee) employeejTable.getValueAt(selectedRow, 0);
+            UserAccount vs = (UserAccount) employeejTable.getValueAt(selectedRow, 0);
             for (Organization org : enterprise.getOrganizationDirectory().getOrganizationList()) {
-                for (Employee e : org.getEmployeeDirectory().getEmployeeList()) {
-                    if (e == vs) {
-                        org.getEmployeeDirectory().getEmployeeList().remove(e);
-                        break;
+                if (org instanceof CommonUserOrganization) {
+                } else {
+                    for (UserAccount e : org.getUserAccountDirectory().getUserAccountList()) {
+                        if (e == vs) {
+                            org.getEmployeeDirectory().getEmployeeList().remove(e.getEmployee());
+                            org.getUserAccountDirectory().getUserAccountList().remove(e);
+                            break;
+                        }
                     }
                 }
             }
@@ -302,20 +289,6 @@ public class HospitalAdminJPanel extends javax.swing.JPanel {
         }
 
     }//GEN-LAST:event_delEmpBtnActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-//        HospitalEvent event = new HospitalEvent("Notice");
-//        for (Organization org : enterprise.getOrganizationDirectory().getOrganizationList()) {
-//            for (Employee e : org.getEmployeeDirectory().getEmployeeList()) {
-//                event.addObserver(e);
-//            }
-//        }
-//
-//        WorkRequest r = new HospitalInnerRequest();
-//        r.setSender(account);
-//        r.setMessage("Tomorrow training");
-//        event.produce(r);
-    }//GEN-LAST:event_jButton2ActionPerformed
 
     private void submitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitBtnActionPerformed
         Organization.Type selected = (Organization.Type) OrgTypejComboBox.getSelectedItem();
@@ -349,6 +322,19 @@ public class HospitalAdminJPanel extends javax.swing.JPanel {
         layout.next(userProcessContainer);
     }//GEN-LAST:event_btnUpdateActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        int selectedRow = wrTable.getSelectedRow();
+        if (selectedRow < 0) {
+            JOptionPane.showMessageDialog(null, "Please select the row to delete the organzation", "Warning", JOptionPane.WARNING_MESSAGE);
+        } else {
+            WorkRequest r = (WorkRequest) wrTable.getValueAt(selectedRow, 0);
+            enterprise.getWorkQueue().getWorkRequestList().remove(r);
+            populateWrTable();
+            JOptionPane.showMessageDialog(null, "You have successfully deleted the work requeset!");
+
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox OrgTypejComboBox;
@@ -357,17 +343,15 @@ public class HospitalAdminJPanel extends javax.swing.JPanel {
     private javax.swing.JButton delEmpBtn;
     private javax.swing.JButton delOrgBtn;
     private javax.swing.JTable employeejTable;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTextField jTextField4;
     private javax.swing.JTable orgTable;
     private javax.swing.JButton submitBtn;
     private javax.swing.JTable wrTable;
@@ -402,14 +386,15 @@ public class HospitalAdminJPanel extends javax.swing.JPanel {
         model.setRowCount(0);
 
         for (Organization org : enterprise.getOrganizationDirectory().getOrganizationList()) {
-            for (Employee e : org.getEmployeeDirectory().getEmployeeList()) {
-                Object[] row = new Object[4];
-                row[0] = e;
-                row[1] = e.getSpecialities();
-                row[2] = e.getRanking();
-                model.addRow(row);
+            if (!(org instanceof CommonUserOrganization)) {
+                for (UserAccount u : org.getUserAccountDirectory().getUserAccountList()) {
+                    Object[] row = new Object[4];
+                    row[0] = u;
+                    row[1] = u.getEmployee().getSpecialities();
+                    row[2] = u.getEmployee().getRanking();
+                    model.addRow(row);
+                }
             }
-
         }
     }
 
@@ -420,7 +405,7 @@ public class HospitalAdminJPanel extends javax.swing.JPanel {
 
         for (WorkRequest r : enterprise.getWorkQueue().getWorkRequestList()) {
             Object[] row = new Object[4];
-            row[0] = r.getSender();
+            row[0] = r;
             row[1] = r.getReceiver();
             row[2] = r.getMessage();
             row[3] = r.getStatus();

@@ -101,7 +101,7 @@ public class Employee {
 
     @Override
     public String toString() {
-        return "Employee{" + "id=" + id + ", availability=" + availability + ", Specialities=" + specialities + '}';
+        return name;
     }
 
 //    @Override

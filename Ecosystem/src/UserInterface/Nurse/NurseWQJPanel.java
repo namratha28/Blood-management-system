@@ -328,14 +328,8 @@ public class NurseWQJPanel extends javax.swing.JPanel {
         wrinner.setStatus(status.getValue());
         if (status == HospitalStatus.CLOSE) {
 
-        } else if (status == HospitalStatus.URGENT || status == HospitalStatus.WAITING_FOR_BLOOD) {
-//            HospitalEvent event = new HospitalEvent(HospitalStatus.URGENT.getValue());
-//            for (Organization org : e.getOrganizationDirectory().getOrganizationList()) {
-//                for (Employee e : org.getEmployeeDirectory().getEmployeeList()) {
-//                    event.addObserver(e);
-//                }
-//            }
-//            event.produce(wrinner);
+        } else if (status == HospitalStatus.URGENT) {
+            e.getWorkQueue().getWorkRequestList().remove(wrinner);
             e.getWorkQueue().getWorkRequestList().add(wrinner);
         } else {
             next = (UserAccount) staffcombo.getSelectedItem();

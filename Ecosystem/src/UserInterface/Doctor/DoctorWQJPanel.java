@@ -51,6 +51,7 @@ public class DoctorWQJPanel extends javax.swing.JPanel {
         populatePatientInfo();
         populateSpeComboBox();
         populateStaff();
+
         dueTxt.setText("11/22/80 00:00:00");
     }
 
@@ -321,8 +322,8 @@ public class DoctorWQJPanel extends javax.swing.JPanel {
         wrinner.setStatus(status.getValue());
         if (status == HospitalStatus.CLOSE) {
 
-        } else if (status == HospitalStatus.URGENT || status == HospitalStatus.WAITING_FOR_BLOOD) {
-
+        } else if (status == HospitalStatus.URGENT) {
+            e.getWorkQueue().getWorkRequestList().remove(wrinner);
             e.getWorkQueue().getWorkRequestList().add(wrinner);
         } else {
             next = (UserAccount) staffcombo.getSelectedItem();
