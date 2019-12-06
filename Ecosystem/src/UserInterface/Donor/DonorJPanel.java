@@ -300,8 +300,7 @@ public class DonorJPanel extends javax.swing.JPanel {
                                     .addComponent(phNoTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(ageTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(AddressTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(bloodGroupDropDown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(bloodGroupDropDown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(213, 213, 213)
                         .addComponent(PharmacyJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -316,13 +315,16 @@ public class DonorJPanel extends javax.swing.JPanel {
                         .addGap(209, 209, 209)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 428, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(331, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(429, 429, 429))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(1, 1, 1)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(NameTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
@@ -393,10 +395,11 @@ public class DonorJPanel extends javax.swing.JPanel {
                 donorrequest.setBlood((bloodGroupDropDown.getSelectedItem().toString()));
                 donorrequest.setPhoneNo(Integer.parseInt(phNoTxtField.getText()));
                 donorrequest.setSender(userAccount);
-
+                donorrequest.setBloodBank(bloodBankBtn.getSelectedItem().toString());
                 donorrequest.setStatus("Sent");
+                
                 System.out.println(donorrequest.getStatus());
-                System.out.println(donorrequest.getPhoneNo());
+                //System.out.println(donorrequest.getPhoneNo());
                 Organization org = null;
                 for (Network network : business.getNetworkList()) {
                     for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
@@ -404,7 +407,10 @@ public class DonorJPanel extends javax.swing.JPanel {
                             for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
                                 if (organization instanceof LabOrganization) {
                                     org = organization;
-                                    System.out.println("org1"+org);
+                                     org.getWorkQueue().getWorkRequestList().add(donorrequest);
+                                    System.out.println("lab org1"+org);
+                                    System.out.println(org.getWorkQueue().getWorkRequestList());
+                                    System.out.println(org.getName());
                                     break;
                                 }
                             }
@@ -416,7 +422,7 @@ public class DonorJPanel extends javax.swing.JPanel {
 
                 if (org != null) {
                     //System.out.println("userinterface.Farmer.RequestDoctorTreatmentWorkAreaJPanel.requestTestJButtonActionPerformed()");
-                    org.getWorkQueue().getWorkRequestList().add(donorrequest);
+                   
                     userAccount.getWorkQueue().getWorkRequestList().add(donorrequest);
 
                     //JOptionPane.showMessageDialog(null, "You have successfully submitted your treatment request !", "Information", JOptionPane.INFORMATION_MESSAGE);
@@ -438,7 +444,7 @@ public class DonorJPanel extends javax.swing.JPanel {
                                             if(useraccount.getUsername().equals(userAccountSelected)){
                                                  org1 = organization;
                                                  UserAccountSel=useraccount;
-                                                   System.out.println("org"+org+" "+UserAccountSel);
+                                                   System.out.println("donate org"+org1+" "+UserAccountSel);
                                                  break;
                                             
                                             }
@@ -539,7 +545,7 @@ public class DonorJPanel extends javax.swing.JPanel {
         String userAccountSelected = PharmacyJComboBox.getSelectedItem().toString();
         UserAccount UserAccountSel= null;
         Organization org = null;
-        if (selectedRow >= 0 && !(medicineRequest.getStatus().equalsIgnoreCase("requested"))) {
+        if (selectedRow >= 0) {
           
                 for (Network network : business.getNetworkList()) {
                     for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {

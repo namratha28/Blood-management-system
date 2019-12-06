@@ -6,6 +6,8 @@
 package Bussiness.WorkQueue;
 
 import Business.UserAccount.UserAccount;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 /**
@@ -85,7 +87,7 @@ public abstract class WorkRequest {
     public void setComments(String comments) {
         this.comments = comments;
     }
-    private Date date = new Date();
+    private LocalDate date;
 
     public String getComplaintMessage() {
         return complaintMessage;
@@ -95,11 +97,15 @@ public abstract class WorkRequest {
         this.complaintMessage = complaintMessage;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
+        LocalDate date = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        date.format(formatter);
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
+        
         this.date = date;
     }
 

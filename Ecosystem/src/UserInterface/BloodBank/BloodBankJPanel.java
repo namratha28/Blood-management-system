@@ -15,7 +15,10 @@ import Bussiness.WorkQueue.DonorRequest;
 import Bussiness.WorkQueue.WorkRequest;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import org.jfree.chart.ChartFactory;
@@ -55,26 +58,54 @@ public class BloodBankJPanel extends javax.swing.JPanel {
         System.out.print("bloodBank");
         populateTable();
         viewTable();
+        viewTable1();
         }
     
     public void viewTable(){
         DefaultCategoryDataset dcd = new DefaultCategoryDataset();
         ArrayList<WorkRequest> list = bloodCollectionStationOrganization.getWorkQueue().getWorkRequestList();
-     
-        for (WorkRequest workRequest : bloodCollectionStationOrganization.getWorkQueue().getWorkRequestList()) {
+        HashMap<String,Integer> count=new HashMap<String,Integer>();
+        int cnt=0;
+        for (WorkRequest workRequest : userAccount.getWorkQueue().getWorkRequestList()) {
             if (workRequest instanceof DonorRequest) {
                 if (workRequest.getStatus() != null && workRequest.getStatus().equals("Completed")) {
-                    int count = 1;
-                    String Blood = "AB";
-                    dcd.addValue(count,"BLood Group", Blood);
+                    
+                    String Blood = ((DonorRequest) workRequest).getBlood();
+                    cnt=count.getOrDefault(Blood,0)+1;
+                    count.put(Blood,cnt);
+                    dcd.addValue(count.get(Blood),"BLood Group", Blood);
                        System.out.println(Blood);
+                       
+                    
+                }
+
+            }
+        }
+        barGraph(dcd,"Blood donated by donors","Blood Group","Number of DOnors");
+        
+    }
+    
+     public void viewTable1(){
+        DefaultCategoryDataset dcd1 = new DefaultCategoryDataset();
+        ArrayList<WorkRequest> list = bloodCollectionStationOrganization.getWorkQueue().getWorkRequestList();
+        HashMap<LocalDate,Integer> count=new HashMap<LocalDate,Integer>();
+        int cnt=0;
+        for (WorkRequest workRequest : userAccount.getWorkQueue().getWorkRequestList()) {
+            if (workRequest instanceof DonorRequest) {
+                if (workRequest.getStatus() != null && workRequest.getStatus().equals("Completed")) {
+                    
+                    LocalDate date = ((DonorRequest) workRequest).getDate();
+                    cnt=count.getOrDefault(date,0)+1;
+                    count.put(date,cnt);
+                    dcd1.addValue(count.get(date),"BLood Group", date);
+                       System.out.println(date);
                        
                     //System.out.println(Blood+" "+count);
                 }
 
             }
         }
-        barGraph(dcd,"Number of DOnors","Blood Group","Donors");
+        barGraph1(dcd1,"Donors on date","Date","Number of DOnors");
         
     }
     
@@ -96,6 +127,25 @@ public class BloodBankJPanel extends javax.swing.JPanel {
         jPanel1.add(CP,BorderLayout.CENTER);
         jPanel1.validate();
     }
+    
+    private void barGraph1(DefaultCategoryDataset dataset,String tHeader,String bHeader,String lHeader){
+
+        JFreeChart chart = ChartFactory.createBarChart3D(
+        tHeader, // Title
+        bHeader, // x-axis Label
+        lHeader, // y-axis Label
+        dataset, // Dataset
+        PlotOrientation.VERTICAL, // Plot Orientation
+        true, // Show Legend
+        true, // Use tooltips
+        false // Configure chart to generate URLs?
+     );
+        jPanel2.removeAll();
+        jPanel2.setLayout(new java.awt.BorderLayout());
+        ChartPanel CP = new ChartPanel(chart);
+        jPanel2.add(CP,BorderLayout.CENTER);
+        jPanel2.validate();
+    }
     public void populateTable() {
         DefaultTableModel model = (DefaultTableModel) workRequestJTable.getModel();
 
@@ -109,7 +159,7 @@ public class BloodBankJPanel extends javax.swing.JPanel {
           if(labrequest.getStatus().equalsIgnoreCase("completed")){
               DonorRequest req= new DonorRequest();
                 row[0] = labrequest;
-                row[2] = labrequest.getDate();
+              
                 //row[1] = labrequest.getSender()==null? null : labrequest.getSender().getUsername();
                 //row[2] = docrequest.getSender().getEmployee().getName();
                 row[1] = labrequest.getReceiver() == null ? null : labrequest.getReceiver().getEmployee().getName();
@@ -117,7 +167,7 @@ public class BloodBankJPanel extends javax.swing.JPanel {
                 row[3]=req.getDate();
                 row[4] = labrequest.getStatus();
 
-                System.out.println(row[1]);
+                System.out.println(row[2]);
 
                 model.addRow(row); 
             
@@ -138,6 +188,7 @@ public class BloodBankJPanel extends javax.swing.JPanel {
         workRequestJTable = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
 
         setBackground(new java.awt.Color(51, 51, 51));
 
@@ -182,6 +233,17 @@ public class BloodBankJPanel extends javax.swing.JPanel {
             .addGap(0, 166, Short.MAX_VALUE)
         );
 
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 302, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 166, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -194,9 +256,12 @@ public class BloodBankJPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(104, 104, 104)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 526, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(202, Short.MAX_VALUE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 526, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
+                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(54, 54, 54))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -206,7 +271,9 @@ public class BloodBankJPanel extends javax.swing.JPanel {
                 .addGap(33, 33, 33)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(62, 62, 62)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(105, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -215,6 +282,7 @@ public class BloodBankJPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable workRequestJTable;
     // End of variables declaration//GEN-END:variables
