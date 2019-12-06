@@ -9,7 +9,9 @@ import Business.Enterprise.Enterprise;
 import Business.Entity.HospitalStatus;
 import Business.Entity.Person;
 import Business.Organization.CommonUserOrganization;
+import Business.Organization.LabOrganization;
 import Business.Organization.Organization;
+import Business.Role.LabRole;
 import Business.UserAccount.UserAccount;
 import Bussiness.WorkQueue.HospitalInnerRequest;
 import Bussiness.WorkQueue.WorkRequest;
@@ -51,7 +53,7 @@ public class NurseWQJPanel extends javax.swing.JPanel {
         staffcombo.removeAllItems();
         //nursecombo.addItem("None");
         for (Organization org : e.getOrganizationDirectory().getOrganizationList()) {
-            if (!(org instanceof CommonUserOrganization) ){
+            if (!(org instanceof CommonUserOrganization)) {
                 for (UserAccount acc : org.getUserAccountDirectory().getUserAccountList()) {
                     staffcombo.addItem(acc);
                 }
@@ -301,8 +303,9 @@ public class NurseWQJPanel extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         HospitalStatus status = (HospitalStatus) statuscombo.getSelectedItem();
-
-        HospitalInnerRequest wrinner = new HospitalInnerRequest();
+        if (wrinner == null) {
+            wrinner = new HospitalInnerRequest();
+        }
         wrinner.setSender(wr.getReceiver());
         wrinner.setMessage(massageTxt.getText());
         wrinner.setPatient(wr.getPatient());
@@ -333,14 +336,26 @@ public class NurseWQJPanel extends javax.swing.JPanel {
             e.getWorkQueue().getWorkRequestList().add(wrinner);
         } else {
             next = (UserAccount) staffcombo.getSelectedItem();
+
             wrinner.setReceiver(next);
-            next.getWorkQueue().getWorkRequestList().add(wrinner);
+
+            if (next.getRole() instanceof LabRole) {
+                for (Organization org : e.getOrganizationDirectory().getOrganizationList()) {
+                    if ((org instanceof LabOrganization)) {
+                        org.getWorkQueue().getWorkRequestList().add(wrinner);
+                    }
+                }
+            } else {
+                next.getWorkQueue().getWorkRequestList().remove(wrinner);
+                next.getWorkQueue().getWorkRequestList().add(wrinner);
+            }
         }
         wr.setResolveDate(new Date());
         wr.setStatus(status.getValue());
         wr.setMessage(massageTxt.getText());
         System.out.println(status.getValue());
         if (wr.getPatient().getPerson().getTreatmentHistory() != null) {
+            wr.getPatient().getPerson().getTreatmentHistory().remove(wr);
             wr.getPatient().getPerson().getTreatmentHistory().add(wr);
         }
         curr.getWorkQueue().getWorkRequestList().remove(wr);

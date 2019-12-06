@@ -57,7 +57,7 @@ public class LabJPanel extends javax.swing.JPanel {
 
         for (WorkRequest labrequest :  labOrganization.getWorkQueue().getWorkRequestList()) {
             System.out.println("lab panel"+labOrganization.getWorkQueue().getWorkRequestList());
-            DonorRequest request=(DonorRequest) labrequest;
+            DonorRequest request=(DonorRequest) labrequest;//**
             Object[] row = new Object[10];
          
             row[0] = labrequest;
