@@ -6,8 +6,11 @@
 package UserInterface.BloodBank;
 
 import Business.EcoSystem;
+import Business.Enterprise.BloodBankEnterprise;
 import Business.Enterprise.Enterprise;
+import Business.Network.Network;
 import Business.Organization.BloodCollectionStationOrganization;
+import Business.Organization.FrontDeskEmployeeOrganization;
 import Business.Organization.NurseOrganization;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
@@ -358,8 +361,6 @@ public class BloodBankJPanel extends javax.swing.JPanel {
              
            
                 donorRequest.setStatus("BLOOD_SENT");
-               
-               
                 labrequest.setReceiver(donorRequest.getSender());
                 break;
             
@@ -368,6 +369,25 @@ public class BloodBankJPanel extends javax.swing.JPanel {
            }
            populateTable();
            populateRequestTable();
+           Organization org=null;
+            for (Network network : business.getNetworkList()) {
+                    for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
+                        if (enterprise instanceof BloodBankEnterprise) {
+                            for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
+                                if (organization instanceof FrontDeskEmployeeOrganization) {
+                                        org = organization;
+                                        org.getWorkQueue().getWorkRequestList().add(donorRequest);  
+                                            
+                                       }
+                                                 
+                                    }
+                                       
+                                }
+                            }
+                        
+
+                    }
+                
     }//GEN-LAST:event_RequestBtnActionPerformed
 
 
