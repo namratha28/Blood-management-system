@@ -24,6 +24,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import org.jfree.chart.ChartFactory;
@@ -72,23 +73,21 @@ public class BloodBankJPanel extends javax.swing.JPanel {
         model.setRowCount(0);
         
         for (WorkRequest labrequest : bloodCollectionStationOrganization.getWorkQueue().getWorkRequestList()) {
-            System.out.println(labrequest.getBlood());
-            System.out.println(labrequest.getStatus());
+            System.out.println("populate");
+           
+             DonorRequest req= (DonorRequest)labrequest;
             Object[] row = new Object[6];
           if((labrequest.getSender()!=null && labrequest.getReceiver()!=null)&&
-                  (labrequest.getStatus()=="" || labrequest.getStatus()=="BLOOD_SENT") ){
-              DonorRequest req= new DonorRequest();
+                  ((req.getStatus()=="") ||( req.getStatus()=="BLOOD_READY")) ){
+              System.out.println("hd"+labrequest.getStatus());
+             
                 row[0] = labrequest;
-              
-                //row[1] = labrequest.getSender()==null? null : labrequest.getSender().getUsername();
-                //row[2] = docrequest.getSender().getEmployee().getName();
                 row[1] = labrequest.getBlood();
-                row[3]=req.getRecievedDate();
-               
+                //row[3]=req.getRecievedDate();
                 row[2]=req.getDate();
-                row[4] = labrequest.getStatus();
+                row[3] = labrequest.getStatus();
 
-                System.out.println(row[0]);
+               // System.out.println(row[0]);
 
                 model.addRow(row); 
             
@@ -351,8 +350,16 @@ public class BloodBankJPanel extends javax.swing.JPanel {
     private void RequestBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RequestBtnActionPerformed
         // TODO add your handling code here:
          int selectedRow = patientsTable.getSelectedRow();
+         if(selectedRow<0){
+              JOptionPane.showMessageDialog(null, "Please select a row", "Warning", JOptionPane.WARNING_MESSAGE);
+              return;
+         }
+         
            DonorRequest donorRequest = (DonorRequest) patientsTable.getValueAt(selectedRow, 0);
-           //donorRequest.setStatus("BLOOD_READY");
+           if(donorRequest.getStatus().equals("BLOOD_READY")){
+               JOptionPane.showMessageDialog(null, "Already blood sent to patient", "Warning", JOptionPane.WARNING_MESSAGE);
+              return;   
+           }
            for (WorkRequest labrequest : userAccount.getWorkQueue().getWorkRequestList()) {
             //System.out.println(labrequest);
             Object[] row = new Object[5];
@@ -361,16 +368,19 @@ public class BloodBankJPanel extends javax.swing.JPanel {
           if(labrequest.getReceiver()==null && labrequest.getBlood().equalsIgnoreCase(donorRequest.getBlood())){
              
            
-                donorRequest.setStatus("BLOOD_SENT");
+                donorRequest.setStatus("BLOOD_READY");
                 labrequest.setReceiver(donorRequest.getSender());
+                System.out.println("req"+donorRequest.getStatus());
                 break;
             
            }
          
            }
-           populateTable();
-           populateRequestTable();
+          
            Organization org=null;
+           if(donorRequest.getStatus().equals("BLOOD_READY")){
+                populateTable();
+                populateRequestTable();
             for (Network network : business.getNetworkList()) {
                     for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
                         if (enterprise instanceof BloodBankEnterprise) {
@@ -388,7 +398,11 @@ public class BloodBankJPanel extends javax.swing.JPanel {
                         
 
                     }
-                
+            
+    } 
+           else{
+              JOptionPane.showMessageDialog(null, "NOT AVAILABLE", "Warning", JOptionPane.INFORMATION_MESSAGE);
+           }
     }//GEN-LAST:event_RequestBtnActionPerformed
 
 
