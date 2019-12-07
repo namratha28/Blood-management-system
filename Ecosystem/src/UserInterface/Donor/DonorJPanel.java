@@ -477,21 +477,34 @@ public class DonorJPanel extends javax.swing.JPanel {
                 
             }
         }
+        else{
+           JOptionPane.showMessageDialog(null, "Please Fill all fields", "Warning", JOptionPane.WARNING_MESSAGE);
+        
+        }
 
     }//GEN-LAST:event_donateBtnActionPerformed
 
     private void requestMedicineBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_requestMedicineBtnActionPerformed
         // TODO add your handling code here:
         int selectedRow = MedicineListTable.getSelectedRow();
-        MedicineRequest MedicineRequest = (MedicineRequest) MedicineListTable.getValueAt(selectedRow, 0);
+        MedicineRequest medicineRequest = (MedicineRequest) MedicineListTable.getValueAt(selectedRow, 0);
         String userAccountSelected = PharmacyJComboBox.getSelectedItem().toString();
         UserAccount UserAccountSel= null;
         Organization org = null;
-         if(MedicineRequest.getStatus().equals("Requested")) {
+         if(medicineRequest.getStatus().equals("Requested")) {
             JOptionPane.showMessageDialog(null, "Already Requested ", "Information", JOptionPane.INFORMATION_MESSAGE);
             return;
         }
-        if (selectedRow >= 0 &&  MedicineRequest.getStatus().equalsIgnoreCase("Available") ) {
+         if(medicineRequest.getStatus().equals("Completed")) {
+            JOptionPane.showMessageDialog(null, "Medicines already recieved ", "Information", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+         if(medicineRequest.getStatus().equals("Not available")) {
+            JOptionPane.showMessageDialog(null, "Not available check with other pharmacy ", "Information", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+         
+        if (selectedRow >= 0 &&  medicineRequest.getStatus().equalsIgnoreCase("Available") ) {
           
                 for (Network network : business.getNetworkList()) {
                     for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
@@ -519,10 +532,10 @@ public class DonorJPanel extends javax.swing.JPanel {
               
                 if (org != null) {
                     //System.out.println("userinterface.Farmer.RequestDoctorTreatmentWorkAreaJPanel.requestTestJButtonActionPerformed()");
-                    org.getWorkQueue().getWorkRequestList().add(MedicineRequest);
-                    UserAccountSel.getWorkQueue().getWorkRequestList().add(MedicineRequest);
-                     MedicineRequest.setStatus("Requested");
-                     MedicineRequest.setReceiver(UserAccountSel);
+                    org.getWorkQueue().getWorkRequestList().add(medicineRequest);
+                    UserAccountSel.getWorkQueue().getWorkRequestList().add(medicineRequest);
+                     medicineRequest.setStatus("Requested");
+                     medicineRequest.setReceiver(UserAccountSel);
                      populateTable();
                     JOptionPane.showMessageDialog(null, "You have successfully submitted your Medicine request ", "Information", JOptionPane.INFORMATION_MESSAGE);
                 }
@@ -545,6 +558,18 @@ public class DonorJPanel extends javax.swing.JPanel {
         String userAccountSelected = PharmacyJComboBox.getSelectedItem().toString();
         UserAccount UserAccountSel= null;
         Organization org = null;
+        if(medicineRequest.getStatus().equals("Requested")) {
+            JOptionPane.showMessageDialog(null, "Already Requested ", "Information", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+         if(medicineRequest.getStatus().equals("Completed")) {
+            JOptionPane.showMessageDialog(null, "Medicines already recieved ", "Information", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+          if(medicineRequest.getStatus().equals("Not Available")) {
+            JOptionPane.showMessageDialog(null, "Not available check with other pharmacy ", "Information", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
         if (selectedRow >= 0) {
           
                 for (Network network : business.getNetworkList()) {
