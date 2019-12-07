@@ -32,14 +32,14 @@ public class FrontDeskJPanel extends javax.swing.JPanel {
     private JPanel userProcessContainer;
     private EcoSystem business;
     private FrontDeskEmployeeOrganization organization;
-    private Enterprise e;
+    private Enterprise enterprise;
     private WorkRequest wr;
     private UserAccount next;
     private UserAccount curr;
-    HospitalInnerRequest wrinner;
-    DonorRequest dr;
-    int selectedRow = -1;
-    HospitalStatus lastStatus;
+    private HospitalInnerRequest wrinner;
+    private DonorRequest dr;
+    private int selectedRow = -1;
+    private HospitalStatus lastStatus;
 
     /**
      * Creates new form FrontJPanel
@@ -49,7 +49,7 @@ public class FrontDeskJPanel extends javax.swing.JPanel {
         this.userProcessContainer = userProcessContainer;
         this.curr = account;
         this.business = business;
-        this.e = enterprise;
+        this.enterprise = enterprise;
         this.organization = organization;
         populateWrTable();
         populateStaff();
@@ -60,7 +60,7 @@ public class FrontDeskJPanel extends javax.swing.JPanel {
 
     private void populateStaff() {
         staffcombo.removeAllItems();
-        for (Organization org : e.getOrganizationDirectory().getOrganizationList()) {
+        for (Organization org : enterprise.getOrganizationDirectory().getOrganizationList()) {
             if (!(org instanceof CommonUserOrganization)) {
 //                if(org instanceof LabOrganization){
 //                    staffcombo.addItem(org);
@@ -91,7 +91,7 @@ public class FrontDeskJPanel extends javax.swing.JPanel {
     private void populateWrTable() {
         DefaultTableModel model = (DefaultTableModel) wrTable.getModel();
         model.setRowCount(0);
-        for (WorkRequest rq : e.getWorkQueue().getWorkRequestList()) {
+        for (WorkRequest rq : enterprise.getWorkQueue().getWorkRequestList()) {
             Object[] row = new Object[4];
             row[0] = rq;
             row[1] = rq.getAppointmentDate();
@@ -290,7 +290,7 @@ public class FrontDeskJPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 private void delFdWq(WorkRequest wr) {
-        for (Organization o : e.getOrganizationDirectory().getOrganizationList()) {
+        for (Organization o : enterprise.getOrganizationDirectory().getOrganizationList()) {
             if (o instanceof FrontDeskEmployeeOrganization) {
                 o.getWorkQueue().getWorkRequestList().remove(wr);
             }
@@ -311,7 +311,7 @@ private void delFdWq(WorkRequest wr) {
 
     private void appBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_appBtnActionPerformed
         FrontDeskApptJPanel panel = new FrontDeskApptJPanel(userProcessContainer, curr, organization,
-                e, business);
+        enterprise, business);
         userProcessContainer.add("CreateEmployeeJPanel", panel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
@@ -360,15 +360,15 @@ private void delFdWq(WorkRequest wr) {
 
         } else if (status == HospitalStatus.URGENT) {
             if (lastStatus == null) {
-                e.getWorkQueue().getWorkRequestList().remove(wrinner);
-                e.getWorkQueue().getWorkRequestList().add(wrinner);
+                enterprise.getWorkQueue().getWorkRequestList().remove(wrinner);
+                enterprise.getWorkQueue().getWorkRequestList().add(wrinner);
                 lastStatus = HospitalStatus.URGENT;
             } else {
 
             }
         } else {
             if (lastStatus != null) {
-                e.getWorkQueue().getWorkRequestList().remove(wrinner);
+                enterprise.getWorkQueue().getWorkRequestList().remove(wrinner);
             }
 
             next = (UserAccount) staffcombo.getSelectedItem();
@@ -386,7 +386,7 @@ private void delFdWq(WorkRequest wr) {
             wr.getPatient().getPerson().getTreatmentHistory().add(wr);
         }
 
-        for (Organization organization : e.getOrganizationDirectory().getOrganizationList()) {
+        for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
             if (organization instanceof FrontDeskEmployeeOrganization) {
                 organization.getWorkQueue().getWorkRequestList().remove(wr);
             }

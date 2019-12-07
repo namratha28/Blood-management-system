@@ -103,7 +103,7 @@
                                   <Group type="102" attributes="0">
                                       <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
-                                      <Component id="jTextField1" min="-2" pref="211" max="-2" attributes="0"/>
+                                      <Component id="docNameTxt" min="-2" pref="211" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
                                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -192,7 +192,7 @@
                   <Component id="selectBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="speComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTextField1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="docNameTxt" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
@@ -371,7 +371,7 @@
         <Property name="text" type="java.lang.String" value="Doctor Name"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField1">
+    <Component class="javax.swing.JTextField" name="docNameTxt">
     </Component>
     <Component class="javax.swing.JButton" name="searchDocBtn">
       <Properties>

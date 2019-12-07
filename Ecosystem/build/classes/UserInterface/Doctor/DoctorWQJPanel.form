@@ -58,7 +58,7 @@
                               <EmptySpace max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="btCombo" min="-2" max="-2" attributes="0"/>
-                                  <Component id="ageTxt" min="-2" pref="182" max="-2" attributes="0"/>
+                                  <Component id="birthdayTxt" min="-2" pref="182" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -122,7 +122,7 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel6" alignment="3" max="32767" attributes="0"/>
                           <Component id="bloodPTxt" alignment="3" max="32767" attributes="0"/>
-                          <Component id="ageTxt" alignment="3" max="32767" attributes="0"/>
+                          <Component id="birthdayTxt" alignment="3" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -196,7 +196,7 @@
         <Property name="text" type="java.lang.String" value="age"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="ageTxt">
+    <Component class="javax.swing.JTextField" name="birthdayTxt">
     </Component>
     <Component class="javax.swing.JTextField" name="bloodPTxt">
     </Component>

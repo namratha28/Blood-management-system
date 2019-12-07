@@ -6,23 +6,20 @@
 package UserInterface.BloodBank;
 
 import Business.EcoSystem;
-import Business.Enterprise.BloodBankEnterprise;
 import Business.Enterprise.Enterprise;
+import Business.Enterprise.HospitalEnterprise;
+import Business.Entity.HospitalStatus;
 import Business.Network.Network;
 import Business.Organization.BloodCollectionStationOrganization;
+import Business.Organization.CommonUserOrganization;
 import Business.Organization.FrontDeskEmployeeOrganization;
-import Business.Organization.NurseOrganization;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import Bussiness.WorkQueue.DonorRequest;
-import Bussiness.WorkQueue.MedicineRequest;
 import Bussiness.WorkQueue.WorkRequest;
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -30,10 +27,7 @@ import javax.swing.table.DefaultTableModel;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
-import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.chart.renderer.category.BarRenderer;
-import org.jfree.chart.renderer.category.StandardBarPainter;
 import org.jfree.data.category.DefaultCategoryDataset;
 
 /**
@@ -45,171 +39,164 @@ public class BloodBankJPanel extends javax.swing.JPanel {
     /**
      * Creates new form BloodBankJPanel
      */
-    
-     private JPanel userProcessContainer;
+    private JPanel userProcessContainer;
     private EcoSystem business;
     private UserAccount userAccount;
     private BloodCollectionStationOrganization bloodCollectionStationOrganization;
     private Enterprise enterprise;
 
     public BloodBankJPanel(JPanel userProcessContainer, UserAccount account, Organization organization,
-            Enterprise enterprise,EcoSystem business) {
+            Enterprise enterprise, EcoSystem business) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.userAccount = account;
         this.business = business;
         this.bloodCollectionStationOrganization = (BloodCollectionStationOrganization) organization;
         this.enterprise = enterprise;
-        this.business=business;
+        this.business = business;
         System.out.print("bloodBank");
         populateTable();
         populateRequestTable();
         viewTable();
         viewTable1();
-        }
-     public void populateRequestTable() {
+    }
+
+    public void populateRequestTable() {
         DefaultTableModel model = (DefaultTableModel) patientsTable.getModel();
 
         model.setRowCount(0);
-        
+
         for (WorkRequest labrequest : bloodCollectionStationOrganization.getWorkQueue().getWorkRequestList()) {
             System.out.println("populate");
-           
-             DonorRequest req= (DonorRequest)labrequest;
+
+            DonorRequest req = (DonorRequest) labrequest;
             Object[] row = new Object[6];
-          if((labrequest.getSender()!=null && labrequest.getReceiver()!=null)&&
-                  ((req.getStatus()=="") ||( req.getStatus()=="BLOOD_READY")) ){
-              System.out.println("hd"+labrequest.getStatus());
-             
+            if ((labrequest.getSender() != null && labrequest.getReceiver() != null)
+                    && ((req.getStatus() == "") || (req.getStatus() == "BLOOD_READY"))) {
+                System.out.println("hd" + labrequest.getStatus());
+
                 row[0] = labrequest;
                 row[1] = labrequest.getBlood();
                 //row[3]=req.getRecievedDate();
-                row[2]=req.getDate();
+                row[2] = req.getDate();
                 row[3] = labrequest.getStatus();
 
-               // System.out.println(row[0]);
+                // System.out.println(row[0]);
+                model.addRow(row);
 
-                model.addRow(row); 
-            
-           }
-            
+            }
+
         }
     }
-    
-    public void viewTable(){
+
+    public void viewTable() {
         DefaultCategoryDataset dcd = new DefaultCategoryDataset();
         ArrayList<WorkRequest> list = bloodCollectionStationOrganization.getWorkQueue().getWorkRequestList();
-        HashMap<String,Integer> count=new HashMap<String,Integer>();
-        int cnt=0;
+        HashMap<String, Integer> count = new HashMap<String, Integer>();
+        int cnt = 0;
         for (WorkRequest workRequest : userAccount.getWorkQueue().getWorkRequestList()) {
             if (workRequest instanceof DonorRequest) {
                 if (workRequest.getStatus() != null && workRequest.getStatus().equals("Completed")) {
-                    
-                    String Blood = ((DonorRequest) workRequest).getBlood();
-                    cnt=count.getOrDefault(Blood,0)+1;
-                    count.put(Blood,cnt);
-                    dcd.addValue(count.get(Blood),"BLood Group", Blood);
-                   
-                       
-                    
-                }
 
+                    String Blood = ((DonorRequest) workRequest).getBlood();
+                    cnt = count.getOrDefault(Blood, 0) + 1;
+                    count.put(Blood, cnt);
+                    dcd.addValue(count.get(Blood), "BLood Group", Blood);
+                }
             }
         }
-        barGraph(dcd,"Blood donated by donors","Blood Group","Number of DOnors");
-        
+        barGraph(dcd, "Blood donated by donors", "Blood Group", "Number of DOnors");
+
     }
-    
-     public void viewTable1(){
+
+    public void viewTable1() {
         DefaultCategoryDataset dcd1 = new DefaultCategoryDataset();
         ArrayList<WorkRequest> list = bloodCollectionStationOrganization.getWorkQueue().getWorkRequestList();
-        HashMap<LocalDate,Integer> count=new HashMap<LocalDate,Integer>();
-        int cnt=0;
+        HashMap<LocalDate, Integer> count = new HashMap<LocalDate, Integer>();
+        int cnt = 0;
         for (WorkRequest workRequest : userAccount.getWorkQueue().getWorkRequestList()) {
             if (workRequest instanceof DonorRequest) {
                 if (workRequest.getStatus() != null && workRequest.getStatus().equals("Completed")) {
-                    
+
                     LocalDate date = ((DonorRequest) workRequest).getDate();
-                    cnt=count.getOrDefault(date,0)+1;
-                    count.put(date,cnt);
-                    dcd1.addValue(count.get(date),"BLood Group", date);
-                  
-                       
-                   
+                    cnt = count.getOrDefault(date, 0) + 1;
+                    count.put(date, cnt);
+                    dcd1.addValue(count.get(date), "BLood Group", date);
+
                 }
 
             }
         }
-        barGraph1(dcd1,"Donors on date","Date","Number of DOnors");
-        
+        barGraph1(dcd1, "Donors on date", "Date", "Number of DOnors");
+
     }
-    
-    private void barGraph(DefaultCategoryDataset dataset,String tHeader,String bHeader,String lHeader){
+
+    private void barGraph(DefaultCategoryDataset dataset, String tHeader, String bHeader, String lHeader) {
 
         JFreeChart chart = ChartFactory.createBarChart3D(
-        tHeader, // Title
-        bHeader, // x-axis Label
-        lHeader, // y-axis Label
-        dataset, // Dataset
-        PlotOrientation.VERTICAL, // Plot Orientation
-        true, // Show Legend
-        true, // Use tooltips
-        false // Configure chart to generate URLs?
-     );
+                tHeader, // Title
+                bHeader, // x-axis Label
+                lHeader, // y-axis Label
+                dataset, // Dataset
+                PlotOrientation.VERTICAL, // Plot Orientation
+                true, // Show Legend
+                true, // Use tooltips
+                false // Configure chart to generate URLs?
+        );
         jPanel1.removeAll();
         jPanel1.setLayout(new java.awt.BorderLayout());
         ChartPanel CP = new ChartPanel(chart);
-        jPanel1.add(CP,BorderLayout.CENTER);
+        jPanel1.add(CP, BorderLayout.CENTER);
         jPanel1.validate();
     }
-    
-    private void barGraph1(DefaultCategoryDataset dataset,String tHeader,String bHeader,String lHeader){
+
+    private void barGraph1(DefaultCategoryDataset dataset, String tHeader, String bHeader, String lHeader) {
 
         JFreeChart chart = ChartFactory.createBarChart3D(
-        tHeader, // Title
-        bHeader, // x-axis Label
-        lHeader, // y-axis Label
-        dataset, // Dataset
-        PlotOrientation.VERTICAL, // Plot Orientation
-        true, // Show Legend
-        true, // Use tooltips
-        false // Configure chart to generate URLs?
-     );
+                tHeader, // Title
+                bHeader, // x-axis Label
+                lHeader, // y-axis Label
+                dataset, // Dataset
+                PlotOrientation.VERTICAL, // Plot Orientation
+                true, // Show Legend
+                true, // Use tooltips
+                false // Configure chart to generate URLs?
+        );
         jPanel2.removeAll();
         jPanel2.setLayout(new java.awt.BorderLayout());
         ChartPanel CP = new ChartPanel(chart);
-        jPanel2.add(CP,BorderLayout.CENTER);
+        jPanel2.add(CP, BorderLayout.CENTER);
         jPanel2.validate();
     }
+
     public void populateTable() {
         DefaultTableModel model = (DefaultTableModel) workRequestJTable.getModel();
 
         model.setRowCount(0);
-        
+
         for (WorkRequest labrequest : userAccount.getWorkQueue().getWorkRequestList()) {
             //System.out.println(labrequest);
             Object[] row = new Object[5];
             // row[0] = request.getDate();
             //row[0] = request;
-          if(labrequest.getStatus().equalsIgnoreCase("completed")){
-              DonorRequest req= new DonorRequest();
+            if (labrequest.getStatus().equalsIgnoreCase("completed")) {
+                DonorRequest req = new DonorRequest();
                 row[0] = labrequest;
-              
+
                 //row[1] = labrequest.getSender()==null? null : labrequest.getSender().getUsername();
                 //row[2] = docrequest.getSender().getEmployee().getName();
                 row[1] = labrequest.getReceiver();
-                row[2]=labrequest.getBlood();
-                row[3]=req.getDate();
+                row[2] = labrequest.getBlood();
+                row[3] = req.getDate();
                 row[4] = labrequest.getStatus();
 
-                
+                model.addRow(row);
 
-                model.addRow(row); 
-            
-           }
-            
+            }
+
         }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -349,60 +336,65 @@ public class BloodBankJPanel extends javax.swing.JPanel {
 
     private void RequestBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RequestBtnActionPerformed
         // TODO add your handling code here:
-         int selectedRow = patientsTable.getSelectedRow();
-         if(selectedRow<0){
-              JOptionPane.showMessageDialog(null, "Please select a row", "Warning", JOptionPane.WARNING_MESSAGE);
-              return;
-         }
-         
-           DonorRequest donorRequest = (DonorRequest) patientsTable.getValueAt(selectedRow, 0);
-           if(donorRequest.getStatus().equals("BLOOD_READY")){
-               JOptionPane.showMessageDialog(null, "Already blood sent to patient", "Warning", JOptionPane.WARNING_MESSAGE);
-              return;   
-           }
-           for (WorkRequest labrequest : userAccount.getWorkQueue().getWorkRequestList()) {
+        int selectedRow = patientsTable.getSelectedRow();
+        if (selectedRow < 0) {
+            JOptionPane.showMessageDialog(null, "Please select a row", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        DonorRequest donorRequest = (DonorRequest) patientsTable.getValueAt(selectedRow, 0);
+        UserAccount patient = donorRequest.getReceiver();
+        if (donorRequest.getStatus().equals("BLOOD_READY")) {
+            JOptionPane.showMessageDialog(null, "Already blood sent to patient", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        for (WorkRequest labrequest : userAccount.getWorkQueue().getWorkRequestList()) {
             //System.out.println(labrequest);
             Object[] row = new Object[5];
-          
-             
-          if(labrequest.getReceiver()==null && labrequest.getBlood().equalsIgnoreCase(donorRequest.getBlood())){
-             
-           
+
+            if (labrequest.getReceiver() == null && labrequest.getBlood().equalsIgnoreCase(donorRequest.getBlood())) {
+
                 donorRequest.setStatus("BLOOD_READY");
                 labrequest.setReceiver(donorRequest.getSender());
-                System.out.println("req"+donorRequest.getStatus());
+                System.out.println("req" + donorRequest.getStatus());
                 break;
-            
-           }
-         
-           }
-          
-           Organization org=null;
-           if(donorRequest.getStatus().equals("BLOOD_READY")){
-                populateTable();
-                populateRequestTable();
+
+            }
+
+        }
+        Enterprise eps = null;
+
+        if (donorRequest.getStatus().equals(HospitalStatus.BLOOD_READY.getValue())) {
+            populateTable();
+            populateRequestTable();
             for (Network network : business.getNetworkList()) {
-                    for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
-                        if (enterprise instanceof BloodBankEnterprise) {
-                            for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
-                                if (organization instanceof FrontDeskEmployeeOrganization) {
-                                        org = organization;
-                                        org.getWorkQueue().getWorkRequestList().add(donorRequest);  
-                                            
-                                       }
-                                                 
+                for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
+                    if (enterprise instanceof HospitalEnterprise) {
+                        for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
+                            if (organization instanceof CommonUserOrganization) {
+                                for (UserAccount user : organization.getUserAccountDirectory().getUserAccountList()) {
+                                    if (user == patient) {
+                                        eps = enterprise;
+                                        break;
                                     }
-                                       
                                 }
                             }
-                        
+                        }
 
                     }
-            
-    } 
-           else{
-              JOptionPane.showMessageDialog(null, "NOT AVAILABLE", "Warning", JOptionPane.INFORMATION_MESSAGE);
-           }
+                }
+            }
+            if (eps != null) {
+                for (Organization organization : eps.getOrganizationDirectory().getOrganizationList()) {
+                    if (organization instanceof FrontDeskEmployeeOrganization) {
+                        organization.getWorkQueue().getWorkRequestList().add(donorRequest);
+                    }
+                }
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(null, "NOT AVAILABLE", "Warning", JOptionPane.INFORMATION_MESSAGE);
+        }
     }//GEN-LAST:event_RequestBtnActionPerformed
 
 
