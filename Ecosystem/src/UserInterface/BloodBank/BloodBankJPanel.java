@@ -12,10 +12,12 @@ import Business.Organization.NurseOrganization;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import Bussiness.WorkQueue.DonorRequest;
+import Bussiness.WorkQueue.MedicineRequest;
 import Bussiness.WorkQueue.WorkRequest;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -62,26 +64,27 @@ public class BloodBankJPanel extends javax.swing.JPanel {
         viewTable1();
         }
      public void populateRequestTable() {
-        DefaultTableModel model = (DefaultTableModel) workRequestJTable.getModel();
+        DefaultTableModel model = (DefaultTableModel) patientsTable.getModel();
 
         model.setRowCount(0);
         
         for (WorkRequest labrequest : bloodCollectionStationOrganization.getWorkQueue().getWorkRequestList()) {
             //System.out.println(labrequest);
             Object[] row = new Object[6];
-          if(labrequest.getReceiver()!=null){
+          if((labrequest.getSender()!=null && labrequest.getReceiver()!=null)&&
+                  (labrequest.getStatus()=="" || labrequest.getStatus()=="BLOOD_SENT") ){
               DonorRequest req= new DonorRequest();
-                row[0] = labrequest.getReceiver() == null ? null : labrequest.getReceiver().getEmployee().getName();
+                row[0] = labrequest;
               
                 //row[1] = labrequest.getSender()==null? null : labrequest.getSender().getUsername();
                 //row[2] = docrequest.getSender().getEmployee().getName();
-                row[1] = req.getBlood();
-                row[2]=req.getRecievedDate();
-                row[3]=req.getDate();
-                row[4]=req.getRequestDate();
-                row[5] = labrequest.getStatus();
+                row[1] = labrequest.getBlood();
+                row[3]=req.getRecievedDate();
+               
+                row[2]=req.getDate();
+                row[4] = labrequest.getStatus();
 
-                System.out.println(row[2]);
+                System.out.println(row[0]);
 
                 model.addRow(row); 
             
@@ -103,7 +106,7 @@ public class BloodBankJPanel extends javax.swing.JPanel {
                     cnt=count.getOrDefault(Blood,0)+1;
                     count.put(Blood,cnt);
                     dcd.addValue(count.get(Blood),"BLood Group", Blood);
-                       System.out.println(Blood);
+                   
                        
                     
                 }
@@ -127,9 +130,9 @@ public class BloodBankJPanel extends javax.swing.JPanel {
                     cnt=count.getOrDefault(date,0)+1;
                     count.put(date,cnt);
                     dcd1.addValue(count.get(date),"BLood Group", date);
-                       System.out.println(date);
+                  
                        
-                    //System.out.println(Blood+" "+count);
+                   
                 }
 
             }
@@ -191,12 +194,12 @@ public class BloodBankJPanel extends javax.swing.JPanel {
               
                 //row[1] = labrequest.getSender()==null? null : labrequest.getSender().getUsername();
                 //row[2] = docrequest.getSender().getEmployee().getName();
-                row[1] = labrequest.getReceiver() == null ? null : labrequest.getReceiver().getEmployee().getName();
-                row[2]=req.getBlood();
+                row[1] = labrequest.getReceiver();
+                row[2]=labrequest.getBlood();
                 row[3]=req.getDate();
                 row[4] = labrequest.getStatus();
 
-                System.out.println(row[2]);
+                
 
                 model.addRow(row); 
             
@@ -219,8 +222,8 @@ public class BloodBankJPanel extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        patientsTable = new javax.swing.JTable();
+        RequestBtn = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(51, 51, 51));
 
@@ -276,20 +279,25 @@ public class BloodBankJPanel extends javax.swing.JPanel {
             .addGap(0, 166, Short.MAX_VALUE)
         );
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        patientsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Patient", "Blood Type", "Recieved Date", "Request Resolved Date", "status"
+                "Patient", "Blood Type", "Recieved Date", "status"
             }
         ));
-        jScrollPane2.setViewportView(jTable1);
+        jScrollPane2.setViewportView(patientsTable);
 
-        jButton1.setText("Approve and send");
+        RequestBtn.setText("Approve and send");
+        RequestBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RequestBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -313,7 +321,7 @@ public class BloodBankJPanel extends javax.swing.JPanel {
                 .addContainerGap(103, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(RequestBtn)
                 .addGap(124, 124, 124))
         );
         layout.setVerticalGroup(
@@ -327,8 +335,7 @@ public class BloodBankJPanel extends javax.swing.JPanel {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addComponent(RequestBtn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 181, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -337,15 +344,41 @@ public class BloodBankJPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void RequestBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RequestBtnActionPerformed
+        // TODO add your handling code here:
+         int selectedRow = patientsTable.getSelectedRow();
+           DonorRequest donorRequest = (DonorRequest) patientsTable.getValueAt(selectedRow, 0);
+           //donorRequest.setStatus("BLOOD_READY");
+           for (WorkRequest labrequest : userAccount.getWorkQueue().getWorkRequestList()) {
+            //System.out.println(labrequest);
+            Object[] row = new Object[5];
+          
+             
+          if(labrequest.getReceiver()==null && labrequest.getBlood().equalsIgnoreCase(donorRequest.getBlood())){
+             
+           
+                donorRequest.setStatus("BLOOD_SENT");
+               
+               
+                labrequest.setReceiver(donorRequest.getSender());
+                break;
+            
+           }
+         
+           }
+           populateTable();
+           populateRequestTable();
+    }//GEN-LAST:event_RequestBtnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton RequestBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable patientsTable;
     private javax.swing.JTable workRequestJTable;
     // End of variables declaration//GEN-END:variables
 }
