@@ -113,7 +113,7 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 110, 480, 92));
 
-        addJButton.setBackground(new java.awt.Color(0, 102, 102));
+        addJButton.setBackground(new java.awt.Color(255, 168, 125));
         addJButton.setFont(new java.awt.Font("Chalkboard SE", 0, 12)); // NOI18N
         addJButton.setForeground(new java.awt.Color(255, 255, 255));
         addJButton.setText("ADD ORGANIZATION");
@@ -132,7 +132,7 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
         jLabel1.setText("ORGANIZATION TYPE: ");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 210, -1, -1));
 
-        backJButton.setBackground(new java.awt.Color(0, 102, 102));
+        backJButton.setBackground(new java.awt.Color(255, 168, 125));
         backJButton.setFont(new java.awt.Font("Chalkboard SE", 0, 12)); // NOI18N
         backJButton.setForeground(new java.awt.Color(255, 255, 255));
         backJButton.setText("<<BACK");

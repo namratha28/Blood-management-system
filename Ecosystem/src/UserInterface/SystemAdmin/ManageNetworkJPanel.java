@@ -107,7 +107,7 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
         jLabel1.setText("NAME :");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 70, 30));
 
-        submitJButton.setBackground(new java.awt.Color(0, 102, 102));
+        submitJButton.setBackground(new java.awt.Color(255, 168, 125));
         submitJButton.setFont(new java.awt.Font("Chalkboard SE", 0, 12)); // NOI18N
         submitJButton.setForeground(new java.awt.Color(255, 255, 255));
         submitJButton.setText("SUBMIT");
@@ -121,7 +121,7 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
         nameJTextField.setFont(new java.awt.Font("Chalkboard SE", 0, 12)); // NOI18N
         jPanel1.add(nameJTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 100, 170, -1));
 
-        backJButton.setBackground(new java.awt.Color(0, 102, 102));
+        backJButton.setBackground(new java.awt.Color(255, 168, 125));
         backJButton.setFont(new java.awt.Font("Chalkboard SE", 0, 12)); // NOI18N
         backJButton.setForeground(new java.awt.Color(255, 255, 255));
         backJButton.setText("<<BACK");
@@ -132,7 +132,7 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
         });
         jPanel1.add(backJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 470, -1, -1));
 
-        btnDelete.setBackground(new java.awt.Color(0, 102, 102));
+        btnDelete.setBackground(new java.awt.Color(255, 168, 125));
         btnDelete.setFont(new java.awt.Font("Chalkboard SE", 0, 12)); // NOI18N
         btnDelete.setForeground(new java.awt.Color(255, 255, 255));
         btnDelete.setText("DELETE NETWORK");

@@ -177,6 +177,8 @@ public class NurseWQJPanel extends javax.swing.JPanel {
             }
         });
 
+        updateBtn.setBackground(new java.awt.Color(255, 168, 125));
+        updateBtn.setForeground(new java.awt.Color(254, 254, 254));
         updateBtn.setText("update");
         updateBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
