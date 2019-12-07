@@ -358,16 +358,14 @@ public class BloodBankJPanel extends javax.swing.JPanel {
             //System.out.println(labrequest);
             Object[] row = new Object[5];
 
-//            if (labrequest.getReceiver() == null && labrequest.getBlood().equalsIgnoreCase(donorRequest.getBlood())) {
+            if (labrequest.getReceiver() == null && labrequest.getBlood().equalsIgnoreCase(donorRequest.getBlood())) {
                 donorRequest.setStatus(HospitalStatus.BLOOD_READY.getValue());
-//                donorRequest.setReceiver(sender);
-//                donorRequest.setPatient(patient);
                 donorRequest.setResolveDate(new Date());
                 /*******pay attention to this code******/
                 labrequest.setReceiver(donorRequest.getSender());
                 System.out.println("req" + donorRequest.getStatus());
                 break;
-//            }
+            }
         }
         Enterprise eps = null;
 
@@ -390,18 +388,18 @@ public class BloodBankJPanel extends javax.swing.JPanel {
                     }
                 }
             }
-//            for (Network network : business.getNetworkList()) {
-//                for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
-//                    if (enterprise instanceof BloodBankEnterprise) {
-//                        for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
-//                            if (organization instanceof BloodCollectionStationOrganization) {
-//                                organization.getWorkQueue().getWorkRequestList().add(donorRequest);
-//                            }
-//                        }
-//
-//                    }
-//                }
-//            }
+            for (Network network : business.getNetworkList()) {
+                for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
+                    if (enterprise instanceof BloodBankEnterprise) {
+                        for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
+                            if (organization instanceof BloodCollectionStationOrganization) {
+                                organization.getWorkQueue().getWorkRequestList().add(donorRequest);
+                            }
+                        }
+
+                    }
+                }
+            }
             if (eps != null) {
                 for (Organization organization : eps.getOrganizationDirectory().getOrganizationList()) {
                     if (organization instanceof FrontDeskEmployeeOrganization) {
