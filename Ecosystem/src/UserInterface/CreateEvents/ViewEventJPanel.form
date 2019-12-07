@@ -119,9 +119,6 @@
             <EmptyBorder/>
           </Border>
         </Property>
-        <Property name="borderPainted" type="boolean" value="false"/>
-        <Property name="contentAreaFilled" type="boolean" value="false"/>
-        <Property name="focusPainted" type="boolean" value="false"/>
         <Property name="opaque" type="boolean" value="true"/>
       </Properties>
       <Events>

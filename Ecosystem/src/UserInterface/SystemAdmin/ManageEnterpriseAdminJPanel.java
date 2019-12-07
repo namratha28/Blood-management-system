@@ -161,6 +161,7 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         submitJButton.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
         submitJButton.setForeground(new java.awt.Color(255, 255, 255));
         submitJButton.setText("SUBMIT");
+        submitJButton.setPreferredSize(new java.awt.Dimension(197, 41));
         submitJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 submitJButtonActionPerformed(evt);
@@ -174,10 +175,11 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         passwordJPasswordField.setFont(new java.awt.Font("Chalkboard SE", 0, 12)); // NOI18N
         add(passwordJPasswordField, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 270, 190, -1));
 
-        backJButton.setBackground(new java.awt.Color(0, 102, 102));
-        backJButton.setFont(new java.awt.Font("Chalkboard SE", 0, 12)); // NOI18N
+        backJButton.setBackground(new java.awt.Color(255, 168, 125));
+        backJButton.setFont(new java.awt.Font("Chalkboard SE", 1, 14)); // NOI18N
         backJButton.setForeground(new java.awt.Color(255, 255, 255));
         backJButton.setText("<<BACK");
+        backJButton.setPreferredSize(new java.awt.Dimension(197, 41));
         backJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backJButtonActionPerformed(evt);
@@ -185,9 +187,9 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         });
         add(backJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 500, -1, -1));
 
-        jLabel11.setFont(new java.awt.Font("Chalkboard", 1, 18)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(0, 102, 102));
-        jLabel11.setText("MANAGE EMPLOYEE USERACCOUNTS");
+        jLabel11.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
+        jLabel11.setForeground(java.awt.Color.black);
+        jLabel11.setText("Manage Employee User Account");
         add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 40, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Chalkboard SE", 0, 12)); // NOI18N

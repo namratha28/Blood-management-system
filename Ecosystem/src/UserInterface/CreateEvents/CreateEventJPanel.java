@@ -115,10 +115,6 @@ public class CreateEventJPanel extends javax.swing.JPanel {
         createEventBtn.setForeground(new java.awt.Color(254, 254, 254));
         createEventBtn.setText("Create");
         createEventBtn.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        createEventBtn.setBorderPainted(false);
-        createEventBtn.setContentAreaFilled(false);
-        createEventBtn.setFocusPainted(false);
-        createEventBtn.setOpaque(true);
         createEventBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 createEventBtnActionPerformed(evt);
@@ -178,10 +174,6 @@ public class CreateEventJPanel extends javax.swing.JPanel {
         browseBtn.setForeground(new java.awt.Color(254, 254, 254));
         browseBtn.setText("Browse");
         browseBtn.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        browseBtn.setBorderPainted(false);
-        browseBtn.setContentAreaFilled(false);
-        browseBtn.setFocusPainted(false);
-        browseBtn.setOpaque(true);
         browseBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 browseBtnActionPerformed(evt);

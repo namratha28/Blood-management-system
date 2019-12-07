@@ -3,8 +3,25 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/home/dell_owner/src/EcoSystem/ecosystem/Ecosystem/src/UserInterface/SystemAdmin/ManageEnterpriseAdminJPanel.java</file>
+            <file>file:/home/dell_owner/src/EcoSystem/ecosystem/Ecosystem/src/UserInterface/PharmacyAdmin/ManageEmployeeJPanel.java</file>
+            <file>file:/home/dell_owner/src/EcoSystem/ecosystem/Ecosystem/src/UserInterface/Lab/LabJPanel.java</file>
+            <file>file:/home/dell_owner/src/EcoSystem/ecosystem/Ecosystem/src/UserInterface/CreateEvents/ViewEventJPanel.java</file>
+            <file>file:/home/dell_owner/src/EcoSystem/ecosystem/Ecosystem/src/UserInterface/Donor/ViewRegEventsJPanel.java</file>
+            <file>file:/home/dell_owner/src/EcoSystem/ecosystem/Ecosystem/src/UserInterface/SystemAdmin/SystemAdminWorkAreaJPanel.java</file>
+            <file>file:/home/dell_owner/src/EcoSystem/ecosystem/Ecosystem/src/UserInterface1/SplashScreen.java</file>
+            <file>file:/home/dell_owner/src/EcoSystem/ecosystem/Ecosystem/src/UserInterface/BloodBank/BloodBankJPanel.java</file>
+            <file>file:/home/dell_owner/src/EcoSystem/ecosystem/Ecosystem/src/UserInterface/Pharmacy/PharmacyJPanel.java</file>
             <file>file:/home/dell_owner/src/EcoSystem/ecosystem/Ecosystem/src/UserInterface/Donor/DonorJPanel.java</file>
-            <file>file:/home/dell_owner/src/EcoSystem/ecosystem/Ecosystem/src/UserInterface/Donor/DonorViewEventsJPanel.java</file>
+            <file>file:/home/dell_owner/src/EcoSystem/ecosystem/Ecosystem/src/UserInterface/Nurse/NurseWQJPanel.java</file>
+            <file>file:/home/dell_owner/src/EcoSystem/ecosystem/Ecosystem/src/UserInterface/PharmacyAdmin/ManageOrganizationJPanel.java</file>
+            <file>file:/home/dell_owner/src/EcoSystem/ecosystem/Ecosystem/src/UserInterface/PharmacyAdmin/PharmacyAdminWorkAreaJPanel.java</file>
+            <file>file:/home/dell_owner/src/EcoSystem/ecosystem/Ecosystem/src/UserInterface1/MainJFrame.java</file>
+            <file>file:/home/dell_owner/src/EcoSystem/ecosystem/Ecosystem/src/UserInterface/CreateEvents/CreateEventJPanel.java</file>
+            <file>file:/home/dell_owner/src/EcoSystem/ecosystem/Ecosystem/src/UserInterface/SystemAdmin/ManageEnterpriseJPanel.java</file>
+            <file>file:/home/dell_owner/src/EcoSystem/ecosystem/Ecosystem/src/UserInterface/PharmacyAdmin/ManageUserAccountJPanel.java</file>
+            <file>file:/home/dell_owner/src/EcoSystem/ecosystem/Ecosystem/src/UserInterface/SystemAdmin/ManageNetworkJPanel.java</file>
+            <file>file:/home/dell_owner/src/EcoSystem/ecosystem/Ecosystem/src/UserInterface/Nurse/NurseJPanel.java</file>
         </group>
     </open-files>
 </project-private>
