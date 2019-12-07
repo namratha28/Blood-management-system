@@ -78,11 +78,12 @@ public class FrontDeskJPanel extends javax.swing.JPanel {
         model.setRowCount(0);
 
         for (WorkRequest rq : organization.getWorkQueue().getWorkRequestList()) {
-            Object[] row = new Object[4];
+            Object[] row = new Object[5];
             row[0] = rq;
             row[1] = rq.getPatient();
             row[2] = rq.getReceiver();
             row[3] = rq.getStatus();
+            row[4]=rq.getResolveDate();
             model.addRow(row);
         }
 
@@ -198,7 +199,7 @@ public class FrontDeskJPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "from", "patient", "reciever", "Status"
+                "from", "patient", "reciever", "Status", "resolve time"
             }
         ));
         jScrollPane3.setViewportView(rqTable);

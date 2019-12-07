@@ -125,6 +125,8 @@ public class LabJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(workRequestJTable);
 
+        assignBtn.setBackground(new java.awt.Color(255, 168, 125));
+        assignBtn.setForeground(new java.awt.Color(254, 254, 254));
         assignBtn.setText("Assign to me");
         assignBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -132,6 +134,8 @@ public class LabJPanel extends javax.swing.JPanel {
             }
         });
 
+        processBtn.setBackground(new java.awt.Color(255, 168, 125));
+        processBtn.setForeground(new java.awt.Color(254, 254, 254));
         processBtn.setText("Process");
         processBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -213,7 +217,10 @@ public class LabJPanel extends javax.swing.JPanel {
             }
            DonorRequest labRequest = (DonorRequest) workRequestJTable.getValueAt(selectedRow, 0);
         if (selectedRow >= 0) {
-
+           if(labRequest.getStatus().equalsIgnoreCase("sent")){
+            JOptionPane.showMessageDialog(null, "Assign to Lab technician");
+            return;
+        }
             
           if(labRequest.getStatus().equalsIgnoreCase("completed")){
             JOptionPane.showMessageDialog(null, "Blood donation completed");

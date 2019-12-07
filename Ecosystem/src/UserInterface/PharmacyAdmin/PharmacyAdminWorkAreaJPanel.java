@@ -48,7 +48,7 @@ public class PharmacyAdminWorkAreaJPanel extends javax.swing.JPanel {
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        userJButton.setBackground(new java.awt.Color(0, 102, 102));
+        userJButton.setBackground(new java.awt.Color(255, 168, 125));
         userJButton.setFont(new java.awt.Font("Chalkboard SE", 0, 12)); // NOI18N
         userJButton.setForeground(new java.awt.Color(255, 255, 255));
         userJButton.setText("MANAGE USER");
@@ -59,7 +59,7 @@ public class PharmacyAdminWorkAreaJPanel extends javax.swing.JPanel {
         });
         add(userJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 270, 210, -1));
 
-        manageEmployeeJButton.setBackground(new java.awt.Color(0, 102, 102));
+        manageEmployeeJButton.setBackground(new java.awt.Color(255, 168, 125));
         manageEmployeeJButton.setFont(new java.awt.Font("Chalkboard SE", 0, 12)); // NOI18N
         manageEmployeeJButton.setForeground(new java.awt.Color(255, 255, 255));
         manageEmployeeJButton.setText("MANAGE EMPLOYEE");
@@ -70,7 +70,7 @@ public class PharmacyAdminWorkAreaJPanel extends javax.swing.JPanel {
         });
         add(manageEmployeeJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 220, 210, -1));
 
-        manageOrganizationJButton.setBackground(new java.awt.Color(0, 102, 102));
+        manageOrganizationJButton.setBackground(new java.awt.Color(255, 168, 125));
         manageOrganizationJButton.setFont(new java.awt.Font("Chalkboard SE", 0, 12)); // NOI18N
         manageOrganizationJButton.setForeground(new java.awt.Color(255, 255, 255));
         manageOrganizationJButton.setText("MANAGE ORGANIZATIONS");

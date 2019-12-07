@@ -159,6 +159,8 @@ public class NurseJPanel extends javax.swing.JPanel {
             }
         });
 
+        jButton4.setBackground(new java.awt.Color(255, 168, 125));
+        jButton4.setForeground(new java.awt.Color(254, 254, 254));
         jButton4.setText("Delete");
 
         jLabel6.setText("From");
@@ -167,6 +169,8 @@ public class NurseJPanel extends javax.swing.JPanel {
 
         jLabel3.setText("Work Queue");
 
+        jButton2.setBackground(new java.awt.Color(255, 168, 125));
+        jButton2.setForeground(new java.awt.Color(254, 254, 254));
         jButton2.setText("Confirm");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -184,8 +188,12 @@ public class NurseJPanel extends javax.swing.JPanel {
         ));
         jScrollPane2.setViewportView(rqTable);
 
+        selectBtn.setBackground(new java.awt.Color(255, 168, 125));
+        selectBtn.setForeground(new java.awt.Color(254, 254, 254));
         selectBtn.setText("Select");
 
+        cancelBtn1.setBackground(new java.awt.Color(255, 168, 125));
+        cancelBtn1.setForeground(new java.awt.Color(254, 254, 254));
         cancelBtn1.setText("Cancel");
 
         jLabel4.setText("Emergency");

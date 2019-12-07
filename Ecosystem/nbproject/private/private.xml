@@ -6,7 +6,6 @@
             <file>file:/home/roxanne/AED/ecosystem/Ecosystem/src/Business/Employee/Employee.java</file>
             <file>file:/home/roxanne/AED/ecosystem/Ecosystem/src/UserInterface/FrontDesk/FrontDeskJPanel.java</file>
             <file>file:/home/roxanne/AED/ecosystem/Ecosystem/src/UserInterface/Nurse/NurseWQJPanel.java</file>
-            <file>file:/home/roxanne/AED/ecosystem/Ecosystem/src/Bussiness/WorkQueue/DonorRequest.java</file>
             <file>file:/home/roxanne/AED/ecosystem/Ecosystem/src/Business/Entity/BloodType.java</file>
             <file>file:/home/roxanne/AED/ecosystem/Ecosystem/src/Business/Organization/Organization.java</file>
             <file>file:/home/roxanne/AED/ecosystem/Ecosystem/src/Business/Role/FrontDeskRole.java</file>
@@ -26,6 +25,7 @@
             <file>file:/home/roxanne/AED/ecosystem/Ecosystem/src/UserInterface/CommonUser/CommonUserJPanel.java</file>
             <file>file:/home/roxanne/AED/ecosystem/Ecosystem/src/Business/Entity/Specialities.java</file>
             <file>file:/home/roxanne/AED/ecosystem/Ecosystem/src/Bussiness/WorkQueue/DoctorRequest.java</file>
+            <file>file:/home/roxanne/AED/ecosystem/Ecosystem/src/UserInterface/Donor/DonorJPanel.java</file>
         </group>
     </open-files>
 </project-private>

@@ -278,7 +278,7 @@ public class CreateEventJPanel extends javax.swing.JPanel {
         && (!imageTxt.getText().equals(""))) {
             boolean isError = false;
             System.out.println("Data accepted");
-            try {
+
                 
                 System.out.println("size" + enterprise.getOrganizationDirectory().getOrganizationList().size());
                 EventRequest eventrequest = new EventRequest();
@@ -287,6 +287,15 @@ public class CreateEventJPanel extends javax.swing.JPanel {
                 eventrequest.setEventDate(dateTxt.getText());
                 eventrequest.setTime(timeTxt.getText());
                 eventrequest.setImage(imageTxt.getText());
+                DonorRequest donorrequest = new DonorRequest();
+                donorrequest.setEventtitle(eventTitleTxt.getText());
+                donorrequest.setEventlocation(locationTxt.getText());
+                donorrequest.setEventdate(dateTxt.getText());
+                donorrequest.setEventtime(timeTxt.getText());
+                donorrequest.setEventimage(imageTxt.getText());
+                donorrequest.setIsEventReq(true);
+                donorrequest.setEventsender(userAccount);
+                donorrequest.setSender(userAccount);
      
              
               
@@ -301,10 +310,10 @@ public class CreateEventJPanel extends javax.swing.JPanel {
                     for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
                         if (enterprise instanceof BloodBankEnterprise) {
                             for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
-                                if (organization instanceof EventsOrganization) {
+                                if (organization instanceof DonorOrganisation) {
                                     org = organization;
                                     System.out.println("org:" + org);
-                                    break;
+                                    org.getWorkQueue().getWorkRequestList().add(donorrequest);
                                 }
                             }
                         }
@@ -313,8 +322,7 @@ public class CreateEventJPanel extends javax.swing.JPanel {
                 
                 if (org!= null) {
                     System.out.println("hi");
-                    org.getWorkQueue().getWorkRequestList().add(eventrequest);
-                    userAccount.getWorkQueue().getWorkRequestList().add(eventrequest);
+                    userAccount.getWorkQueue().getWorkRequestList().add(donorrequest);
                 }
 
                 
@@ -326,11 +334,8 @@ public class CreateEventJPanel extends javax.swing.JPanel {
                 
                 
             
-        }
-        catch (Exception e3){
-            isError = true;
-            JOptionPane.showMessageDialog(null, "Please input the details in proper format", "Warning", JOptionPane.WARNING_MESSAGE);    
-        }
+        
+
          
         
         } 

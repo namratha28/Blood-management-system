@@ -104,7 +104,7 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        createUserJButton.setBackground(new java.awt.Color(0, 102, 102));
+        createUserJButton.setBackground(new java.awt.Color(255, 168, 125));
         createUserJButton.setFont(new java.awt.Font("Chalkboard SE", 0, 12)); // NOI18N
         createUserJButton.setForeground(new java.awt.Color(255, 255, 255));
         createUserJButton.setText("CREATE");

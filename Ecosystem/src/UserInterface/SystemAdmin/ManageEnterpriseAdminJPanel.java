@@ -157,8 +157,8 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         enterpriseJComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         add(enterpriseJComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 190, 190, -1));
 
-        submitJButton.setBackground(new java.awt.Color(0, 102, 102));
-        submitJButton.setFont(new java.awt.Font("Chalkboard SE", 0, 12)); // NOI18N
+        submitJButton.setBackground(new java.awt.Color(255, 168, 125));
+        submitJButton.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
         submitJButton.setForeground(new java.awt.Color(255, 255, 255));
         submitJButton.setText("SUBMIT");
         submitJButton.addActionListener(new java.awt.event.ActionListener() {
