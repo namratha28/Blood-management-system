@@ -368,7 +368,7 @@ public class DoctorWQJPanel extends javax.swing.JPanel {
                 enterprise.getWorkQueue().getWorkRequestList().remove(nextWorkRequest);
             }
 
-            addFrontDeskWorkQueue();
+            //addFrontDeskWorkQueue();
             sendDonorWorkRequest();
 
         } else {
