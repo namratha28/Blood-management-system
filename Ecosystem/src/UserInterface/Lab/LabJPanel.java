@@ -213,7 +213,10 @@ public class LabJPanel extends javax.swing.JPanel {
             }
            DonorRequest labRequest = (DonorRequest) workRequestJTable.getValueAt(selectedRow, 0);
         if (selectedRow >= 0) {
-
+           if(labRequest.getStatus().equalsIgnoreCase("sent")){
+            JOptionPane.showMessageDialog(null, "Assign to Lab technician");
+            return;
+        }
             
           if(labRequest.getStatus().equalsIgnoreCase("completed")){
             JOptionPane.showMessageDialog(null, "Blood donation completed");

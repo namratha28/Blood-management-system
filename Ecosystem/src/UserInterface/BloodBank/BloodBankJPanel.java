@@ -6,6 +6,7 @@
 package UserInterface.BloodBank;
 
 import Business.EcoSystem;
+import Business.Enterprise.BloodBankEnterprise;
 import Business.Enterprise.Enterprise;
 import Business.Enterprise.HospitalEnterprise;
 import Business.Entity.HospitalStatus;
@@ -384,6 +385,17 @@ public class BloodBankJPanel extends javax.swing.JPanel {
                     }
                 }
             }
+             for (Network network : business.getNetworkList()) {
+                for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
+                    if (enterprise instanceof BloodBankEnterprise) {
+                        for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
+                            if (organization instanceof BloodCollectionStationOrganization) {
+                                  organization.getWorkQueue().getWorkRequestList().add(donorRequest);
+                            }
+                        }
+
+                    }
+                }}
             if (eps != null) {
                 for (Organization organization : eps.getOrganizationDirectory().getOrganizationList()) {
                     if (organization instanceof FrontDeskEmployeeOrganization) {
