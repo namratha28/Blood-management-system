@@ -145,7 +145,7 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
         });
         add(backJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 350, -1, -1));
 
-        jLabel4.setFont(new java.awt.Font("Chalkboard", 1, 18)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
         jLabel4.setForeground(java.awt.Color.black);
         jLabel4.setText("Manage Organization WorkArea");
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 30, -1, -1));
@@ -165,6 +165,7 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_backJButtonActionPerformed
 
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addJButton;
     private javax.swing.JButton backJButton;
