@@ -13,6 +13,7 @@ import Business.Enterprise.PharmacyEnterprise;
 import Business.Network.Network;
 import Business.Organization.BloodCollectionStationOrganization;
 import Business.Organization.DoctorOrganization;
+import Business.Organization.EventsOrganization;
 import Business.Organization.DonorOrganisation;
 import Business.Organization.LabOrganization;
 import Business.Organization.MedicalOrganisation;
@@ -21,7 +22,10 @@ import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import Bussiness.WorkQueue.DonorRequest;
 import Bussiness.WorkQueue.MedicineRequest;
+import Bussiness.WorkQueue.EventRequest;
 import Bussiness.WorkQueue.WorkRequest;
+import UserInterface.CreateEvents.ViewEventJPanel;
+import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -40,14 +44,17 @@ public class DonorJPanel extends javax.swing.JPanel {
     private EcoSystem business;
     private UserAccount userAccount;
     private DonorOrganisation donorOrganisation;
+    private EventsOrganization eventOrganization;
+    private Organization organization;
     private Enterprise enterprise;
 
-    public DonorJPanel(JPanel userProcessContainer, UserAccount account, Organization organization,
+    public DonorJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, 
             Enterprise enterprise,EcoSystem business) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.userAccount = account;
         this.business = business;
+        this.organization = organization;
         this.donorOrganisation = (DonorOrganisation) organization;
         this.enterprise = enterprise;
         this.business=business;
@@ -108,14 +115,14 @@ public class DonorJPanel extends javax.swing.JPanel {
                 }
      }
     public void populateTable() {
+        System.out.println("hi");
         DefaultTableModel model = (DefaultTableModel) MedicineListTable.getModel();
 
         model.setRowCount(0);
          MedicineRequest medicineRequest=new MedicineRequest();
-        
         for (WorkRequest request : donorOrganisation.getWorkQueue().getWorkRequestList()) {
             if (request.getClass() != null) {
-                String x = request.getClass().toString();
+                String x = request.getClass().toString(); 
                 //Business.WorkQueue.CarrierWorkRequest
                 //String x = request.getReceiver().getRole().toString();
                 
@@ -136,6 +143,26 @@ public class DonorJPanel extends javax.swing.JPanel {
                         row[4]=medicineWorkRequest.getReceiver();
                         model.addRow(row);
                     }
+                    
+                }
+                
+                if (x.contains("EventRequest")){
+                    System.out.print("hhhh");
+
+                    EventRequest eventWorkRequest = (EventRequest) request;
+                    System.out.print(eventWorkRequest);
+                    Object[] row = new Object[5];
+//                    if(eventWorkRequest.getEvent()==null){
+//                        continue;
+//                    }
+                        row[1] = eventWorkRequest.getTitle();
+                        row[2] = eventWorkRequest.getLocation();
+                        eventWorkRequest.setSender(userAccount);
+                        row[0] =eventWorkRequest;
+                        row[3]=eventWorkRequest.getEventDate();
+                        row[4]=eventWorkRequest.getTime();
+                        model.addRow(row);
+                    
                     
                 }
             }
@@ -174,6 +201,8 @@ public class DonorJPanel extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         bloodGroupDropDown = new javax.swing.JComboBox<>();
+        viewEventBtn = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         ageTxtField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -262,9 +291,24 @@ public class DonorJPanel extends javax.swing.JPanel {
 
         jLabel6.setText("Select Blood Bank ");
 
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("Donor Potal");
 
         bloodGroupDropDown.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        viewEventBtn.setText("View Events");
+        viewEventBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewEventBtnActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("See Registrations");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -309,22 +353,24 @@ public class DonorJPanel extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(requestMedicineBtn))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(383, 383, 383)
-                        .addComponent(donateBtn))
+                        .addGap(327, 327, 327)
+                        .addComponent(donateBtn)
+                        .addGap(18, 18, 18)
+                        .addComponent(viewEventBtn)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton1))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(209, 209, 209)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 428, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(331, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(429, 429, 429))
+                .addContainerGap(387, Short.MAX_VALUE))
+            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(7, 7, 7)
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(1, 1, 1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(NameTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
@@ -349,7 +395,10 @@ public class DonorJPanel extends javax.swing.JPanel {
                     .addComponent(bloodBankBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
                 .addGap(18, 18, 18)
-                .addComponent(donateBtn)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(donateBtn)
+                    .addComponent(viewEventBtn)
+                    .addComponent(jButton1))
                 .addGap(34, 34, 34)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
@@ -540,7 +589,7 @@ public class DonorJPanel extends javax.swing.JPanel {
 
     private void chckAvailBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chckAvailBtnActionPerformed
         // TODO add your handling code here:
-         int selectedRow = MedicineListTable.getSelectedRow();
+        int selectedRow = MedicineListTable.getSelectedRow();
         MedicineRequest medicineRequest = (MedicineRequest) MedicineListTable.getValueAt(selectedRow, 0);
         String userAccountSelected = PharmacyJComboBox.getSelectedItem().toString();
         UserAccount UserAccountSel= null;
@@ -602,6 +651,23 @@ public class DonorJPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_chckAvailBtnActionPerformed
 
+    private void viewEventBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewEventBtnActionPerformed
+        // TODO add your handling code here:
+        DonorViewEventsJPanel dviewEventJPanel = new DonorViewEventsJPanel(userProcessContainer, userAccount, enterprise, business, organization );
+        userProcessContainer.add("DViewEventJPanel", dviewEventJPanel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_viewEventBtnActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        ViewRegEventsJPanel regPanel = new ViewRegEventsJPanel(userProcessContainer, enterprise, userAccount );
+        userProcessContainer.add("regPanel", regPanel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField AddressTxtField;
@@ -613,6 +679,7 @@ public class DonorJPanel extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> bloodGroupDropDown;
     private javax.swing.JButton chckAvailBtn;
     private javax.swing.JButton donateBtn;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -623,5 +690,6 @@ public class DonorJPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField phNoTxtField;
     private javax.swing.JButton requestMedicineBtn;
+    private javax.swing.JButton viewEventBtn;
     // End of variables declaration//GEN-END:variables
 }

@@ -27,13 +27,56 @@ public class UserAccount {
     private WorkQueue workQueue;
     private Person person;
     private int id;
+    private ArrayList<String> events;
+    private ArrayList<String> eventLocations;
+    private ArrayList<String> eventDates;
+    private ArrayList<String> eventTimes;
+
+    public ArrayList<String> getEventLocations() {
+        return eventLocations;
+    }
+
+    public void setEventLocations(ArrayList<String> eventLocations) {
+        this.eventLocations = eventLocations;
+    }
+
+    public ArrayList<String> getEventDates() {
+        return eventDates;
+    }
+
+    public void setEventDates(ArrayList<String> eventDates) {
+        this.eventDates = eventDates;
+    }
+
+    public ArrayList<String> getEventTimes() {
+        return eventTimes;
+    }
+
+    public void setEventTimes(ArrayList<String> eventTimes) {
+        this.eventTimes = eventTimes;
+    }
+
+    public ArrayList<String> getEvents() {
+        return events;
+        
+    }
+
+    public void setEvents(ArrayList<String> events) {
+        this.events = events;
+    }
 
     public UserAccount() {
         id = count;
         count++;
         workQueue = new WorkQueue();
         this.person = new Person();
+        this.events = new ArrayList<>();
+        this.eventLocations = new ArrayList<>();
+        this.eventDates = new ArrayList<>();
+        this.eventTimes = new ArrayList<>();
     }
+
+
 
     public Person getPerson() {
         return person;
