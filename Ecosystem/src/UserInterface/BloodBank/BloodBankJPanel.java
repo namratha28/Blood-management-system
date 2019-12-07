@@ -70,16 +70,17 @@ public class BloodBankJPanel extends javax.swing.JPanel {
             System.out.println("populate");
 
             DonorRequest req = (DonorRequest) labrequest;
-            Object[] row = new Object[6];
+            Object[] row = new Object[5];
             if ((labrequest.getSender() != null && labrequest.getReceiver() != null)
                     && ((req.getStatus() == "") || (req.getStatus() == "BLOOD_READY"))) {
                 System.out.println("hd" + labrequest.getStatus());
 
                 row[0] = labrequest;
-                row[1] = labrequest.getBlood();
+                row[1] = labrequest.getReceiver();
+                row[2] = labrequest.getBlood();
                 //row[3]=req.getRecievedDate();
-                row[2] = req.getDate();
-                row[3] = labrequest.getStatus();
+                row[3] = req.getDate();
+                row[4] = labrequest.getStatus();
 
                 // System.out.println(row[0]);
                 model.addRow(row);
@@ -271,13 +272,13 @@ public class BloodBankJPanel extends javax.swing.JPanel {
 
         patientsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Patient", "Blood Type", "Recieved Date", "status"
+                "Sender", "Patient", "Blood Type", "Recieved Date", "status"
             }
         ));
         jScrollPane2.setViewportView(patientsTable);
@@ -344,7 +345,10 @@ public class BloodBankJPanel extends javax.swing.JPanel {
 
         DonorRequest donorRequest = (DonorRequest) patientsTable.getValueAt(selectedRow, 0);
         UserAccount patient = donorRequest.getReceiver();
-        if (donorRequest.getStatus().equals("BLOOD_READY")) {
+        UserAccount sender = donorRequest.getSender();
+        System.out.println(patient);
+        System.out.println(sender);
+        if (donorRequest.getStatus().equals(HospitalStatus.BLOOD_READY.getValue())) {
             JOptionPane.showMessageDialog(null, "Already blood sent to patient", "Warning", JOptionPane.WARNING_MESSAGE);
             return;
         }
@@ -352,15 +356,14 @@ public class BloodBankJPanel extends javax.swing.JPanel {
             //System.out.println(labrequest);
             Object[] row = new Object[5];
 
-            if (labrequest.getReceiver() == null && labrequest.getBlood().equalsIgnoreCase(donorRequest.getBlood())) {
-
-                donorRequest.setStatus("BLOOD_READY");
-                labrequest.setReceiver(donorRequest.getSender());
-                System.out.println("req" + donorRequest.getStatus());
-                break;
-
-            }
-
+           // if (labrequest.getReceiver() == null && labrequest.getBlood().equalsIgnoreCase(donorRequest.getBlood())) {
+            donorRequest.setStatus(HospitalStatus.BLOOD_READY.getValue());
+            donorRequest.setReceiver(sender);
+            donorRequest.setPatient(patient);
+            labrequest.setReceiver(donorRequest.getSender());
+            System.out.println("req" + donorRequest.getStatus());
+            break;
+            // }
         }
         Enterprise eps = null;
 

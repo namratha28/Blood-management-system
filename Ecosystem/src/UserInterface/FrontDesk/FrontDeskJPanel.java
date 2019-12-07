@@ -80,8 +80,8 @@ public class FrontDeskJPanel extends javax.swing.JPanel {
         for (WorkRequest rq : organization.getWorkQueue().getWorkRequestList()) {
             Object[] row = new Object[4];
             row[0] = rq;
-            row[1] = rq.getAppointmentDate();
-            row[2] = rq.getMessage();
+            row[1] = rq.getPatient();
+            row[2] = rq.getReceiver();
             row[3] = rq.getStatus();
             model.addRow(row);
         }
@@ -198,7 +198,7 @@ public class FrontDeskJPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "from", "due", "event", "Status"
+                "from", "patient", "reciever", "Status"
             }
         ));
         jScrollPane3.setViewportView(rqTable);
@@ -319,7 +319,6 @@ private void delFdWq(WorkRequest wr) {
 
     private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
         selectedRow = rqTable.getSelectedRow();
-
         if (selectedRow >= 0) {
             wr = (WorkRequest) rqTable.getValueAt(selectedRow, 0);
             delFdWq(wr);
