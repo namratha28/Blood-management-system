@@ -105,7 +105,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        manageNetworkJButton.setBackground(new java.awt.Color(0, 102, 102));
+        manageNetworkJButton.setBackground(new java.awt.Color(255, 168, 125));
         manageNetworkJButton.setFont(new java.awt.Font("Chalkboard SE", 1, 14)); // NOI18N
         manageNetworkJButton.setForeground(new java.awt.Color(255, 255, 255));
         manageNetworkJButton.setText("MANAGE NETWORK");
@@ -116,7 +116,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         });
         jPanel1.add(manageNetworkJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 140, 260, 60));
 
-        manageAdminJButton.setBackground(new java.awt.Color(0, 102, 102));
+        manageAdminJButton.setBackground(new java.awt.Color(255, 168, 125));
         manageAdminJButton.setFont(new java.awt.Font("Chalkboard SE", 1, 14)); // NOI18N
         manageAdminJButton.setForeground(new java.awt.Color(255, 255, 255));
         manageAdminJButton.setText("MANAGE ENTERPRISE ADMIN");
@@ -127,7 +127,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         });
         jPanel1.add(manageAdminJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 300, 260, 60));
 
-        manageEnterpriseJButton.setBackground(new java.awt.Color(0, 102, 102));
+        manageEnterpriseJButton.setBackground(new java.awt.Color(255, 168, 125));
         manageEnterpriseJButton.setFont(new java.awt.Font("Chalkboard SE", 1, 14)); // NOI18N
         manageEnterpriseJButton.setForeground(new java.awt.Color(255, 255, 255));
         manageEnterpriseJButton.setText("MANAGE ENTERPRISE");

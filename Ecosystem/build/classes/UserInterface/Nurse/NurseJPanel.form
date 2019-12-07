@@ -188,6 +188,12 @@
     </Component>
     <Component class="javax.swing.JButton" name="jButton4">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="7d" green="a8" red="ff" type="rgb"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="fe" green="fe" red="fe" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Delete"/>
       </Properties>
     </Component>
@@ -208,6 +214,12 @@
     </Component>
     <Component class="javax.swing.JButton" name="jButton2">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="7d" green="a8" red="ff" type="rgb"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="fe" green="fe" red="fe" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Confirm"/>
       </Properties>
       <Events>
@@ -264,11 +276,23 @@
     </Container>
     <Component class="javax.swing.JButton" name="selectBtn">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="7d" green="a8" red="ff" type="rgb"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="fe" green="fe" red="fe" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Select"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="cancelBtn1">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="7d" green="a8" red="ff" type="rgb"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="fe" green="fe" red="fe" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Cancel"/>
       </Properties>
     </Component>

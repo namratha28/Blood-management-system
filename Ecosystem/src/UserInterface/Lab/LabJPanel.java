@@ -125,6 +125,8 @@ public class LabJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(workRequestJTable);
 
+        assignBtn.setBackground(new java.awt.Color(255, 168, 125));
+        assignBtn.setForeground(new java.awt.Color(254, 254, 254));
         assignBtn.setText("Assign to me");
         assignBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -132,6 +134,8 @@ public class LabJPanel extends javax.swing.JPanel {
             }
         });
 
+        processBtn.setBackground(new java.awt.Color(255, 168, 125));
+        processBtn.setForeground(new java.awt.Color(254, 254, 254));
         processBtn.setText("Process");
         processBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

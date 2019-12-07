@@ -57,8 +57,9 @@ public class MainJFrame extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setForeground(new java.awt.Color(0, 153, 153));
 
-        loginJButton.setBackground(new java.awt.Color(255, 255, 255));
-        loginJButton.setFont(new java.awt.Font("Chalkboard SE", 1, 12)); // NOI18N
+        loginJButton.setBackground(new java.awt.Color(255, 168, 125));
+        loginJButton.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        loginJButton.setForeground(new java.awt.Color(253, 239, 239));
         loginJButton.setText("LOGIN");
         loginJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -74,7 +75,9 @@ public class MainJFrame extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("PASSWORD");
 
-        logoutJButton.setFont(new java.awt.Font("Chalkboard SE", 1, 12)); // NOI18N
+        logoutJButton.setBackground(new java.awt.Color(255, 168, 125));
+        logoutJButton.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        logoutJButton.setForeground(new java.awt.Color(254, 254, 254));
         logoutJButton.setText("LOGOUT");
         logoutJButton.setEnabled(false);
         logoutJButton.addActionListener(new java.awt.event.ActionListener() {
@@ -119,7 +122,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 .addComponent(logoutJButton)
                 .addGap(22, 22, 22)
                 .addComponent(loginJLabel)
-                .addContainerGap(168, Short.MAX_VALUE))
+                .addContainerGap(176, Short.MAX_VALUE))
         );
 
         jSplitPane1.setLeftComponent(jPanel1);
@@ -238,7 +241,6 @@ public class MainJFrame extends javax.swing.JFrame {
             public void run() {
                 SplashScreen ss = new SplashScreen();
                 ss.setVisible(true);
-                ss.jProgressBar.setValue(0);
                 try {
                     for (int i =0; i <=100; i++){
                         Thread.sleep(40);

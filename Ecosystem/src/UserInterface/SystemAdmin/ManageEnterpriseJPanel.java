@@ -165,8 +165,8 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
         });
         add(backJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 530, -1, -1));
 
-        btnDelete.setBackground(new java.awt.Color(0, 102, 102));
-        btnDelete.setFont(new java.awt.Font("Chalkboard SE", 0, 12)); // NOI18N
+        btnDelete.setBackground(new java.awt.Color(255, 168, 125));
+        btnDelete.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
         btnDelete.setForeground(new java.awt.Color(255, 255, 255));
         btnDelete.setText("DELETE ENTERPRISE");
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
@@ -174,7 +174,7 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
                 btnDeleteActionPerformed(evt);
             }
         });
-        add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 300, -1, -1));
+        add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 300, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Chalkboard SE", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 102, 102));

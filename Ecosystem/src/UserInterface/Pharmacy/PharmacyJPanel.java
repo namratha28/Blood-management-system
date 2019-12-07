@@ -125,6 +125,8 @@ public class PharmacyJPanel extends javax.swing.JPanel {
 
         jLabel1.setText("Medicine");
 
+        addBtn.setBackground(new java.awt.Color(255, 168, 125));
+        addBtn.setForeground(new java.awt.Color(254, 254, 254));
         addBtn.setText("ADD Medicine");
         addBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -192,6 +194,8 @@ public class PharmacyJPanel extends javax.swing.JPanel {
 
         jLabel4.setText("List of Requesters for Medicine");
 
+        delBtn.setBackground(new java.awt.Color(255, 168, 125));
+        delBtn.setForeground(new java.awt.Color(254, 254, 254));
         delBtn.setText("Delete");
         delBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -199,6 +203,8 @@ public class PharmacyJPanel extends javax.swing.JPanel {
             }
         });
 
+        jButton1.setBackground(new java.awt.Color(255, 168, 125));
+        jButton1.setForeground(new java.awt.Color(254, 254, 254));
         jButton1.setText("Send Medicine");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
