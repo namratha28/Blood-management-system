@@ -3,10 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/dell_owner/src/EcoSystem/ecosystem/Ecosystem/src/UserInterface1/MainJFrame.java</file>
-            <file>file:/home/dell_owner/src/EcoSystem/ecosystem/Ecosystem/src/UserInterface1/SplashScreen.java</file>
-            <file>file:/home/dell_owner/src/EcoSystem/ecosystem/Ecosystem/src/UserInterface/PharmacyAdmin/ManageEmployeeJPanel.java</file>
-            <file>file:/home/dell_owner/src/EcoSystem/ecosystem/Ecosystem/src/UserInterface/BloodBank/BloodBankJPanel.java</file>
+            <file>file:/home/dell_owner/src/EcoSystem/ecosystem/Ecosystem/src/UserInterface/Donor/DonorJPanel.java</file>
+            <file>file:/home/dell_owner/src/EcoSystem/ecosystem/Ecosystem/src/UserInterface/Donor/DonorViewEventsJPanel.java</file>
         </group>
     </open-files>
 </project-private>

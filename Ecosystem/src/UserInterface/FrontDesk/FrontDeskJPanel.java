@@ -10,9 +10,7 @@ import Business.Enterprise.Enterprise;
 import Business.Entity.HospitalStatus;
 import Business.Organization.CommonUserOrganization;
 import Business.Organization.FrontDeskEmployeeOrganization;
-import Business.Organization.LabOrganization;
 import Business.Organization.Organization;
-import Business.Role.LabRole;
 import Business.UserAccount.UserAccount;
 import Bussiness.WorkQueue.DonorRequest;
 import Bussiness.WorkQueue.HospitalInnerRequest;
@@ -34,14 +32,14 @@ public class FrontDeskJPanel extends javax.swing.JPanel {
     private JPanel userProcessContainer;
     private EcoSystem business;
     private FrontDeskEmployeeOrganization organization;
-    private Enterprise e;
+    private Enterprise enterprise;
     private WorkRequest wr;
     private UserAccount next;
     private UserAccount curr;
-    HospitalInnerRequest wrinner;
-    DonorRequest dr;
-    int selectedRow = -1;
-    HospitalStatus lastStatus;
+    private HospitalInnerRequest wrinner;
+    private DonorRequest dr;
+    private int selectedRow = -1;
+    private HospitalStatus lastStatus;
 
     /**
      * Creates new form FrontJPanel
@@ -51,7 +49,7 @@ public class FrontDeskJPanel extends javax.swing.JPanel {
         this.userProcessContainer = userProcessContainer;
         this.curr = account;
         this.business = business;
-        this.e = enterprise;
+        this.enterprise = enterprise;
         this.organization = organization;
         populateWrTable();
         populateStaff();
@@ -62,7 +60,7 @@ public class FrontDeskJPanel extends javax.swing.JPanel {
 
     private void populateStaff() {
         staffcombo.removeAllItems();
-        for (Organization org : e.getOrganizationDirectory().getOrganizationList()) {
+        for (Organization org : enterprise.getOrganizationDirectory().getOrganizationList()) {
             if (!(org instanceof CommonUserOrganization)) {
 //                if(org instanceof LabOrganization){
 //                    staffcombo.addItem(org);
@@ -78,7 +76,8 @@ public class FrontDeskJPanel extends javax.swing.JPanel {
     private void populateRqTable() {
         DefaultTableModel model = (DefaultTableModel) rqTable.getModel();
         model.setRowCount(0);
-        for (WorkRequest rq : curr.getWorkQueue().getWorkRequestList()) {
+
+        for (WorkRequest rq : organization.getWorkQueue().getWorkRequestList()) {
             Object[] row = new Object[4];
             row[0] = rq;
             row[1] = rq.getAppointmentDate();
@@ -86,12 +85,13 @@ public class FrontDeskJPanel extends javax.swing.JPanel {
             row[3] = rq.getStatus();
             model.addRow(row);
         }
+
     }
 
     private void populateWrTable() {
         DefaultTableModel model = (DefaultTableModel) wrTable.getModel();
         model.setRowCount(0);
-        for (WorkRequest rq : e.getWorkQueue().getWorkRequestList()) {
+        for (WorkRequest rq : enterprise.getWorkQueue().getWorkRequestList()) {
             Object[] row = new Object[4];
             row[0] = rq;
             row[1] = rq.getAppointmentDate();
@@ -289,12 +289,20 @@ public class FrontDeskJPanel extends javax.swing.JPanel {
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
+private void delFdWq(WorkRequest wr) {
+        for (Organization o : enterprise.getOrganizationDirectory().getOrganizationList()) {
+            if (o instanceof FrontDeskEmployeeOrganization) {
+                o.getWorkQueue().getWorkRequestList().remove(wr);
+            }
 
+        }
+    }
     private void selectBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectBtnActionPerformed
         selectedRow = rqTable.getSelectedRow();
         //WorkRequest wr = null;
         if (selectedRow >= 0) {
             wr = (WorkRequest) rqTable.getValueAt(selectedRow, 0);
+            delFdWq(wr);
 
         } else {
             JOptionPane.showMessageDialog(null, "Please select any row");
@@ -303,7 +311,7 @@ public class FrontDeskJPanel extends javax.swing.JPanel {
 
     private void appBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_appBtnActionPerformed
         FrontDeskApptJPanel panel = new FrontDeskApptJPanel(userProcessContainer, curr, organization,
-                e, business);
+        enterprise, business);
         userProcessContainer.add("CreateEmployeeJPanel", panel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
@@ -314,7 +322,7 @@ public class FrontDeskJPanel extends javax.swing.JPanel {
 
         if (selectedRow >= 0) {
             wr = (WorkRequest) rqTable.getValueAt(selectedRow, 0);
-            curr.getWorkQueue().getWorkRequestList().remove(wr);
+            delFdWq(wr);
             populateRqTable();
         } else {
             JOptionPane.showMessageDialog(null, "Please select any row");
@@ -352,34 +360,22 @@ public class FrontDeskJPanel extends javax.swing.JPanel {
 
         } else if (status == HospitalStatus.URGENT) {
             if (lastStatus == null) {
-                e.getWorkQueue().getWorkRequestList().remove(wrinner);
-                e.getWorkQueue().getWorkRequestList().add(wrinner);
+                enterprise.getWorkQueue().getWorkRequestList().remove(wrinner);
+                enterprise.getWorkQueue().getWorkRequestList().add(wrinner);
                 lastStatus = HospitalStatus.URGENT;
             } else {
 
             }
         } else {
-            next = (UserAccount) staffcombo.getSelectedItem();
-            System.out.println(next.toString());
-            if (next.getRole() instanceof LabRole) {
-                for (Organization org : e.getOrganizationDirectory().getOrganizationList()) {
-                    if ((org instanceof LabOrganization)) {
-                        dr = new DonorRequest();
-                        dr.setSender(curr);
-                        dr.setRequestDate(new Date());
-                        dr.setReceiver(wr.getPatient());
-                        org.getWorkQueue().getWorkRequestList().remove(dr);
-                        org.getWorkQueue().getWorkRequestList().add(dr);
-                    }
-                }
-            } else {
-                if (lastStatus != null) {
-                    e.getWorkQueue().getWorkRequestList().remove(wrinner);
-                }
-                wrinner.setReceiver(next);
-                next.getWorkQueue().getWorkRequestList().remove(wrinner);
-                next.getWorkQueue().getWorkRequestList().add(wrinner);
+            if (lastStatus != null) {
+                enterprise.getWorkQueue().getWorkRequestList().remove(wrinner);
             }
+
+            next = (UserAccount) staffcombo.getSelectedItem();
+            wrinner.setReceiver(next);
+            next.getWorkQueue().getWorkRequestList().remove(wrinner);
+            next.getWorkQueue().getWorkRequestList().add(wrinner);
+
         }
         wr.setResolveDate(new Date());
         wr.setStatus(status.getValue());
@@ -389,8 +385,12 @@ public class FrontDeskJPanel extends javax.swing.JPanel {
             wr.getPatient().getPerson().getTreatmentHistory().remove(wr);
             wr.getPatient().getPerson().getTreatmentHistory().add(wr);
         }
-        curr.getWorkQueue().getWorkRequestList().remove(wr);
 
+        for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
+            if (organization instanceof FrontDeskEmployeeOrganization) {
+                organization.getWorkQueue().getWorkRequestList().remove(wr);
+            }
+        }
 
     }//GEN-LAST:event_jButton1ActionPerformed
 

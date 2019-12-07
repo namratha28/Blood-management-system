@@ -25,6 +25,7 @@ public abstract class Organization {
     private static int counter;
 
     public enum Type {
+
         Admin("AdminOrganization"),
         BloodBankAdmin("BloodBankAdmin"),
         BloodBank("BloodBank"),
@@ -40,11 +41,10 @@ public abstract class Organization {
         FrontDesk("FrontDesk"),
         Lab("Lab"),
         Donor("Donor"),
-        Common("CommonUser"), 
-        Events("Events"),
-        ;
-        
-        
+        Common("CommonUser"),
+        HospitalLab("HospitalLab"),
+        Events("Events");
+
         private String value;
 
         private Type(String value) {

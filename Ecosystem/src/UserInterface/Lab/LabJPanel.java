@@ -172,11 +172,13 @@ public class LabJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         
         int selectedRow = workRequestJTable.getSelectedRow();
-        DonorRequest labRequest =(DonorRequest)  workRequestJTable.getValueAt(selectedRow, 0);
+       
         if (selectedRow < 0) {
+            JOptionPane.showMessageDialog(null, "Please select a row", "Information", JOptionPane.INFORMATION_MESSAGE);
             return;
+         
         }
-        
+         DonorRequest labRequest =(DonorRequest)  workRequestJTable.getValueAt(selectedRow, 0);
         if(labRequest.getStatus().equalsIgnoreCase("completed")){
             JOptionPane.showMessageDialog(null, "Blood donation completed");
             return;
@@ -191,10 +193,12 @@ public class LabJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Blood donation in process");
             return;
         }
-
-        labRequest.setLabTechnician(userAccount);
+          if(labRequest.getStatus().equalsIgnoreCase("sent")){
+             labRequest.setLabTechnician(userAccount);
+              labRequest.setStatus("Pending");
+          }
         //labRequest.s("");
-        labRequest.setStatus("Pending");
+       
         populateTable();
     }//GEN-LAST:event_assignBtnActionPerformed
 
@@ -202,25 +206,30 @@ public class LabJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         
         int selectedRow = workRequestJTable.getSelectedRow();
-        DonorRequest labRequest = (DonorRequest) workRequestJTable.getValueAt(selectedRow, 0);
-        
-        if (selectedRow >= 0) {
-
-            if (selectedRow < 0) {
+     
+        if (selectedRow < 0) {
+                JOptionPane.showMessageDialog(null, "Please select a row", "Information", JOptionPane.INFORMATION_MESSAGE);
                 return;
             }
-            if(labRequest.getStatus().equalsIgnoreCase("completed")){
+           DonorRequest labRequest = (DonorRequest) workRequestJTable.getValueAt(selectedRow, 0);
+        if (selectedRow >= 0) {
+           if(labRequest.getStatus().equalsIgnoreCase("sent")){
+            JOptionPane.showMessageDialog(null, "Assign to Lab technician");
+            return;
+        }
+            
+          if(labRequest.getStatus().equalsIgnoreCase("completed")){
             JOptionPane.showMessageDialog(null, "Blood donation completed");
             return;
         }
         
          if(labRequest.getStatus().equalsIgnoreCase("pending")&& labRequest.getLabTechnician().getUsername()!=userAccount.getUsername()){
-            JOptionPane.showMessageDialog(null, "Blood donation in process");
+            JOptionPane.showMessageDialog(null, "Blood donation in pending by other lab technician");
             return;
         }
          
          if(labRequest.getStatus().equalsIgnoreCase("processing")&& labRequest.getLabTechnician()!=userAccount){
-            JOptionPane.showMessageDialog(null, "Blood donation in process");
+            JOptionPane.showMessageDialog(null, "Blood donation in process by other lab technician");
             return;
         }
             

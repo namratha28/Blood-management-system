@@ -292,7 +292,7 @@ public class NurseJPanel extends javax.swing.JPanel {
         WorkRequest wr = null;
         if (selectedRow >= 0) {
             wr = (WorkRequest) rqTable.getValueAt(selectedRow, 0);
-            NurseWQJPanel panel = new NurseWQJPanel(wr, userProcessContainer, enterprise, userAccount);
+            NurseWQJPanel panel = new NurseWQJPanel(wr, userProcessContainer, business, enterprise, userAccount);
             userProcessContainer.add("DoctorWQJPanel", panel);
             CardLayout layout = (CardLayout) userProcessContainer.getLayout();
             layout.next(userProcessContainer);
@@ -308,7 +308,7 @@ public class NurseJPanel extends javax.swing.JPanel {
         if (selectedRow >= 0) {
             wr = (WorkRequest) rqTable.getValueAt(selectedRow, 0);
             userAccount.getWorkQueue().getWorkRequestList().remove(wr);
-            populateWrTable();
+            populateRqTable();
         } else {
             JOptionPane.showMessageDialog(null, "Please select any row");
         }
@@ -332,7 +332,7 @@ public class NurseJPanel extends javax.swing.JPanel {
             d1 = format.parse(from);
             d2 = format.parse(to);
         } catch (ParseException e) {
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Format MM/dd/yy HH:mm:ss");
         }
         TimeSlot ts = new TimeSlot(d1, d2);
         userAccount.getEmployee().addAvailability(ts);
