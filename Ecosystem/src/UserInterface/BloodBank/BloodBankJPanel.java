@@ -356,14 +356,14 @@ public class BloodBankJPanel extends javax.swing.JPanel {
             //System.out.println(labrequest);
             Object[] row = new Object[5];
 
-           // if (labrequest.getReceiver() == null && labrequest.getBlood().equalsIgnoreCase(donorRequest.getBlood())) {
+            if (labrequest.getReceiver() == null && labrequest.getBlood().equalsIgnoreCase(donorRequest.getBlood())) {
             donorRequest.setStatus(HospitalStatus.BLOOD_READY.getValue());
             donorRequest.setReceiver(sender);
             donorRequest.setPatient(patient);
             labrequest.setReceiver(donorRequest.getSender());
             System.out.println("req" + donorRequest.getStatus());
             break;
-            // }
+             }
         }
         Enterprise eps = null;
 
