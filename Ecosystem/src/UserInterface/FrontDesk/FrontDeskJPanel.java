@@ -55,7 +55,7 @@ public class FrontDeskJPanel extends javax.swing.JPanel {
         populateStaff();
         populateSpeComboBox();
         populateRqTable();
-        dueTxt.setText("11/22/80 00:00:00");
+        dueTxt.setText("12/08/19 00:00:00");
     }
 
     private void populateStaff() {
@@ -78,11 +78,12 @@ public class FrontDeskJPanel extends javax.swing.JPanel {
         model.setRowCount(0);
 
         for (WorkRequest rq : organization.getWorkQueue().getWorkRequestList()) {
-            Object[] row = new Object[4];
+            Object[] row = new Object[5];
             row[0] = rq;
-            row[1] = rq.getAppointmentDate();
-            row[2] = rq.getMessage();
-            row[3] = rq.getStatus();
+            row[1] = rq.getReceiver();
+           // row[2] = rq.getSender();
+            row[2] = rq.getStatus();
+            row[3]=rq.getResolveDate();
             model.addRow(row);
         }
 
@@ -198,7 +199,7 @@ public class FrontDeskJPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "from", "due", "event", "Status"
+                "from", "patient", "Status", "resolve time"
             }
         ));
         jScrollPane3.setViewportView(rqTable);
@@ -299,11 +300,9 @@ private void delFdWq(WorkRequest wr) {
     }
     private void selectBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectBtnActionPerformed
         selectedRow = rqTable.getSelectedRow();
-        //WorkRequest wr = null;
         if (selectedRow >= 0) {
             wr = (WorkRequest) rqTable.getValueAt(selectedRow, 0);
-            delFdWq(wr);
-
+            //delFdWq(wr);
         } else {
             JOptionPane.showMessageDialog(null, "Please select any row");
         }
@@ -319,7 +318,6 @@ private void delFdWq(WorkRequest wr) {
 
     private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
         selectedRow = rqTable.getSelectedRow();
-
         if (selectedRow >= 0) {
             wr = (WorkRequest) rqTable.getValueAt(selectedRow, 0);
             delFdWq(wr);
@@ -341,7 +339,7 @@ private void delFdWq(WorkRequest wr) {
         }
         wrinner.setSender(curr);
         wrinner.setMessage(massageTxt.getText());
-        wrinner.setPatient(wr.getPatient());
+        wrinner.setPatient(wr.getReceiver());
         wrinner.setRequestDate(new Date());
         wrinner.setStatus(status.getValue());
         String due = dueTxt.getText();
@@ -381,16 +379,17 @@ private void delFdWq(WorkRequest wr) {
         wr.setStatus(status.getValue());
         wr.setMessage(massageTxt.getText());
         System.out.println(status.getValue());
-        if (wr.getPatient().getPerson().getTreatmentHistory() != null) {
-            wr.getPatient().getPerson().getTreatmentHistory().remove(wr);
-            wr.getPatient().getPerson().getTreatmentHistory().add(wr);
-        }
+        if (wr.getReceiver().getPerson().getTreatmentHistory() != null) {
+            wr.getReceiver().getPerson().getTreatmentHistory().remove(wr);
+            wr.getReceiver().getPerson().getTreatmentHistory().add(wr);
+        }//receiver is patient here
 
         for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
             if (organization instanceof FrontDeskEmployeeOrganization) {
                 organization.getWorkQueue().getWorkRequestList().remove(wr);
             }
         }
+        populateRqTable();
 
     }//GEN-LAST:event_jButton1ActionPerformed
 

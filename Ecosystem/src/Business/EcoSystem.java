@@ -23,11 +23,14 @@ public class EcoSystem extends Organization {
 
     private static EcoSystem business;
     private ArrayList<Network> networkList;
-    
 
     public static EcoSystem getInstance() {
         if (business == null) {
-            business = new EcoSystem();
+            synchronized (EcoSystem.class) {
+                if (business == null) {
+                    business = new EcoSystem();
+                }
+            }
         }
         return business;
     }
@@ -35,13 +38,12 @@ public class EcoSystem extends Organization {
     private EcoSystem() {
         super(null);
         networkList = new ArrayList<>();
-       
+
     }
 
     public static void setInstance(EcoSystem system) {
         business = system;
     }
-
 
     public ArrayList<Network> getNetworkList() {
         return networkList;

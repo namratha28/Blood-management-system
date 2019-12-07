@@ -353,6 +353,7 @@ public class DoctorJPanel extends javax.swing.JPanel {
             row[0] = rq;
             row[1] = rq.getAppointmentDate();
             row[2] = rq.getStatus();
+            if(rq.getPatient()!=null)
             row[3] = rq.getPatient().getPerson();
             model.addRow(row);
         }

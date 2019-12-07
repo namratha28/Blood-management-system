@@ -368,7 +368,7 @@ public class DoctorWQJPanel extends javax.swing.JPanel {
                 enterprise.getWorkQueue().getWorkRequestList().remove(nextWorkRequest);
             }
 
-            addFrontDeskWorkQueue();
+            //addFrontDeskWorkQueue();
             sendDonorWorkRequest();
 
         } else {
@@ -380,9 +380,10 @@ public class DoctorWQJPanel extends javax.swing.JPanel {
 
     private void sendDonorWorkRequest() {
         DonorRequest dr = new DonorRequest();
-        dr.setSender(wr.getPatient());
+        dr.setSender(curr);
         dr.setBlood(wr.getPatient().getPerson().getType().getValue());
         dr.setRequestDate(new Date());
+        //dr.setPatient(wr.getPatient());
         dr.setReceiver(wr.getPatient());
         dr.setStatus("");
 
