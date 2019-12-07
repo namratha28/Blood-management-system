@@ -6,6 +6,7 @@
 package Bussiness.WorkQueue;
 
 import Business.UserAccount.UserAccount;
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -20,6 +21,123 @@ public class DonorRequest extends WorkRequest{
     private Date requestDate;
     private Date resolveDate;
     private UserAccount labTechnician;
+    private UserAccount eventsender;
+    private UserAccount eventreceiver;
+    private String eventstatus;
+    private String eventtitle;
+    private String eventlocation;
+    private String eventdate;
+    private String eventtime;
+    private String eventimage;
+    private boolean isEventReq;
+    private String regeventtitle;
+    private String regeventlocation;
+    private String regeventdate;
+    private String regeventtime;
+
+    public String getRegeventtitle() {
+        return regeventtitle;
+    }
+
+    public void setRegeventtitle(String regeventtitle) {
+        this.regeventtitle = regeventtitle;
+    }
+
+    public String getRegeventlocation() {
+        return regeventlocation;
+    }
+
+    public void setRegeventlocation(String regeventlocation) {
+        this.regeventlocation = regeventlocation;
+    }
+
+    public String getRegeventdate() {
+        return regeventdate;
+    }
+
+    public void setRegeventdate(String regeventdate) {
+        this.regeventdate = regeventdate;
+    }
+
+    public String getRegeventtime() {
+        return regeventtime;
+    }
+
+    public void setRegeventtime(String regeventtime) {
+        this.regeventtime = regeventtime;
+    }
+
+    public UserAccount getEventsender() {
+        return eventsender;
+    }
+
+    public void setEventsender(UserAccount eventsender) {
+        this.eventsender = eventsender;
+    }
+
+    public UserAccount getEventreceiver() {
+        return eventreceiver;
+    }
+
+    public void setEventreceiver(UserAccount eventreceiver) {
+        this.eventreceiver = eventreceiver;
+    }
+
+    public String getEventstatus() {
+        return eventstatus;
+    }
+
+    public void setEventstatus(String eventstatus) {
+        this.eventstatus = eventstatus;
+    }
+
+    public String getEventtitle() {
+        return eventtitle;
+    }
+
+    public void setEventtitle(String eventtitle) {
+        this.eventtitle = eventtitle;
+    }
+
+    public String getEventlocation() {
+        return eventlocation;
+    }
+
+    public void setEventlocation(String eventlocation) {
+        this.eventlocation = eventlocation;
+    }
+
+    public String getEventdate() {
+        return eventdate;
+    }
+
+    public void setEventdate(String eventdate) {
+        this.eventdate = eventdate;
+    }
+
+    public String getEventtime() {
+        return eventtime;
+    }
+
+    public void setEventtime(String eventtime) {
+        this.eventtime = eventtime;
+    }
+
+    public String getEventimage() {
+        return eventimage;
+    }
+
+    public void setEventimage(String eventimage) {
+        this.eventimage = eventimage;
+    }
+
+    public boolean getIsEventReq() {
+        return isEventReq;
+    }
+
+    public void setIsEventReq(boolean isEventReq) {
+        this.isEventReq = isEventReq;
+    }
     
     public String getBloodBank() {
         return bloodBank;

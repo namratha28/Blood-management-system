@@ -3,25 +3,27 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package UserInterface.CreateEvents;
+package UserInterface.Donor;
 
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Organization.DonorOrganisation;
 import Business.Organization.EventsOrganization;
 import Business.Organization.Organization;
-import Business.Organization.OrganizationDirectory;
 import Business.UserAccount.UserAccount;
 import Bussiness.WorkQueue.DonorRequest;
 import Bussiness.WorkQueue.EventRequest;
+import Bussiness.WorkQueue.MedicineRequest;
 import Bussiness.WorkQueue.WorkRequest;
-import UserInterface.SystemAdmin.SystemAdminWorkAreaJPanel;
+import UserInterface.CreateEvents.ViewEventJPanel;
+import UserInterface.Doctor.DoctorWQJPanel;
 import java.awt.CardLayout;
 import java.awt.Component;
 import java.awt.Image;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -32,25 +34,26 @@ import javax.swing.table.TableColumn;
  *
  * @author dell_owner
  */
-public class ViewEventJPanel extends javax.swing.JPanel {
+public class DonorViewEventsJPanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form ViewEventJPanel
+     * Creates new form DonorViewEvents
      */
     private JPanel userProcessContainer;
     private EcoSystem business;
     private UserAccount userAccount;
+    private Organization organization;
     private DonorOrganisation donorOrganisation;
     private Enterprise enterprise;
-
-    public ViewEventJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business) {
+    private EventsOrganization eventsOrganization;
+    
+    public DonorViewEventsJPanel(JPanel userProcessContainer, UserAccount account, Enterprise enterprise, EcoSystem business, Organization organization) {
         initComponents();
+        this.donorOrganisation = (DonorOrganisation) organization;
         this.userProcessContainer = userProcessContainer;
         this.userAccount = account;
         this.business = business;
-        this.donorOrganisation = (DonorOrganisation) organization;
         this.enterprise = enterprise;
-        this.business=business;
         populateTable();
     }
     
@@ -62,25 +65,26 @@ public class ViewEventJPanel extends javax.swing.JPanel {
             return (Component) value;
         }
     }
-    
     public void populateTable() {
-        DefaultTableModel model = (DefaultTableModel) eventsJTable.getModel();
-        model.setRowCount(0); 
+        System.out.println("hi");
+        DefaultTableModel model = (DefaultTableModel) dViewEvents.getModel();
         Object[] newIdentifiers = new Object[]{"Creator", "Title", "Location", "Date", "Time", "Image"};
         model.setColumnIdentifiers(newIdentifiers);
-        eventsJTable.getColumn("Image").setCellRenderer(new LabelRenderer());
+        dViewEvents.getColumn("Image").setCellRenderer(new DonorViewEventsJPanel.LabelRenderer());
+        model.setRowCount(0);
+        System.out.println(donorOrganisation.getWorkQueue().getWorkRequestList().size());
         for (WorkRequest request : donorOrganisation.getWorkQueue().getWorkRequestList()) {
+            System.out.println("Hi");
             if (request.getClass() != null) {
                 String x = request.getClass().toString();
-                System.out.println(x);
+                System.out.println("Hi");
                 //Business.WorkQueue.CarrierWorkRequest
                 //String x = request.getReceiver().getRole().toString();
                 
                 //Business.WorkQueue.CarrierWorkRequest
                 //String x = request.getReceiver().getRole().toString();
-                System.out.println("reqqq" + request);
-
-                if(x.contains("Donor")) {
+                System.out.println(request);
+                if(x.contains("Donor")){
                     DonorRequest donorWorkRequest = (DonorRequest) request;
                     if (donorWorkRequest.getIsEventReq() == true) {
                         Object[] row = new Object[6];
@@ -99,12 +103,10 @@ public class ViewEventJPanel extends javax.swing.JPanel {
                         model.addRow(row);
                 }
                 }
-
+                
             }
         }
-   
     }
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -116,34 +118,26 @@ public class ViewEventJPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        eventsJTable = new javax.swing.JTable();
-        backBtn = new javax.swing.JButton();
+        dViewEvents = new javax.swing.JTable();
+        RegisterBtn = new javax.swing.JButton();
 
-        eventsJTable.setModel(new javax.swing.table.DefaultTableModel(
+        dViewEvents.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Creator", "Title", "Location", "Date", "Time", "Image"
+                "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(eventsJTable);
+        jScrollPane1.setViewportView(dViewEvents);
 
-        backBtn.setBackground(new java.awt.Color(253, 134, 75));
-        backBtn.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
-        backBtn.setForeground(new java.awt.Color(254, 254, 254));
-        backBtn.setText("Back");
-        backBtn.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        backBtn.setBorderPainted(false);
-        backBtn.setContentAreaFilled(false);
-        backBtn.setFocusPainted(false);
-        backBtn.setOpaque(true);
-        backBtn.addActionListener(new java.awt.event.ActionListener() {
+        RegisterBtn.setText("Register");
+        RegisterBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backBtnActionPerformed(evt);
+                RegisterBtnActionPerformed(evt);
             }
         });
 
@@ -154,34 +148,62 @@ public class ViewEventJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 589, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 376, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(RegisterBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 369, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addComponent(RegisterBtn)
+                .addContainerGap(127, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
+    private void RegisterBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegisterBtnActionPerformed
         // TODO add your handling code here:
-        userProcessContainer.remove(this);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.previous(userProcessContainer);
-    }//GEN-LAST:event_backBtnActionPerformed
+        int selected = dViewEvents.getSelectedRow();
+
+        if (selected > 0) {
+
+            String title = dViewEvents.getValueAt(selected, 1).toString();
+            String location = dViewEvents.getValueAt(selected, 2).toString();
+
+            String date = dViewEvents.getValueAt(selected, 3).toString();
+            String time = dViewEvents.getValueAt(selected, 4).toString();
+
+
+            System.out.println();
+            ArrayList<String> events = userAccount.getEvents();
+            events.add(title);
+            userAccount.setEvents(events);
+            
+            ArrayList<String> locations = userAccount.getEventLocations();
+            locations.add(location);
+            userAccount.setEvents(events);
+            
+            ArrayList<String> dates = userAccount.getEventDates();
+            dates.add(date);
+            userAccount.setEvents(dates);
+            
+            ArrayList<String> times = userAccount.getEventTimes();
+            times.add(time);
+            userAccount.setEvents(times);
+                    
+            
+        }
+        
+    }//GEN-LAST:event_RegisterBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton backBtn;
-    private javax.swing.JTable eventsJTable;
+    private javax.swing.JButton RegisterBtn;
+    private javax.swing.JTable dViewEvents;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }
