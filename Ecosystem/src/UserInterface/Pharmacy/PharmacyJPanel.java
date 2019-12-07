@@ -59,10 +59,10 @@ public class PharmacyJPanel extends javax.swing.JPanel {
                 //String x = request.getReceiver().getRole().toString();
                 System.out.println(x);
                 MedicineRequest req=(MedicineRequest) request;
-                if (x.contains("MedicineRequest")){
+                if (x.contains("MedicineRequest")&&req.getSender()!=null){
                     Object[] row = new Object[3];
-                    
-                    row[0] = req.getAvailMedicine();
+                    row[0]=req;
+                    row[1] = req.getAvailMedicine();
                     
                     model.addRow(row);
                   
@@ -88,9 +88,9 @@ public class PharmacyJPanel extends javax.swing.JPanel {
                     if(request.getMedicine()!=null){
                         Object[] row = new Object[5];
                         row[1]=request.getMedicine();
-                        row[0] = request;
-                        row[2] = request.getQuantity();
-                        row[3]=request.getStatus();
+                        row[0] = req;
+                      
+                        row[2]=request.getStatus();
 
                         model.addRow(row);
                     
@@ -134,20 +134,20 @@ public class PharmacyJPanel extends javax.swing.JPanel {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null},
-                {null},
-                {null},
-                {null}
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
             },
             new String [] {
-                "Medicine"
+                "Pharmacy", "Medicine"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class
+                java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false
+                false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -274,6 +274,7 @@ public class PharmacyJPanel extends javax.swing.JPanel {
                 //System.out.println("size" + enterprise.getOrganizationDirectory().getOrganizationList().size());
                 MedicineRequest medicineRequest = new MedicineRequest();
                 medicineRequest.setAvailMedicine(medicineTxtField.getText());
+                medicineRequest.setSender(userAccount);
                
                 medicalOrganisation.getWorkQueue().getWorkRequestList().add(medicineRequest);
                 //System.out.println(medicineRequest);
@@ -286,12 +287,20 @@ public class PharmacyJPanel extends javax.swing.JPanel {
             
                 
             }}
+         else{
+            JOptionPane.showMessageDialog(null, "Please enter medicine", "Warning", JOptionPane.WARNING_MESSAGE);
+         }
     }//GEN-LAST:event_addBtnActionPerformed
 
     private void delBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delBtnActionPerformed
         // TODO add your handling code here:
          int selectedRow = jTable1.getSelectedRow();
+         if(selectedRow<0){
+           JOptionPane.showMessageDialog(null, "Please select a row", "Warning", JOptionPane.WARNING_MESSAGE);
+           return;
+         }
          MedicineRequest MedicineRequest = (MedicineRequest) jTable1.getValueAt(selectedRow, 0);
+         
          medicalOrganisation.getWorkQueue().getWorkRequestList().remove(MedicineRequest);
          populateMedTable();
     }//GEN-LAST:event_delBtnActionPerformed
@@ -299,6 +308,9 @@ public class PharmacyJPanel extends javax.swing.JPanel {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
            int selectedRow = jTable2.getSelectedRow();
+           if(selectedRow<0){
+              JOptionPane.showMessageDialog(null, "Please select a row", "Warning", JOptionPane.WARNING_MESSAGE);
+           }
            MedicineRequest MedicineRequest = (MedicineRequest) jTable2.getValueAt(selectedRow, 0);
            MedicineRequest.setStatus("completed");
            populateTable();

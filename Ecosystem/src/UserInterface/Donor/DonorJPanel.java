@@ -487,6 +487,10 @@ public class DonorJPanel extends javax.swing.JPanel {
     private void requestMedicineBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_requestMedicineBtnActionPerformed
         // TODO add your handling code here:
         int selectedRow = MedicineListTable.getSelectedRow();
+          if(selectedRow<0){
+                JOptionPane.showMessageDialog(null, "No row selected ", "Information", JOptionPane.INFORMATION_MESSAGE);
+               return;
+        }
         MedicineRequest medicineRequest = (MedicineRequest) MedicineListTable.getValueAt(selectedRow, 0);
         String userAccountSelected = PharmacyJComboBox.getSelectedItem().toString();
         UserAccount UserAccountSel= null;
@@ -554,22 +558,19 @@ public class DonorJPanel extends javax.swing.JPanel {
     private void chckAvailBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chckAvailBtnActionPerformed
         // TODO add your handling code here:
          int selectedRow = MedicineListTable.getSelectedRow();
+           if(selectedRow<0){
+                JOptionPane.showMessageDialog(null, "No row selected ", "Information", JOptionPane.INFORMATION_MESSAGE);
+               return;
+        }
         MedicineRequest medicineRequest = (MedicineRequest) MedicineListTable.getValueAt(selectedRow, 0);
+      
         String userAccountSelected = PharmacyJComboBox.getSelectedItem().toString();
+        if(userAccountSelected==null){
+               JOptionPane.showMessageDialog(null, "No Pharmacy available ", "Information", JOptionPane.INFORMATION_MESSAGE);
+               return;
+        }
         UserAccount UserAccountSel= null;
         Organization org = null;
-        if(medicineRequest.getStatus().equals("Requested")) {
-            JOptionPane.showMessageDialog(null, "Already Requested ", "Information", JOptionPane.INFORMATION_MESSAGE);
-            return;
-        }
-         if(medicineRequest.getStatus().equals("Completed")) {
-            JOptionPane.showMessageDialog(null, "Medicines already recieved ", "Information", JOptionPane.INFORMATION_MESSAGE);
-            return;
-        }
-          if(medicineRequest.getStatus().equals("Not Available")) {
-            JOptionPane.showMessageDialog(null, "Not available check with other pharmacy ", "Information", JOptionPane.INFORMATION_MESSAGE);
-            return;
-        }
         if (selectedRow >= 0) {
           
                 for (Network network : business.getNetworkList()) {
@@ -625,6 +626,19 @@ public class DonorJPanel extends javax.swing.JPanel {
 
         
         }
+                if(medicineRequest.getStatus().equals("Requested")) {
+            JOptionPane.showMessageDialog(null, "Already Requested ", "Information", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+         if(medicineRequest.getStatus().equals("Completed")) {
+            JOptionPane.showMessageDialog(null, "Medicines already recieved ", "Information", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+          if(medicineRequest.getStatus().equals("Not Available")) {
+            JOptionPane.showMessageDialog(null, "Not available check with other pharmacy ", "Information", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+
     }//GEN-LAST:event_chckAvailBtnActionPerformed
 
 
