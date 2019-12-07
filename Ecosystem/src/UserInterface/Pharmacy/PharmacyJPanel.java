@@ -59,7 +59,7 @@ public class PharmacyJPanel extends javax.swing.JPanel {
                 //String x = request.getReceiver().getRole().toString();
                 System.out.println(x);
                 MedicineRequest req=(MedicineRequest) request;
-                if (x.contains("MedicineRequest")&&req.getSender()!=null){
+                if (x.contains("MedicineRequest")&&req.getSender()!=null && req.getSender()==userAccount){
                     Object[] row = new Object[3];
                     row[0]=req;
                     row[1] = req.getAvailMedicine();
