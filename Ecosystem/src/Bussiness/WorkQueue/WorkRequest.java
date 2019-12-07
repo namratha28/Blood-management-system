@@ -23,6 +23,15 @@ public abstract class WorkRequest {
     private String status;
     private Date requestDate;
     private Date resolveDate;
+    private String Blood;
+
+    public String getBlood() {
+        return Blood;
+    }
+
+    public void setBlood(String Blood) {
+        this.Blood = Blood;
+    }
 
     private String message;
     private String complaintMessage;

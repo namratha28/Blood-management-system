@@ -332,7 +332,7 @@ public class NurseJPanel extends javax.swing.JPanel {
             d1 = format.parse(from);
             d2 = format.parse(to);
         } catch (ParseException e) {
-            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Format MM/dd/yy HH:mm:ss");
         }
         TimeSlot ts = new TimeSlot(d1, d2);
         userAccount.getEmployee().addAvailability(ts);
