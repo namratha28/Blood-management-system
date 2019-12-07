@@ -386,7 +386,7 @@ public class DoctorWQJPanel extends javax.swing.JPanel {
 
             for (Organization organization : e.getOrganizationDirectory().getOrganizationList()) {
                 if (organization instanceof FrontDeskEmployeeOrganization) {
-                    organization = organization;
+
                     organization.getWorkQueue().getWorkRequestList().remove(wrinner);
                     organization.getWorkQueue().getWorkRequestList().add(wrinner);
                 }
@@ -405,6 +405,7 @@ public class DoctorWQJPanel extends javax.swing.JPanel {
                             if (organization instanceof BloodCollectionStationOrganization) {
                                 org = organization;
                                 if (org != null) {
+
                                     org.getWorkQueue().getWorkRequestList().add(dr);
                                 }
                             }
