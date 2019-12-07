@@ -37,7 +37,7 @@ public class SplashScreen extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 168, 125));
 
         percentTxt.setAlignment(java.awt.Label.CENTER);
-        percentTxt.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
+        percentTxt.setFont(new java.awt.Font("Ubuntu", 3, 36)); // NOI18N
         percentTxt.setForeground(new java.awt.Color(254, 254, 254));
         percentTxt.setText("99%");
 

@@ -105,9 +105,10 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         createUserJButton.setBackground(new java.awt.Color(255, 168, 125));
-        createUserJButton.setFont(new java.awt.Font("Chalkboard SE", 0, 12)); // NOI18N
+        createUserJButton.setFont(new java.awt.Font("Chalkboard SE", 1, 14)); // NOI18N
         createUserJButton.setForeground(new java.awt.Color(255, 255, 255));
         createUserJButton.setText("CREATE");
+        createUserJButton.setPreferredSize(new java.awt.Dimension(197, 41));
         createUserJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 createUserJButtonActionPerformed(evt);
@@ -201,9 +202,9 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
         jLabel10.setText("ROLE: ");
         add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 240, -1, -1));
 
-        jLabel11.setFont(new java.awt.Font("Chalkboard", 1, 18)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(0, 102, 102));
-        jLabel11.setText("MANAGE EMPLOYEE USERACCOUNTS");
+        jLabel11.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
+        jLabel11.setForeground(java.awt.Color.black);
+        jLabel11.setText("Manage Employee User Accounts");
         add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 40, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 

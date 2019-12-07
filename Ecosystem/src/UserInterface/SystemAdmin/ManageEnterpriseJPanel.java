@@ -111,6 +111,8 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        enterpriseJTable.setFocusable(false);
+        enterpriseJTable.setGridColor(new java.awt.Color(228, 228, 228));
         jScrollPane1.setViewportView(enterpriseJTable);
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 130, 350, 160));
@@ -143,10 +145,11 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
         });
         add(enterpriseTypeJComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 190, 136, -1));
 
-        submitJButton.setBackground(new java.awt.Color(0, 102, 102));
-        submitJButton.setFont(new java.awt.Font("Chalkboard SE", 0, 12)); // NOI18N
+        submitJButton.setBackground(new java.awt.Color(255, 168, 125));
+        submitJButton.setFont(new java.awt.Font("Chalkboard SE", 1, 14)); // NOI18N
         submitJButton.setForeground(new java.awt.Color(255, 255, 255));
         submitJButton.setText("SUBMIT");
+        submitJButton.setPreferredSize(new java.awt.Dimension(197, 41));
         submitJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 submitJButtonActionPerformed(evt);
@@ -154,10 +157,11 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
         });
         add(submitJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 370, 260, -1));
 
-        backJButton.setBackground(new java.awt.Color(0, 102, 102));
-        backJButton.setFont(new java.awt.Font("Chalkboard SE", 0, 12)); // NOI18N
+        backJButton.setBackground(new java.awt.Color(255, 168, 125));
+        backJButton.setFont(new java.awt.Font("Chalkboard SE", 1, 14)); // NOI18N
         backJButton.setForeground(new java.awt.Color(255, 255, 255));
         backJButton.setText("<<BACK");
+        backJButton.setPreferredSize(new java.awt.Dimension(197, 41));
         backJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backJButtonActionPerformed(evt);
@@ -169,6 +173,7 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
         btnDelete.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
         btnDelete.setForeground(new java.awt.Color(255, 255, 255));
         btnDelete.setText("DELETE ENTERPRISE");
+        btnDelete.setPreferredSize(new java.awt.Dimension(197, 41));
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDeleteActionPerformed(evt);
@@ -176,9 +181,9 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
         });
         add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 300, -1, -1));
 
-        jLabel4.setFont(new java.awt.Font("Chalkboard SE", 1, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 102, 102));
-        jLabel4.setText("MANAGE ENTERPRISE WORKAREA");
+        jLabel4.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
+        jLabel4.setForeground(java.awt.Color.black);
+        jLabel4.setText("Manage Enterprise Work Panel");
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 30, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 

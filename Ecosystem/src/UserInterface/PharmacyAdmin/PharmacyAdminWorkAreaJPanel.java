@@ -52,6 +52,7 @@ public class PharmacyAdminWorkAreaJPanel extends javax.swing.JPanel {
         userJButton.setFont(new java.awt.Font("Chalkboard SE", 0, 12)); // NOI18N
         userJButton.setForeground(new java.awt.Color(255, 255, 255));
         userJButton.setText("MANAGE USER");
+        userJButton.setPreferredSize(new java.awt.Dimension(197, 41));
         userJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 userJButtonActionPerformed(evt);
@@ -63,6 +64,7 @@ public class PharmacyAdminWorkAreaJPanel extends javax.swing.JPanel {
         manageEmployeeJButton.setFont(new java.awt.Font("Chalkboard SE", 0, 12)); // NOI18N
         manageEmployeeJButton.setForeground(new java.awt.Color(255, 255, 255));
         manageEmployeeJButton.setText("MANAGE EMPLOYEE");
+        manageEmployeeJButton.setPreferredSize(new java.awt.Dimension(197, 41));
         manageEmployeeJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 manageEmployeeJButtonActionPerformed(evt);
@@ -74,6 +76,7 @@ public class PharmacyAdminWorkAreaJPanel extends javax.swing.JPanel {
         manageOrganizationJButton.setFont(new java.awt.Font("Chalkboard SE", 0, 12)); // NOI18N
         manageOrganizationJButton.setForeground(new java.awt.Color(255, 255, 255));
         manageOrganizationJButton.setText("MANAGE ORGANIZATIONS");
+        manageOrganizationJButton.setPreferredSize(new java.awt.Dimension(197, 41));
         manageOrganizationJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 manageOrganizationJButtonActionPerformed(evt);
@@ -85,14 +88,14 @@ public class PharmacyAdminWorkAreaJPanel extends javax.swing.JPanel {
         valueLabel.setText("<value>");
         add(valueLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 100, 130, 30));
 
-        jLabel2.setFont(new java.awt.Font("Chalkboard SE", 0, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 102, 102));
-        jLabel2.setText("WELCOME TO PHARMACY ADMIN");
+        jLabel2.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
+        jLabel2.setForeground(java.awt.Color.black);
+        jLabel2.setText("Welcome to Pharmacy Admin");
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 40, -1, -1));
 
-        enterpriseLabel1.setFont(new java.awt.Font("Chalkboard SE", 0, 14)); // NOI18N
-        enterpriseLabel1.setForeground(new java.awt.Color(0, 102, 102));
-        enterpriseLabel1.setText("ENTERPRISE:");
+        enterpriseLabel1.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        enterpriseLabel1.setForeground(java.awt.Color.darkGray);
+        enterpriseLabel1.setText("Enterprise:");
         add(enterpriseLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, 100, 30));
     }// </editor-fold>//GEN-END:initComponents
 
