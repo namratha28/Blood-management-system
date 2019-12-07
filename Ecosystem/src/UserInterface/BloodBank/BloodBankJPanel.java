@@ -8,6 +8,7 @@ package UserInterface.BloodBank;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Enterprise.HospitalEnterprise;
+import Business.Entity.HospitalStatus;
 import Business.Network.Network;
 import Business.Organization.BloodCollectionStationOrganization;
 import Business.Organization.CommonUserOrganization;
@@ -363,7 +364,7 @@ public class BloodBankJPanel extends javax.swing.JPanel {
         }
         Enterprise eps = null;
 
-        if (donorRequest.getStatus().equals("BLOOD_READY")) {
+        if (donorRequest.getStatus().equals(HospitalStatus.BLOOD_READY.getValue())) {
             populateTable();
             populateRequestTable();
             for (Network network : business.getNetworkList()) {
