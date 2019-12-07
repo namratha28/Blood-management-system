@@ -360,8 +360,8 @@ public class BloodBankJPanel extends javax.swing.JPanel {
 
 //            if (labrequest.getReceiver() == null && labrequest.getBlood().equalsIgnoreCase(donorRequest.getBlood())) {
                 donorRequest.setStatus(HospitalStatus.BLOOD_READY.getValue());
-                donorRequest.setReceiver(sender);
-                donorRequest.setPatient(patient);
+//                donorRequest.setReceiver(sender);
+//                donorRequest.setPatient(patient);
                 donorRequest.setResolveDate(new Date());
                 /*******pay attention to this code******/
                 labrequest.setReceiver(donorRequest.getSender());

@@ -80,8 +80,8 @@ public class FrontDeskJPanel extends javax.swing.JPanel {
         for (WorkRequest rq : organization.getWorkQueue().getWorkRequestList()) {
             Object[] row = new Object[5];
             row[0] = rq;
-            row[1] = rq.getPatient();
-            row[2] = rq.getReceiver();
+            row[1] = rq.getReceiver();
+            row[2] = rq.getSender();
             row[3] = rq.getStatus();
             row[4]=rq.getResolveDate();
             model.addRow(row);
