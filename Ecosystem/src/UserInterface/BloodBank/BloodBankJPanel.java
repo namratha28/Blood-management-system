@@ -72,7 +72,8 @@ public class BloodBankJPanel extends javax.swing.JPanel {
         model.setRowCount(0);
         
         for (WorkRequest labrequest : bloodCollectionStationOrganization.getWorkQueue().getWorkRequestList()) {
-            //System.out.println(labrequest);
+            System.out.println(labrequest.getBlood());
+            System.out.println(labrequest.getStatus());
             Object[] row = new Object[6];
           if((labrequest.getSender()!=null && labrequest.getReceiver()!=null)&&
                   (labrequest.getStatus()=="" || labrequest.getStatus()=="BLOOD_SENT") ){

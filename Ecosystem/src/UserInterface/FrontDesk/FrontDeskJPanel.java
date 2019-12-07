@@ -10,9 +10,7 @@ import Business.Enterprise.Enterprise;
 import Business.Entity.HospitalStatus;
 import Business.Organization.CommonUserOrganization;
 import Business.Organization.FrontDeskEmployeeOrganization;
-import Business.Organization.LabOrganization;
 import Business.Organization.Organization;
-import Business.Role.LabRole;
 import Business.UserAccount.UserAccount;
 import Bussiness.WorkQueue.DonorRequest;
 import Bussiness.WorkQueue.HospitalInnerRequest;
@@ -291,12 +289,20 @@ public class FrontDeskJPanel extends javax.swing.JPanel {
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
+private void delFdWq(WorkRequest wr) {
+        for (Organization o : e.getOrganizationDirectory().getOrganizationList()) {
+            if (o instanceof FrontDeskEmployeeOrganization) {
+                o.getWorkQueue().getWorkRequestList().remove(wr);
+            }
 
+        }
+    }
     private void selectBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectBtnActionPerformed
         selectedRow = rqTable.getSelectedRow();
         //WorkRequest wr = null;
         if (selectedRow >= 0) {
             wr = (WorkRequest) rqTable.getValueAt(selectedRow, 0);
+            delFdWq(wr);
 
         } else {
             JOptionPane.showMessageDialog(null, "Please select any row");
@@ -316,7 +322,7 @@ public class FrontDeskJPanel extends javax.swing.JPanel {
 
         if (selectedRow >= 0) {
             wr = (WorkRequest) rqTable.getValueAt(selectedRow, 0);
-            curr.getWorkQueue().getWorkRequestList().remove(wr);
+            delFdWq(wr);
             populateRqTable();
         } else {
             JOptionPane.showMessageDialog(null, "Please select any row");

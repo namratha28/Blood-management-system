@@ -420,6 +420,10 @@ public class FrontDeskApptJPanel extends javax.swing.JPanel {
 
     private void makeAptmBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_makeAptmBtnActionPerformed
         DoctorRequest wr = new DoctorRequest();
+        if (patient == null) {
+            JOptionPane.showMessageDialog(null, "Please select a patient");
+            return;
+        }
         wr.setSender(userAccount);
         wr.setPatient(patient);
         wr.setReceiver(doctor);

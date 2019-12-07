@@ -385,7 +385,7 @@ public class DoctorWQJPanel extends javax.swing.JPanel {
             }
           for (Organization organization : e.getOrganizationDirectory().getOrganizationList()) {
                 if (organization instanceof FrontDeskEmployeeOrganization) {
-                    organization = organization;
+
                     organization.getWorkQueue().getWorkRequestList().remove(wrinner);
                     organization.getWorkQueue().getWorkRequestList().add(wrinner);
                 }
@@ -396,6 +396,7 @@ public class DoctorWQJPanel extends javax.swing.JPanel {
             dr.setBlood(wr.getPatient().getPerson().getType().getValue());
             dr.setRequestDate(new Date());
             dr.setReceiver(wr.getPatient());
+            dr.setStatus("");
             System.out.println(dr.getReceiver());
             System.out.print(dr.getBlood());
             System.out.println();
@@ -407,6 +408,7 @@ public class DoctorWQJPanel extends javax.swing.JPanel {
                             if (organization instanceof BloodCollectionStationOrganization) {
                                 org = organization;
                                 if (org != null) {
+
                                     org.getWorkQueue().getWorkRequestList().add(dr);
                                 }
                             }

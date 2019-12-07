@@ -240,7 +240,6 @@ public class MainJFrame extends javax.swing.JFrame {
                 ss.setVisible(true);
                 ss.jProgressBar.setValue(0);
                 try {
-                    Thread.sleep(100);
                     for (int i =0; i <=100; i++){
                         Thread.sleep(40);
                         ss.percentTxt.setText(Integer.toString(i) +"%");
