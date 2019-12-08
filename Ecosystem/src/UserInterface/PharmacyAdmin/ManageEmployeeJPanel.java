@@ -171,9 +171,9 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
         jLabel2.setText("NAME:");
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 240, -1, 30));
 
-        jLabel4.setFont(new java.awt.Font("Chalkboard", 1, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 102, 102));
-        jLabel4.setText("MANAGE EMPLOYEE WORKAREA");
+        jLabel4.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
+        jLabel4.setForeground(java.awt.Color.black);
+        jLabel4.setText("Manage Employee Work Area");
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 30, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 

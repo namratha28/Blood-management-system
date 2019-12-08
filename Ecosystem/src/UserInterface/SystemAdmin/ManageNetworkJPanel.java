@@ -62,9 +62,9 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         submitJButton = new javax.swing.JButton();
         nameJTextField = new javax.swing.JTextField();
-        backJButton = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        backJButton = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -72,6 +72,7 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        networkJTable.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         networkJTable.setFont(new java.awt.Font("Chalkboard SE", 0, 12)); // NOI18N
         networkJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -99,56 +100,64 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        networkJTable.setFocusable(false);
+        networkJTable.setGridColor(new java.awt.Color(246, 246, 246));
+        networkJTable.setRowHeight(22);
         jScrollPane1.setViewportView(networkJTable);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 180, 404, 91));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 180, 450, 91));
 
-        jLabel1.setFont(new java.awt.Font("Chalkboard SE", 0, 12)); // NOI18N
-        jLabel1.setText("NAME :");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 70, 30));
+        jLabel1.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
+        jLabel1.setText("Name :");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 120, 50, 30));
 
         submitJButton.setBackground(new java.awt.Color(255, 168, 125));
-        submitJButton.setFont(new java.awt.Font("Chalkboard SE", 0, 12)); // NOI18N
+        submitJButton.setFont(new java.awt.Font("Chalkboard SE", 1, 14)); // NOI18N
         submitJButton.setForeground(new java.awt.Color(255, 255, 255));
         submitJButton.setText("SUBMIT");
+        submitJButton.setPreferredSize(new java.awt.Dimension(197, 41));
         submitJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 submitJButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(submitJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 100, 170, -1));
+        jPanel1.add(submitJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 110, 170, -1));
 
         nameJTextField.setFont(new java.awt.Font("Chalkboard SE", 0, 12)); // NOI18N
-        jPanel1.add(nameJTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 100, 170, -1));
-
-        backJButton.setBackground(new java.awt.Color(255, 168, 125));
-        backJButton.setFont(new java.awt.Font("Chalkboard SE", 0, 12)); // NOI18N
-        backJButton.setForeground(new java.awt.Color(255, 255, 255));
-        backJButton.setText("<<BACK");
-        backJButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backJButtonActionPerformed(evt);
-            }
-        });
-        jPanel1.add(backJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 470, -1, -1));
+        nameJTextField.setPreferredSize(new java.awt.Dimension(150, 27));
+        jPanel1.add(nameJTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 120, 170, -1));
 
         btnDelete.setBackground(new java.awt.Color(255, 168, 125));
-        btnDelete.setFont(new java.awt.Font("Chalkboard SE", 0, 12)); // NOI18N
+        btnDelete.setFont(new java.awt.Font("Chalkboard SE", 1, 14)); // NOI18N
         btnDelete.setForeground(new java.awt.Color(255, 255, 255));
         btnDelete.setText("DELETE NETWORK");
+        btnDelete.setPreferredSize(new java.awt.Dimension(197, 41));
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDeleteActionPerformed(evt);
             }
         });
-        jPanel1.add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 280, -1, -1));
+        jPanel1.add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 290, -1, 41));
 
-        jLabel4.setFont(new java.awt.Font("Chalkboard SE", 1, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 102, 102));
-        jLabel4.setText("MANAGE NETWORK WORKAREA");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 30, -1, -1));
+        jLabel6.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
+        jLabel6.setForeground(java.awt.Color.black);
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel6.setText("Manage Network Work Panel");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 30, 680, -1));
 
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        backJButton.setBackground(new java.awt.Color(255, 168, 125));
+        backJButton.setFont(new java.awt.Font("Chalkboard SE", 1, 14)); // NOI18N
+        backJButton.setForeground(new java.awt.Color(255, 255, 255));
+        backJButton.setText("<<BACK");
+        backJButton.setPreferredSize(new java.awt.Dimension(197, 41));
+        backJButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backJButtonActionPerformed(evt);
+            }
+        });
+        add(backJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 460, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void submitJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitJButtonActionPerformed
@@ -210,7 +219,7 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
     private javax.swing.JButton backJButton;
     private javax.swing.JButton btnDelete;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField nameJTextField;

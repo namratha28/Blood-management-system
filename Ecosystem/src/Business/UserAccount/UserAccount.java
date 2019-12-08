@@ -70,10 +70,10 @@ public class UserAccount {
         count++;
         workQueue = new WorkQueue();
         this.person = new Person();
-        this.events = new ArrayList<>();
-        this.eventLocations = new ArrayList<>();
-        this.eventDates = new ArrayList<>();
-        this.eventTimes = new ArrayList<>();
+        this.events = new ArrayList<String>();
+        this.eventLocations = new ArrayList<String>();
+        this.eventDates = new ArrayList<String>();
+        this.eventTimes = new ArrayList<String>();
     }
 
 
