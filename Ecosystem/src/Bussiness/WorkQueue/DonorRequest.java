@@ -34,6 +34,15 @@ public class DonorRequest extends WorkRequest{
     private String regeventlocation;
     private String regeventdate;
     private String regeventtime;
+    private boolean detailsFilled=false;
+
+    public boolean isDetailsFilled() {
+        return detailsFilled;
+    }
+
+    public void setDetailsFilled(boolean detailsFilled) {
+        this.detailsFilled = detailsFilled;
+    }
 
     public String getRegeventtitle() {
         return regeventtitle;
