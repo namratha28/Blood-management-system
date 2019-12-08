@@ -126,8 +126,10 @@ public class PharmacyJPanel extends javax.swing.JPanel {
         jLabel1.setText("Medicine");
 
         addBtn.setBackground(new java.awt.Color(255, 168, 125));
+        addBtn.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
         addBtn.setForeground(new java.awt.Color(254, 254, 254));
         addBtn.setText("ADD Medicine");
+        addBtn.setPreferredSize(new java.awt.Dimension(197, 41));
         addBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addBtnActionPerformed(evt);
@@ -195,8 +197,10 @@ public class PharmacyJPanel extends javax.swing.JPanel {
         jLabel4.setText("List of Requesters for Medicine");
 
         delBtn.setBackground(new java.awt.Color(255, 168, 125));
+        delBtn.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
         delBtn.setForeground(new java.awt.Color(254, 254, 254));
         delBtn.setText("Delete");
+        delBtn.setPreferredSize(new java.awt.Dimension(197, 41));
         delBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 delBtnActionPerformed(evt);
@@ -206,12 +210,14 @@ public class PharmacyJPanel extends javax.swing.JPanel {
         jButton1.setBackground(new java.awt.Color(255, 168, 125));
         jButton1.setForeground(new java.awt.Color(254, 254, 254));
         jButton1.setText("Send Medicine");
+        jButton1.setPreferredSize(new java.awt.Dimension(197, 41));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
+        jLabel2.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
         jLabel2.setText("Pharmacy");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -222,13 +228,13 @@ public class PharmacyJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(120, 120, 120)
-                        .addComponent(addBtn)
+                        .addComponent(addBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(75, 75, 75)
-                        .addComponent(delBtn))
+                        .addComponent(delBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(46, 46, 46)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton1)
+                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -241,7 +247,7 @@ public class PharmacyJPanel extends javax.swing.JPanel {
                         .addComponent(jLabel1)
                         .addGap(51, 51, 51)
                         .addComponent(medicineTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(509, Short.MAX_VALUE))
+                .addContainerGap(436, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -254,8 +260,8 @@ public class PharmacyJPanel extends javax.swing.JPanel {
                     .addComponent(medicineTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(41, 41, 41)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(addBtn)
-                    .addComponent(delBtn))
+                    .addComponent(addBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(delBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(41, 41, 41)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -265,8 +271,8 @@ public class PharmacyJPanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
-                .addComponent(jButton1)
-                .addContainerGap(157, Short.MAX_VALUE))
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(122, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

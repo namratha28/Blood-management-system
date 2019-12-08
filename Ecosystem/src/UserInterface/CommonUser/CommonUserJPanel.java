@@ -126,6 +126,9 @@ public class CommonUserJPanel extends javax.swing.JPanel {
 
         jLabel3.setText("Appointment");
 
+        setBackground(new java.awt.Color(254, 254, 254));
+
+        jLabel9.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
         jLabel9.setText("Personal Information");
 
         historyTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -152,7 +155,11 @@ public class CommonUserJPanel extends javax.swing.JPanel {
 
         jLabel5.setText("Birthday");
 
+        cancelBtn1.setBackground(new java.awt.Color(255, 168, 125));
+        cancelBtn1.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        cancelBtn1.setForeground(new java.awt.Color(254, 254, 254));
         cancelBtn1.setText("Cancel");
+        cancelBtn1.setPreferredSize(new java.awt.Dimension(197, 41));
         cancelBtn1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cancelBtn1ActionPerformed(evt);
@@ -266,7 +273,7 @@ public class CommonUserJPanel extends javax.swing.JPanel {
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(32, 32, 32)
-                        .addComponent(cancelBtn1)))
+                        .addComponent(cancelBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(65, 65, 65)
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)

@@ -138,23 +138,36 @@ public class FrontDeskJPanel extends javax.swing.JPanel {
         jScrollPane3 = new javax.swing.JScrollPane();
         rqTable = new javax.swing.JTable();
 
+        selectBtn.setBackground(new java.awt.Color(255, 168, 125));
+        selectBtn.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        selectBtn.setForeground(new java.awt.Color(254, 254, 254));
         selectBtn.setText("Select");
+        selectBtn.setPreferredSize(new java.awt.Dimension(197, 41));
         selectBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 selectBtnActionPerformed(evt);
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
         jLabel1.setText("Front Desk Dash Board");
 
+        appBtn.setBackground(new java.awt.Color(255, 168, 125));
+        appBtn.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        appBtn.setForeground(new java.awt.Color(254, 254, 254));
         appBtn.setText("Appointment");
+        appBtn.setPreferredSize(new java.awt.Dimension(197, 41));
         appBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 appBtnActionPerformed(evt);
             }
         });
 
+        cancelBtn.setBackground(new java.awt.Color(255, 168, 125));
+        cancelBtn.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        cancelBtn.setForeground(new java.awt.Color(254, 254, 254));
         cancelBtn.setText("Cancel");
+        cancelBtn.setPreferredSize(new java.awt.Dimension(197, 41));
         cancelBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cancelBtnActionPerformed(evt);
@@ -181,7 +194,11 @@ public class FrontDeskJPanel extends javax.swing.JPanel {
 
         jLabel9.setText("Message");
 
+        jButton1.setBackground(new java.awt.Color(255, 168, 125));
+        jButton1.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(254, 254, 254));
         jButton1.setText("Send Request");
+        jButton1.setPreferredSize(new java.awt.Dimension(197, 41));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -213,8 +230,8 @@ public class FrontDeskJPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(410, 410, 410)
                         .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 195, Short.MAX_VALUE)
-                        .addComponent(appBtn))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 154, Short.MAX_VALUE)
+                        .addComponent(appBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -226,7 +243,7 @@ public class FrontDeskJPanel extends javax.swing.JPanel {
                                 .addGap(37, 37, 37)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(selectBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(cancelBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 71, Short.MAX_VALUE)))
+                                    .addComponent(cancelBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addComponent(jLabel5))))
                 .addGap(261, 261, 261))
             .addGroup(layout.createSequentialGroup()
@@ -254,7 +271,7 @@ public class FrontDeskJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(44, 44, 44)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(appBtn)
+                    .addComponent(appBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addGap(3, 3, 3)
                 .addComponent(jLabel3)
@@ -268,9 +285,9 @@ public class FrontDeskJPanel extends javax.swing.JPanel {
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(42, 42, 42))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(selectBtn)
+                        .addComponent(selectBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(cancelBtn)
+                        .addComponent(cancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(123, 123, 123)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -286,7 +303,7 @@ public class FrontDeskJPanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(massageTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents

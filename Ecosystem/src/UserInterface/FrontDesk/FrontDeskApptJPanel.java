@@ -127,7 +127,7 @@ public class FrontDeskApptJPanel extends javax.swing.JPanel {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jScrollPane4 = new javax.swing.JScrollPane();
@@ -160,14 +160,20 @@ public class FrontDeskApptJPanel extends javax.swing.JPanel {
         apptTable = new javax.swing.JTable();
         btnBack = new javax.swing.JButton();
 
-        commonUserTable1.setModel(new javax.swing.table.DefaultTableModel(new Object[][] {
+        commonUserTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
 
-        }, new String[] { "name", "birthday", "Contribution Score", "Last Visit" }) {
-            Class[] types = new Class[] { java.lang.Object.class, java.lang.Object.class, java.lang.Integer.class,
-                    java.lang.String.class };
+            },
+            new String [] {
+                "name", "birthday", "Contribution Score", "Last Visit"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.Object.class, java.lang.Integer.class, java.lang.String.class
+            };
 
             public Class getColumnClass(int columnIndex) {
-                return types[columnIndex];
+                return types [columnIndex];
             }
         });
         jScrollPane4.setViewportView(commonUserTable1);
@@ -175,24 +181,38 @@ public class FrontDeskApptJPanel extends javax.swing.JPanel {
         setBackground(new java.awt.Color(255, 255, 255));
         setMaximumSize(new java.awt.Dimension(1280, 800));
 
-        speTable.setModel(new javax.swing.table.DefaultTableModel(new Object[][] {
+        speTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
 
-        }, new String[] { "name", "specialties" }) {
-            Class[] types = new Class[] { java.lang.String.class, java.lang.String.class };
+            },
+            new String [] {
+                "name", "specialties"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class
+            };
 
             public Class getColumnClass(int columnIndex) {
-                return types[columnIndex];
+                return types [columnIndex];
             }
         });
         jScrollPane1.setViewportView(speTable);
 
-        availTable.setModel(new javax.swing.table.DefaultTableModel(new Object[][] {
+        availTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
 
-        }, new String[] { "From", "To" }) {
-            Class[] types = new Class[] { java.lang.String.class, java.lang.String.class };
+            },
+            new String [] {
+                "From", "To"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class
+            };
 
             public Class getColumnClass(int columnIndex) {
-                return types[columnIndex];
+                return types [columnIndex];
             }
         });
         jScrollPane2.setViewportView(availTable);
@@ -203,7 +223,10 @@ public class FrontDeskApptJPanel extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("Verdana", 0, 15)); // NOI18N
         jLabel2.setText("Available Time");
 
+        chkAvailBtn.setBackground(new java.awt.Color(255, 168, 125));
+        chkAvailBtn.setForeground(new java.awt.Color(254, 254, 254));
         chkAvailBtn.setText("Check Availability");
+        chkAvailBtn.setPreferredSize(new java.awt.Dimension(197, 41));
         chkAvailBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 chkAvailBtnActionPerformed(evt);
@@ -222,60 +245,78 @@ public class FrontDeskApptJPanel extends javax.swing.JPanel {
             }
         });
 
-        makeAptmBtn.setText("make an appointment");
+        makeAptmBtn.setBackground(new java.awt.Color(255, 168, 125));
+        makeAptmBtn.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        makeAptmBtn.setForeground(new java.awt.Color(254, 254, 254));
+        makeAptmBtn.setText("Make an Appointment");
         makeAptmBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 makeAptmBtnActionPerformed(evt);
             }
         });
 
-        speComboBox.setModel(
-                new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        speComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel5.setFont(new java.awt.Font("Verdana", 0, 15)); // NOI18N
         jLabel5.setText("Doctor Name");
 
-        searchDocBtn.setBackground(new java.awt.Color(219, 140, 194));
+        searchDocBtn.setBackground(new java.awt.Color(255, 168, 125));
+        searchDocBtn.setForeground(new java.awt.Color(254, 254, 254));
         searchDocBtn.setText("Search");
+        searchDocBtn.setPreferredSize(new java.awt.Dimension(197, 41));
         searchDocBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 searchDocBtnActionPerformed(evt);
             }
         });
 
-        commonUserTable.setModel(new javax.swing.table.DefaultTableModel(new Object[][] {
+        commonUserTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
 
-        }, new String[] { "name", "birthday", "Contribution Score", "Last Visit" }) {
-            Class[] types = new Class[] { java.lang.Object.class, java.lang.Object.class, java.lang.Integer.class,
-                    java.lang.String.class };
+            },
+            new String [] {
+                "name", "birthday", "Contribution Score", "Last Visit"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.Object.class, java.lang.Integer.class, java.lang.String.class
+            };
 
             public Class getColumnClass(int columnIndex) {
-                return types[columnIndex];
+                return types [columnIndex];
             }
         });
         jScrollPane3.setViewportView(commonUserTable);
 
-        jLabel6.setFont(new java.awt.Font("Verdana", 0, 24)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
         jLabel6.setText("Appointment");
 
-        searchBtn.setBackground(new java.awt.Color(219, 140, 194));
+        searchBtn.setBackground(new java.awt.Color(255, 168, 125));
+        searchBtn.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        searchBtn.setForeground(new java.awt.Color(254, 254, 254));
         searchBtn.setText("Search");
+        searchBtn.setPreferredSize(new java.awt.Dimension(197, 41));
         searchBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 searchBtnActionPerformed(evt);
             }
         });
 
-        createBtn1.setBackground(new java.awt.Color(219, 140, 194));
+        createBtn1.setBackground(new java.awt.Color(255, 168, 125));
+        createBtn1.setForeground(new java.awt.Color(254, 254, 254));
         createBtn1.setText("Create");
+        createBtn1.setPreferredSize(new java.awt.Dimension(197, 41));
         createBtn1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 createBtn1ActionPerformed(evt);
             }
         });
 
-        selectBtn.setBackground(new java.awt.Color(219, 140, 194));
+        selectBtn.setBackground(new java.awt.Color(255, 168, 125));
+        selectBtn.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        selectBtn.setForeground(new java.awt.Color(254, 254, 254));
         selectBtn.setText("Select");
+        selectBtn.setPreferredSize(new java.awt.Dimension(197, 41));
         selectBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 selectBtnActionPerformed(evt);
@@ -286,19 +327,29 @@ public class FrontDeskApptJPanel extends javax.swing.JPanel {
 
         jLabel8.setText("Patient Information");
 
-        apptTable.setModel(new javax.swing.table.DefaultTableModel(new Object[][] {
+        apptTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
 
-        }, new String[] { "patient", "birthday", "doctor", "time" }) {
-            Class[] types = new Class[] { java.lang.Object.class, java.lang.String.class, java.lang.Object.class,
-                    java.lang.String.class };
+            },
+            new String [] {
+                "patient", "birthday", "doctor", "time"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.String.class, java.lang.Object.class, java.lang.String.class
+            };
 
             public Class getColumnClass(int columnIndex) {
-                return types[columnIndex];
+                return types [columnIndex];
             }
         });
         jScrollPane5.setViewportView(apptTable);
 
+        btnBack.setBackground(new java.awt.Color(255, 168, 125));
+        btnBack.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        btnBack.setForeground(new java.awt.Color(254, 254, 254));
         btnBack.setText("<< Back");
+        btnBack.setPreferredSize(new java.awt.Dimension(197, 41));
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBackActionPerformed(evt);
@@ -307,137 +358,122 @@ public class FrontDeskApptJPanel extends javax.swing.JPanel {
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
-        layout.setHorizontalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(layout
-                .createSequentialGroup().addGap(77, 77, 77)
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(77, 77, 77)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup().addGroup(layout
-                                .createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 1067,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED,
-                                                javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(makeAptmBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 203,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createSequentialGroup().addGap(0, 0, Short.MAX_VALUE).addGroup(layout
-                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addGroup(layout.createSequentialGroup()
-                                                .addGroup(layout
-                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addComponent(jLabel7).addComponent(jScrollPane1,
-                                                                javax.swing.GroupLayout.PREFERRED_SIZE, 497,
-                                                                javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addGap(49, 49, 49)
-                                                .addComponent(chkAvailBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 147,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(87, 87, 87)
-                                                .addGroup(layout
-                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addComponent(jLabel2).addComponent(jScrollPane2,
-                                                                javax.swing.GroupLayout.PREFERRED_SIZE, 579,
-                                                                javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addGroup(layout.createSequentialGroup().addComponent(jLabel5)
-                                                .addGap(39, 39, 39)
-                                                .addComponent(docNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 211,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(80, 80, 80).addComponent(jLabel1).addGap(18, 18, 18)
-                                                .addComponent(speComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 211,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED,
-                                                        javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(searchDocBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 146,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(369, 369, 369)))))
-                                .addGap(261, 261, 261))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addGroup(layout.createSequentialGroup().addGap(0, 0, Short.MAX_VALUE)
-                                                .addComponent(selectBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 134,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addComponent(jScrollPane3).addGroup(javax.swing.GroupLayout.Alignment.LEADING,
-                                                layout.createSequentialGroup().addGap(6, 6, 6).addGroup(layout
-                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addGroup(layout.createSequentialGroup().addComponent(jLabel3)
-                                                                .addGap(39, 39, 39)
-                                                                .addComponent(txtPatient,
-                                                                        javax.swing.GroupLayout.PREFERRED_SIZE, 200,
-                                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addGap(85, 85, 85).addComponent(jLabel4)
-                                                                .addGap(39, 39, 39)
-                                                                .addComponent(txtBirth,
-                                                                        javax.swing.GroupLayout.PREFERRED_SIZE, 211,
-                                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addGap(103, 103, 103)
-                                                                .addComponent(searchBtn,
-                                                                        javax.swing.GroupLayout.PREFERRED_SIZE, 149,
-                                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addPreferredGap(
-                                                                        javax.swing.LayoutStyle.ComponentPlacement.RELATED,
-                                                                        javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                                        Short.MAX_VALUE)
-                                                                .addComponent(createBtn1,
-                                                                        javax.swing.GroupLayout.PREFERRED_SIZE, 136,
-                                                                        javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                        .addGroup(layout.createSequentialGroup().addGroup(layout
-                                                                .createParallelGroup(
-                                                                        javax.swing.GroupLayout.Alignment.LEADING)
-                                                                .addGroup(layout.createSequentialGroup()
-                                                                        .addComponent(btnBack,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                                118,
-                                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                        .addGap(512, 512, 512).addComponent(jLabel6))
-                                                                .addComponent(jLabel8))
-                                                                .addGap(0, 0, Short.MAX_VALUE)))))
-                                .addGap(263, 263, 263)))));
-        layout.setVerticalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup().addGap(68, 68, 68).addComponent(jLabel6))
-                                .addGroup(layout.createSequentialGroup().addGap(48, 48, 48).addComponent(btnBack)))
-                        .addGap(51, 51, 51)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel3)
-                                .addComponent(txtPatient, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                        javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel4)
-                                .addComponent(txtBirth, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                        javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(searchBtn).addComponent(createBtn1))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED).addComponent(jLabel8)
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 173,
-                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(29, 29, 29)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(searchDocBtn).addComponent(selectBtn)
-                                .addComponent(speComboBox, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                        javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel1)
-                                .addComponent(docNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                        javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel5))
-                        .addGap(35, 35, 35)
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(
-                                        layout.createSequentialGroup().addComponent(chkAvailBtn).addGap(161, 161, 161))
-                                .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                .addComponent(jLabel7).addComponent(jLabel2))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addGroup(layout
-                                                .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0,
-                                                        Short.MAX_VALUE)
-                                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 243,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(52, 52, 52)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 1067, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(makeAptmBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel7)
+                                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 497, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(49, 49, 49)
+                                        .addComponent(chkAvailBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(87, 87, 87)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel2)
+                                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 579, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel5)
+                                        .addGap(39, 39, 39)
+                                        .addComponent(docNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(80, 80, 80)
+                                        .addComponent(jLabel1)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(speComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(searchDocBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(369, 369, 369)))))
+                        .addGap(261, 261, 261))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 69,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(makeAptmBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 52,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(118, Short.MAX_VALUE)));
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(selectBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane3)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel3)
+                                        .addGap(39, 39, 39)
+                                        .addComponent(txtPatient, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(85, 85, 85)
+                                        .addComponent(jLabel4)
+                                        .addGap(39, 39, 39)
+                                        .addComponent(txtBirth, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(103, 103, 103)
+                                        .addComponent(searchBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(createBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(512, 512, 512)
+                                                .addComponent(jLabel6))
+                                            .addComponent(jLabel8))
+                                        .addGap(0, 0, Short.MAX_VALUE)))))
+                        .addGap(263, 263, 263))))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(68, 68, 68)
+                        .addComponent(jLabel6))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(48, 48, 48)
+                        .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(51, 51, 51)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(txtPatient, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4)
+                    .addComponent(txtBirth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(searchBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(createBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel8)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(searchDocBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(selectBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(speComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1)
+                    .addComponent(docNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
+                .addGap(35, 35, 35)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(chkAvailBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(161, 161, 161))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(52, 52, 52)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(makeAptmBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(95, Short.MAX_VALUE))
+        );
     }// </editor-fold>//GEN-END:initComponents
 
     private void chkAvailBtnActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_chkAvailBtnActionPerformed

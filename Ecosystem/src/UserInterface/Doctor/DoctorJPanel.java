@@ -104,7 +104,11 @@ public class DoctorJPanel extends javax.swing.JPanel {
         availTable.setGridColor(new java.awt.Color(2, 117, 216));
         jScrollPane1.setViewportView(availTable);
 
-        jButton1.setText("Select");
+        jButton1.setBackground(new java.awt.Color(255, 168, 125));
+        jButton1.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(254, 254, 254));
+        jButton1.setText("SELECT");
+        jButton1.setPreferredSize(new java.awt.Dimension(197, 41));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -129,7 +133,11 @@ public class DoctorJPanel extends javax.swing.JPanel {
 
         jLabel7.setText("To");
 
-        jButton2.setText("Confirm");
+        jButton2.setBackground(new java.awt.Color(255, 168, 125));
+        jButton2.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(254, 254, 254));
+        jButton2.setText("CONFIRM");
+        jButton2.setPreferredSize(new java.awt.Dimension(197, 41));
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -154,15 +162,25 @@ public class DoctorJPanel extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(rqTable);
 
-        cancelBtn.setText("Cancel");
+        cancelBtn.setBackground(new java.awt.Color(255, 168, 125));
+        cancelBtn.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        cancelBtn.setForeground(new java.awt.Color(254, 254, 254));
+        cancelBtn.setText("CANCEL");
+        cancelBtn.setPreferredSize(new java.awt.Dimension(197, 41));
         cancelBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cancelBtnActionPerformed(evt);
             }
         });
 
-        jButton4.setText("Delete");
+        jButton4.setBackground(new java.awt.Color(255, 168, 125));
+        jButton4.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        jButton4.setForeground(new java.awt.Color(254, 254, 254));
+        jButton4.setText("DELETE");
+        jButton4.setPreferredSize(new java.awt.Dimension(197, 41));
 
+        jLabel3.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Doctor DashBoard");
 
         jLabel4.setText("Emergency");
@@ -182,9 +200,8 @@ public class DoctorJPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel3)
-                .addGap(287, 287, 287)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 942, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(167, 167, 167))
             .addGroup(layout.createSequentialGroup()
@@ -214,7 +231,7 @@ public class DoctorJPanel extends javax.swing.JPanel {
                                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(cancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(73, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -238,9 +255,9 @@ public class DoctorJPanel extends javax.swing.JPanel {
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton2)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(32, 32, 32)
-                        .addComponent(jButton4))
+                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(32, 32, 32)
                 .addComponent(jLabel2)
@@ -248,9 +265,9 @@ public class DoctorJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(32, 32, 32)
-                        .addComponent(cancelBtn)))
+                        .addComponent(cancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(76, 76, 76))
         );
     }// </editor-fold>//GEN-END:initComponents

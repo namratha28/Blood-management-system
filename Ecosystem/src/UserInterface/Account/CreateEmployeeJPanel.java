@@ -108,21 +108,29 @@ public class CreateEmployeeJPanel extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(255, 255, 255));
 
+        createBtn.setBackground(new java.awt.Color(255, 168, 125));
+        createBtn.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        createBtn.setForeground(new java.awt.Color(254, 254, 254));
         createBtn.setText("Create");
+        createBtn.setPreferredSize(new java.awt.Dimension(197, 41));
         createBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 createBtnActionPerformed(evt);
             }
         });
 
+        btnBack.setBackground(new java.awt.Color(255, 168, 125));
+        btnBack.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        btnBack.setForeground(new java.awt.Color(254, 254, 254));
         btnBack.setText("<< Back");
+        btnBack.setPreferredSize(new java.awt.Dimension(197, 41));
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBackActionPerformed(evt);
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Create Account");
 
@@ -186,7 +194,7 @@ public class CreateEmployeeJPanel extends javax.swing.JPanel {
                                         .addGap(152, 152, 152))))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(127, 127, 127)
-                        .addComponent(btnBack)
+                        .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel1)
                         .addGap(278, 278, 278)))
@@ -197,7 +205,7 @@ public class CreateEmployeeJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(66, 66, 66)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnBack)
+                    .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(137, 137, 137)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -222,8 +230,8 @@ public class CreateEmployeeJPanel extends javax.swing.JPanel {
                     .addComponent(speComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
                 .addGap(114, 114, 114)
-                .addComponent(createBtn)
-                .addContainerGap(306, Short.MAX_VALUE))
+                .addComponent(createBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(287, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {birthdayTxt, jLabel2, jLabel3, jLabel4, jLabel5, jLabel6, jLabel7, nameTxt, pwTxt, roleCombo, speComboBox, usernameTxt});

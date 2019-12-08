@@ -126,8 +126,10 @@ public class LabJPanel extends javax.swing.JPanel {
         jScrollPane1.setViewportView(workRequestJTable);
 
         assignBtn.setBackground(new java.awt.Color(255, 168, 125));
+        assignBtn.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
         assignBtn.setForeground(new java.awt.Color(254, 254, 254));
         assignBtn.setText("Assign to me");
+        assignBtn.setPreferredSize(new java.awt.Dimension(197, 41));
         assignBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 assignBtnActionPerformed(evt);
@@ -135,8 +137,10 @@ public class LabJPanel extends javax.swing.JPanel {
         });
 
         processBtn.setBackground(new java.awt.Color(255, 168, 125));
+        processBtn.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
         processBtn.setForeground(new java.awt.Color(254, 254, 254));
         processBtn.setText("Process");
+        processBtn.setPreferredSize(new java.awt.Dimension(197, 41));
         processBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 processBtnActionPerformed(evt);
@@ -154,9 +158,9 @@ public class LabJPanel extends javax.swing.JPanel {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 678, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(158, 158, 158)
-                        .addComponent(assignBtn)
+                        .addComponent(assignBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(197, 197, 197)
-                        .addComponent(processBtn)))
+                        .addComponent(processBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(105, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -166,9 +170,9 @@ public class LabJPanel extends javax.swing.JPanel {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(43, 43, 43)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(processBtn)
-                    .addComponent(assignBtn))
-                .addContainerGap(183, Short.MAX_VALUE))
+                    .addComponent(processBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(assignBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(171, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
