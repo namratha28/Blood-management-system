@@ -46,46 +46,49 @@ public class BloodBankAdminWorkAreaJPanel extends javax.swing.JPanel {
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        userJButton.setBackground(new java.awt.Color(0, 102, 102));
-        userJButton.setFont(new java.awt.Font("Chalkboard SE", 0, 12)); // NOI18N
+        userJButton.setBackground(new java.awt.Color(255, 168, 125));
+        userJButton.setFont(new java.awt.Font("Chalkboard SE", 1, 14)); // NOI18N
         userJButton.setForeground(new java.awt.Color(255, 255, 255));
         userJButton.setText("MANAGE USER");
+        userJButton.setPreferredSize(new java.awt.Dimension(197, 41));
         userJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 userJButtonActionPerformed(evt);
             }
         });
-        add(userJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 270, 210, -1));
+        add(userJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 270, 240, -1));
 
-        manageEmployeeJButton.setBackground(new java.awt.Color(0, 102, 102));
-        manageEmployeeJButton.setFont(new java.awt.Font("Chalkboard SE", 0, 12)); // NOI18N
+        manageEmployeeJButton.setBackground(new java.awt.Color(255, 168, 125));
+        manageEmployeeJButton.setFont(new java.awt.Font("Chalkboard SE", 1, 14)); // NOI18N
         manageEmployeeJButton.setForeground(new java.awt.Color(255, 255, 255));
         manageEmployeeJButton.setText("MANAGE EMPLOYEE");
+        manageEmployeeJButton.setPreferredSize(new java.awt.Dimension(197, 41));
         manageEmployeeJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 manageEmployeeJButtonActionPerformed(evt);
             }
         });
-        add(manageEmployeeJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 220, 210, -1));
+        add(manageEmployeeJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 220, 240, -1));
 
-        manageOrganizationJButton.setBackground(new java.awt.Color(0, 102, 102));
-        manageOrganizationJButton.setFont(new java.awt.Font("Chalkboard SE", 0, 12)); // NOI18N
+        manageOrganizationJButton.setBackground(new java.awt.Color(255, 168, 125));
+        manageOrganizationJButton.setFont(new java.awt.Font("Chalkboard SE", 1, 14)); // NOI18N
         manageOrganizationJButton.setForeground(new java.awt.Color(255, 255, 255));
         manageOrganizationJButton.setText("MANAGE ORGANIZATIONS");
+        manageOrganizationJButton.setPreferredSize(new java.awt.Dimension(197, 41));
         manageOrganizationJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 manageOrganizationJButtonActionPerformed(evt);
             }
         });
-        add(manageOrganizationJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 170, 210, -1));
+        add(manageOrganizationJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 170, 240, -1));
 
         valueLabel.setFont(new java.awt.Font("Chalkboard SE", 0, 12)); // NOI18N
         valueLabel.setText("<value>");
         add(valueLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 100, 130, 30));
 
-        jLabel2.setFont(new java.awt.Font("Chalkboard SE", 0, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 102, 102));
-        jLabel2.setText("WELCOME TO MEDICINE SUPPLIER ADMIN WORKAREA");
+        jLabel2.setFont(new java.awt.Font("Chalkboard SE", 1, 24)); // NOI18N
+        jLabel2.setForeground(java.awt.Color.black);
+        jLabel2.setText("Welcome to Blood Bank Admin Work Panel");
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 40, -1, -1));
 
         enterpriseLabel1.setFont(new java.awt.Font("Chalkboard SE", 0, 14)); // NOI18N

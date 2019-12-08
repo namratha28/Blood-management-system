@@ -137,9 +137,6 @@ public class ViewEventJPanel extends javax.swing.JPanel {
         backBtn.setForeground(new java.awt.Color(254, 254, 254));
         backBtn.setText("Back");
         backBtn.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        backBtn.setBorderPainted(false);
-        backBtn.setContentAreaFilled(false);
-        backBtn.setFocusPainted(false);
         backBtn.setOpaque(true);
         backBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
