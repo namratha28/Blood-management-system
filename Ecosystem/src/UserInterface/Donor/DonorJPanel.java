@@ -78,7 +78,7 @@ public class DonorJPanel extends javax.swing.JPanel {
                 phNoTxtField.setEnabled(false);
                 AddressTxtField.setEnabled(false);
                 donateBtn.setEnabled(false);
-                bloodGroupDropDown.setEnabled(false);
+                //bloodGroupDropDown.setEnabled(false);
                 bloodBankBtn.setEnabled(false);
                 return true;
             
@@ -91,15 +91,15 @@ public class DonorJPanel extends javax.swing.JPanel {
     }
      public void populateGroupComboBox()
       {
-         bloodGroupDropDown.removeAllItems();
-         bloodGroupDropDown.addItem("A+");
-         bloodGroupDropDown.addItem("A-");
-         bloodGroupDropDown.addItem("B+");
-         bloodGroupDropDown.addItem("B-");
-         bloodGroupDropDown.addItem("O+");
-         bloodGroupDropDown.addItem("O-");
-         bloodGroupDropDown.addItem("AB+");
-         bloodGroupDropDown.addItem("AB-");
+//         bloodGroupDropDown.removeAllItems();
+//         bloodGroupDropDown.addItem("A+");
+//         bloodGroupDropDown.addItem("A-");
+//         bloodGroupDropDown.addItem("B+");
+//         bloodGroupDropDown.addItem("B-");
+//         bloodGroupDropDown.addItem("O+");
+//         bloodGroupDropDown.addItem("O-");
+//         bloodGroupDropDown.addItem("AB+");
+//         bloodGroupDropDown.addItem("AB-");
                                  
      }
      public void populateBloodBankComboBox()
@@ -215,7 +215,6 @@ public class DonorJPanel extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         NameTxtField = new javax.swing.JTextField();
         donateBtn = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
         AddressTxtField = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         MedicineListTable = new javax.swing.JTable();
@@ -225,7 +224,6 @@ public class DonorJPanel extends javax.swing.JPanel {
         bloodBankBtn = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        bloodGroupDropDown = new javax.swing.JComboBox<>();
         viewEventBtn = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
@@ -264,8 +262,6 @@ public class DonorJPanel extends javax.swing.JPanel {
                 donateBtnActionPerformed(evt);
             }
         });
-
-        jLabel5.setText("Blood Group");
 
         AddressTxtField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -322,8 +318,6 @@ public class DonorJPanel extends javax.swing.JPanel {
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("Donor Potal");
 
-        bloodGroupDropDown.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         viewEventBtn.setText("View Events");
         viewEventBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -369,40 +363,33 @@ public class DonorJPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(NameTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGap(311, 311, 311)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                    .addComponent(jLabel3)
-                                                    .addComponent(jLabel5)
-                                                    .addComponent(jLabel4))
-                                                .addGap(38, 38, 38))
-                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(NameTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGap(311, 311, 311)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                .addComponent(jLabel3)
+                                                .addComponent(jLabel4))
+                                            .addGap(38, 38, 38))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                        .addGroup(layout.createSequentialGroup()
-                                                            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                            .addComponent(jLabel2))
-                                                        .addGroup(layout.createSequentialGroup()
-                                                            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                            .addComponent(jLabel1)))
+                                                        .addComponent(jLabel2)
+                                                        .addComponent(jLabel1))
                                                     .addGap(49, 49, 49))
                                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                                    .addContainerGap()
                                                     .addComponent(jLabel6)
-                                                    .addGap(29, 29, 29))))
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(bloodBankBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                .addComponent(phNoTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(ageTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(AddressTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addComponent(bloodGroupDropDown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                                    .addGap(29, 29, 29)))))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(bloodBankBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(phNoTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(ageTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(AddressTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                         .addGap(389, 389, 389)))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
@@ -440,11 +427,7 @@ public class DonorJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(phNoTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(bloodGroupDropDown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(19, 19, 19)
+                .addGap(61, 61, 61)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(AddressTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
@@ -500,7 +483,7 @@ public class DonorJPanel extends javax.swing.JPanel {
                 donorrequest.setName(NameTxtField.getText());
                 donorrequest.setAge(Integer.parseInt(ageTxtField.getText()));
                 donorrequest.setAddressLine(AddressTxtField.getText());
-                donorrequest.setBlood((bloodGroupDropDown.getSelectedItem().toString()));
+                //donorrequest.setBlood((bloodGroupDropDown.getSelectedItem().toString()));
                 donorrequest.setPhoneNo(Integer.parseInt(phNoTxtField.getText()));
                 donorrequest.setSender(userAccount);
                 donorrequest.setBloodBank(bloodBankBtn.getSelectedItem().toString());
@@ -800,7 +783,6 @@ public class DonorJPanel extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> PharmacyJComboBox;
     private javax.swing.JTextField ageTxtField;
     private javax.swing.JComboBox<String> bloodBankBtn;
-    private javax.swing.JComboBox<String> bloodGroupDropDown;
     private javax.swing.JButton chckAvailBtn;
     private javax.swing.JButton donateBtn;
     private javax.swing.JButton jButton1;
@@ -808,7 +790,6 @@ public class DonorJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
