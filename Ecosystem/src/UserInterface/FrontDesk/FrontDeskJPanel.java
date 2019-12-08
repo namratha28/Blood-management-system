@@ -55,7 +55,7 @@ public class FrontDeskJPanel extends javax.swing.JPanel {
         populateStaff();
         populateSpeComboBox();
         populateRqTable();
-        dueTxt.setText("12/08/19 00:00:00");
+        dueTxt.setText("12/08/19 09:00:00");
     }
 
     private void populateStaff() {
@@ -81,9 +81,9 @@ public class FrontDeskJPanel extends javax.swing.JPanel {
             Object[] row = new Object[5];
             row[0] = rq;
             row[1] = rq.getReceiver();
-           // row[2] = rq.getSender();
+            // row[2] = rq.getSender();
             row[2] = rq.getStatus();
-            row[3]=rq.getResolveDate();
+            row[3] = rq.getResolveDate();
             model.addRow(row);
         }
 
@@ -310,7 +310,7 @@ private void delFdWq(WorkRequest wr) {
 
     private void appBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_appBtnActionPerformed
         FrontDeskApptJPanel panel = new FrontDeskApptJPanel(userProcessContainer, curr, organization,
-        enterprise, business);
+                enterprise, business);
         userProcessContainer.add("CreateEmployeeJPanel", panel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
@@ -390,6 +390,7 @@ private void delFdWq(WorkRequest wr) {
             }
         }
         populateRqTable();
+        JOptionPane.showMessageDialog(null, "send request");
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
