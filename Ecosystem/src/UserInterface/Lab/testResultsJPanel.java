@@ -574,6 +574,7 @@ public class testResultsJPanel extends javax.swing.JPanel {
 
                 if (org != null) {
                     System.out.println("userinterface.Farmer.RequestDoctorTreatmentWorkAreaJPanel.requestTestJButtonActionPerformed()");
+                    request.setBlood(bloodGroupDropDown.getSelectedItem().toString());
                     org.getWorkQueue().getWorkRequestList().add(request);
                     userAccount.getWorkQueue().getWorkRequestList().add(request);
                     

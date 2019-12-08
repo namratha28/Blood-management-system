@@ -41,6 +41,7 @@ public class ViewRegEventsJPanel extends javax.swing.JPanel {
         Object[] newIdentifiers = new Object[]{"Event", "Location", "Date", "Time"};
         model.setColumnIdentifiers(newIdentifiers);
         model.setRowCount(0);
+        System.out.println(userAccount.getEvents());
         for(int i = 0; i < userAccount.getEvents().size(); i++) {
             Object[] row = new Object[4];
             row[0] = userAccount.getEvents().get(i);
