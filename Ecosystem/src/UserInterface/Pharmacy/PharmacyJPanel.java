@@ -123,6 +123,8 @@ public class PharmacyJPanel extends javax.swing.JPanel {
         jButton1 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(255, 255, 255));
+
         jLabel1.setText("Medicine");
 
         addBtn.setBackground(new java.awt.Color(255, 168, 125));
