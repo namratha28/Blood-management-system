@@ -63,7 +63,7 @@ public class DoctorWQJPanel extends javax.swing.JPanel {
         populateBloodTypeComboBox();
         setInfoFieldEnable(false);
         setFieldEnable(false);
-        dueTxt.setText("11/22/80 00:00:00");
+        dueTxt.setText("12/08/19 09:00:00");
     }
 
     private void setInfoFieldEnable(boolean b) {
@@ -385,6 +385,7 @@ public class DoctorWQJPanel extends javax.swing.JPanel {
         }
         removeOldWorkRequest();
         populateTreatementHistory();
+        JOptionPane.showMessageDialog(null, "send request");
     }
 
     private void sendDonorWorkRequest() {

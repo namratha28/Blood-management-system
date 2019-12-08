@@ -58,7 +58,7 @@ public class NurseWQJPanel extends javax.swing.JPanel {
         populateSpeComboBox();
         populateNurse();
         // populateBloodTypeComboBox();
-        dueTxt.setText("11/22/80 00:00:00");
+        dueTxt.setText("12/08/19 09:00:00");
         saveBtn.setEnabled(false);
         setFieldEnable(false);
         setInfoFieldEnable(false);
@@ -364,6 +364,7 @@ public class NurseWQJPanel extends javax.swing.JPanel {
         }
         removeOldWorkRequest();
         populateTreatementHistory();
+        JOptionPane.showMessageDialog(null, "send request");
     }// GEN-LAST:event_jButton1ActionPerformed
 
     private void sendDonorWorkRequest() {

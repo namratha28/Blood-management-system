@@ -174,15 +174,15 @@ public class DonorViewEventsJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         int selected = dViewEvents.getSelectedRow();
 
-        if (selected > 0) {
-
+        if (selected >=0) {
+             System.out.println("hello nam");
             String title = dViewEvents.getValueAt(selected, 1).toString();
             String location = dViewEvents.getValueAt(selected, 2).toString();
 
             String date = dViewEvents.getValueAt(selected, 3).toString();
             String time = dViewEvents.getValueAt(selected, 4).toString();
-
-
+            System.out.println("title"+title+"location"+location+"date"+date);
+            System.out.println("hello nam");
             System.out.println();
             ArrayList<String> events = userAccount.getEvents();
             events.add(title);
@@ -199,7 +199,7 @@ public class DonorViewEventsJPanel extends javax.swing.JPanel {
             ArrayList<String> times = userAccount.getEventTimes();
             times.add(time);
             userAccount.setEvents(times);
-                    
+            System.out.println("events"+userAccount.getEvents()+"location"+userAccount.getEventLocations());
             
         }
         
