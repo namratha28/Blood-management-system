@@ -29,16 +29,6 @@ public class EnterpriseDirectory {
         if (type == Enterprise.EnterpriseType.BloodBank) {
             enterprise = new BloodBankEnterprise(name);
             enterpriseList.add(enterprise);
-        } else if (type == Enterprise.EnterpriseType.Insurance) {
-            enterprise = new InsuranceEnterprise(name);
-            enterpriseList.add(enterprise);
-
-        } else if (type == Enterprise.EnterpriseType.Goverment) {
-            enterprise = new GovermentEnterprise(name);
-            enterpriseList.add(enterprise);
-        } else if (type == Enterprise.EnterpriseType.Logistics) {
-            enterprise = new LogisticsEnterprise(name);
-            enterpriseList.add(enterprise);
         } else if (type == Enterprise.EnterpriseType.Pharmacy) {
             enterprise = new PharmacyEnterprise(name);
             enterpriseList.add(enterprise);
