@@ -17,6 +17,7 @@ import Bussiness.WorkQueue.MedicineRequest;
 import Bussiness.WorkQueue.WorkRequest;
 import UserInterface.CreateEvents.ViewEventJPanel;
 import UserInterface.Doctor.DoctorWQJPanel;
+import UserInterface.Lab.LabJPanel;
 import java.awt.CardLayout;
 import java.awt.Component;
 import java.awt.Image;
@@ -119,7 +120,10 @@ public class DonorViewEventsJPanel extends javax.swing.JPanel {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         dViewEvents = new javax.swing.JTable();
-        RegisterBtn = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+
+        setBackground(new java.awt.Color(255, 255, 255));
 
         dViewEvents.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -135,14 +139,15 @@ public class DonorViewEventsJPanel extends javax.swing.JPanel {
         dViewEvents.setGridColor(new java.awt.Color(254, 254, 254));
         jScrollPane1.setViewportView(dViewEvents);
 
-        RegisterBtn.setBackground(new java.awt.Color(255, 168, 125));
-        RegisterBtn.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
-        RegisterBtn.setForeground(new java.awt.Color(254, 254, 254));
-        RegisterBtn.setText("Register");
-        RegisterBtn.setPreferredSize(new java.awt.Dimension(197, 41));
-        RegisterBtn.addActionListener(new java.awt.event.ActionListener() {
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("View All Events");
+
+        jButton1.setBackground(new java.awt.Color(255, 153, 102));
+        jButton1.setText("<<BACK");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RegisterBtnActionPerformed(evt);
+                jButton1ActionPerformed(evt);
             }
         });
 
@@ -153,62 +158,42 @@ public class DonorViewEventsJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 376, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(RegisterBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1187, Short.MAX_VALUE))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(117, 117, 117))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
+                .addGap(30, 30, 30)
+                .addComponent(jLabel1)
+                .addGap(60, 60, 60)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(RegisterBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(115, Short.MAX_VALUE))
+                .addGap(54, 54, 54)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(345, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void RegisterBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegisterBtnActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        int selected = dViewEvents.getSelectedRow();
-
-        if (selected >=0) {
-             System.out.println("hello nam");
-            String title = dViewEvents.getValueAt(selected, 1).toString();
-            String location = dViewEvents.getValueAt(selected, 2).toString();
-
-            String date = dViewEvents.getValueAt(selected, 3).toString();
-            String time = dViewEvents.getValueAt(selected, 4).toString();
-            System.out.println("title"+title+"location"+location+"date"+date);
-            System.out.println("hello nam");
-            System.out.println();
-            ArrayList<String> events = userAccount.getEvents();
-            events.add(title);
-            userAccount.setEvents(events);
-            
-            ArrayList<String> locations = userAccount.getEventLocations();
-            locations.add(location);
-            userAccount.setEvents(events);
-            
-            ArrayList<String> dates = userAccount.getEventDates();
-            dates.add(date);
-            userAccount.setEvents(dates);
-            
-            ArrayList<String> times = userAccount.getEventTimes();
-            times.add(time);
-            userAccount.setEvents(times);
-            System.out.println("events"+userAccount.getEvents()+"location"+userAccount.getEventLocations());
-            
-        }
-        
-    }//GEN-LAST:event_RegisterBtnActionPerformed
+        userProcessContainer.remove(this);
+        Component[] componentArray = userProcessContainer.getComponents();
+        Component component = componentArray[componentArray.length - 1];
+        DonorJPanel dwjp = (DonorJPanel) component;
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton RegisterBtn;
     private javax.swing.JTable dViewEvents;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }
