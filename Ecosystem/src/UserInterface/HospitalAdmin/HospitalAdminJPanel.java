@@ -79,6 +79,8 @@ public class HospitalAdminJPanel extends javax.swing.JPanel {
         delOrgBtn = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(254, 254, 254));
+
         employeejTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -102,14 +104,22 @@ public class HospitalAdminJPanel extends javax.swing.JPanel {
         ));
         jScrollPane2.setViewportView(wrTable);
 
+        createBtn.setBackground(new java.awt.Color(255, 168, 125));
+        createBtn.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        createBtn.setForeground(new java.awt.Color(254, 254, 254));
         createBtn.setText("Create");
+        createBtn.setPreferredSize(new java.awt.Dimension(197, 41));
         createBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 createBtnActionPerformed(evt);
             }
         });
 
+        delEmpBtn.setBackground(new java.awt.Color(255, 168, 125));
+        delEmpBtn.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        delEmpBtn.setForeground(new java.awt.Color(254, 254, 254));
         delEmpBtn.setText("Delete");
+        delEmpBtn.setPreferredSize(new java.awt.Dimension(197, 41));
         delEmpBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 delEmpBtnActionPerformed(evt);
@@ -147,18 +157,26 @@ public class HospitalAdminJPanel extends javax.swing.JPanel {
             }
         });
 
+        jLabel2.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
         jLabel2.setText("Hospital DashBoard");
 
         jLabel3.setText("Organization Type");
 
+        submitBtn.setBackground(new java.awt.Color(255, 168, 125));
+        submitBtn.setForeground(new java.awt.Color(254, 254, 254));
         submitBtn.setText("Submit");
+        submitBtn.setPreferredSize(new java.awt.Dimension(197, 41));
         submitBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 submitBtnActionPerformed(evt);
             }
         });
 
+        delOrgBtn.setBackground(new java.awt.Color(255, 168, 125));
+        delOrgBtn.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        delOrgBtn.setForeground(new java.awt.Color(254, 254, 254));
         delOrgBtn.setText("Delete");
+        delOrgBtn.setPreferredSize(new java.awt.Dimension(197, 41));
         delOrgBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 delOrgBtnActionPerformed(evt);
@@ -202,7 +220,7 @@ public class HospitalAdminJPanel extends javax.swing.JPanel {
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 871, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(482, Short.MAX_VALUE)
+                .addContainerGap(385, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addGap(477, 477, 477))
         );
@@ -221,8 +239,8 @@ public class HospitalAdminJPanel extends javax.swing.JPanel {
                             .addComponent(OrgTypejComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(delOrgBtn)
-                            .addComponent(submitBtn)))
+                            .addComponent(delOrgBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(submitBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(16, 16, 16)
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -232,9 +250,9 @@ public class HospitalAdminJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(createBtn)
+                        .addComponent(createBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(delEmpBtn)
+                        .addComponent(delEmpBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(69, 69, 69)))
                 .addGap(29, 29, 29)
                 .addComponent(jLabel6)
@@ -242,7 +260,7 @@ public class HospitalAdminJPanel extends javax.swing.JPanel {
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1)
-                .addContainerGap(260, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

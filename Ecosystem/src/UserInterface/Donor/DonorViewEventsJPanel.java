@@ -132,9 +132,14 @@ public class DonorViewEventsJPanel extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        dViewEvents.setGridColor(new java.awt.Color(254, 254, 254));
         jScrollPane1.setViewportView(dViewEvents);
 
+        RegisterBtn.setBackground(new java.awt.Color(255, 168, 125));
+        RegisterBtn.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        RegisterBtn.setForeground(new java.awt.Color(254, 254, 254));
         RegisterBtn.setText("Register");
+        RegisterBtn.setPreferredSize(new java.awt.Dimension(197, 41));
         RegisterBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 RegisterBtnActionPerformed(evt);
@@ -160,8 +165,8 @@ public class DonorViewEventsJPanel extends javax.swing.JPanel {
                 .addGap(27, 27, 27)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(RegisterBtn)
-                .addContainerGap(127, Short.MAX_VALUE))
+                .addComponent(RegisterBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(115, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

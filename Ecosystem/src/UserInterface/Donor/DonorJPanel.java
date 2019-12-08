@@ -204,6 +204,8 @@ public class DonorJPanel extends javax.swing.JPanel {
         viewEventBtn = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(254, 254, 254));
+
         ageTxtField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ageTxtFieldActionPerformed(evt);
@@ -230,7 +232,11 @@ public class DonorJPanel extends javax.swing.JPanel {
             }
         });
 
+        donateBtn.setBackground(new java.awt.Color(255, 168, 125));
+        donateBtn.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        donateBtn.setForeground(new java.awt.Color(254, 254, 254));
         donateBtn.setText("Donate");
+        donateBtn.setPreferredSize(new java.awt.Dimension(197, 41));
         donateBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 donateBtnActionPerformed(evt);
@@ -266,7 +272,11 @@ public class DonorJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(MedicineListTable);
 
+        chckAvailBtn.setBackground(new java.awt.Color(255, 168, 125));
+        chckAvailBtn.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        chckAvailBtn.setForeground(new java.awt.Color(254, 254, 254));
         chckAvailBtn.setText("Check Availability");
+        chckAvailBtn.setPreferredSize(new java.awt.Dimension(197, 41));
         chckAvailBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 chckAvailBtnActionPerformed(evt);
@@ -280,7 +290,11 @@ public class DonorJPanel extends javax.swing.JPanel {
             }
         });
 
+        requestMedicineBtn.setBackground(new java.awt.Color(255, 168, 125));
+        requestMedicineBtn.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        requestMedicineBtn.setForeground(new java.awt.Color(254, 254, 254));
         requestMedicineBtn.setText("Request");
+        requestMedicineBtn.setPreferredSize(new java.awt.Dimension(197, 41));
         requestMedicineBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 requestMedicineBtnActionPerformed(evt);
@@ -291,19 +305,28 @@ public class DonorJPanel extends javax.swing.JPanel {
 
         jLabel6.setText("Select Blood Bank ");
 
+        jLabel7.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("Donor Potal");
 
         bloodGroupDropDown.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
+        viewEventBtn.setBackground(new java.awt.Color(255, 168, 125));
+        viewEventBtn.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        viewEventBtn.setForeground(new java.awt.Color(254, 254, 254));
         viewEventBtn.setText("View Events");
+        viewEventBtn.setPreferredSize(new java.awt.Dimension(197, 41));
         viewEventBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 viewEventBtnActionPerformed(evt);
             }
         });
 
+        jButton1.setBackground(new java.awt.Color(255, 168, 125));
+        jButton1.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(254, 254, 254));
         jButton1.setText("See Registrations");
+        jButton1.setPreferredSize(new java.awt.Dimension(197, 41));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -349,20 +372,20 @@ public class DonorJPanel extends javax.swing.JPanel {
                         .addGap(213, 213, 213)
                         .addComponent(PharmacyJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(chckAvailBtn)
+                        .addComponent(chckAvailBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(requestMedicineBtn))
+                        .addComponent(requestMedicineBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(327, 327, 327)
-                        .addComponent(donateBtn)
+                        .addComponent(donateBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(viewEventBtn)
+                        .addComponent(viewEventBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1))
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(209, 209, 209)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 428, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(387, Short.MAX_VALUE))
+                .addContainerGap(87, Short.MAX_VALUE))
             .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
@@ -396,17 +419,17 @@ public class DonorJPanel extends javax.swing.JPanel {
                     .addComponent(jLabel6))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(donateBtn)
-                    .addComponent(viewEventBtn)
-                    .addComponent(jButton1))
+                    .addComponent(donateBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(viewEventBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(34, 34, 34)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(PharmacyJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(chckAvailBtn)
-                    .addComponent(requestMedicineBtn))
-                .addContainerGap(173, Short.MAX_VALUE))
+                    .addComponent(chckAvailBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(requestMedicineBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(149, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

@@ -172,8 +172,10 @@ public class DoctorWQJPanel extends javax.swing.JPanel {
         jLabel9.setText("Message");
 
         jButton1.setBackground(new java.awt.Color(255, 168, 125));
+        jButton1.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(254, 254, 254));
         jButton1.setText("Send Request");
+        jButton1.setPreferredSize(new java.awt.Dimension(197, 41));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -338,7 +340,7 @@ public class DoctorWQJPanel extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addComponent(massageTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
-                .addComponent(jButton1)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(93, 93, 93))
         );
     }// </editor-fold>//GEN-END:initComponents

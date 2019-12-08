@@ -104,7 +104,11 @@ public class DoctorJPanel extends javax.swing.JPanel {
         availTable.setGridColor(new java.awt.Color(2, 117, 216));
         jScrollPane1.setViewportView(availTable);
 
-        jButton1.setText("Select");
+        jButton1.setBackground(new java.awt.Color(255, 168, 125));
+        jButton1.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(254, 254, 254));
+        jButton1.setText("SELECT");
+        jButton1.setPreferredSize(new java.awt.Dimension(197, 41));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -158,7 +162,11 @@ public class DoctorJPanel extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(rqTable);
 
-        cancelBtn.setText("Cancel");
+        cancelBtn.setBackground(new java.awt.Color(255, 168, 125));
+        cancelBtn.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        cancelBtn.setForeground(new java.awt.Color(254, 254, 254));
+        cancelBtn.setText("CANCEL");
+        cancelBtn.setPreferredSize(new java.awt.Dimension(197, 41));
         cancelBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cancelBtnActionPerformed(evt);
@@ -257,9 +265,9 @@ public class DoctorJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(32, 32, 32)
-                        .addComponent(cancelBtn)))
+                        .addComponent(cancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(76, 76, 76))
         );
     }// </editor-fold>//GEN-END:initComponents

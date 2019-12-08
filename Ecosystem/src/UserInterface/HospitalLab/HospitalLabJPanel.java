@@ -61,7 +61,12 @@ public class HospitalLabJPanel extends javax.swing.JPanel {
         cancelBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(254, 254, 254));
+
+        selectBtn.setBackground(new java.awt.Color(255, 168, 125));
+        selectBtn.setForeground(new java.awt.Color(254, 254, 254));
         selectBtn.setText("Select");
+        selectBtn.setPreferredSize(new java.awt.Dimension(197, 41));
         selectBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 selectBtnActionPerformed(evt);
@@ -88,14 +93,19 @@ public class HospitalLabJPanel extends javax.swing.JPanel {
 
         jLabel2.setText("Work Queue");
 
+        cancelBtn.setBackground(new java.awt.Color(255, 168, 125));
+        cancelBtn.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        cancelBtn.setForeground(new java.awt.Color(254, 254, 254));
         cancelBtn.setText("Cancel");
+        cancelBtn.setPreferredSize(new java.awt.Dimension(197, 41));
         cancelBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cancelBtnActionPerformed(evt);
             }
         });
 
-        jLabel1.setText("HOSPIATL LAB DASHBOARD");
+        jLabel1.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
+        jLabel1.setText("Hospital Lab Dashboard");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -129,10 +139,10 @@ public class HospitalLabJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(selectBtn)
+                        .addComponent(selectBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(32, 32, 32)
-                        .addComponent(cancelBtn)))
-                .addContainerGap(312, Short.MAX_VALUE))
+                        .addComponent(cancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(301, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
