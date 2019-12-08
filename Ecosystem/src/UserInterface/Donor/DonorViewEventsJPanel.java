@@ -17,6 +17,7 @@ import Bussiness.WorkQueue.MedicineRequest;
 import Bussiness.WorkQueue.WorkRequest;
 import UserInterface.CreateEvents.ViewEventJPanel;
 import UserInterface.Doctor.DoctorWQJPanel;
+import UserInterface.Lab.LabJPanel;
 import java.awt.CardLayout;
 import java.awt.Component;
 import java.awt.Image;
@@ -144,6 +145,11 @@ public class DonorViewEventsJPanel extends javax.swing.JPanel {
 
         jButton1.setBackground(new java.awt.Color(255, 153, 102));
         jButton1.setText("<<BACK");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -172,6 +178,16 @@ public class DonorViewEventsJPanel extends javax.swing.JPanel {
                 .addContainerGap(345, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        userProcessContainer.remove(this);
+        Component[] componentArray = userProcessContainer.getComponents();
+        Component component = componentArray[componentArray.length - 1];
+        DonorJPanel dwjp = (DonorJPanel) component;
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
