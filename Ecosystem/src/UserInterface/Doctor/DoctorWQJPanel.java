@@ -154,8 +154,11 @@ public class DoctorWQJPanel extends javax.swing.JPanel {
         dueTxt = new javax.swing.JTextField();
         btCombo = new javax.swing.JComboBox();
 
+        setBackground(new java.awt.Color(254, 254, 254));
+
         jLabel4.setText("Blood Type");
 
+        jLabel1.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
         jLabel1.setText("Patient Inforamtion");
 
         jLabel2.setText("name");
@@ -168,6 +171,8 @@ public class DoctorWQJPanel extends javax.swing.JPanel {
 
         jLabel9.setText("Message");
 
+        jButton1.setBackground(new java.awt.Color(255, 168, 125));
+        jButton1.setForeground(new java.awt.Color(254, 254, 254));
         jButton1.setText("Send Request");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -181,6 +186,8 @@ public class DoctorWQJPanel extends javax.swing.JPanel {
 
         jLabel10.setText("Pulse");
 
+        btnBack.setBackground(new java.awt.Color(255, 168, 125));
+        btnBack.setForeground(java.awt.Color.white);
         btnBack.setText("<< Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

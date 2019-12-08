@@ -158,16 +158,17 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
         employeeJComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         add(employeeJComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 200, 180, -1));
 
-        backjButton1.setBackground(new java.awt.Color(0, 102, 102));
-        backjButton1.setFont(new java.awt.Font("Chalkboard SE", 0, 12)); // NOI18N
+        backjButton1.setBackground(new java.awt.Color(255, 168, 125));
+        backjButton1.setFont(new java.awt.Font("Chalkboard SE", 1, 14)); // NOI18N
         backjButton1.setForeground(new java.awt.Color(255, 255, 255));
         backjButton1.setText("<<BACK");
+        backjButton1.setPreferredSize(new java.awt.Dimension(197, 41));
         backjButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backjButton1ActionPerformed(evt);
             }
         });
-        add(backjButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 480, 112, -1));
+        add(backjButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 460, 112, -1));
 
         organizationJComboBox.setFont(new java.awt.Font("Chalkboard SE", 0, 12)); // NOI18N
         organizationJComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));

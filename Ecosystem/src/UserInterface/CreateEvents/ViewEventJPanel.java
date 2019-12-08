@@ -17,7 +17,9 @@ import Bussiness.WorkQueue.EventRequest;
 import Bussiness.WorkQueue.WorkRequest;
 import UserInterface.SystemAdmin.SystemAdminWorkAreaJPanel;
 import java.awt.CardLayout;
+import java.awt.Color;
 import java.awt.Component;
+import java.awt.Font;
 import java.awt.Image;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
@@ -45,6 +47,11 @@ public class ViewEventJPanel extends javax.swing.JPanel {
 
     public ViewEventJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business) {
         initComponents();
+        eventsJTable.getTableHeader().setOpaque(false);
+        eventsJTable.getTableHeader().setBackground(new Color(255,168,125));
+        eventsJTable.getTableHeader().setFont(new Font("Ubuntu", Font.BOLD, 14));
+        eventsJTable.getTableHeader().setForeground(new Color(60,60,60));
+        eventsJTable.setBackground(new Color(255,255,255));
         this.userProcessContainer = userProcessContainer;
         this.userAccount = account;
         this.business = business;
@@ -57,7 +64,7 @@ public class ViewEventJPanel extends javax.swing.JPanel {
     class LabelRenderer implements TableCellRenderer{
         public Component getTableCellRendererComponent(JTable table, Object value,  boolean isSelected, boolean hasFocus, int row, int column){
             TableColumn tc = table.getColumn("Image");
-            tc.setMinWidth(100);
+            tc.setMinWidth(150);
             table.setRowHeight(100);
             return (Component) value;
         }
@@ -118,7 +125,14 @@ public class ViewEventJPanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         eventsJTable = new javax.swing.JTable();
         backBtn = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
 
+        setBackground(new java.awt.Color(254, 254, 254));
+
+        eventsJTable.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        eventsJTable.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
         eventsJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
@@ -130,24 +144,69 @@ public class ViewEventJPanel extends javax.swing.JPanel {
                 "Creator", "Title", "Location", "Date", "Time", "Image"
             }
         ));
+        eventsJTable.setFocusable(false);
+        eventsJTable.setGridColor(new java.awt.Color(254, 254, 254));
+        eventsJTable.setOpaque(false);
+        eventsJTable.setRowHeight(40);
         jScrollPane1.setViewportView(eventsJTable);
 
         backBtn.setBackground(new java.awt.Color(253, 134, 75));
         backBtn.setFont(new java.awt.Font("Ubuntu", 1, 15)); // NOI18N
         backBtn.setForeground(new java.awt.Color(254, 254, 254));
-        backBtn.setText("Back");
+        backBtn.setText("BACK");
         backBtn.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        backBtn.setOpaque(true);
         backBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backBtnActionPerformed(evt);
             }
         });
 
+        jPanel2.setBackground(new java.awt.Color(255, 168, 125));
+
+        jLabel1.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(254, 254, 254));
+        jLabel1.setText("View Event ");
+
+        jPanel3.setBackground(new java.awt.Color(254, 254, 254));
+        jPanel3.setPreferredSize(new java.awt.Dimension(1, 1));
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(29, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -160,11 +219,13 @@ public class ViewEventJPanel extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(21, 21, 21)
+                .addGap(39, 39, 39)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(314, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -179,6 +240,9 @@ public class ViewEventJPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backBtn;
     private javax.swing.JTable eventsJTable;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }
