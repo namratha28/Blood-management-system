@@ -89,6 +89,8 @@ public class LabJPanel extends javax.swing.JPanel {
         assignBtn = new javax.swing.JButton();
         processBtn = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(254, 254, 254));
+
         workRequestJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null},
